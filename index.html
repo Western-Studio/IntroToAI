@@ -572,6 +572,14 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .ptask .pt-tag{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#b45309; }
 .ptask p{ font-size:12.5px; color:var(--s700); line-height:1.6; margin-top:7px; }
 .ptask b{ color:var(--s900); } .ptask em{ font-style:italic; color:var(--s900); }
+.taskcard{ margin-top:16px; background:rgba(255,255,255,.55); border:1px solid rgba(231,229,228,.6); border-radius:14px; padding:18px 20px; }
+.taskcard .tk-when{ font-size:10px; font-weight:800; font-family:ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#9333ea; }
+.taskcard h5{ font-size:14px; font-weight:800; color:var(--s900); margin-top:5px; }
+.taskcard > p{ font-size:12.5px; color:var(--s600); line-height:1.6; margin-top:8px; }
+.taskcard em{ font-style:italic; color:var(--s900); }
+.tasktrio{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px; }
+@media(min-width:768px){ .tasktrio{ grid-template-columns:1fr 1fr 1fr; } }
+.tasktrio .taskcard{ margin-top:0; }
 /* final task */
 .finaltask{ margin-top:42px; background:#1c1917; border:1px solid #292524; border-radius:22px; padding:28px; color:var(--cream); position:relative; overflow:hidden; }
 .finaltask::before{ content:""; position:absolute; top:-40px; right:-40px; width:200px; height:200px; border-radius:50%; background:var(--grad); filter:blur(70px); opacity:.4; pointer-events:none; }
@@ -866,7 +874,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <span class="learn-status" id="learn-status">The training data is loaded above. When you're ready, let the model study it.</span>
           </div>
         </div>
-      <div class="ptask"><span class="pt-tag">✎ On paper · 10 min</span><p><b>Map a mini-galaxy of your own studio.</b> Each star is a word; the distance between stars is meaning. Plot the materials and ideas of your own practice — <em>paint, oil, canvas</em> cluster tight; <em>deadline</em> drifts far off — and join them with constellation lines. This is the very map a model navigates when it reads your prompt.</p></div>
+      <div class="taskcard"><span class="tk-when">✎ Task 1 · in pairs · 20 min</span><h5>Map words as star constellations</h5><p>Each star is a word; the distance between stars is meaning. On paper, map a mini-galaxy of your own studio — <em>paint, oil, canvas</em> cluster tight, while <em>deadline</em> drifts far off — joining them with constellation lines of varying length.</p><div class="why purple"><b>Why:</b> this is how large language models work: they map culture as a universe of spatial coordinates, and a prompt navigates that sky. Demystifying the map is the first step to controlling it.</div></div>
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Why it’s called a “neural network”</h3></div><span class="ltime">~5 min</span></div>
       <p class="act-sub" style="max-width:66ch">The name isn’t an accident — these systems borrow one trick from the human brain. The resemblance is rough, but seeing it makes the whole thing far less alien.</p>
         <div class="brain-compare">
@@ -964,6 +972,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           </button>
         </div>
         <a class="src-link" href="https://www.sciencemuseum.org.uk/objects-and-stories/lovelace-turing-and-invention-computers" target="_blank" rel="noopener">Read Ada's full story · Science Museum: Lovelace, Turing &amp; the invention of computers →</a>
+      <div class="taskcard"><span class="tk-when">✎ Task 2 · 15 min</span><h5>Connect Dada to algorithms</h5><p>Unpack Tristan Tzara’s Dadaist hat poems and Marcel Duchamp’s use of gravity as a physics engine. Trace how avant-garde groups have long delegated design agency to random, rule-based systems.</p><div class="why purple"><b>Why:</b> algorithmic delegation is a classic modern-art strategy. An instruction loop doesn’t diminish your voice — it connects you to a rich history of systemic subversion.</div></div>
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Put the story in order</h3></div><span class="ltime">~8 min</span></div>
         <p class="act-sub">Five moments built the modern computer — and the idea that code could be creative. They're shuffled below. Drag the cards so the timeline runs earliest → latest, then press Check.</p>
         <div class="order-rows" id="order-rows">
@@ -986,6 +995,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <p class="a" style="font-weight:500">In 1968 Sol LeWitt wrote that <em>"the idea becomes a machine that makes the art."</em> He didn't sell finished drawings to museums — he sold a certificate of written instructions and let others execute them. The work <em>was</em> the system, not the marks.</p>
         <p style="color:#cbd5e1">When you write a prompt you are doing precisely this: authoring a set of rules and delegating the rendering. Code stops being intimidating the moment you read it as a conceptual recipe rather than a foreign language.</p>
       </div>
+      <div class="taskcard"><span class="tk-when">✎ Task 3 · 15 min</span><h5>Map Sol LeWitt’s rules</h5><p>Examine LeWitt’s <em>Wall Drawing No. 118</em>. Analyse how he acted as an early system programmer: he didn’t sell physical drawings, he sold a page of text parameters and let gallery assistants render the lines.</p><div class="why pink"><b>Why:</b> to bridge coding syntax and fine art. Once you read code as a ‘conceptual recipe’, the fear of scripting disappears and prompts become a medium.</div></div>
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Paint your own LeWitt — then write the rules</h3></div><span class="ltime">~15 min</span></div>
         <p class="act-sub">LeWitt's wall drawings are built from a tiny vocabulary: lines in a few directions, in flat colours, filling a grid. Pick a direction and a colour, then click or drag across the cells. Hand it to the machine to finish if you like — that's the LeWitt way.</p>
         <div class="lewitt-wrap">
@@ -1018,7 +1028,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <button class="act-btn shuffle" onclick="lwClear()">Clear</button>
           <button class="act-btn check" onclick="lwDownload()">Download PNG</button>
         </div>
-      <div class="ptask"><span class="pt-tag">✎ On paper · 15 min</span><p><b>Write the system, not the picture.</b> Like LeWitt’s <em>Wall Drawing No. 118</em>, draft an original rule-set in plain language with logic — e.g. <em>“Draw concentric squares. IF an edge overlaps a previous one, THEN rotate 15° and switch colour.”</em> Swap with a partner and test-draw each other’s rules. Keep this sheet — you’ll hand it to Gemini in the final task.</p></div>
+      <div class="taskcard"><span class="tk-when">✎ Task 4 · in pairs · 20 min</span><h5>Sketch a pseudo-code system</h5><p>On paper, draft an original rule-set using logic — e.g. <em>“Draw concentric squares. IF they overlap a previous edge, THEN rotate the canvas 15° and switch colour.”</em> Swap sketchbooks and test-draw a partner’s system. Keep your sheet for the final build.</p><div class="why blue"><b>Why:</b> to learn programmatic logic away from screens. Master structuring systematic rules on paper before you direct Gemini Canvas conversationally.</div></div>
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">But did you make it? Authorship &amp; ownership</h3></div><span class="ltime">~6 min</span></div>
         <div class="lw-think">
           <span class="lwt-tag">Why this matters · authorship &amp; ownership</span>
@@ -1042,6 +1052,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <p>Whether you <em>own</em> what you direct is one debate. Whether the model should have <em>trained</em> on other people's work is a different one entirely. It's tempting to merge them, but notice the awkward parallel: a human artist also "trains" on every image they've ever seen, absorbing influences without asking permission. So is a model doing something genuinely new, or just the same thing at scale — and does scale change the ethics? We'll return to this properly in Week 2.</p>
           </div>
         </div>
+      <div class="taskcard"><span class="tk-when">✎ Task 5 · 15 min</span><h5>Audit the Warhol &amp; Hirst strategy</h5><p>Review Warhol’s Factory, where assistants mass-produced his prints, and Hirst, whose technicians paint his spot paintings — he has said they do it far better than his own erratic hand could. Map how your voice as a prompt designer matches this tradition of outsourcing craft for conceptual scale.</p><div class="why blue"><b>Why:</b> delegation is not ‘cheating’ — it is one of the most powerful strategies in contemporary art. Vibe-coding makes you the director, not a bystander.</div></div>
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">The human compiler</h3></div><span class="ltime">~10 min</span></div>
       <p class="act-sub" style="max-width:66ch">A quick proof of how literal a machine is. One of you is the <b>Director</b> who can see the screen; the other is the <b>compiler</b> who draws only from your spoken rules. Use spatial words — <em>parallel, perpendicular, concentric</em> — never object names.</p>
       <div class="widget">
@@ -1077,6 +1088,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           </div>
         </div>
       </div>
+      <div class="taskcard"><span class="tk-when">✎ Task 6 · in pairs · 15 min</span><h5>Act as a human interpreter</h5><p>Pair up. One of you is the <b>Director</b> and controls the Blind Drafter above (Privacy Shield on); issue strict, step-by-step verbal rules. Your partner is the <b>compiler</b> and draws exactly what they hear on paper — no feedback, no questions.</p><div class="why pink"><b>Why:</b> to witness the inevitable drift between written rules and final execution. Computers are literal, unthinking, highly predictable systems of execution.</div></div>
       <p class="lpart">Part 3 · Take a position, then build · ~50 min</p>
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So — what could this mean for us?</h3></div><span class="ltime">~5 min</span></div>
       <p class="act-sub" style="max-width:66ch">Now you know roughly how it works, the real question is what we do with it. In pairs, weigh up some genuine possibilities — there are no right answers here, only reasoned ones.</p>
@@ -1114,25 +1126,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <label for="peer-verdict">Your shared verdict (one or two sentences)</label>
           <textarea id="peer-verdict" placeholder="e.g. We think the technology is neither good nor bad in itself — what matters is who controls it, who it leaves out, and whether artists get a say…"></textarea>
         </div>
-      <div class="finaltask">
-        <span class="ft-tag">★ Final task · build &amp; submit</span>
-        <h3>Vibe-code your own instruction-art generator</h3>
-        <p class="ft-lead">Everything so far has led here. You’re going to direct Gemini Canvas to build a working Sol LeWitt-style generator from the rule-set you wrote on paper — then hand it in on Google Classroom. You author the idea; the machine renders it.</p>
-        <div class="ft-steps">
-          <div class="ft-step"><span class="fs-n">01</span><h5>Open Gemini Canvas</h5><p>Start a new Canvas and paste the starter prompt below as your first message.</p></div>
-          <div class="ft-step"><span class="fs-n">02</span><h5>Make it yours</h5><p>Feed it <b>your</b> rule-set from Activity 5. Refine by conversation — line counts, palette, rotation. <b>Reject every default:</b> demand asymmetry, the Manrope font and your own colours.</p></div>
-          <div class="ft-step"><span class="fs-n">03</span><h5>Test it</h5><p>Run the preview, try every control, and check it still looks considered on a phone. Notice how changing a single adjective rewrites the code.</p></div>
-          <div class="ft-step"><span class="fs-n">04</span><h5>Export the file</h5><p>In Canvas, download your code as <code>index.html</code> — or copy all of it into a new plain-text file and save it as <code>index.html</code>.</p></div>
-        </div>
-        <div class="ft-deliver">
-          <span class="fd-tag">Hand in on Google Classroom</span>
-          <ul>
-            <li><b>Your <code>index.html</code></b> — the generator itself.</li>
-            <li><b>One screenshot</b> of your favourite output it produced.</li>
-            <li><b>A 250-word reflection:</b> how does a human following rules (the blind-drafter and the ruleset-swap) differ from the absolute, literal way the browser runs your loops? Where did the machine drift from what you pictured — and where were you genuinely the author?</li>
-          </ul>
-          <div class="ft-classroom"><span class="cl-pill">Classroom → your assignment → Add or create → File → upload</span></div>
-        </div>
+      <p class="lpart" style="margin-top:34px">Build it · ~50 min</p>
+      <div class="tasktrio">
+      <div class="taskcard"><span class="tk-when">▶ Task 7 · 10 min</span><h5>Direct the Canvas setup</h5><p>Open Gemini Canvas. Instruct it to build a full-viewport, responsive layout — asymmetrical, with the Manrope font and a precise pastel/charcoal palette. Reject every default preset.</p><div class="why pink"><b>Why:</b> if you don’t specify layout, margins and colour, the machine falls back to generic, homogenised templates. Specifying is how you keep creative control.</div></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 8 · 25 min</span><h5>Vibe-code your generator</h5><p>Copy the starter prompt below into Gemini Canvas, then feed it your own rule-set from Task 4. Run the preview and refine line counts, colour weights and rotation entirely through conversation.</p><div class="why purple"><b>Why:</b> to master conversational prototyping — directing software by describing it, rather than hand-writing syntax.</div></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 9 · 15 min</span><h5>Run an interactive audit</h5><p>Launch your file, test every control, and check it scales beautifully on a phone. Note how changing a single adjective in your prompt changes the compiled code.</p><div class="why blue"><b>Why:</b> to learn debugging as a design process. Testing layout and touch interactions is how you keep your web art accessible.</div></div>
       </div>
       <div class="prompt-term">
         <div class="prompt-bar">
@@ -1150,6 +1148,20 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 - Use the Manrope font, generous margins, rounded corners and a subtle pastel background gradient.
 - Reject default templates: the layout must be asymmetrical and considered.
 - Put all HTML, CSS and JS inside the one index.html file.</textarea>
+      </div>
+      <div class="finaltask">
+        <span class="ft-tag">★ Final task · hand in on Google Classroom</span>
+        <h3>Publish your generator</h3>
+        <p class="ft-lead">You authored the idea; the machine rendered it. Now export your piece and hand it in. (Full web-hosting comes in Week 5 — for now we submit the file itself.)</p>
+        <div class="ft-deliver">
+          <span class="fd-tag">Submit three things</span>
+          <ul>
+            <li><b>Your <code>index.html</code></b> — in Canvas, download the code, or copy all of it into a new plain-text file saved as <code>index.html</code>.</li>
+            <li><b>One screenshot</b> of your favourite output it produced.</li>
+            <li><b>A 250-word reflection:</b> how does a human following rules (the blind-drafter and the ruleset-swap) differ from the absolute, literal way the browser runs your loops? Where did the machine drift from what you pictured — and where were you genuinely the author?</li>
+          </ul>
+          <div class="ft-classroom"><span class="cl-pill">Classroom → your assignment → Add or create → File → upload</span></div>
+        </div>
       </div>
     </div>
   </div>
