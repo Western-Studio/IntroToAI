@@ -649,6 +649,72 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .ft-deliver li b{ color:#fff; } .ft-deliver code{ background:rgba(255,255,255,.12); padding:1px 6px; border-radius:5px; font-size:11px; font-family:ui-monospace,monospace; }
 .ft-classroom{ margin-top:14px; }
 .ft-classroom .cl-pill{ display:inline-block; font-size:11px; font-weight:800; background:#fff; color:#1c1917; padding:8px 14px; border-radius:9px; }
+
+/* ============ BRIEF PAGE ============ */
+.brief-h{ font-size:clamp(20px,2.6vw,27px); font-weight:800; color:var(--s900); letter-spacing:-.02em; margin-top:12px; }
+.req-grid{ display:grid; grid-template-columns:1fr; gap:11px; margin-top:20px; }
+@media(min-width:760px){ .req-grid{ grid-template-columns:1fr 1fr; } }
+.req{ display:flex; gap:12px; align-items:flex-start; background:rgba(255,255,255,.5); border:1px solid rgba(231,229,228,.7); border-radius:13px; padding:14px 16px; }
+.req .rq-ck{ flex-shrink:0; width:22px; height:22px; border-radius:6px; background:var(--grad); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; margin-top:1px; }
+.req h5{ font-size:13.5px; font-weight:800; color:var(--s900); }
+.req p{ font-size:12px; color:var(--s600); line-height:1.55; margin-top:3px; }
+
+/* illustrated embed guide */
+.embed-steps{ display:grid; grid-template-columns:1fr; gap:18px; margin-top:22px; }
+@media(min-width:760px){ .embed-steps{ grid-template-columns:1fr 1fr; } }
+.estep{ background:rgba(255,255,255,.5); border:1px solid rgba(231,229,228,.7); border-radius:16px; padding:16px; }
+.estep-illus{ height:150px; border-radius:12px; background:#f1efe9; border:1px solid rgba(231,229,228,.9); display:flex; align-items:center; justify-content:center; padding:14px; overflow:hidden; }
+.estep-cap{ display:flex; gap:11px; align-items:flex-start; margin-top:13px; }
+.estep-n{ flex-shrink:0; width:25px; height:25px; border-radius:8px; background:var(--clay); color:var(--cream); font-family:ui-monospace,monospace; font-weight:800; font-size:12px; display:flex; align-items:center; justify-content:center; }
+.estep-cap h5{ font-size:13.5px; font-weight:800; color:var(--s900); }
+.estep-cap p{ font-size:12px; color:var(--s600); line-height:1.55; margin-top:3px; }
+.estep-cap code{ background:rgba(28,25,23,.07); padding:1px 6px; border-radius:5px; font-size:11px; font-family:ui-monospace,monospace; color:var(--s800); }
+/* mock UI illustrations */
+.mock{ width:100%; max-width:240px; border-radius:9px; overflow:hidden; box-shadow:0 8px 20px -10px rgba(28,25,23,.4); font-size:10px; }
+.mock-bar{ display:flex; align-items:center; gap:5px; background:#e7e5e4; padding:6px 9px; }
+.mock-dot{ width:7px; height:7px; border-radius:50%; background:#c7c3bd; }
+.mock-url{ flex:1; background:#fff; border-radius:5px; padding:3px 7px; font-family:ui-monospace,monospace; font-size:8.5px; color:var(--s600); margin-left:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pub-btn{ margin-left:auto; background:#1a73e8; color:#fff; font-weight:800; font-size:8.5px; padding:3px 9px; border-radius:5px; }
+.mock-body{ background:#fff; padding:10px; }
+.mock-canvas{ background:radial-gradient(circle at 30% 30%,#3b2f5c,#0c0a09); color:#c4b5fd; display:flex; align-items:center; justify-content:center; height:78px; border-radius:6px; font-family:ui-monospace,monospace; font-size:9px; text-align:center; }
+.mock.gs{ background:#fff; padding:0; }
+.gs-head{ background:#1a73e8; color:#fff; font-weight:800; padding:7px 11px; font-size:10px; }
+.gs-item{ display:flex; align-items:center; gap:7px; padding:7px 11px; color:var(--s700); font-weight:600; border-bottom:1px solid #f1efe9; }
+.gs-item.sel{ background:#e8f0fe; color:#1a73e8; font-weight:800; }
+.mock.dlg{ background:#fff; padding:12px; max-width:250px; }
+.dlg-title{ font-weight:800; color:var(--s800); font-size:11px; }
+.ed-tabs{ display:flex; gap:14px; margin-top:9px; border-bottom:1px solid #e7e5e4; }
+.ed-tab{ font-size:9.5px; font-weight:700; color:var(--s500); padding-bottom:6px; }
+.ed-tab.sel{ color:#1a73e8; border-bottom:2px solid #1a73e8; }
+.ed-field{ margin-top:10px; border:1px solid #c7c3bd; border-radius:6px; padding:6px 8px; font-family:ui-monospace,monospace; font-size:8.5px; color:var(--s700); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ed-go{ margin-top:10px; text-align:right; }
+.ed-go::after{ content:"INSERT"; background:#1a73e8; color:#fff; font-weight:800; font-size:9px; padding:5px 13px; border-radius:6px; }
+
+/* good vs bad prompt */
+.cmp{ display:grid; grid-template-columns:1fr; gap:16px; margin-top:22px; }
+@media(min-width:760px){ .cmp{ grid-template-columns:1fr 1fr; } }
+.cmp-card{ border-radius:16px; padding:20px; border:1px solid; }
+.cmp-card.bad{ background:rgba(244,63,94,.06); border-color:rgba(244,63,94,.3); }
+.cmp-card.good{ background:rgba(34,197,94,.07); border-color:rgba(34,197,94,.32); }
+.cmp-tag{ display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; font-family:ui-monospace,monospace; }
+.cmp-card.bad .cmp-tag{ color:#e11d48; } .cmp-card.good .cmp-tag{ color:#16a34a; }
+.cmp-quote{ font-size:13px; color:var(--s800); line-height:1.55; margin-top:10px; font-style:italic; background:rgba(255,255,255,.6); border-radius:10px; padding:11px 13px; border:1px dashed rgba(120,113,108,.35); }
+.cmp-card.good .cmp-quote{ font-style:normal; font-family:ui-monospace,monospace; font-size:11.5px; white-space:pre-line; }
+.cmp-why{ list-style:none; padding:0; margin:13px 0 0; }
+.cmp-why li{ font-size:12px; color:var(--s700); line-height:1.5; padding-left:20px; position:relative; margin-top:7px; }
+.cmp-card.bad .cmp-why li::before{ content:"✕"; color:#e11d48; position:absolute; left:0; font-weight:800; }
+.cmp-card.good .cmp-why li::before{ content:"✓"; color:#16a34a; position:absolute; left:0; font-weight:800; }
+.cmp-why b{ color:var(--s900); }
+
+/* meta prompt */
+.meta-card{ margin-top:20px; background:linear-gradient(120deg,rgba(237,233,254,.55),rgba(224,242,254,.5)); border:1px solid rgba(139,92,246,.25); border-radius:16px; padding:20px 22px; }
+.meta-card .mc-lead{ font-size:13px; color:var(--s700); line-height:1.65; margin-top:8px; }
+.meta-card .mc-lead b{ color:var(--s900); }
+.meta-two{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:16px; }
+@media(min-width:680px){ .meta-two{ grid-template-columns:1fr 1fr; } }
+.meta-flav{ background:rgba(255,255,255,.65); border:1px solid rgba(255,255,255,.8); border-radius:12px; padding:14px 16px; }
+.meta-flav h6{ font-size:12px; font-weight:800; color:#7c3aed; text-transform:uppercase; letter-spacing:.06em; }
+.meta-flav p{ font-size:12px; color:var(--s600); line-height:1.55; margin-top:6px; }
 </style>
 </head>
 <body>
@@ -1357,12 +1423,195 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 </section>
 
 <!-- ===== BRIEF placeholder ===== -->
-<section id="content-brief" class="tab-content hidden">
-  <div class="glass rounded placeholder">
-    <span class="label blue mono">// Stage 3 · Building next</span>
-    <h2>The Student Brief</h2>
-    <p>The live project brief and the step-by-step Google Site embedding guide land in the final stage.</p>
+<section id="content-brief" class="tab-content hidden stack">
+
+  <!-- intro -->
+  <div class="glass rounded-lg hero shadow">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <span class="label blue mono">// The Brief · Your portfolio exhibition</span>
+    <h2 class="hero-h">Build a Google Site that exhibits everything you make</h2>
+    <p class="lede sm">Across these five weeks you will build a sketchbook of working web experiments — an instruction-art generator, a token map, a glitch collager, a motion mirror. Your overall project is to gather them into <strong>one living portfolio</strong>: a Google Site where each piece <strong>runs live, embedded straight from your own code</strong>, and each sits beside a short explanation of the idea behind it. Not screenshots of your work — your work itself, playable in the page. This is your exhibition.</p>
   </div>
+
+  <!-- what it must contain -->
+  <div class="glass rounded panel">
+    <span class="label pink mono">// What your portfolio must contain</span>
+    <h2 class="brief-h">Six things the site needs</h2>
+    <p class="act-sub" style="max-width:72ch">Think of it as a gallery with a wall text beside every piece. The making and the thinking carry equal weight — you are the author of both.</p>
+    <div class="req-grid">
+      <div class="req"><span class="rq-ck">1</span><div><h5>Five live experiments</h5><p>One embedded, running generator for each week — not an image of it, the real thing playing in the page.</p></div></div>
+      <div class="req"><span class="rq-ck">2</span><div><h5>A wall text for each</h5><p>80–120 words beneath every piece: what it does, the concept it taught you, and where the machine drifted from what you pictured.</p></div></div>
+      <div class="req"><span class="rq-ck">3</span><div><h5>Your prompts on show</h5><p>For at least two pieces, include the prompt you actually used — evidence of you directing the machine.</p></div></div>
+      <div class="req"><span class="rq-ck">4</span><div><h5>An artist statement</h5><p>A short "About" page: what you now think about AI as a creative medium, in your own voice.</p></div></div>
+      <div class="req"><span class="rq-ck">5</span><div><h5>Considered design</h5><p>Reject the default Google template. Choose your own type, colour and layout so the site feels like yours.</p></div></div>
+      <div class="req"><span class="rq-ck">6</span><div><h5>Published &amp; shared</h5><p>A working public link, set so anyone at the school with the link can view it.</p></div></div>
+    </div>
+  </div>
+
+  <!-- illustrated embed guide -->
+  <div class="glass rounded panel">
+    <span class="label indigo mono">// The key skill · embedding</span>
+    <h2 class="brief-h">How to embed your code into a Google Site</h2>
+    <p class="act-sub" style="max-width:72ch">A Google Site can't <em>host</em> your raw <code>index.html</code> — but it can <b>embed</b> a page that lives somewhere public (like the GitHub Pages setup behind this very website). So it's always two moves: <b>host it, then embed the link.</b></p>
+    <div class="embed-steps">
+      <div class="estep">
+        <div class="estep-illus">
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-url">yourname.github.io/portfolio</span></div>
+            <div class="mock-body"><div class="mock-canvas">▦ your generator,<br>running live at a URL</div></div>
+          </div>
+        </div>
+        <div class="estep-cap"><span class="estep-n">1</span><div><h5>Host it &amp; copy the link</h5><p>Put your <code>index.html</code> online (GitHub Pages, as in Week 5) so it has a public web address. Copy that URL.</p></div></div>
+      </div>
+      <div class="estep">
+        <div class="estep-illus">
+          <div class="mock gs">
+            <div class="gs-head">Insert</div>
+            <div class="gs-item">▭ &nbsp;Text box</div>
+            <div class="gs-item">▣ &nbsp;Images</div>
+            <div class="gs-item sel">⧉ &nbsp;Embed</div>
+            <div class="gs-item">▤ &nbsp;Google Docs</div>
+          </div>
+        </div>
+        <div class="estep-cap"><span class="estep-n">2</span><div><h5>In your Site: Insert → Embed</h5><p>Open the <b>Insert</b> panel on the right of the Google Sites editor and click <b>Embed</b>.</p></div></div>
+      </div>
+      <div class="estep">
+        <div class="estep-illus">
+          <div class="mock dlg">
+            <div class="dlg-title">Embed from the web</div>
+            <div class="ed-tabs"><span class="ed-tab sel">By URL</span><span class="ed-tab">Embed code</span></div>
+            <div class="ed-field">https://yourname.github.io/portfolio</div>
+            <div class="ed-go"></div>
+          </div>
+        </div>
+        <div class="estep-cap"><span class="estep-n">3</span><div><h5>Paste the link, hit Insert</h5><p>Choose <b>By URL</b>, paste your address, and press <b>Insert</b>. (For more control, <b>Embed code</b> lets you paste an <code>&lt;iframe&gt;</code> with a set width and height.)</p></div></div>
+      </div>
+      <div class="estep">
+        <div class="estep-illus">
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="pub-btn">Publish</span></div>
+            <div class="mock-body"><div class="mock-canvas">▦ live &amp; interactive<br>inside your page</div></div>
+          </div>
+        </div>
+        <div class="estep-cap"><span class="estep-n">4</span><div><h5>Resize &amp; Publish</h5><p>Drag the embed's handles so the whole canvas shows, then hit <b>Publish</b> (top-right) to put it live.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- good vs bad prompt -->
+  <div class="glass rounded panel">
+    <span class="label pink mono">// The skill that decides everything · prompting</span>
+    <h2 class="brief-h">A good prompt vs a bad prompt — a Space Invaders game</h2>
+    <p class="act-sub" style="max-width:72ch">Same tool, same model — wildly different results. The difference is entirely in how completely <em>you</em> specify the idea. Compare these two requests for the same game.</p>
+    <div class="cmp">
+      <div class="cmp-card bad">
+        <span class="cmp-tag">✕ Lazy prompt</span>
+        <div class="cmp-quote">make me a space invaders game</div>
+        <ul class="cmp-why">
+          <li><b>No technology named</b> — you don't know if it'll even run in a browser.</li>
+          <li><b>No mechanics</b> — lives, scoring, difficulty, controls all left to chance.</li>
+          <li><b>No identity</b> — you'll get a generic, default-looking clone, not <em>yours</em>.</li>
+          <li><b>Nothing to tweak</b> — no structure or comments, so you can't direct round two.</li>
+        </ul>
+      </div>
+      <div class="cmp-card good">
+        <span class="cmp-tag">✓ Directed prompt</span>
+        <div class="cmp-quote">Build a complete single-file Space Invaders in one index.html (HTML, CSS, JS — no libraries).
+
+• Ship moves left/right with arrows, fires on spacebar.
+• 5×11 aliens that march sideways, drop at the edges, and speed up as they thin out.
+• 3 lives, 10 pts per alien, score + lives on screen, game-over with restart.
+• Full-viewport canvas on #0c0a09, pastel pixel aliens, subtle scanlines, 'Press Start 2P' font.
+• 60fps delta-timed loop; commented sections so I can tweak it.</div>
+        <ul class="cmp-why">
+          <li><b>Sets a role &amp; constraint</b> — one self-contained file that's guaranteed to run.</li>
+          <li><b>Exact mechanics</b> — the game plays the way you imagined, not the way it guessed.</li>
+          <li><b>An art direction</b> — colour, font and feel make it unmistakably yours.</li>
+          <li><b>Built to iterate</b> — comments and structure let you refine by conversation.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="prompt-term">
+      <div class="prompt-bar">
+        <h4>⌨ Copyable directed prompt · Space Invaders</h4>
+        <button class="copy-btn" onclick="copyToClipboard('prompt-si')">Copy prompt</button>
+      </div>
+      <textarea id="prompt-si" class="prompt-area" readonly>You are an expert creative coder. Build a complete, single-file Space Invaders game in one index.html (HTML, CSS and JavaScript together, no external libraries).
+
+GAMEPLAY
+- The player controls a ship at the bottom: move left/right with the arrow keys, fire with the spacebar.
+- 5 rows x 11 columns of aliens that move side to side, drop down a step at each edge, and speed up as their numbers fall.
+- Aliens fire bullets at random; one hit on the player costs a life (start with 3 lives).
+- Show the score (10 points per alien) and remaining lives at the top. Add a game-over screen with a "press R to restart" option.
+
+LOOK & FEEL
+- A full-viewport <canvas> on a near-black background (#0c0a09).
+- Crisp pixel-art aliens in a soft pastel palette (no garish neon), with a subtle CRT scanline overlay.
+- Use the 'Press Start 2P' Google Font for all text.
+
+TECH
+- A 60fps requestAnimationFrame loop, delta-timed so it runs the same speed on any machine.
+- Keep all state in plain, clearly named objects and comment each section so I can read and tweak it.
+- Make it responsive and comfortably playable on a laptop. Put all HTML, CSS and JS inside the one index.html.</textarea>
+    </div>
+  </div>
+
+  <!-- meta prompt -->
+  <div class="glass rounded panel">
+    <span class="label indigo mono">// Level up · directing the director</span>
+    <h2 class="brief-h">What is a meta prompt?</h2>
+    <div class="meta-card">
+      <p class="mc-lead">A <b>meta prompt</b> is a prompt <em>about</em> prompting — instead of asking the AI for the thing, you ask it to help you <b>write the perfect request</b>, or you set the rules that govern everything it does next. You stop guessing the magic words and let the model help you author them. It's the same move as the whole course: you direct the system, the machine does the work.</p>
+      <div class="meta-two">
+        <div class="meta-flav">
+          <h6>1 · The prompt-improver</h6>
+          <p>You ask the AI to act as a prompt engineer and rewrite or critique <em>your</em> rough idea before it builds anything — turning a vague wish into a precise spec.</p>
+        </div>
+        <div class="meta-flav">
+          <h6>2 · The governing rule-set</h6>
+          <p>An instruction at the very top that fixes the AI's role, standards and constraints for the rest of the conversation — e.g. "always reply with one self-contained index.html."</p>
+        </div>
+      </div>
+    </div>
+    <div class="prompt-term">
+      <div class="prompt-bar">
+        <h4>⌨ Copyable meta prompt · perfect your game request</h4>
+        <button class="copy-btn" onclick="copyToClipboard('prompt-meta')">Copy prompt</button>
+      </div>
+      <textarea id="prompt-meta" class="prompt-area" readonly>You are a senior prompt engineer. I want to "vibe code" a Space Invaders game in Gemini Canvas, but I want a great prompt first.
+
+Before writing ANY code:
+1. Ask me up to 5 sharp questions about anything ambiguous (art style, difficulty, controls, scoring, mood).
+2. Then rewrite my idea as a single, detailed, unambiguous prompt I could paste into any AI to get a polished, single-file game.
+3. List the assumptions you made, so I can correct them.
+
+Do NOT generate the game yet — just help me perfect the prompt.
+
+My rough idea: "a space invaders game that looks like my soft, pastel art style."</textarea>
+    </div>
+  </div>
+
+  <!-- submission -->
+  <div class="finaltask">
+    <span class="ft-tag">★ Final submission · the portfolio</span>
+    <h3>Publish &amp; hand in your exhibition</h3>
+    <p class="ft-lead">Everything you've built and everything you've learned, gathered into one site you authored end to end — then handed in on Google Classroom.</p>
+    <div class="ft-steps">
+      <div class="ft-step"><span class="fs-n">01</span><h5>Gather</h5><p>A page or section per week's experiment, each <b>embedded and running live</b> from its hosted link.</p></div>
+      <div class="ft-step"><span class="fs-n">02</span><h5>Explain</h5><p>Beneath each piece, your <b>80–120 word wall text</b> — what it does, the concept, where the machine drifted.</p></div>
+      <div class="ft-step"><span class="fs-n">03</span><h5>Curate</h5><p>An <b>About page</b> with your artist statement, plus the prompts you used for at least two pieces.</p></div>
+      <div class="ft-step"><span class="fs-n">04</span><h5>Publish</h5><p>Hit <b>Publish</b>, set link sharing on, and test the public URL on a different device.</p></div>
+    </div>
+    <div class="ft-deliver">
+      <span class="fd-tag">Hand in on Google Classroom</span>
+      <ul>
+        <li><b>The public link</b> to your published Google Site portfolio.</li>
+        <li><b>A one-line note</b> naming the piece you're proudest of and why.</li>
+      </ul>
+      <div class="ft-classroom"><span class="cl-pill">Classroom → your assignment → Add or create → Link → paste your Site URL</span></div>
+    </div>
+  </div>
+
 </section>
 
 </main>
