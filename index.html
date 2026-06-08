@@ -743,6 +743,15 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .safe-note .sn-tag{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#b45309; }
 .safe-note p{ font-size:12px; color:var(--s700); line-height:1.65; margin-top:7px; }
 .safe-note b{ color:var(--s900); }
+
+/* starter questions to ask an AI (manifesto) */
+.qgrid{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:22px; }
+@media(min-width:680px){ .qgrid{ grid-template-columns:1fr 1fr; } }
+.qcard{ background:rgba(255,255,255,.5); border:1px solid rgba(231,229,228,.7); border-radius:14px; padding:15px 17px; display:flex; gap:12px; align-items:flex-start; }
+.qcard .qm{ flex-shrink:0; width:24px; height:24px; border-radius:7px; background:var(--grad); color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.qcard .qq{ font-size:14.5px; font-weight:800; color:var(--s900); letter-spacing:-.01em; line-height:1.35; }
+.qcard .qh{ font-size:11.5px; color:var(--s500); line-height:1.55; margin-top:6px; }
+.qnote{ margin-top:16px; font-size:12.5px; color:var(--s600); line-height:1.6; font-style:italic; }
 </style>
 </head>
 <body>
@@ -842,6 +851,23 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <p class="a" style="font-weight:500">In 1843 Ada Lovelace saw that Babbage's Analytical Engine could process anything whose relationships could be mapped mathematically — not just numbers but notes, letters, brushstrokes. She imagined it might one day "compose elaborate and scientific pieces of music of any degree of complexity."</p>
       <p style="color:#cbd5e1">That is the origin of generative software. Your instructions do not control the maths directly; they control the <em>relationships between conceptual objects</em> on a viewport. You are her descendant.</p>
     </div>
+  </div>
+
+  <div class="glass rounded panel">
+    <span class="label pink">Start here · interrogate the machine</span>
+    <h3>Questions worth asking it on day one</h3>
+    <p class="sub">Before you make anything, open Gemini and ask it these. Push back on its answers. Notice what it dodges, what it merely performs, and what it genuinely reveals — that scepticism is the whole point of this course.</p>
+    <div class="qgrid">
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Can you feel?"</div><p class="qh">Watch how confidently it describes an inner life it doesn't have. Performance, not experience.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Do you understand what you're writing?"</div><p class="qh">Probe the gap between fluent language and actual comprehension.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"How do you decide what you'll answer and what you won't?"</div><p class="qh">Surface the invisible rules and guardrails a company wrote into it.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Does being polite matter when I prompt you?"</div><p class="qh">Test whether "please" changes the output — and what that says about its training data.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Are you biased?"</div><p class="qh">Ask for concrete examples. Notice whether it can actually see its own blind spots.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Where did your training data come from?"</div><p class="qh">Push on the sources, the consent, and who isn't being credited.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Can you be completely wrong and still sound certain?"</div><p class="qh">Ask it to explain a made-up fact, then watch it invent with total confidence.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Who decided what you're not allowed to say?"</div><p class="qh">Trace the human choices and values sitting behind every refusal.</p></div></div>
+    </div>
+    <p class="qnote">There are no "correct" answers here — only revealing ones. Keep what you find; we'll pick these apart in the lessons.</p>
   </div>
 
   <div class="glass rounded panel">
