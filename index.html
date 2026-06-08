@@ -752,6 +752,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .qcard .qq{ font-size:14.5px; font-weight:800; color:var(--s900); letter-spacing:-.01em; line-height:1.35; }
 .qcard .qh{ font-size:11.5px; color:var(--s500); line-height:1.55; margin-top:6px; }
 .qnote{ margin-top:16px; font-size:12.5px; color:var(--s600); line-height:1.6; font-style:italic; }
+.qdark h3{ color:#fff; }
+.qdark .label.pink{ color:#f9a8d4; }
+.qdark .sub{ color:#a8b6c8; }
+.qdark .qcard{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.12); }
+.qdark .qcard .qq{ color:#fff; }
+.qdark .qcard .qh{ color:#94a3b8; }
+.qdark .qnote{ color:#cbd5e1; }
 </style>
 </head>
 <body>
@@ -853,7 +860,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
     </div>
   </div>
 
-  <div class="glass rounded panel">
+  <div class="glass-dark rounded panel qdark">
     <span class="label pink">Start here · interrogate the machine</span>
     <h3>Questions worth asking it on day one</h3>
     <p class="sub">Before you make anything, open Gemini and ask it these. Push back on its answers. Notice what it dodges, what it merely performs, and what it genuinely reveals — that scepticism is the whole point of this course.</p>
@@ -866,6 +873,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="qcard"><span class="qm">?</span><div><div class="qq">"Where did your training data come from?"</div><p class="qh">Push on the sources, the consent, and who isn't being credited.</p></div></div>
       <div class="qcard"><span class="qm">?</span><div><div class="qq">"Can you be completely wrong and still sound certain?"</div><p class="qh">Ask it to explain a made-up fact, then watch it invent with total confidence.</p></div></div>
       <div class="qcard"><span class="qm">?</span><div><div class="qq">"Who decided what you're not allowed to say?"</div><p class="qh">Trace the human choices and values sitting behind every refusal.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Do all AIs have the same guardrails?"</div><p class="qh">Compare how different chatbots refuse different things — the rules are company choices, not laws of nature.</p></div></div>
+      <div class="qcard"><span class="qm">?</span><div><div class="qq">"Have you ever had an original idea?"</div><p class="qh">Dig into whether it truly creates, or only recombines what it was trained on.</p></div></div>
     </div>
     <p class="qnote">There are no "correct" answers here — only revealing ones. Keep what you find; we'll pick these apart in the lessons.</p>
   </div>
