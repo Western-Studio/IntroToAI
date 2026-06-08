@@ -120,7 +120,8 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 @media(min-width:768px){ .hero{ padding:56px 48px; } }
 .hero > .badge, .hero > .hero-h, .hero > .lede, .hero > .hero-cta{ position:relative; z-index:1; }
 .hero-art{ position:absolute; right:1%; top:50%; transform:translateY(-50%); width:38%; max-width:420px; z-index:0; pointer-events:none; }
-.hero-art svg{ width:100%; height:auto; display:block; overflow:visible; }
+.hero-art svg{ width:100%; height:auto; display:block; overflow:visible; pointer-events:auto; cursor:grab; touch-action:none; }
+.hero-art svg:active{ cursor:grabbing; }
 @media(max-width:1023px){ .hero-art{ display:none; } }
 .hero .blob{ position:absolute; border-radius:50%; filter:blur(60px); z-index:-1; }
 .hero .b1{ top:-96px; right:-80px; width:28rem; height:28rem; background:radial-gradient(circle at 30% 30%,rgba(244,114,182,.7),rgba(168,85,247,.4),transparent 70%); }
@@ -818,16 +819,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
     <div class="hero-art" aria-hidden="true">
       <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
-          <radialGradient id="pg" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stop-color="#ffffff"/>
-            <stop offset="0.35" stop-color="#c4b5fd"/>
-            <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
-            <feGaussianBlur stdDeviation="3.2" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
+          <radialGradient id="pgV" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.3" stop-color="#ddd6fe"/><stop offset="0.6" stop-color="#8b5cf6"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+          <radialGradient id="pgP" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.3" stop-color="#fbcfe8"/><stop offset="0.6" stop-color="#ec4899"/><stop offset="1" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
+          <radialGradient id="pgC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.3" stop-color="#a5f3fc"/><stop offset="0.6" stop-color="#06b6d4"/><stop offset="1" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
+          <filter id="glow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="4.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
+        <g id="cpu-spin" transform="rotate(0 200 200)">
         <!-- circuit traces (node -> chip) -->
         <g fill="none" stroke="#57534e" stroke-opacity="0.42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path id="tr1" d="M338,142 L292,168 L246,194"/>
@@ -860,16 +857,17 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <!-- die inset on the top face -->
         <path d="M200,181 L223,194 L200,207 L177,194 Z" fill="none" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.4" stroke-linejoin="round"/>
         <!-- pulsing core -->
-        <circle cx="200" cy="194" r="5" fill="url(#pg)" filter="url(#glow)">
+        <circle cx="200" cy="194" r="5" fill="url(#pgV)" filter="url(#glow)">
           <animate attributeName="r" values="3.5;9;3.5" dur="2.6s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/>
         </circle>
         <!-- light pulses travelling into the processor -->
-        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0s"   repeatCount="indefinite"><mpath xlink:href="#tr1"/></animateMotion></circle>
-        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath xlink:href="#tr2"/></animateMotion></circle>
-        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite"><mpath xlink:href="#tr3"/></animateMotion></circle>
-        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.9s" repeatCount="indefinite"><mpath xlink:href="#tr4"/></animateMotion></circle>
-        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite"><mpath xlink:href="#tr5"/></animateMotion></circle>
+        <circle r="4.2" fill="url(#pgP)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0s"   repeatCount="indefinite"><mpath xlink:href="#tr1"/></animateMotion></circle>
+        <circle r="4.2" fill="url(#pgC)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath xlink:href="#tr2"/></animateMotion></circle>
+        <circle r="4.2" fill="url(#pgV)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite"><mpath xlink:href="#tr3"/></animateMotion></circle>
+        <circle r="4.2" fill="url(#pgC)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.9s" repeatCount="indefinite"><mpath xlink:href="#tr4"/></animateMotion></circle>
+        <circle r="4.2" fill="url(#pgP)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite"><mpath xlink:href="#tr5"/></animateMotion></circle>
+        </g>
       </svg>
     </div>
     <span class="badge grad">A Manifesto for Makers</span>
@@ -2186,6 +2184,26 @@ function loopMotion(){
 function showToast(){ var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); },2500); }
 
 window.addEventListener('resize',function(){ if(!document.getElementById('content-playgrounds').classList.contains('hidden')){ processTokens(); drawLeWitt(); drawCosine(); renderBland(); initMotion(); } });
+
+/* ===== hero processor · drag to spin ===== */
+(function(){
+  function initCpuSpin(){
+    var g=document.getElementById('cpu-spin'); if(!g) return;
+    var svg=document.querySelector('.hero-art svg'); if(!svg) return;
+    var angle=0, vel=0.12, idle=0.12, dragging=false, lastX=0, lastT=0;
+    function apply(){ g.setAttribute('transform','rotate('+angle.toFixed(2)+' 200 200)'); }
+    function px(e){ return e.touches&&e.touches[0]?e.touches[0].clientX:e.clientX; }
+    function down(e){ dragging=true; lastX=px(e); lastT=performance.now(); e.preventDefault(); }
+    function move(e){ if(!dragging) return; var x=px(e), now=performance.now(), dx=x-lastX, dt=Math.max(16,now-lastT);
+      angle+=dx*0.45; vel=(dx*0.45)*(16/dt); lastX=x; lastT=now; apply(); e.preventDefault(); }
+    function up(){ dragging=false; }
+    svg.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+    svg.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',up);
+    function loop(){ if(!dragging){ angle+=vel; vel+=(idle-vel)*0.04; if(vel>5)vel=5; if(vel<-5)vel=-5; apply(); } requestAnimationFrame(loop); }
+    apply(); requestAnimationFrame(loop);
+  }
+  if(document.readyState!=='loading') initCpuSpin(); else document.addEventListener('DOMContentLoaded',initCpuSpin);
+})();
 
 /* ===== LESSONS: week selector ===== */
 function switchLesson(n){
