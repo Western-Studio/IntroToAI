@@ -236,6 +236,22 @@ input[type=range]::-moz-range-thumb{ width:18px; height:18px; border:none; borde
 .star .tip{ position:absolute; bottom:100%; left:50%; transform:translateX(-50%); margin-bottom:8px; display:none; background:#0f172a; color:#fff; font-family:ui-monospace,monospace; font-size:9px; padding:8px; border-radius:6px; border:1px solid rgba(99,102,241,.3); white-space:nowrap; z-index:30; box-shadow:0 4px 12px rgba(0,0,0,.4); }
 .star:hover .tip{ display:block; }
 .star .tip b{ color:#a5b4fc; }
+/* Lab 01 · meaning-space */
+#sem-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:5; border-radius:16px; }
+.sky-tip{ position:absolute; z-index:30; display:none; background:#0f172a; border:1px solid rgba(99,102,241,.4); color:#fff; font-family:ui-monospace,monospace; font-size:9px; line-height:1.5; padding:6px 8px; border-radius:7px; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+.sky-tip b{ color:#a5b4fc; }
+.lab-chips{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin-top:13px; }
+.chips-label{ font-size:11px; font-weight:800; color:var(--s500); }
+.chip-ex{ cursor:pointer; font-family:inherit; font-size:11px; font-weight:700; padding:5px 11px; border-radius:999px; border:1px solid var(--s200); background:rgba(255,255,255,.6); color:var(--s700); transition:.15s; }
+.chip-ex:hover{ border-color:#8b5cf6; color:var(--s900); }
+.chip-ex.active{ background:var(--clay); color:var(--cream); border-color:var(--clay); }
+.readout{ margin-top:14px; background:rgba(255,255,255,.55); border:1px solid rgba(231,229,228,.7); border-radius:12px; padding:12px 15px; font-size:12.5px; color:var(--s700); line-height:1.55; min-height:44px; }
+.readout b{ color:var(--s900); }
+.concepts{ display:grid; grid-template-columns:1fr 1fr; gap:11px 16px; margin-top:16px; }
+.concept{ display:flex; gap:9px; align-items:flex-start; }
+.concept .cn-d{ flex-shrink:0; width:11px; height:11px; border-radius:50%; margin-top:3px; }
+.concept b{ font-size:12px; color:var(--s900); display:block; }
+.concept p{ font-size:11px; color:var(--s500); line-height:1.45; margin-top:1px; }
 
 /* ===== GALAXY EXPLAINER ===== */
 .explain{ margin-bottom:24px; }
@@ -1399,24 +1415,38 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
     <!-- LAB 1 -->
     <div class="glass rounded lab">
       <span class="badge-n b1">Lab 01</span>
-      <h3 class="lt">Semantic Constellation Map</h3>
-      <p class="ld">Type a sentence to watch language get sliced into "word-stars" and scattered across a 2D vector sky by their hash coordinates.</p>
+      <h3 class="lt">Semantic Meaning-Space</h3>
+      <p class="ld">The heart of how a model "understands": every word becomes a point in a space of meaning. Type a sentence, then explore how <b>direction = meaning</b>, how the <b>same word moves with context</b>, and how repetition makes a word <b>stronger</b>.</p>
       <div style="margin-top:16px">
         <label class="field-label">Enter your sentence</label>
-        <input id="tok-input" class="input" value="Sceptical artists hotwire automated machine learning code.">
+        <input id="tok-input" class="input" value="Sceptical artists hotwire automated machine code.">
       </div>
-      <button onclick="processTokens()" class="btn btn-dark full-btn" style="margin-top:16px">Form Constellations</button>
+      <div class="lab-chips">
+        <span class="chips-label">Watch context move a word:</span>
+        <button class="chip-ex" onclick="semExample(this,'I rested on the grassy river bank and watched the water.')">river bank</button>
+        <button class="chip-ex" onclick="semExample(this,'I deposited my cash and a loan at the bank.')">money bank</button>
+        <button class="chip-ex" onclick="semExample(this,'I ate a sweet apple from the tree in the garden.')">apple · fruit</button>
+        <button class="chip-ex" onclick="semExample(this,'Apple shipped new computer software and code.')">apple · tech</button>
+        <button class="chip-ex" onclick="semExample(this,'machine machine machine learning data data code.')">repetition</button>
+      </div>
+      <button onclick="processTokens()" class="btn btn-dark full-btn" style="margin-top:14px">Map the meaning-space</button>
       <div style="margin-top:16px">
-        <span class="field-label">Identified word-stars (tokens)</span>
+        <span class="field-label">Word-stars (tokens) — colour = the meaning-cluster the model files them under</span>
         <div id="tok-capsules" class="muted-box"></div>
       </div>
       <div style="margin-top:16px">
-        <div class="row"><span class="field-label" style="margin:0">Simulated 2D vector sky</span><span style="font-size:10px;color:var(--s400);font-weight:800">X: structure · Y: agency</span></div>
-        <div class="sky" style="margin-top:8px">
-          <div class="neb"></div>
-          <svg id="constellation-svg"></svg>
-          <div id="vector-map" class="map"></div>
+        <span class="field-label" style="margin:0">Meaning-space · hover a star, then click any two to measure their angle</span>
+        <div class="sky" id="sem-sky" style="height:300px; margin-top:8px; padding:0">
+          <canvas id="sem-canvas"></canvas>
+          <div id="sky-tip" class="sky-tip"></div>
         </div>
+      </div>
+      <div id="sem-readout" class="readout">Click two word-stars to measure the <b>angle</b> between them — a small angle means similar meaning.</div>
+      <div class="concepts">
+        <div class="concept"><span class="cn-d" style="background:#7dd3fc"></span><div><b>Token → vector</b><p>Each word becomes a point — a list of coordinates.</p></div></div>
+        <div class="concept"><span class="cn-d" style="background:#f9a8d4"></span><div><b>Direction = meaning</b><p>Words pointing the same way mean similar things (cosine).</p></div></div>
+        <div class="concept"><span class="cn-d" style="background:#fcd34d"></span><div><b>Context moves it</b><p>"bank" lands by money or by water, depending on its neighbours.</p></div></div>
+        <div class="concept"><span class="cn-d" style="background:#86efac"></span><div><b>Repetition = strength</b><p>Repeated &amp; linked words glow brighter — a model's "weights".</p></div></div>
       </div>
     </div>
 
@@ -1754,34 +1784,174 @@ function switchTab(id){
   if(id==='lessons'){ setTimeout(function(){ galaxyInit(); predictReset(); learnReset(); fireInit(); peerInit(); generateBlindDrafterComposition(); lwInit(); },60); }
 }
 
-/* ===== LAB 1: tokeniser ===== */
-function processTokens(){
-  var input=document.getElementById('tok-input'); if(!input) return;
-  var cont=document.getElementById('tok-capsules'), map=document.getElementById('vector-map'), svg=document.getElementById('constellation-svg');
-  var words=(input.value.match(/\w+|[^\w\s]+/g))||[];
-  cont.innerHTML=''; map.innerHTML=''; svg.innerHTML='';
-  var stars=[];
-  words.forEach(function(word,idx){
-    var cap=document.createElement('span');
-    cap.className='tokchip c'+(idx%5);
-    cap.innerHTML='<span class="idx">#'+idx+'</span>'+word;
-    cont.appendChild(cap);
-    var hash=0; for(var i=0;i<word.length;i++){ hash=word.charCodeAt(i)+((hash<<5)-hash); }
-    var posX=Math.abs((hash*13)%80)+10, posY=Math.abs((hash*31)%80)+10;
-    stars.push({x:posX,y:posY,word:word});
-    var star=document.createElement('div');
-    star.className='star'; star.style.left=posX+'%'; star.style.top=posY+'%';
-    star.innerHTML='<div class="pt"></div><span class="wl">'+word+'</span><div class="tip"><b>'+word+'</b><br>X: '+(posX/100).toFixed(4)+'<br>Y: '+(posY/100).toFixed(4)+'</div>';
-    map.appendChild(star);
-  });
-  for(var k=0;k<stars.length-1;k++){
-    var a=stars[k],b=stars[k+1];
-    var line=document.createElementNS("http://www.w3.org/2000/svg","line");
-    line.setAttribute("x1",a.x+'%'); line.setAttribute("y1",a.y+'%');
-    line.setAttribute("x2",b.x+'%'); line.setAttribute("y2",b.y+'%');
-    line.setAttribute("stroke","rgba(224,231,255,.25)"); line.setAttribute("stroke-width","1.5"); line.setAttribute("stroke-dasharray","4 4");
-    svg.appendChild(line);
+/* ===== LAB 1: Semantic meaning-space ===== */
+var SEM_THEMES={
+  art:    { ang:90,  col:'#f9a8d4', txt:'#be185d', bg:'#fce7f3', label:'ART' },
+  emotion:{ ang:150, col:'#c4b5fd', txt:'#7c3aed', bg:'#f3e8ff', label:'EMOTION' },
+  tech:   { ang:210, col:'#7dd3fc', txt:'#0369a1', bg:'#e0f2fe', label:'TECH' },
+  society:{ ang:270, col:'#93c5fd', txt:'#1d4ed8', bg:'#dbeafe', label:'PEOPLE' },
+  money:  { ang:330, col:'#fcd34d', txt:'#b45309', bg:'#fef3c7', label:'MONEY' },
+  nature: { ang:30,  col:'#86efac', txt:'#15803d', bg:'#dcfce7', label:'NATURE' }
+};
+var SEM_UNMAP={ col:'#94a3b8', txt:'#57534e', bg:'#f5f5f4', label:'unmapped' };
+var SEM_LEX={
+  art:['art','artist','artists','paint','painting','canvas','brush','oil','colour','color','sketch','draw','drawing','gallery','sculpture','design','studio','easel','palette','craft','picture'],
+  emotion:['love','fear','joy','anger','hope','sad','happy','feel','feeling','emotion','heart','dream','calm','worry','wonder','lonely'],
+  tech:['code','coding','machine','learning','automated','automation','algorithm','data','model','computer','software','neural','digital','robot','program','internet','network','system','app','phone'],
+  society:['people','person','human','humans','friend','community','society','family','child','student','teacher','crowd','public','culture','language','word','words'],
+  money:['bank','money','cash','loan','deposit','finance','financial','account','credit','invest','market','stock','mortgage','price','wealth','coin'],
+  nature:['river','water','tree','trees','forest','mountain','ocean','flower','leaf','stone','garden','sea','grass','rain','sun','wind','field','bird','fruit','apple','seed','willow']
+};
+var SEM_W2T={};
+Object.keys(SEM_LEX).forEach(function(t){ SEM_LEX[t].forEach(function(w){ if(!(w in SEM_W2T)) SEM_W2T[w]=t; }); });
+var SEM_SENSES={
+  bank:   { money:['cash','money','loan','deposit','account','credit','pay','finance'], nature:['river','water','grass','fish','sat','rested','willow','reed','watched'] },
+  apple:  { tech:['computer','software','code','phone','company','shipped','tech','app','released'], nature:['tree','fruit','eat','ate','sweet','garden','orchard','seed'] },
+  spring: { nature:['water','flower','season','garden','warm','bloom','meadow'], tech:['coil','metal','machine','wound','steel','mechanism'] },
+  current:{ nature:['river','water','ocean','sea','flow','tide'], tech:['electric','wire','power','circuit','voltage'] },
+  model:  { tech:['data','machine','train','neural','algorithm','learning','dataset'], art:['pose','fashion','figure','draw','paint','sketch'] }
+};
+var SEM={ stars:[], links:[], sel:[], prev:{}, raf:null, ctx:null, W:0,H:0,cx:0,cy:0,R:0 };
+function semHash(s){ var h=0; for(var i=0;i<s.length;i++) h=s.charCodeAt(i)+((h<<5)-h); return h; }
+function semTheme(word, ctx){
+  word=word.toLowerCase();
+  if(SEM_SENSES[word]){
+    var senses=SEM_SENSES[word], best=null, bestScore=-1, bestCue=[];
+    Object.keys(senses).forEach(function(th){
+      var cues=senses[th], score=0, matched=[];
+      ctx.forEach(function(c){ if(cues.indexOf(c)>-1){ score+=2; matched.push(c); } else if(SEM_W2T[c]===th){ score+=1; matched.push(c); } });
+      if(score>bestScore){ bestScore=score; best=th; bestCue=matched; }
+    });
+    return { theme:best, sense:true, resolved:bestScore>0, cue:bestCue };
   }
+  if(SEM_W2T[word]) return { theme:SEM_W2T[word], sense:false, resolved:true, cue:[] };
+  return { theme:null, sense:false, resolved:false, cue:[] };
+}
+function semPos(word, theme){
+  var h=semHash(word), R=SEM.R;
+  if(theme){
+    var base=SEM_THEMES[theme].ang*Math.PI/180;
+    var jit=((((h%1000)+1000)%1000)/1000-0.5)*(38*Math.PI/180);
+    var ang=base+jit;
+    var rad=R*(0.45+((((h>>3)%1000)+1000)%1000)/1000*0.48);
+    return { vx:Math.cos(ang)*rad, vy:Math.sin(ang)*rad };
+  }
+  var a=(Math.abs(h)%360)*Math.PI/180, rr=R*(0.18+((((h>>3)%1000)+1000)%1000)/1000*0.26);
+  return { vx:Math.cos(a)*rr, vy:Math.sin(a)*rr };
+}
+function processTokens(){
+  var input=document.getElementById('tok-input'), cv=document.getElementById('sem-canvas'), wrap=document.getElementById('sem-sky');
+  if(!input||!cv||!wrap) return;
+  var W=wrap.clientWidth, H=wrap.clientHeight;
+  if(W<10){ setTimeout(processTokens,90); return; }
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
+  var ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+  SEM.ctx=ctx; SEM.W=W; SEM.H=H; SEM.cx=W/2; SEM.cy=H/2; SEM.R=Math.min(W,H)*0.40;
+  var raw=(input.value.match(/[A-Za-z']+/g))||[];
+  var ctxWords=raw.map(function(w){ return w.toLowerCase(); });
+  var freq={}; ctxWords.forEach(function(w){ freq[w]=(freq[w]||0)+1; });
+  var seen={}, stars=[], capHTML='';
+  raw.forEach(function(word,idx){
+    var lw=word.toLowerCase();
+    var others=ctxWords.filter(function(_,i){ return i!==idx; });
+    var t=semTheme(word, others);
+    var occ=(seen[lw]=(seen[lw]||0)); seen[lw]++;
+    var th=t.theme?SEM_THEMES[t.theme]:SEM_UNMAP;
+    var p=semPos(lw+(occ||''), t.theme);
+    stars.push({ word:word, lw:lw, idx:idx, key:lw+'#'+occ, theme:t.theme, col:th.col, cue:t.cue,
+                 sense:t.sense, resolved:t.resolved, freq:freq[lw], vx:p.vx, vy:p.vy, sx:SEM.cx+p.vx, sy:SEM.cy-p.vy });
+    capHTML+='<span class="tokchip" style="background:'+th.bg+';color:'+th.txt+';border-color:'+th.bg+'">'
+      +'<span class="idx">#'+idx+(t.sense&&t.resolved?' → '+th.label:'')+'</span>'+word+'</span>';
+  });
+  document.getElementById('tok-capsules').innerHTML=capHTML||'<span style="font-size:11px;color:var(--s400)">type a sentence…</span>';
+  SEM.stars=stars; SEM.sel=[];
+  var L=[];
+  for(var i=0;i<stars.length;i++) for(var j=i+1;j<stars.length;j++){
+    if(stars[i].theme && stars[i].theme===stars[j].theme){
+      L.push({ a:i, b:j, st:1+(stars[i].freq-1)+(stars[j].freq-1)+(stars[i].lw===stars[j].lw?2:0) });
+    }
+  }
+  SEM.links=L;
+  cv.onclick=function(e){ var r=cv.getBoundingClientRect(), hit=semHit(e.clientX-r.left,e.clientY-r.top); if(hit<0) return;
+    var pos=SEM.sel.indexOf(hit); if(pos>-1) SEM.sel.splice(pos,1); else { SEM.sel.push(hit); if(SEM.sel.length>2) SEM.sel.shift(); }
+    semRender(); semReadout(); };
+  cv.onmousemove=function(e){ var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, hit=semHit(mx,my), tip=document.getElementById('sky-tip');
+    if(hit>-1){ var s=SEM.stars[hit]; cv.style.cursor='pointer'; tip.style.display='block';
+      tip.style.left=Math.min(SEM.W-96,s.sx+12)+'px'; tip.style.top=Math.max(2,s.sy-42)+'px';
+      tip.innerHTML='<b>'+s.word+'</b><br>'+(s.theme?SEM_THEMES[s.theme].label:'unmapped')+(s.freq>1?' · ×'+s.freq:'')+'<br>vec ('+(s.vx/SEM.R).toFixed(2)+', '+(s.vy/SEM.R).toFixed(2)+')';
+    } else { tip.style.display='none'; cv.style.cursor='default'; } };
+  cv.onmouseleave=function(){ var tip=document.getElementById('sky-tip'); if(tip) tip.style.display='none'; };
+  semAnimate(); semReadout();
+}
+function semHit(mx,my){ var best=-1, bd=1e9; SEM.stars.forEach(function(s,i){ var rr=Math.min(13,4+(s.freq-1)*2.6)+8, d=Math.hypot(mx-s.sx,my-s.sy); if(d<=rr && d<bd){ bd=d; best=i; } }); return best; }
+function semAnimate(){
+  if(SEM.raf) cancelAnimationFrame(SEM.raf);
+  SEM.stars.forEach(function(s){ var p=SEM.prev[s.key]; s.fx=p?p.x:SEM.cx; s.fy=p?p.y:SEM.cy; s.ax=s.fx; s.ay=s.fy; });
+  var start=performance.now(), dur=680;
+  function frame(now){
+    var t=Math.min(1,(now-start)/dur), e=t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    SEM.stars.forEach(function(s){ s.ax=s.fx+(s.sx-s.fx)*e; s.ay=s.fy+(s.sy-s.fy)*e; });
+    semRender();
+    if(t<1) SEM.raf=requestAnimationFrame(frame);
+    else SEM.stars.forEach(function(s){ SEM.prev[s.key]={ x:s.sx, y:s.sy }; });
+  }
+  SEM.raf=requestAnimationFrame(frame);
+}
+function semRender(){
+  var ctx=SEM.ctx, W=SEM.W, H=SEM.H, cx=SEM.cx, cy=SEM.cy, R=SEM.R; if(!ctx) return;
+  ctx.clearRect(0,0,W,H);
+  var g=ctx.createRadialGradient(cx,cy,8,cx,cy,Math.max(W,H)*0.72);
+  g.addColorStop(0,'#0c1430'); g.addColorStop(1,'#020617'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  Object.keys(SEM_THEMES).forEach(function(t){ var th=SEM_THEMES[t], a=th.ang*Math.PI/180;
+    ctx.strokeStyle='rgba(148,163,184,.10)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(a)*R*1.05, cy-Math.sin(a)*R*1.05); ctx.stroke();
+    ctx.fillStyle='rgba(148,163,184,.45)'; ctx.font='700 9px ui-monospace,monospace'; ctx.textAlign='center';
+    ctx.fillText(th.label, cx+Math.cos(a)*R*1.12, cy-Math.sin(a)*R*1.12+3); });
+  ctx.fillStyle='rgba(226,232,240,.5)'; ctx.beginPath(); ctx.arc(cx,cy,2.5,0,7); ctx.fill();
+  SEM.links.forEach(function(l){ var a=SEM.stars[l.a], b=SEM.stars[l.b];
+    ctx.strokeStyle='rgba(199,210,254,'+Math.min(0.5,0.1+l.st*0.06)+')'; ctx.lineWidth=Math.min(3,0.6+l.st*0.4);
+    ctx.beginPath(); ctx.moveTo(a.ax,a.ay); ctx.lineTo(b.ax,b.ay); ctx.stroke(); });
+  if(SEM.sel.length>=1){
+    SEM.sel.forEach(function(si){ var s=SEM.stars[si]; ctx.strokeStyle=s.col; ctx.lineWidth=2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(s.ax,s.ay); ctx.stroke(); ctx.setLineDash([]); });
+    if(SEM.sel.length===2){
+      var a=SEM.stars[SEM.sel[0]], b=SEM.stars[SEM.sel[1]];
+      var sa=Math.atan2(a.ay-cy,a.ax-cx), sb=Math.atan2(b.ay-cy,b.ax-cx);
+      var diff=Math.atan2(Math.sin(sb-sa),Math.cos(sb-sa));
+      ctx.strokeStyle='rgba(255,255,255,.75)'; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(cx,cy,36,sa,sa+diff,diff<0); ctx.stroke();
+      var mid=sa+diff/2; ctx.fillStyle='#fff'; ctx.font='700 10px ui-monospace,monospace'; ctx.textAlign='center';
+      ctx.fillText(Math.round(Math.abs(diff)*180/Math.PI)+'°', cx+Math.cos(mid)*54, cy+Math.sin(mid)*54+3);
+    }
+  }
+  SEM.stars.forEach(function(s,i){ var r=Math.min(13,4+(s.freq-1)*2.6), seld=SEM.sel.indexOf(i)>-1;
+    ctx.save(); ctx.shadowColor=s.col; ctx.shadowBlur=seld?24:Math.min(20,8+(s.freq-1)*4);
+    ctx.fillStyle=s.col; ctx.beginPath(); ctx.arc(s.ax,s.ay,r,0,7); ctx.fill(); ctx.restore();
+    if(seld){ ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(s.ax,s.ay,r+4,0,7); ctx.stroke(); }
+    ctx.fillStyle='#e2e8f0'; ctx.font='700 11px ui-monospace,monospace'; ctx.textAlign='center';
+    ctx.fillText(s.word, s.ax, s.ay-r-6); });
+}
+function semReadout(){
+  var el=document.getElementById('sem-readout'); if(!el) return;
+  if(SEM.sel.length===2){
+    var a=SEM.stars[SEM.sel[0]], b=SEM.stars[SEM.sel[1]];
+    var dot=a.vx*b.vx+a.vy*b.vy, ma=Math.hypot(a.vx,a.vy), mb=Math.hypot(b.vx,b.vy);
+    var cos=dot/((ma*mb)||1), ang=Math.acos(Math.max(-1,Math.min(1,cos)))*180/Math.PI;
+    var v=cos>0.8?'almost the same direction — very similar meaning':cos>0.4?'a small angle — related meaning':cos>-0.2?'a wide angle — fairly unrelated':'pointing apart — opposite ends of meaning';
+    el.innerHTML='<b style="color:'+a.col+'">'+a.word+'</b> ↔ <b style="color:'+b.col+'">'+b.word+'</b> · angle <b>'+ang.toFixed(0)+'°</b> · cosine <b>'+cos.toFixed(2)+'</b> — '+v+'.';
+  } else if(SEM.sel.length===1){
+    var s=SEM.stars[SEM.sel[0]];
+    el.innerHTML='Selected <b style="color:'+s.col+'">'+s.word+'</b>. Click a second star to measure the angle between them.';
+  } else {
+    var note=null;
+    for(var i=0;i<SEM.stars.length;i++){ var st=SEM.stars[i]; if(st.sense&&st.resolved&&st.cue&&st.cue.length){ note='“'+st.word+'” landed in <b style="color:'+st.col+'">'+SEM_THEMES[st.theme].label+'</b> because of nearby words like <i>'+st.cue.slice(0,3).join(', ')+'</i>. Change the sentence and watch it move.'; break; } }
+    el.innerHTML=note||'Click two word-stars to measure the <b>angle</b> between them — a small angle means similar meaning.';
+  }
+}
+function semExample(btn,text){
+  var inp=document.getElementById('tok-input'); if(inp) inp.value=text;
+  var chips=document.querySelectorAll('.chip-ex'); chips.forEach(function(c){ c.classList.remove('active'); }); if(btn) btn.classList.add('active');
+  processTokens();
 }
 
 /* ===== LAB 2: Sol LeWitt ===== */
@@ -1927,7 +2097,7 @@ function loopMotion(){
 
 function showToast(){ var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); },2500); }
 
-window.addEventListener('resize',function(){ if(!document.getElementById('content-playgrounds').classList.contains('hidden')){ drawLeWitt(); drawCosine(); renderBland(); initMotion(); } });
+window.addEventListener('resize',function(){ if(!document.getElementById('content-playgrounds').classList.contains('hidden')){ processTokens(); drawLeWitt(); drawCosine(); renderBland(); initMotion(); } });
 
 /* ===== LESSONS: week selector ===== */
 function switchLesson(n){
