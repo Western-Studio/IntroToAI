@@ -2137,45 +2137,28 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
   function initCpu(){
     var cv=document.getElementById('cpu-canvas'); if(!cv) return;
     var ctx=cv.getContext('2d');
-    // ---- model (y up, board on y=0, die is a raised slab) ----
+    // ---- model: Sol LeWitt 3x3x3 open modular cube ----
     var V=function(x,y,z){ return {x:x,y:y,z:z}; };
     var edges=[], pulses=[], TINT=['#ec4899','#06b6d4','#8b5cf6'];
-    function addPoly(pts){ for(var i=0;i<pts.length-1;i++) edges.push([pts[i],pts[i+1]]); }
-    // die box
-    var hx=46, hz=46, ty=34, by=12;
-    var A=V(-hx,ty,-hz),B=V(hx,ty,-hz),C=V(hx,ty,hz),D=V(-hx,ty,hz);
-    var E=V(-hx,by,-hz),F=V(hx,by,-hz),G=V(hx,by,hz),H=V(-hx,by,hz);
-    var die=[[A,B,1],[B,C,1],[C,D,1],[D,A,1],[E,F,1],[F,G,1],[G,H,1],[H,E,1],[A,E,1],[B,F,1],[C,G,1],[D,H,1]];
-    die.forEach(function(e){ edges.push(e); });
-    // top-face die pattern (inner square + cross)
-    var s=22, iy=ty+0.3;
-    edges.push([V(-s,iy,-s),V(s,iy,-s),2],[V(s,iy,-s),V(s,iy,s),2],[V(s,iy,s),V(-s,iy,s),2],[V(-s,iy,s),V(-s,iy,-s),2]);
-    // pins around the base (4 sides x 3)
-    function pins(side){
-      for(var k=-1;k<=1;k++){ var o=k*26;
-        if(side===0) edges.push([V(o,by-2,-hz),V(o,by-8,-hz-14),3]);
-        if(side===1) edges.push([V(o,by-2,hz),V(o,by-8,hz+14),3]);
-        if(side===2) edges.push([V(-hx,by-2,o),V(-hx-14,by-8,o),3]);
-        if(side===3) edges.push([V(hx,by-2,o),V(hx+14,by-8,o),3]);
-      }
+    var n=3, S=82, lv=[]; for(var i=0;i<=n;i++) lv.push(-S+2*S*i/n);
+    // every bar of the subdivided cube lattice
+    for(var bb=0;bb<=n;bb++) for(var cc=0;cc<=n;cc++) for(var aa=0;aa<n;aa++){
+      edges.push([V(lv[aa],lv[bb],lv[cc]),V(lv[aa+1],lv[bb],lv[cc]),1]);  // along x
+      edges.push([V(lv[bb],lv[aa],lv[cc]),V(lv[bb],lv[aa+1],lv[cc]),1]);  // along y
+      edges.push([V(lv[bb],lv[cc],lv[aa]),V(lv[bb],lv[cc],lv[aa+1]),1]);  // along z
     }
-    pins(0);pins(1);pins(2);pins(3);
-    // traces on the board (y=0) -> nodes, with pulses running inward
-    var traces=[
-      [V(54,0,-12),V(120,0,-44),V(176,0,-44)],
-      [V(-54,0,-12),V(-120,0,-44),V(-176,0,-44)],
-      [V(0,0,-54),V(0,0,-120),V(44,0,-176)],
-      [V(-40,0,54),V(-96,0,116),V(-96,0,178)],
-      [V(40,0,54),V(96,0,116),V(96,0,178)]
-    ];
-    traces.forEach(function(tr,i){
-      for(var j=0;j<tr.length-1;j++) edges.push([tr[j],tr[j+1],0]);
-      // node square (billboarded later) stored as pulse path end
-      var seg=[], total=0;
-      for(var k=0;k<tr.length-1;k++){ var d=Math.hypot(tr[k+1].x-tr[k].x,tr[k+1].y-tr[k].y,tr[k+1].z-tr[k].z); seg.push(d); total+=d; }
-      pulses.push({ tr:tr, seg:seg, total:total, tint:TINT[i%3], phase:i*0.43, node:tr[tr.length-1] });
+    // light pulses run full bars across the cube (mixed axes & positions)
+    var bars=[['x',1,3],['x',3,0],['y',0,2],['y',2,3],['z',1,1],['z',3,2],['x',2,1],['y',1,3],['z',0,2]];
+    bars.forEach(function(bar,i){
+      var ax=bar[0], p=lv[bar[1]], q=lv[bar[2]], a, b2;
+      if(ax==='x'){ a=V(-S,p,q); b2=V(S,p,q); }
+      else if(ax==='y'){ a=V(p,-S,q); b2=V(p,S,q); }
+      else { a=V(p,q,-S); b2=V(p,q,S); }
+      if(i%2){ var tmp=a; a=b2; b2=tmp; }
+      var len=Math.hypot(b2.x-a.x,b2.y-a.y,b2.z-a.z);
+      pulses.push({ tr:[a,b2], seg:[len], total:len, tint:TINT[i%3], phase:(i*0.37)%1 });
     });
-    var coreP=V(0,ty+1,0);
+    var coreP=V(0,0,0);
     // ---- camera / interaction ----
     var ry=-0.5, rx=0.62, vyaw=0.0045, idle=0.0045, dragging=false, lx=0,ly=0,lt=0, W=0,H=0,dpr=1,t0=performance.now();
     function size(){ var w=cv.clientWidth; if(w<10) return false; var h=Math.round(w*0.82);
@@ -2185,8 +2168,8 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     function proj(p){
       var cy=Math.cos(ry),sy=Math.sin(ry), x=p.x*cy-p.z*sy, z=p.x*sy+p.z*cy;
       var cx=Math.cos(rx),sx=Math.sin(rx), y=p.y*cx-z*sx, z2=p.y*sx+z*cx;
-      var CAM=470, f=470, sc=f/(CAM-z2);
-      return { X:W/2 + x*sc, Y:H*0.52 - y*sc, s:sc, z:z2 };
+      var CAM=520, f=520, sc=f/(CAM-z2);
+      return { X:W/2 + x*sc, Y:H*0.5 - y*sc, s:sc, z:z2 };
     }
     function lerp3(tr,seg,total,d){ // d in 0..1 along polyline
       var target=d*total, acc=0;
@@ -2199,7 +2182,7 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
         ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
         // edges with depth-fade
         edges.forEach(function(e){
-          var a=proj(e[0]), b=proj(e[1]); var depth=(a.z+b.z)/2; var fade=0.45+0.55*Math.max(0,Math.min(1,(depth+120)/240));
+          var a=proj(e[0]), b=proj(e[1]); var depth=(a.z+b.z)/2; var fade=0.4+0.6*Math.max(0,Math.min(1,(depth+150)/300));
           var kind=e[2]||0;
           if(kind===1){ ctx.strokeStyle='rgba(41,37,36,'+(0.85*fade)+')'; ctx.lineWidth=1.9; }
           else if(kind===2){ ctx.strokeStyle='rgba(139,92,246,'+(0.7*fade)+')'; ctx.lineWidth=1.5; }
@@ -2207,9 +2190,6 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
           else { ctx.strokeStyle='rgba(87,83,78,'+(0.42*fade)+')'; ctx.lineWidth=1.5; }
           ctx.beginPath(); ctx.moveTo(a.X,a.Y); ctx.lineTo(b.X,b.Y); ctx.stroke();
         });
-        // nodes
-        pulses.forEach(function(pl){ var n=proj(pl.node); var r=4*n.s; ctx.save(); ctx.translate(n.X,n.Y); ctx.rotate(Math.PI/4);
-          ctx.strokeStyle='rgba(87,83,78,.5)'; ctx.lineWidth=1.3; ctx.strokeRect(-r,-r,r*2,r*2); ctx.restore(); });
         // core glow
         var cp=proj(coreP); var pulse=0.5+0.5*Math.sin((now-t0)/420);
         glowDot(cp.X,cp.Y,(5+pulse*4)*cp.s,'#8b5cf6',0.55+0.45*pulse);
