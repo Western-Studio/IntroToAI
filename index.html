@@ -806,6 +806,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .qdark .qcard .qq{ color:#fff; }
 .qdark .qcard .qh{ color:#94a3b8; }
 .qdark .qnote{ color:#cbd5e1; }
+/* floating gradient scroll-rail */
+#scrollrail{ position:fixed; right:14px; top:50%; transform:translateY(-50%); height:44vh; width:24px; z-index:60; cursor:pointer; }
+#scrollrail .sr-track{ position:absolute; top:0; bottom:0; left:50%; transform:translateX(-50%); width:3px; border-radius:3px; background:linear-gradient(180deg,#ec4899,#8b5cf6,#06b6d4); opacity:.45; transition:opacity .2s; }
+#scrollrail .sr-dot{ position:absolute; left:50%; top:0; transform:translate(-50%,-50%); width:12px; height:12px; border-radius:50%; background:#fff; box-shadow:0 0 0 3px rgba(139,92,246,.35), 0 2px 6px rgba(0,0,0,.3); transition:box-shadow .2s; }
+#scrollrail:hover .sr-track{ opacity:.85; }
+#scrollrail:hover .sr-dot{ box-shadow:0 0 0 4px rgba(139,92,246,.5), 0 2px 8px rgba(0,0,0,.35); }
+@media(max-width:820px){ #scrollrail{ display:none; } }
 </style>
 </head>
 <body>
@@ -1825,6 +1832,7 @@ My rough idea: "a space invaders game that looks like my soft, pastel art style.
   <div style="margin-top:6px">© 2026 Reclaiming the Machine · Crafted for Year 12 artists and makers · All visuals rendered live, on your device.</div>
 </footer>
 
+<div id="scrollrail" aria-hidden="true"><div class="sr-track"></div><div class="sr-dot"></div></div>
 <div id="toast">Copied to clipboard!</div>
 
 <script>
@@ -2308,6 +2316,25 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     requestAnimationFrame(render);
   }
   if(document.readyState!=='loading') initAda(); else document.addEventListener('DOMContentLoaded',initAda);
+})();
+
+/* ===== floating scroll-rail (scrub to top/bottom) ===== */
+(function(){
+  var rail=document.getElementById('scrollrail'); if(!rail) return;
+  var dot=rail.querySelector('.sr-dot'), dragging=false, moved=false;
+  function maxScroll(){ return Math.max(1, document.documentElement.scrollHeight - window.innerHeight); }
+  function update(){ var p=Math.max(0,Math.min(1, window.scrollY/maxScroll())); dot.style.top=(p*rail.clientHeight)+'px'; }
+  function scrubTo(clientY, smooth){ var r=rail.getBoundingClientRect(); var p=Math.max(0,Math.min(1,(clientY-r.top)/r.height));
+    window.scrollTo({ top:p*maxScroll(), behavior:smooth?'smooth':'auto' }); }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  rail.addEventListener('mousedown',function(e){ dragging=true; moved=false; scrubTo(e.clientY,true); e.preventDefault(); });
+  window.addEventListener('mousemove',function(e){ if(dragging){ moved=true; scrubTo(e.clientY,false); } });
+  window.addEventListener('mouseup',function(){ dragging=false; });
+  rail.addEventListener('touchstart',function(e){ dragging=true; scrubTo(e.touches[0].clientY,true); e.preventDefault(); },{passive:false});
+  window.addEventListener('touchmove',function(e){ if(dragging){ scrubTo(e.touches[0].clientY,false); e.preventDefault(); } },{passive:false});
+  window.addEventListener('touchend',function(){ dragging=false; });
+  update();
 })();
 
 /* ===== LESSONS: week selector ===== */
