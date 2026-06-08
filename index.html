@@ -2267,30 +2267,41 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     ring(-16,-48,48,0.18);  // cheekbone
     (function(){ var L=[]; for(var i=0;i<=22;i++){ var th=(-66+132*i/22); var ph=52+6*Math.cos(th*D*2); L.push(S(th*D,ph*D,HRX*1.01,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:0.4}); })(); // hairline
     // --- hair: fuller volume, centre-parted ---
-    var hrx=46,hry=47,hrz=41,hcy=9;
-    for(var sgn=-1;sgn<=1;sgn+=2){ for(var k=0;k<11;k++){
-      var spread=(12+k*15)*D, L2=[]; for(var t=0;t<=20;t++){ var u=t/20;
-        var ph=(80-126*u)*D, thh=sgn*(5*D+spread*Math.pow(u,0.8)), rr=1+0.18*Math.sin(u*Math.PI);
+    var hrx=44,hry=47,hrz=40,hcy=9;
+    for(var sgn=-1;sgn<=1;sgn+=2){ for(var k=0;k<8;k++){
+      var spread=(10+k*13)*D, L2=[]; for(var t=0;t<=20;t++){ var u=t/20;
+        var ph=(82-100*u)*D, thh=sgn*(5*D+spread*Math.pow(u,0.85)), rr=1+0.14*Math.sin(u*Math.PI);
         L2.push(S(thh,ph,hrx*rr,hry,hrz*rr,hcy)); }
-      P.push({p:L2,k:1,o:0.55}); } }
+      P.push({p:L2,k:1,o:0.5}); } }
     (function(){ var L=[]; for(var t=0;t<=10;t++){ var ph=(84-42*t/10)*D; L.push(S(0,ph,hrx,hry,hrz,hcy)); } P.push({p:L,k:1,o:0.5}); })(); // centre part
     (function(){ var L=[]; for(var i=0;i<=44;i++){ var th=(-160+320*i/44)*D; var ph=(-30+120*Math.cos(th*0.5))*D; L.push(S(th,ph,hrx*1.05,hry*1.02,hrz*1.05,hcy)); } P.push({p:L,k:1,o:0.4}); })(); // outer hair silhouette
-    // --- side ringlets ---
-    [-1,1].forEach(function(sgn){ var base=S(sgn*62*D,-22*D,hrx,hry,hrz,hcy);
-      for(var c=0;c<3;c++){ var cyc=base.y-2-c*10, rad=7.5-c*1.3, L=[];
-        for(var a=0;a<=18;a++){ var an=(a/18)*Math.PI*2; L.push(Vp(base.x+sgn*2+Math.cos(an)*rad, cyc+Math.sin(an)*rad, base.z+6)); }
-        P.push({p:L,k:1,o:0.5}); } });
-    // --- neck + lace collar + shoulders ---
-    P.push({p:[Vp(-13,-36,24),Vp(-15,-50,16)],k:1,o:0.4});
-    P.push({p:[Vp(13,-36,24),Vp(15,-50,16)],k:1,o:0.4});
-    (function(){ var L=[]; for(var a=0;a<=48;a++){ var an=(a/48)*Math.PI*2; L.push(Vp(42*Math.sin(an), -52+5*Math.cos(an*3), 27*Math.cos(an))); } P.push({p:L,k:1,o:0.5}); })();
-    P.push({p:[Vp(-42,-52,4),Vp(-66,-66,0),Vp(-82,-80,-8)],k:1,o:0.4});
-    P.push({p:[Vp(42,-52,4),Vp(66,-66,0),Vp(82,-80,-8)],k:1,o:0.4});
+    // --- big looped side buns ---
+    [-1,1].forEach(function(sgn){ var base=S(sgn*72*D,-6*D,hrx,hry,hrz,hcy);
+      for(var c=0;c<4;c++){ var rad=16-c*3.4, L=[];
+        for(var a=0;a<=24;a++){ var an=(a/24)*Math.PI*2; L.push(Vp(base.x+sgn*3+Math.cos(an)*rad, base.y+Math.sin(an)*rad*1.12, base.z+9-c*1.1)); }
+        P.push({p:L,k:1,o:0.55}); } });
+    // --- flower ornament (upper side) ---
+    (function(){ var base=S(46*D,50*D,hrx,hry,hrz,hcy);
+      for(var c=0;c<3;c++){ var rad=8-c*2.3, L=[];
+        for(var a=0;a<=40;a++){ var an=(a/40)*Math.PI*2, rr=rad*(1+0.3*Math.cos(an*8)); L.push(Vp(base.x+Math.cos(an)*rr, base.y+Math.sin(an)*rr, base.z+12-c)); }
+        P.push({p:L,k:2,o:0.7}); }
+      var cL=[]; for(var a=0;a<=14;a++){ var an=(a/14)*Math.PI*2; cL.push(Vp(base.x+Math.cos(an)*2, base.y+Math.sin(an)*2, base.z+13)); } P.push({p:cL,k:2,o:0.7});
+    })();
+    // --- neck, shoulders & V-neck dress ---
+    P.push({p:[Vp(-12,-34,22),Vp(-13,-46,18)],k:1,o:0.4});
+    P.push({p:[Vp(12,-34,22),Vp(13,-46,18)],k:1,o:0.4});
+    P.push({p:[Vp(-13,-46,18),Vp(-34,-56,8),Vp(-58,-76,-6)],k:1,o:0.5}); // left shoulder
+    P.push({p:[Vp(13,-46,18),Vp(34,-56,8),Vp(58,-76,-6)],k:1,o:0.5});    // right shoulder
+    P.push({p:[Vp(-13,-46,18),Vp(0,-76,14)],k:1,o:0.55}); // V neckline left
+    P.push({p:[Vp(13,-46,18),Vp(0,-76,14)],k:1,o:0.55});  // V neckline right
+    P.push({p:[Vp(-23,-52,11),Vp(-6,-78,11)],k:1,o:0.32}); // drape line
+    P.push({p:[Vp(23,-52,11),Vp(6,-78,11)],k:1,o:0.32});
     // --- facial features (accent) ---
     function arc(thA,thB,ph,n){ var L=[]; for(var i=0;i<=n;i++){ var th=thA+(thB-thA)*i/n; L.push(S(th*D,ph*D,HRX*1.03,HRY*1.03,HRZ*1.03,HCY)); } return L; }
     P.push({p:arc(-22,-6,16,6),k:2,o:0.95}); P.push({p:arc(6,22,16,6),k:2,o:0.95}); // brows
     P.push({p:arc(-20,-8,5,6),k:2,o:0.9}); P.push({p:arc(-20,-8,1,6),k:2,o:0.6});   // right eye
     P.push({p:arc(8,20,5,6),k:2,o:0.9});  P.push({p:arc(8,20,1,6),k:2,o:0.6});     // left eye
+    [[-14,3],[14,3]].forEach(function(e){ var q=S(e[0]*D,e[1]*D,HRX*1.05,HRY*1.05,HRZ*1.05,HCY), L=[]; for(var a=0;a<=12;a++){ var an=(a/12)*Math.PI*2; L.push(Vp(q.x+Math.cos(an)*2,q.y+Math.sin(an)*2,q.z)); } P.push({p:L,k:2,o:0.9}); }); // pupils
     (function(){ var L=[]; for(var i=0;i<=6;i++){ var ph=(14-24*i/6); L.push(S(0,ph*D,HRX*1.03,HRY*1.03,HRZ*1.03,HCY)); } P.push({p:L,k:2,o:0.85}); })(); // nose ridge
     P.push({p:arc(-7,7,-12,6),k:2,o:0.7}); // nose base
     P.push({p:arc(-9,9,-23,6),k:2,o:0.9}); P.push({p:arc(-7,7,-27,5),k:2,o:0.65}); // lips
