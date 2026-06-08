@@ -118,6 +118,10 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 /* ============ HERO ============ */
 .hero{ padding:48px 28px; position:relative; overflow:hidden; }
 @media(min-width:768px){ .hero{ padding:56px 48px; } }
+.hero > .badge, .hero > .hero-h, .hero > .lede, .hero > .hero-cta{ position:relative; z-index:1; }
+.hero-art{ position:absolute; right:1%; top:50%; transform:translateY(-50%); width:38%; max-width:420px; z-index:0; pointer-events:none; }
+.hero-art svg{ width:100%; height:auto; display:block; overflow:visible; }
+@media(max-width:1023px){ .hero-art{ display:none; } }
 .hero .blob{ position:absolute; border-radius:50%; filter:blur(60px); z-index:-1; }
 .hero .b1{ top:-96px; right:-80px; width:28rem; height:28rem; background:radial-gradient(circle at 30% 30%,rgba(244,114,182,.7),rgba(168,85,247,.4),transparent 70%); }
 .hero .b2{ bottom:-112px; left:-48px; width:24rem; height:24rem; background:radial-gradient(circle at 60% 40%,rgba(125,211,252,.6),transparent 70%); }
@@ -811,6 +815,63 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
   <div class="glass rounded-lg hero shadow">
     <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <radialGradient id="pg" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="0.35" stop-color="#c4b5fd"/>
+            <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="3.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- circuit traces (node -> chip) -->
+        <g fill="none" stroke="#57534e" stroke-opacity="0.42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path id="tr1" d="M338,142 L292,168 L246,194"/>
+          <path id="tr2" d="M62,142 L108,168 L154,194"/>
+          <path id="tr3" d="M200,60 L200,116 L200,168"/>
+          <path id="tr4" d="M62,300 L108,274 L154,248"/>
+          <path id="tr5" d="M338,300 L292,274 L246,248"/>
+          <g stroke-width="1.4">
+            <rect x="331" y="135" width="14" height="14" transform="rotate(45 338 142)"/>
+            <rect x="55" y="135" width="14" height="14" transform="rotate(45 62 142)"/>
+            <rect x="193" y="53" width="14" height="14" transform="rotate(45 200 60)"/>
+            <rect x="55" y="293" width="14" height="14" transform="rotate(45 62 300)"/>
+            <rect x="331" y="293" width="14" height="14" transform="rotate(45 338 300)"/>
+          </g>
+        </g>
+        <!-- processor cube (isometric line drawing) -->
+        <g fill="none" stroke="#292524" stroke-opacity="0.8" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M200,168 L246,194 L200,220 L154,194 Z"/>
+          <path d="M246,194 L200,220 L200,270 L246,244 Z"/>
+          <path d="M154,194 L200,220 L200,270 L154,244 Z"/>
+          <g stroke-opacity="0.5" stroke-width="1.4">
+            <line x1="163" y1="249" x2="151" y2="256"/>
+            <line x1="177" y1="257" x2="165" y2="264"/>
+            <line x1="191" y1="265" x2="179" y2="272"/>
+            <line x1="209" y1="265" x2="221" y2="272"/>
+            <line x1="223" y1="257" x2="235" y2="264"/>
+            <line x1="237" y1="249" x2="249" y2="256"/>
+          </g>
+        </g>
+        <!-- die inset on the top face -->
+        <path d="M200,181 L223,194 L200,207 L177,194 Z" fill="none" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.4" stroke-linejoin="round"/>
+        <!-- pulsing core -->
+        <circle cx="200" cy="194" r="5" fill="url(#pg)" filter="url(#glow)">
+          <animate attributeName="r" values="3.5;9;3.5" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <!-- light pulses travelling into the processor -->
+        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0s"   repeatCount="indefinite"><mpath xlink:href="#tr1"/></animateMotion></circle>
+        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath xlink:href="#tr2"/></animateMotion></circle>
+        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite"><mpath xlink:href="#tr3"/></animateMotion></circle>
+        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.9s" repeatCount="indefinite"><mpath xlink:href="#tr4"/></animateMotion></circle>
+        <circle r="3.8" fill="url(#pg)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite"><mpath xlink:href="#tr5"/></animateMotion></circle>
+      </svg>
+    </div>
     <span class="badge grad">A Manifesto for Makers</span>
     <h2 class="hero-h">We will not teach you to bow to the machine. We will teach you to <span class="gradient-text">hotwire</span> it.</h2>
     <p class="lede">You might arrive at this curious, excited, wary, angry, or all four at once. Whatever your starting point, you bring questions worth taking seriously — about copyright, about the ecological cost of vast data centres, about the irreplaceable imprint of the human hand. <strong>Good.</strong> Those questions are not obstacles to learning; they are the substance of it.</p>
