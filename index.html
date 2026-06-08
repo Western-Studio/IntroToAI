@@ -285,9 +285,16 @@ input[type=range]::-moz-range-thumb{ width:18px; height:18px; border:none; borde
 .companion .ctag{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.2em; color:#f9a8d4; font-family:ui-monospace,monospace; }
 .companion h5{ font-size:13px; font-weight:800; margin-top:8px; color:#fff; }
 .companion p{ font-size:10.5px; color:#94a3b8; line-height:1.6; margin-top:6px; }
-.companion .starfield{ position:relative; height:90px; margin-top:12px; background:#060a16; border:1px solid #1e293b; border-radius:12px; overflow:hidden; }
-.companion .starfield .lbl{ position:absolute; font-size:8px; font-family:ui-monospace,monospace; color:#fbcfe8; background:rgba(30,41,59,.85); border:1px solid #334155; padding:1px 5px; border-radius:5px; }
-.companion .starfield .dot{ position:absolute; width:5px; height:5px; border-radius:50%; background:#fff; box-shadow:0 0 6px #fff; }
+.companion .flowdiag{ margin-top:13px; display:flex; flex-direction:column; gap:6px; }
+.companion .fd-node{ display:flex; align-items:center; gap:10px; background:#060a16; border:1px solid #1e293b; border-radius:11px; padding:9px 11px; }
+.companion .fd-ico{ flex-shrink:0; width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px; }
+.companion .fd-node:nth-child(1) .fd-ico{ background:rgba(249,168,212,.12); border:1px solid rgba(249,168,212,.32); color:#f9a8d4; }
+.companion .fd-node:nth-child(3) .fd-ico{ background:rgba(196,181,253,.12); border:1px solid rgba(196,181,253,.32); color:#c4b5fd; }
+.companion .fd-node:nth-child(5) .fd-ico{ background:rgba(125,211,252,.12); border:1px solid rgba(125,211,252,.32); color:#7dd3fc; }
+.companion .fd-txt{ display:flex; flex-direction:column; }
+.companion .fd-txt b{ font-size:11px; font-weight:700; color:#fff; }
+.companion .fd-sub{ font-size:9px; color:#64748b; font-family:ui-monospace,monospace; margin-top:1px; }
+.companion .fd-arrow{ text-align:center; color:#475569; font-size:13px; line-height:1; }
 /* widget */
 .widget{ background:#1c1917; border:1px solid #292524; border-radius:24px; padding:24px; color:var(--cream); margin-top:24px; }
 .widget-head{ display:flex; flex-direction:column; gap:14px; }
@@ -768,19 +775,14 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
         <div class="companion">
           <span class="ctag">// companion diagram 1.1</span>
-          <h5>The Semantic Starfield</h5>
-          <p>Picture human language as a night sky. A model gives every word a place in it. Words that share a vibe — <b style="color:#fbcfe8">paint</b>, <b style="color:#fbcfe8">canvas</b>, <b style="color:#fbcfe8">oil</b> — cluster into a bright galaxy; an unrelated word like <b style="color:#93c5fd">mortgage</b> drifts far away. Writing a prompt is drawing constellation lines between these word-stars.</p>
-          <div class="starfield">
-            <svg style="position:absolute;inset:0;width:100%;height:100%">
-              <line x1="16%" y1="28%" x2="46%" y2="78%" stroke="rgba(244,63,94,.4)" stroke-width="1" stroke-dasharray="3 3"/>
-              <line x1="46%" y1="78%" x2="80%" y2="32%" stroke="rgba(244,63,94,.4)" stroke-width="1" stroke-dasharray="3 3"/>
-            </svg>
-            <span class="dot" style="top:24%;left:14%"></span>
-            <span class="dot" style="bottom:18%;left:44%"></span>
-            <span class="dot" style="top:28%;right:16%"></span>
-            <span class="lbl" style="top:12%;left:8%">paint</span>
-            <span class="lbl" style="bottom:6%;left:36%">canvas</span>
-            <span class="lbl" style="top:14%;right:8%">oil</span>
+          <h5>The idea is the medium</h5>
+          <p>This week's core move: you author a set of <b style="color:#fbcfe8">instructions</b> and let a machine carry them out. The thinking is the art; the rendering is delegated. Ada Lovelace imagined it, Sol LeWitt sold it — this week you build it.</p>
+          <div class="flowdiag">
+            <div class="fd-node"><span class="fd-ico">✎</span><div class="fd-txt"><b>You write the rules</b><span class="fd-sub">the idea — your instructions</span></div></div>
+            <span class="fd-arrow">↓</span>
+            <div class="fd-node"><span class="fd-ico">⚙</span><div class="fd-txt"><b>The machine renders</b><span class="fd-sub">literal, exact execution</span></div></div>
+            <span class="fd-arrow">↓</span>
+            <div class="fd-node"><span class="fd-ico">★</span><div class="fd-txt"><b>The work is yours</b><span class="fd-sub">authorship lives in the idea</span></div></div>
           </div>
         </div>
       </div>
