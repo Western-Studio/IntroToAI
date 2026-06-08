@@ -252,6 +252,13 @@ input[type=range]::-moz-range-thumb{ width:18px; height:18px; border:none; borde
 .concept .cn-d{ flex-shrink:0; width:11px; height:11px; border-radius:50%; margin-top:3px; }
 .concept b{ font-size:12px; color:var(--s900); display:block; }
 .concept p{ font-size:11px; color:var(--s500); line-height:1.45; margin-top:1px; }
+.learn-box{ margin-top:16px; background:linear-gradient(120deg,rgba(237,233,254,.5),rgba(224,242,254,.45)); border:1px solid rgba(139,92,246,.22); border-radius:13px; padding:14px 16px; }
+.learn-box .lb-tag{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#7c3aed; font-family:ui-monospace,monospace; }
+.learn-box p{ font-size:12px; color:var(--s700); line-height:1.6; margin-top:7px; }
+.learn-box p b{ color:var(--s900); }
+.learn-box .lb-row{ display:flex; gap:7px; margin-top:10px; flex-wrap:wrap; }
+.learn-box .lb-pill{ font-size:10.5px; font-weight:700; background:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.85); border-radius:999px; padding:4px 10px; color:var(--s600); }
+.learn-box .lb-pill b{ color:var(--s900); font-weight:800; }
 
 /* ===== GALAXY EXPLAINER ===== */
 .explain{ margin-bottom:24px; }
@@ -1466,6 +1473,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <span class="cm-c">// instruction transcription</span>
         <span id="prompt-transcription">Draw isometric lines emerging from the centre to meet orthogonal axes at proportional distances.</span>
       </div>
+      <div class="learn-box">
+        <span class="lb-tag">✎ What you're learning</span>
+        <p>That <b>code is just instructions</b> — a recipe you author and delegate. Every slider is a <b>parameter</b>; the machine executes your rules exactly, with no "hand" of its own. This is the leap behind prompting: you write the system, the machine renders it.</p>
+        <div class="lb-row"><span class="lb-pill"><b>Concept ·</b> parameters &amp; loops</span><span class="lb-pill"><b>Art link ·</b> Sol LeWitt's wall drawings</span><span class="lb-pill"><b>Ask ·</b> if the machine drew it, did you make it?</span></div>
+      </div>
     </div>
 
     <!-- LAB 3 -->
@@ -1482,6 +1494,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <div><span class="sl">Cosine similarity</span><span id="cosine-score" class="sv">0.42</span></div>
         <div id="cosine-verdict" class="verdict indigo">Loosely related</div>
       </div>
+      <div class="learn-box">
+        <span class="lb-tag">✎ What you're learning</span>
+        <p>How a model actually <b>measures meaning</b>: by the <b>angle</b> between two vectors, not the distance between them. Two ideas can be far apart yet point the same way — and that counts as "similar". This single trick powers autocomplete, search and recommendation.</p>
+        <div class="lb-row"><span class="lb-pill"><b>Concept ·</b> cosine similarity</span><span class="lb-pill"><b>Builds on ·</b> Lab 01's meaning-space</span><span class="lb-pill"><b>Ask ·</b> who decided which words point together?</span></div>
+      </div>
     </div>
 
     <!-- LAB 4 -->
@@ -1492,6 +1509,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="canvas-frame" style="margin-top:16px; background:#1c1917"><canvas id="bland-canvas"></canvas></div>
       <div class="slider-row" style="margin-top:16px"><div class="rt"><span>Style attention force</span><span id="label-attention" class="txt-pink">High friction</span></div><input type="range" id="slider-attention" min="0" max="100" value="10" oninput="renderBland()"></div>
       <div class="info" style="margin-top:16px">At <strong>low force</strong> the scratchy outliers keep their independence. At <strong>high force</strong> the attention layers compress them into a plastic corporate gradient. True art lives in what gets averaged away.</div>
+      <div class="learn-box">
+        <span class="lb-tag">✎ What you're learning</span>
+        <p>Why so much AI output looks the same: <b>attention</b> layers pull every mark toward the statistical <b>average</b>. Push the force and watch rough, human, outlier marks get smoothed into a glossy corporate mean — the interesting bits are exactly what gets averaged away.</p>
+        <div class="lb-row"><span class="lb-pill"><b>Concept ·</b> self-attention &amp; the mean</span><span class="lb-pill"><b>Art link ·</b> Grayson Perry's critique</span><span class="lb-pill"><b>Ask ·</b> what is lost in the average?</span></div>
+      </div>
     </div>
 
     <!-- LAB 5 -->
@@ -1508,6 +1530,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       </div>
       <div class="canvas-wide" style="margin-top:16px"><canvas id="motion-canvas"></canvas><div class="motion-tag">// local · 60fps · no cloud tracking</div></div>
+      <div class="learn-box">
+        <span class="lb-tag">✎ What you're learning</span>
+        <p>That art doesn't have to live in the cloud. This responds to your body in <b>real time, computed entirely on your device</b> — nothing is uploaded, nothing is tracked. A taste of Week 4: interactive, embodied, <b>private</b> net art that a flat image could never be.</p>
+        <div class="lb-row"><span class="lb-pill"><b>Concept ·</b> local real-time loops</span><span class="lb-pill"><b>Art link ·</b> Universal Everything, Memo Akten</span><span class="lb-pill"><b>Ask ·</b> why does "on-device" matter?</span></div>
+      </div>
     </div>
 
   </div>
