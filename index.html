@@ -658,6 +658,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .req .rq-ck{ flex-shrink:0; width:22px; height:22px; border-radius:6px; background:var(--grad); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; margin-top:1px; }
 .req h5{ font-size:13.5px; font-weight:800; color:var(--s900); }
 .req p{ font-size:12px; color:var(--s600); line-height:1.55; margin-top:3px; }
+.outcomes{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:20px; }
+.oc{ display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,.5); border:1px solid rgba(231,229,228,.7); border-radius:14px; padding:15px 17px; }
+.oc-ar{ flex-shrink:0; width:26px; height:26px; border-radius:8px; background:var(--grad); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; margin-top:1px; }
+.oc h5{ font-size:13.5px; font-weight:800; color:var(--s900); }
+.oc p{ font-size:12.5px; color:var(--s600); line-height:1.6; margin-top:3px; }
+.oc p b{ color:var(--s800); }
 
 /* illustrated embed guide */
 .embed-steps{ display:grid; grid-template-columns:1fr; gap:18px; margin-top:22px; }
@@ -1436,6 +1442,20 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
     <span class="label blue mono">// The Brief · Your portfolio exhibition</span>
     <h2 class="hero-h">Build a Google Site that exhibits everything you make</h2>
     <p class="lede sm">As the course runs you will build a sketchbook of working web experiments — instruction-art generators, token maps, glitch collagers, motion mirrors and whatever else you dream up. Your overall project is to gather them into <strong>one living portfolio</strong>: a Google Site where each piece <strong>runs live, embedded straight from your own code</strong>, and each sits beside a short explanation of the idea behind it. Not screenshots of your work — your work itself, playable in the page. This is your exhibition.</p>
+  </div>
+
+  <!-- learning outcomes -->
+  <div class="glass rounded panel">
+    <span class="label indigo mono">// What this project proves you can do</span>
+    <h2 class="brief-h">By the end, you will be able to…</h2>
+    <p class="act-sub" style="max-width:72ch">Your portfolio is the evidence for all five. Every piece and its wall text should, between them, demonstrate these.</p>
+    <div class="outcomes">
+      <div class="oc"><span class="oc-ar">→</span><div><h5>Open the black box</h5><p>Explain, in your own words, how <b>tokens, vectors, attention and weights</b> actually function — and where each one quietly encodes a bias.</p></div></div>
+      <div class="oc"><span class="oc-ar">→</span><div><h5>Direct the machine</h5><p>Direct Gemini Canvas conversationally to build <b>responsive, original interactive web pieces</b> — rejecting default templates at every turn.</p></div></div>
+      <div class="oc"><span class="oc-ar">→</span><div><h5>Locate your lineage</h5><p>Situate your practice within a genuine <b>art-historical lineage</b>, from Lovelace and Dada to LeWitt, Perry, Lialina and Universal Everything.</p></div></div>
+      <div class="oc"><span class="oc-ar">→</span><div><h5>Publish to the open web</h5><p>Publish live, un-sandboxed <b>net art</b> to the open web and defend that choice as a political and aesthetic act.</p></div></div>
+      <div class="oc"><span class="oc-ar">→</span><div><h5>Take a position</h5><p>Write a critical <b>artist statement</b> that argues a clear, well-reasoned point of view about computation and craft.</p></div></div>
+    </div>
   </div>
 
   <!-- what it must contain -->
