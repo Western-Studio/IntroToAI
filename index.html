@@ -814,6 +814,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 #scrollrail .sr-dot{ position:absolute; left:50%; top:0; transform:translate(-50%,-50%); width:12px; height:12px; border-radius:50%; background:#fff; box-shadow:0 0 0 3px rgba(139,92,246,.35), 0 2px 6px rgba(0,0,0,.3); transition:box-shadow .2s; }
 #scrollrail:hover .sr-track{ opacity:.85; }
 #scrollrail:hover .sr-dot{ box-shadow:0 0 0 4px rgba(139,92,246,.5), 0 2px 8px rgba(0,0,0,.35); }
+#scrollrail .sr-mark{ position:absolute; left:50%; top:0; transform:translate(-50%,-50%); width:15px; height:6px; border-radius:3px; background:#fcd34d; border:1px solid rgba(120,80,10,.35); box-shadow:0 1px 3px rgba(0,0,0,.3); cursor:pointer; display:none; padding:0; }
+#scrollrail .sr-mark::after{ content:"Jump to steps"; position:absolute; left:20px; top:50%; transform:translateY(-50%); white-space:nowrap; font-size:9px; font-weight:800; letter-spacing:.04em; color:var(--s600); background:rgba(255,255,255,.92); padding:3px 7px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,.12); opacity:0; transition:opacity .15s; pointer-events:none; }
+#scrollrail .sr-mark:hover::after{ opacity:1; }
 @media(max-width:820px){ #scrollrail{ display:none; } }
 </style>
 </head>
@@ -1834,7 +1837,7 @@ My rough idea: "a space invaders game that looks like my soft, pastel art style.
   <div style="margin-top:6px">© 2026 Reclaiming the Machine · Crafted for Year 12 artists and makers · All visuals rendered live, on your device.</div>
 </footer>
 
-<div id="scrollrail" aria-hidden="true"><div class="sr-track"></div><div class="sr-dot"></div></div>
+<div id="scrollrail" aria-hidden="true"><div class="sr-track"></div><button class="sr-mark" id="sr-mark" type="button" title="Jump to any step"></button><div class="sr-dot"></div></div>
 <div id="toast">Copied to clipboard!</div>
 
 <script>
@@ -2343,11 +2346,19 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
 /* ===== floating scroll-rail (scrub to top/bottom) ===== */
 (function(){
   var rail=document.getElementById('scrollrail'); if(!rail) return;
-  var dot=rail.querySelector('.sr-dot'), dragging=false, moved=false;
+  var dot=rail.querySelector('.sr-dot'), mark=document.getElementById('sr-mark'), dragging=false, moved=false;
   function maxScroll(){ return Math.max(1, document.documentElement.scrollHeight - window.innerHeight); }
-  function update(){ var p=Math.max(0,Math.min(1, window.scrollY/maxScroll())); dot.style.top=(p*rail.clientHeight)+'px'; }
+  function updateMark(){ if(!mark) return; var el=document.querySelector('.lesson-subnav');
+    if(!el || el.offsetParent===null){ mark.style.display='none'; return; }
+    var docY=el.getBoundingClientRect().top+window.scrollY, p=Math.max(0,Math.min(1, docY/maxScroll()));
+    mark.style.top=(p*rail.clientHeight)+'px'; mark.style.display='block'; }
+  function update(){ var p=Math.max(0,Math.min(1, window.scrollY/maxScroll())); dot.style.top=(p*rail.clientHeight)+'px'; updateMark(); }
   function scrubTo(clientY, smooth){ var r=rail.getBoundingClientRect(); var p=Math.max(0,Math.min(1,(clientY-r.top)/r.height));
     window.scrollTo({ top:p*maxScroll(), behavior:smooth?'smooth':'auto' }); }
+  function jumpToSteps(){ var el=document.querySelector('.lesson-subnav'); if(el) window.scrollTo({ top:el.getBoundingClientRect().top+window.scrollY-72, behavior:'smooth' }); }
+  if(mark){ mark.addEventListener('mousedown',function(e){ e.stopPropagation(); e.preventDefault(); jumpToSteps(); });
+    mark.addEventListener('touchstart',function(e){ e.stopPropagation(); e.preventDefault(); jumpToSteps(); },{passive:false}); }
+  ['switchTab','switchLesson'].forEach(function(n){ var o=window[n]; if(typeof o==='function'){ window[n]=function(){ var r=o.apply(this,arguments); setTimeout(function(){ update(); },80); return r; }; } });
   window.addEventListener('scroll',update,{passive:true});
   window.addEventListener('resize',update);
   rail.addEventListener('mousedown',function(e){ dragging=true; moved=false; scrubTo(e.clientY,true); e.preventDefault(); });
