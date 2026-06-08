@@ -559,6 +559,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .lpath-intro .rp{ font-size:10px; font-weight:800; padding:5px 11px; border-radius:8px; }
 .lpath-intro .rp.e{ background:#e0e7ff; color:#4338ca; } .lpath-intro .rp.a{ background:#1c1917; color:#fff; }
 .lpart{ margin:42px 0 -8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.16em; color:#9333ea; }
+.lp-wrap{ margin-top:30px; padding:30px 30px 36px; border-radius:24px; border:1px solid transparent; }
+.lp-wrap > .lpart:first-child{ margin-top:0; }
+.lp-wrap.p1{ background:linear-gradient(180deg,rgba(252,231,243,.6),rgba(252,231,243,.16)); border-color:rgba(244,114,182,.3); }
+.lp-wrap.p2{ background:linear-gradient(180deg,rgba(237,233,254,.6),rgba(237,233,254,.16)); border-color:rgba(167,139,250,.3); }
+.lp-wrap.p3{ background:linear-gradient(180deg,rgba(224,242,254,.6),rgba(224,242,254,.16)); border-color:rgba(56,189,248,.28); }
+.lp-wrap.p1 .lpart{ color:#db2777; } .lp-wrap.p2 .lpart{ color:#7c3aed; } .lp-wrap.p3 .lpart{ color:#0284c7; }
+@media(max-width:640px){ .lp-wrap{ padding:20px 16px 26px; border-radius:18px; margin-top:22px; } }
 .lstep{ display:flex; align-items:center; gap:13px; margin:34px 0 8px; padding-bottom:13px; border-bottom:2px solid; border-image:var(--grad) 1; }
 .lstep .lbadge{ flex-shrink:0; width:46px; height:46px; border-radius:13px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:ui-monospace,monospace; font-weight:800; line-height:1; }
 .lstep .lbadge .lk{ font-size:8.5px; letter-spacing:.04em; opacity:.85; } .lstep .lbadge .ln{ font-size:18px; margin-top:3px; }
@@ -786,6 +793,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <span class="rp e">Explain</span><span class="rp a">Do</span><span class="rp e">Explain</span><span class="rp a">Do</span><span class="rp e">…</span><span class="rp a">★ Final build</span>
         </div>
       </div>
+      <section class="lp-wrap p1">
       <p class="lpart">Part 1 · How the machine actually works · ~50 min</p>
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So what is an “algorithm” here?</h3></div><span class="ltime">~6 min</span></div>
       <p class="act-sub" style="max-width:66ch">You’ll hear “algorithm” thrown around constantly. In everyday computing it just means a fixed set of steps — a recipe. But a generative AI’s algorithm works differently, and that difference is the whole point.</p>
@@ -910,6 +918,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <span class="fire-note" id="fire-note">Press the button to send a signal between two neurons. Each time you do, the link between them thickens — exactly how a repeated action becomes a strong, easy pathway in a brain or a model.</span>
           </div>
         </div>
+      </section>
+      <section class="lp-wrap p2">
       <p class="lpart">Part 2 · The idea as the medium · ~50 min</p>
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Meet the ancestors</h3></div><span class="ltime">~10 min</span></div>
       <p class="act-sub" style="max-width:66ch">Two centuries before the chatbot, a handful of people invented your real toolkit: the idea that a written set of instructions could make art and music, not just sums. Tap each card — and notice the through-line to Dada, where Tristan Tzara pulled poems from a hat and Duchamp let gravity decide.</p>
@@ -1089,6 +1099,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       </div>
       <div class="taskcard"><span class="tk-when">✎ Task 6 · in pairs · 15 min</span><h5>Act as a human interpreter</h5><p>Pair up. One of you is the <b>Director</b> and controls the Blind Drafter above (Privacy Shield on); issue strict, step-by-step verbal rules. Your partner is the <b>compiler</b> and draws exactly what they hear on paper — no feedback, no questions.</p><div class="why pink"><b>Why:</b> to witness the inevitable drift between written rules and final execution. Computers are literal, unthinking, highly predictable systems of execution.</div></div>
+      </section>
+      <section class="lp-wrap p3">
       <p class="lpart">Part 3 · Take a position, then build · ~50 min</p>
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So — what could this mean for us?</h3></div><span class="ltime">~5 min</span></div>
       <p class="act-sub" style="max-width:66ch">Now you know roughly how it works, the real question is what we do with it. In pairs, weigh up some genuine possibilities — there are no right answers here, only reasoned ones.</p>
@@ -1163,6 +1175,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <div class="ft-classroom"><span class="cl-pill">Classroom → your assignment → Add or create → File → upload</span></div>
         </div>
       </div>
+      </section>
     </div>
   </div>
 
