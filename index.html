@@ -85,7 +85,7 @@ input[type=range]{ cursor:pointer; }
 .btn-sm{ padding:7px 14px; font-size:11px; }
 
 /* ============ HEADER ============ */
-header.bar{ position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,.4); padding:16px 16px 20px; background:rgba(255,255,255,.42); }
+header.bar{ padding:18px 16px 16px; background:rgba(255,255,255,.42); }
 .bar-inner{ max-width:1120px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:22px; }
 .brand{ display:flex; align-items:center; justify-content:center; }
 .brand .txt{ display:flex; flex-direction:column; align-items:center; gap:6px; }
@@ -97,7 +97,7 @@ header.bar{ position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255
 .subm .yr{ color:var(--s600); font-weight:700; }
 .subm .dot.p{ background:#f472b6; } .subm .dot.i{ background:#818cf8; }
 .subm .yr{ color:var(--s700); }
-nav.tabs{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+nav.tabs{ position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.5); }
 .tab-btn{ cursor:pointer; font-family:inherit; padding:11px 22px; font-size:13px; font-weight:800; border-radius:0; color:var(--s700); transition:transform .2s, color .2s, background .25s;
   background:linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,.15));
   backdrop-filter:blur(18px) saturate(180%); -webkit-backdrop-filter:blur(18px) saturate(180%);
@@ -800,14 +800,14 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <p class="subm"><span>Computational Aesthetics</span><span class="dot p"></span><span>Vibe Coding</span><span class="dot i"></span><span class="yr">Year 12</span></p>
       </div>
     </div>
-    <nav class="tabs">
-      <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn active">Manifesto</button>
-      <button onclick="switchTab('lessons')" id="tab-lessons" class="tab-btn">Lessons</button>
-      <button onclick="switchTab('playgrounds')" id="tab-playgrounds" class="tab-btn">Universal Labs</button>
-      <button onclick="switchTab('brief')" id="tab-brief" class="tab-btn">The Brief</button>
-    </nav>
   </div>
 </header>
+<nav class="tabs glass">
+  <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn active">Manifesto</button>
+  <button onclick="switchTab('lessons')" id="tab-lessons" class="tab-btn">Lessons</button>
+  <button onclick="switchTab('playgrounds')" id="tab-playgrounds" class="tab-btn">Universal Labs</button>
+  <button onclick="switchTab('brief')" id="tab-brief" class="tab-btn">The Brief</button>
+</nav>
 
 <main>
 
