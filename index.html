@@ -152,6 +152,17 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 .cc p{ font-size:12px; color:var(--s600); line-height:1.6; margin-top:8px; }
 .cc.up{ background:linear-gradient(120deg,rgba(252,231,243,.5),rgba(224,242,254,.45)); border-left:3px solid; border-image:var(--grad) 1; }
 .cc.up h4{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.charter-grid.tinted .cc{ border-left:3px solid transparent; }
+.charter-grid.tinted .cc:nth-child(1){ background:linear-gradient(120deg,rgba(252,231,243,.6),rgba(252,231,243,.18)); border-left-color:#ec4899; }
+.charter-grid.tinted .cc:nth-child(2){ background:linear-gradient(120deg,rgba(254,243,199,.6),rgba(254,243,199,.18)); border-left-color:#f59e0b; }
+.charter-grid.tinted .cc:nth-child(3){ background:linear-gradient(120deg,rgba(220,252,231,.6),rgba(220,252,231,.18)); border-left-color:#22c55e; }
+.charter-grid.tinted .cc:nth-child(4){ background:linear-gradient(120deg,rgba(224,242,254,.6),rgba(224,242,254,.18)); border-left-color:#0ea5e9; }
+.charter-grid.tinted .cc:nth-child(5){ background:linear-gradient(120deg,rgba(237,233,254,.6),rgba(243,232,255,.18)); border-left-color:#8b5cf6; }
+.charter-grid.tinted .cc:nth-child(1) h4{ color:#be185d; }
+.charter-grid.tinted .cc:nth-child(2) h4{ color:#b45309; }
+.charter-grid.tinted .cc:nth-child(3) h4{ color:#15803d; }
+.charter-grid.tinted .cc:nth-child(4) h4{ color:#0369a1; }
+.charter-grid.tinted .cc:nth-child(5) h4{ color:#6d28d9; }
 
 /* outcomes */
 .out-list{ list-style:none; padding:0; margin:16px 0 0; }
@@ -855,7 +866,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
     <span class="label pink">The Honest Charter</span>
     <h3>Five things this course refuses to pretend</h3>
     <p class="sub">Whatever you make of these tools, you deserve the full picture. We will not sell you the hype.</p>
-    <div class="charter-grid">
+    <div class="charter-grid tinted">
       <div class="cc"><h4>1. The training data is contested.</h4><p>These models were built on scraped work, frequently without consent. We treat that as a live ethical problem, not a footnote — and as a reason to use outputs as raw material to subvert, never as finished art to pass off.</p></div>
       <div class="cc"><h4>2. There is a real environmental cost.</h4><p>Large models burn energy and water at industrial scale. We will measure, name and minimise our use, and we favour tiny, local, browser-side code that runs on your own device wherever possible.</p></div>
       <div class="cc"><h4>3. The "average" is the enemy of art.</h4><p>These systems are built to return the statistical mean. The interesting, the strange and the human live in the outliers — which is exactly where you will aim your work.</p></div>
