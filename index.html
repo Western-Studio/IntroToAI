@@ -1730,14 +1730,16 @@ function learnNext(){
 
 /* ===== ALGORITHM: "you be the algorithm" predict demo ===== */
 var PREDICT_TREE={
-  "start":[{w:"brush",p:62},{w:"pencil",p:24},{w:"phone",p:9},{w:"argument",p:5}],
-  "brush":[{w:"and",p:55},{w:",",p:30},{w:"slowly",p:15}],
-  "pencil":[{w:"and",p:50},{w:"to",p:33},{w:"again",p:17}],
-  "phone":[{w:"to",p:60},{w:"and",p:28},{w:"instead",p:12}],
-  "argument":[{w:"about",p:64},{w:"with",p:26},{w:"and",p:10}],
-  "and":[{w:"began",p:58},{w:"stared",p:26},{w:"hesitated",p:16}],
-  "began":[{w:"to paint.",p:70},{w:"again.",p:30}],
-  "_end":[]
+  "start":[{w:"brush",p:61},{w:"pencil",p:23},{w:"phone",p:11},{w:"knife",p:5}],
+  "brush":[{w:"and",p:64},{w:"then",p:36}],
+  "pencil":[{w:"and",p:59},{w:"then",p:41}],
+  "phone":[{w:"and",p:55},{w:"then",p:45}],
+  "knife":[{w:"and",p:57},{w:"then",p:43}],
+  "and":[{w:"began",p:52},{w:"paused",p:28},{w:"started",p:20}],
+  "then":[{w:"began",p:48},{w:"paused",p:31},{w:"started",p:21}],
+  "began":[{w:"to paint.",p:67},{w:"sketching.",p:21},{w:"again.",p:12}],
+  "paused":[{w:"for a moment.",p:58},{w:"to think.",p:30},{w:"briefly.",p:12}],
+  "started":[{w:"to draw.",p:63},{w:"working.",p:25},{w:"over.",p:12}]
 };
 var predictBase="The artist picked up the", predictKey="start", predictDone=false;
 function predictRender(){
@@ -1758,14 +1760,11 @@ function predictRender(){
 }
 function predictPick(word){
   var sent=document.getElementById('predict-sentence');
-  var clean=word.replace(/^,/,''); var sep=(word===','||word.indexOf('.')>-1&&word.length<3)?'':' ';
-  predictBase += (word===',' ? ',' : ' '+word);
-  sent.innerHTML=predictBase.replace(/</g,'&lt;')+'<span class="cursor"></span>';
-  // advance the tree
-  var next={ "brush":"brush","pencil":"pencil","phone":"phone","argument":"argument","and":"and","began":"began" };
+  predictBase += ' '+word;
+  // a word ending in a full stop completes the sentence; otherwise keep going
   var k=word.replace(/[^a-z]/gi,'').toLowerCase();
-  if(PREDICT_TREE[k]) predictKey=k;
-  else { predictDone=true; document.getElementById('predict-sentence').innerHTML=predictBase.replace(/</g,'&lt;'); }
+  if(/\.$/.test(word) || !PREDICT_TREE[k]) predictDone=true; else predictKey=k;
+  sent.innerHTML=predictBase.replace(/</g,'&lt;')+(predictDone?'':'<span class="cursor"></span>');
   predictRender();
 }
 function predictReset(){
