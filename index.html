@@ -2256,37 +2256,46 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     function Vp(x,y,z){ return {x:x,y:y,z:z}; }
     // point on an ellipsoid (front = +z at th=0, top = +y at ph=90)
     function S(th,ph,rx,ry,rz,cy){ return Vp(rx*Math.cos(ph)*Math.sin(th), (cy||0)+ry*Math.sin(ph), rz*Math.cos(ph)*Math.cos(th)); }
-    var HRX=33,HRY=43,HRZ=35,HCY=6;
-    // --- head ---
-    for(var m=0;m<8;m++){ var th=(m*45)*D, L=[]; for(var i=0;i<=22;i++){ var ph=(-84+168*i/22)*D; L.push(S(th,ph,HRX,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:0.45}); }
-    [-46,-15,18,52].forEach(function(pd){ var ph=pd*D, L=[]; for(var i=0;i<=40;i++){ var th=(i/40)*360*D; L.push(S(th,ph,HRX,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:0.32}); });
-    // --- hair: centre-parted strands sweeping from crown down the sides/back ---
-    var hrx=37,hry=45,hrz=39,hcy=8;
-    for(var sgn=-1;sgn<=1;sgn+=2){ for(var k=0;k<8;k++){
-      var spread=(18+k*20)*D, L2=[]; for(var t=0;t<=18;t++){ var u=t/18;
-        var ph=(83-132*u)*D, thh=sgn*(8*D+spread*Math.pow(u,0.85)), rr=1+0.10*Math.sin(u*Math.PI);
+    var HRX=32,HRY=42,HRZ=34,HCY=6;
+    function meridian(th,phA,phB,o){ var L=[]; for(var i=0;i<=22;i++){ var ph=(phA+(phB-phA)*i/22)*D; L.push(S(th*D,ph,HRX,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:o}); }
+    function ring(ph,thA,thB,o){ var L=[]; for(var i=0;i<=26;i++){ var th=(thA+(thB-thA)*i/26)*D; L.push(S(th,ph*D,HRX,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:o}); }
+    // --- face form: a few contours, not a full globe ---
+    meridian(90,-86,84,0.5); meridian(-90,-86,84,0.5);   // head outline (sides)
+    meridian(40,-60,70,0.26); meridian(-40,-60,70,0.26); // cheek contours
+    ring(-54,-90,90,0.4);   // jaw / chin
+    ring(20,-64,64,0.24);   // brow line
+    ring(-16,-48,48,0.18);  // cheekbone
+    (function(){ var L=[]; for(var i=0;i<=22;i++){ var th=(-66+132*i/22); var ph=52+6*Math.cos(th*D*2); L.push(S(th*D,ph*D,HRX*1.01,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:0.4}); })(); // hairline
+    // --- hair: fuller volume, centre-parted ---
+    var hrx=46,hry=47,hrz=41,hcy=9;
+    for(var sgn=-1;sgn<=1;sgn+=2){ for(var k=0;k<11;k++){
+      var spread=(12+k*15)*D, L2=[]; for(var t=0;t<=20;t++){ var u=t/20;
+        var ph=(80-126*u)*D, thh=sgn*(5*D+spread*Math.pow(u,0.8)), rr=1+0.18*Math.sin(u*Math.PI);
         L2.push(S(thh,ph,hrx*rr,hry,hrz*rr,hcy)); }
-      P.push({p:L2,k:1,o:0.6}); } }
-    (function(){ var L=[]; for(var t=0;t<=10;t++){ var ph=(86-46*t/10)*D; L.push(S(0,ph,hrx,hry,hrz,hcy)); } P.push({p:L,k:1,o:0.5}); })(); // centre part
-    // --- side ringlets (the famous curls) ---
-    [-1,1].forEach(function(sgn){ var base=S(sgn*68*D,-20*D,hrx,hry,hrz,hcy);
-      for(var c=0;c<3;c++){ var cyc=base.y-2-c*9, rad=6.5-c*1.1, L=[];
-        for(var a=0;a<=16;a++){ var an=(a/16)*Math.PI*2; L.push(Vp(base.x+sgn*2+Math.cos(an)*rad, cyc+Math.sin(an)*rad, base.z+7)); }
+      P.push({p:L2,k:1,o:0.55}); } }
+    (function(){ var L=[]; for(var t=0;t<=10;t++){ var ph=(84-42*t/10)*D; L.push(S(0,ph,hrx,hry,hrz,hcy)); } P.push({p:L,k:1,o:0.5}); })(); // centre part
+    (function(){ var L=[]; for(var i=0;i<=44;i++){ var th=(-160+320*i/44)*D; var ph=(-30+120*Math.cos(th*0.5))*D; L.push(S(th,ph,hrx*1.05,hry*1.02,hrz*1.05,hcy)); } P.push({p:L,k:1,o:0.4}); })(); // outer hair silhouette
+    // --- side ringlets ---
+    [-1,1].forEach(function(sgn){ var base=S(sgn*62*D,-22*D,hrx,hry,hrz,hcy);
+      for(var c=0;c<3;c++){ var cyc=base.y-2-c*10, rad=7.5-c*1.3, L=[];
+        for(var a=0;a<=18;a++){ var an=(a/18)*Math.PI*2; L.push(Vp(base.x+sgn*2+Math.cos(an)*rad, cyc+Math.sin(an)*rad, base.z+6)); }
         P.push({p:L,k:1,o:0.5}); } });
     // --- neck + lace collar + shoulders ---
-    P.push({p:[Vp(-14,-34,24),Vp(-16,-48,16)],k:1,o:0.4});
-    P.push({p:[Vp(14,-34,24),Vp(16,-48,16)],k:1,o:0.4});
-    (function(){ var L=[]; for(var a=0;a<=48;a++){ var an=(a/48)*Math.PI*2; L.push(Vp(42*Math.sin(an), -50+5*Math.cos(an*3), 27*Math.cos(an))); } P.push({p:L,k:1,o:0.5}); })();
-    P.push({p:[Vp(-42,-50,4),Vp(-66,-64,0),Vp(-82,-78,-8)],k:1,o:0.4});
-    P.push({p:[Vp(42,-50,4),Vp(66,-64,0),Vp(82,-78,-8)],k:1,o:0.4});
-    // --- facial features (front, accent) ---
-    function arc(thA,thB,ph,n){ var L=[]; for(var i=0;i<=n;i++){ var th=(thA+(thB-thA)*i/n)*D; L.push(S(th,ph*D,HRX*1.02,HRY*1.02,HRZ*1.02,HCY)); } return L; }
-    P.push({p:arc(-24,-7,14,6),k:2,o:0.95}); P.push({p:arc(7,24,14,6),k:2,o:0.95}); // brows
-    P.push({p:arc(-21,-8,5,6),k:2,o:0.85}); P.push({p:arc(8,21,5,6),k:2,o:0.85});   // eyes
-    (function(){ var L=[]; for(var i=0;i<=6;i++){ var ph=(13-21*i/6); L.push(S(0,ph*D,HRX*1.02,HRY*1.02,HRZ*1.02,HCY)); } P.push({p:L,k:2,o:0.85}); })(); // nose
-    P.push({p:arc(-9,9,-21,6),k:2,o:0.9}); // mouth
+    P.push({p:[Vp(-13,-36,24),Vp(-15,-50,16)],k:1,o:0.4});
+    P.push({p:[Vp(13,-36,24),Vp(15,-50,16)],k:1,o:0.4});
+    (function(){ var L=[]; for(var a=0;a<=48;a++){ var an=(a/48)*Math.PI*2; L.push(Vp(42*Math.sin(an), -52+5*Math.cos(an*3), 27*Math.cos(an))); } P.push({p:L,k:1,o:0.5}); })();
+    P.push({p:[Vp(-42,-52,4),Vp(-66,-66,0),Vp(-82,-80,-8)],k:1,o:0.4});
+    P.push({p:[Vp(42,-52,4),Vp(66,-66,0),Vp(82,-80,-8)],k:1,o:0.4});
+    // --- facial features (accent) ---
+    function arc(thA,thB,ph,n){ var L=[]; for(var i=0;i<=n;i++){ var th=thA+(thB-thA)*i/n; L.push(S(th*D,ph*D,HRX*1.03,HRY*1.03,HRZ*1.03,HCY)); } return L; }
+    P.push({p:arc(-22,-6,16,6),k:2,o:0.95}); P.push({p:arc(6,22,16,6),k:2,o:0.95}); // brows
+    P.push({p:arc(-20,-8,5,6),k:2,o:0.9}); P.push({p:arc(-20,-8,1,6),k:2,o:0.6});   // right eye
+    P.push({p:arc(8,20,5,6),k:2,o:0.9});  P.push({p:arc(8,20,1,6),k:2,o:0.6});     // left eye
+    (function(){ var L=[]; for(var i=0;i<=6;i++){ var ph=(14-24*i/6); L.push(S(0,ph*D,HRX*1.03,HRY*1.03,HRZ*1.03,HCY)); } P.push({p:L,k:2,o:0.85}); })(); // nose ridge
+    P.push({p:arc(-7,7,-12,6),k:2,o:0.7}); // nose base
+    P.push({p:arc(-9,9,-23,6),k:2,o:0.9}); P.push({p:arc(-7,7,-27,5),k:2,o:0.65}); // lips
     // --- camera / interaction ---
-    var ry=-0.42, rx=0.05, vyaw=0.0016, idle=0.0016, dragging=false, lx=0,ly=0,lt=0, W=0,H=0,dpr=1;
+    var ry=-0.28, rx=0.04, vyaw=0, idle=0, dragging=false, lx=0,ly=0,lt=0, W=0,H=0,dpr=1;
     function size(){ var w=cv.clientWidth; if(w<10) return false; var h=Math.round(w*1.3);
       dpr=Math.min(window.devicePixelRatio||1,2);
       if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; } W=w; H=h; return true; }
