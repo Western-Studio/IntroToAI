@@ -171,6 +171,13 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 .knowledge{ padding:32px; }
 .knowledge p{ font-size:15px; line-height:1.75; margin-top:14px; }
 .knowledge .a{ color:#e2e8f0; } .knowledge em{ color:#fff; font-style:italic; }
+.lovelace-box{ display:flex; gap:28px; align-items:center; }
+.lovelace-art{ position:relative; flex-shrink:0; width:190px; }
+.lovelace-art canvas{ width:100%; display:block; pointer-events:auto; cursor:grab; touch-action:none; }
+.lovelace-art canvas:active{ cursor:grabbing; }
+.lovelace-art .ada-cap{ position:absolute; bottom:2px; left:0; right:0; text-align:center; font-size:9px; font-family:ui-monospace,monospace; letter-spacing:.1em; text-transform:uppercase; color:#64748b; }
+.lovelace-txt{ flex:1; min-width:0; }
+@media(max-width:680px){ .lovelace-box{ flex-direction:column; } .lovelace-art{ width:200px; } }
 
 /* excursions */
 .ex{ display:block; text-decoration:none; padding:20px; border-radius:16px; background:rgba(255,255,255,.5); border:1px solid rgba(231,229,228,.5); transition:transform .2s, box-shadow .2s; }
@@ -306,9 +313,10 @@ input[type=range]::-moz-range-thumb{ width:18px; height:18px; border:none; borde
 .galaxy-note p{ font-size:11.5px; color:#94a3b8; line-height:1.6; }
 .galaxy-note b{ color:#fbcfe8; }
 /* ===== LESSONS ===== */
+.lessons-head{ text-align:center; }
 .lessons-head h2{ font-size:30px; font-weight:800; color:var(--s900); letter-spacing:-.02em; }
 .lessons-head p{ font-size:14px; color:var(--s500); margin-top:4px; }
-.week-nav{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.week-nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:18px; }
 .week-btn{ cursor:pointer; font-family:inherit; padding:9px 16px; font-size:12px; font-weight:800; border-radius:0; color:var(--s700); transition:transform .2s,color .2s,background .2s;
   background:rgba(255,255,255,.4); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
   border:2px solid transparent; border-image:var(--grad) 1; }
@@ -838,10 +846,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
     </div>
   </div>
 
-  <div class="glass-dark rounded knowledge">
+  <div class="glass-dark rounded knowledge lovelace-box">
+    <div class="lovelace-art"><canvas id="ada-canvas" title="drag to rotate"></canvas><span class="ada-cap">drag to rotate</span></div>
+    <div class="lovelace-txt">
     <span class="label mono" style="color:#f9a8d4">// The Lovelace Paradigm</span>
     <p class="a" style="font-weight:500">In 1843 Ada Lovelace saw that Babbage's Analytical Engine could process anything whose relationships could be mapped mathematically — not just numbers but notes, letters, brushstrokes. She imagined it might one day "compose elaborate and scientific pieces of music of any degree of complexity."</p>
     <p style="color:#cbd5e1">That is the origin of generative software. Your instructions do not control the maths directly; they control the <em>relationships between conceptual objects</em> on a viewport. You are her descendant.</p>
+    </div>
   </div>
 
   <div class="grid-3">
@@ -2227,6 +2238,76 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     requestAnimationFrame(render);
   }
   if(document.readyState!=='loading') initCpu(); else document.addEventListener('DOMContentLoaded',initCpu);
+})();
+
+/* ===== Ada Lovelace · rotatable 3D line-art bust ===== */
+(function(){
+  function initAda(){
+    var cv=document.getElementById('ada-canvas'); if(!cv) return;
+    var ctx=cv.getContext('2d'), D=Math.PI/180, P=[];
+    function Vp(x,y,z){ return {x:x,y:y,z:z}; }
+    // point on an ellipsoid (front = +z at th=0, top = +y at ph=90)
+    function S(th,ph,rx,ry,rz,cy){ return Vp(rx*Math.cos(ph)*Math.sin(th), (cy||0)+ry*Math.sin(ph), rz*Math.cos(ph)*Math.cos(th)); }
+    var HRX=33,HRY=43,HRZ=35,HCY=6;
+    // --- head ---
+    for(var m=0;m<8;m++){ var th=(m*45)*D, L=[]; for(var i=0;i<=22;i++){ var ph=(-84+168*i/22)*D; L.push(S(th,ph,HRX,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:0.45}); }
+    [-46,-15,18,52].forEach(function(pd){ var ph=pd*D, L=[]; for(var i=0;i<=40;i++){ var th=(i/40)*360*D; L.push(S(th,ph,HRX,HRY,HRZ,HCY)); } P.push({p:L,k:1,o:0.32}); });
+    // --- hair: centre-parted strands sweeping from crown down the sides/back ---
+    var hrx=37,hry=45,hrz=39,hcy=8;
+    for(var sgn=-1;sgn<=1;sgn+=2){ for(var k=0;k<8;k++){
+      var spread=(18+k*20)*D, L2=[]; for(var t=0;t<=18;t++){ var u=t/18;
+        var ph=(83-132*u)*D, thh=sgn*(8*D+spread*Math.pow(u,0.85)), rr=1+0.10*Math.sin(u*Math.PI);
+        L2.push(S(thh,ph,hrx*rr,hry,hrz*rr,hcy)); }
+      P.push({p:L2,k:1,o:0.6}); } }
+    (function(){ var L=[]; for(var t=0;t<=10;t++){ var ph=(86-46*t/10)*D; L.push(S(0,ph,hrx,hry,hrz,hcy)); } P.push({p:L,k:1,o:0.5}); })(); // centre part
+    // --- side ringlets (the famous curls) ---
+    [-1,1].forEach(function(sgn){ var base=S(sgn*68*D,-20*D,hrx,hry,hrz,hcy);
+      for(var c=0;c<3;c++){ var cyc=base.y-2-c*9, rad=6.5-c*1.1, L=[];
+        for(var a=0;a<=16;a++){ var an=(a/16)*Math.PI*2; L.push(Vp(base.x+sgn*2+Math.cos(an)*rad, cyc+Math.sin(an)*rad, base.z+7)); }
+        P.push({p:L,k:1,o:0.5}); } });
+    // --- neck + lace collar + shoulders ---
+    P.push({p:[Vp(-14,-34,24),Vp(-16,-48,16)],k:1,o:0.4});
+    P.push({p:[Vp(14,-34,24),Vp(16,-48,16)],k:1,o:0.4});
+    (function(){ var L=[]; for(var a=0;a<=48;a++){ var an=(a/48)*Math.PI*2; L.push(Vp(42*Math.sin(an), -50+5*Math.cos(an*3), 27*Math.cos(an))); } P.push({p:L,k:1,o:0.5}); })();
+    P.push({p:[Vp(-42,-50,4),Vp(-66,-64,0),Vp(-82,-78,-8)],k:1,o:0.4});
+    P.push({p:[Vp(42,-50,4),Vp(66,-64,0),Vp(82,-78,-8)],k:1,o:0.4});
+    // --- facial features (front, accent) ---
+    function arc(thA,thB,ph,n){ var L=[]; for(var i=0;i<=n;i++){ var th=(thA+(thB-thA)*i/n)*D; L.push(S(th,ph*D,HRX*1.02,HRY*1.02,HRZ*1.02,HCY)); } return L; }
+    P.push({p:arc(-24,-7,14,6),k:2,o:0.95}); P.push({p:arc(7,24,14,6),k:2,o:0.95}); // brows
+    P.push({p:arc(-21,-8,5,6),k:2,o:0.85}); P.push({p:arc(8,21,5,6),k:2,o:0.85});   // eyes
+    (function(){ var L=[]; for(var i=0;i<=6;i++){ var ph=(13-21*i/6); L.push(S(0,ph*D,HRX*1.02,HRY*1.02,HRZ*1.02,HCY)); } P.push({p:L,k:2,o:0.85}); })(); // nose
+    P.push({p:arc(-9,9,-21,6),k:2,o:0.9}); // mouth
+    // --- camera / interaction ---
+    var ry=-0.42, rx=0.05, vyaw=0.0016, idle=0.0016, dragging=false, lx=0,ly=0,lt=0, W=0,H=0,dpr=1;
+    function size(){ var w=cv.clientWidth; if(w<10) return false; var h=Math.round(w*1.3);
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; } W=w; H=h; return true; }
+    function proj(p){ var cy=Math.cos(ry),sy=Math.sin(ry), x=p.x*cy-p.z*sy, z=p.x*sy+p.z*cy;
+      var cx=Math.cos(rx),sx=Math.sin(rx), y=p.y*cx-z*sx, z2=p.y*sx+z*cx;
+      var CAM=320,f=320,Z=1.32,sc=f/(CAM-z2)*Z; return { X:W/2+x*sc, Y:H*0.42-y*sc, z:z2 }; }
+    function clamp(v){ return v<0?0:v>1?1:v; }
+    function render(){
+      if(size()){ ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+        for(var e=0;e<P.length;e++){ var pl=P[e]; ctx.beginPath();
+          for(var i=0;i<pl.p.length;i++){ var q=proj(pl.p[i]); if(i===0)ctx.moveTo(q.X,q.Y); else ctx.lineTo(q.X,q.Y); }
+          var mid=proj(pl.p[pl.p.length>>1]), fade=0.35+0.65*clamp((mid.z+70)/140), a=pl.o*fade;
+          if(pl.k===2){ ctx.strokeStyle='rgba(249,168,212,'+a+')'; ctx.lineWidth=1.5; }
+          else { ctx.strokeStyle='rgba(226,232,240,'+a+')'; ctx.lineWidth=1.15; }
+          ctx.lineJoin='round'; ctx.lineCap='round'; ctx.stroke(); }
+      }
+      if(!dragging){ ry+=vyaw; vyaw+=(idle-vyaw)*0.03; if(vyaw>0.1)vyaw=0.1; if(vyaw<-0.1)vyaw=-0.1; }
+      requestAnimationFrame(render);
+    }
+    function pt(e){ return e.touches&&e.touches[0]?e.touches[0]:e; }
+    function down(e){ dragging=true; var p=pt(e); lx=p.clientX; ly=p.clientY; lt=performance.now(); e.preventDefault(); }
+    function move(e){ if(!dragging) return; var p=pt(e), now=performance.now(), dx=p.clientX-lx, dy=p.clientY-ly, dt=Math.max(16,now-lt);
+      ry+=dx*0.009; rx+=dy*0.009; if(rx>1)rx=1; if(rx<-0.4)rx=-0.4; vyaw=(dx*0.009)*(16/dt); lx=p.clientX; ly=p.clientY; lt=now; e.preventDefault(); }
+    function up(){ dragging=false; }
+    cv.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+    cv.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',up);
+    requestAnimationFrame(render);
+  }
+  if(document.readyState!=='loading') initAda(); else document.addEventListener('DOMContentLoaded',initAda);
 })();
 
 /* ===== LESSONS: week selector ===== */
