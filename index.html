@@ -560,6 +560,25 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 #toast.show{ transform:translateY(0); opacity:1; }
 /* ===== WEEK LEARNING-PATH (explanation → activity rhythm) ===== */
 .lpath-intro{ margin-top:26px; background:linear-gradient(120deg,rgba(252,231,243,.5),rgba(224,242,254,.45)); border:1px solid rgba(139,92,246,.2); border-radius:16px; padding:18px 20px; }
+/* lesson sub-nav (jump links) */
+.lesson-subnav{ margin-top:22px; background:rgba(255,255,255,.72); border:1px solid rgba(231,229,228,.85); border-radius:16px; padding:14px 16px; }
+.lsn-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:11px; }
+.lsn-title{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.14em; color:var(--s500); }
+.lsn-key{ display:flex; align-items:center; font-size:10px; font-weight:700; color:var(--s500); }
+.lsn-key i{ width:9px; height:9px; border-radius:3px; display:inline-block; margin:0 5px 0 12px; }
+.lsn-key i:first-child{ margin-left:0; }
+.k-e{ background:#4f46e5; } .k-a{ background:#db2777; } .k-t{ background:#f59e0b; }
+.lsn-rows{ display:flex; flex-direction:column; gap:9px; }
+.lsn-row{ display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
+.lsn-part{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--s400); width:52px; flex-shrink:0; }
+.lsn-chip{ font-family:ui-monospace,monospace; font-size:11px; font-weight:800; text-decoration:none; padding:5px 9px; border-radius:8px; border:1px solid transparent; line-height:1; transition:transform .15s, box-shadow .15s, filter .15s; }
+.lsn-chip.e{ background:rgba(79,70,229,.1); color:#4338ca; border-color:rgba(79,70,229,.26); }
+.lsn-chip.a{ background:rgba(219,39,119,.1); color:#be185d; border-color:rgba(219,39,119,.26); }
+.lsn-chip.t{ background:rgba(245,158,11,.14); color:#b45309; border-color:rgba(245,158,11,.32); }
+.lsn-chip.f{ background:var(--clay); color:var(--cream); border-color:var(--clay); }
+.lsn-chip:hover{ transform:translateY(-1px); filter:brightness(1.04); box-shadow:0 3px 9px -4px rgba(28,25,23,.45); }
+.lstep, .taskcard, .finaltask{ scroll-margin-top:120px; }
+@media(max-width:640px){ .lstep, .taskcard, .finaltask{ scroll-margin-top:150px; } .lsn-part{ width:100%; } }
 .lpath-intro .lpi-tag{ font-size:10px; font-weight:800; font-family:ui-monospace,monospace; letter-spacing:.12em; text-transform:uppercase; color:#7e22ce; }
 .lpath-intro p{ font-size:13px; color:var(--s700); line-height:1.6; margin-top:8px; }
 .lpath-intro b{ color:var(--s900); }
@@ -811,9 +830,46 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <span class="rp e">Explain</span><span class="rp a">Do</span><span class="rp e">Explain</span><span class="rp a">Do</span><span class="rp e">…</span><span class="rp a">★ Final build</span>
         </div>
       </div>
+      <nav class="lesson-subnav" aria-label="Lesson contents">
+        <div class="lsn-head"><span class="lsn-title">Jump to any step</span>
+          <span class="lsn-key"><i class="k-e"></i>Explain<i class="k-a"></i>Do<i class="k-t"></i>Task</span>
+        </div>
+        <div class="lsn-rows">
+          <div class="lsn-row"><span class="lsn-part">Part 1</span>
+            <a class="lsn-chip e" href="#w1-e1" title="So what is an ‘algorithm’ here?">E1</a>
+            <a class="lsn-chip a" href="#w1-a1" title="Be the algorithm">A1</a>
+            <a class="lsn-chip e" href="#w1-e2" title="How a model pictures language">E2</a>
+            <a class="lsn-chip a" href="#w1-a2" title="Watch it learn — then map your own galaxy">A2</a>
+            <a class="lsn-chip t" href="#w1-t1" title="Task 1 · Map words as star constellations">✎1</a>
+            <a class="lsn-chip e" href="#w1-e3" title="Why it’s called a ‘neural network’">E3</a>
+            <a class="lsn-chip a" href="#w1-a3" title="Fire together, wire together">A3</a>
+          </div>
+          <div class="lsn-row"><span class="lsn-part">Part 2</span>
+            <a class="lsn-chip e" href="#w1-e4" title="Meet the ancestors">E4</a>
+            <a class="lsn-chip t" href="#w1-t2" title="Task 2 · Connect Dada to algorithms">✎2</a>
+            <a class="lsn-chip a" href="#w1-a4" title="Put the story in order">A4</a>
+            <a class="lsn-chip e" href="#w1-e5" title="‘The idea becomes a machine that makes the art’">E5</a>
+            <a class="lsn-chip t" href="#w1-t3" title="Task 3 · Map Sol LeWitt’s rules">✎3</a>
+            <a class="lsn-chip a" href="#w1-a5" title="Paint your own LeWitt — then write the rules">A5</a>
+            <a class="lsn-chip t" href="#w1-t4" title="Task 4 · Sketch a pseudo-code system">✎4</a>
+            <a class="lsn-chip e" href="#w1-e6" title="But did you make it? Authorship &amp; ownership">E6</a>
+            <a class="lsn-chip t" href="#w1-t5" title="Task 5 · Audit the Warhol &amp; Hirst strategy">✎5</a>
+            <a class="lsn-chip a" href="#w1-a6" title="The human compiler">A6</a>
+            <a class="lsn-chip t" href="#w1-t6" title="Task 6 · Act as a human interpreter">✎6</a>
+          </div>
+          <div class="lsn-row"><span class="lsn-part">Part 3</span>
+            <a class="lsn-chip e" href="#w1-e7" title="So — what could this mean for us?">E7</a>
+            <a class="lsn-chip a" href="#w1-a7" title="Peril ↔ Promise">A7</a>
+            <a class="lsn-chip t" href="#w1-t7" title="Task 7 · Direct the Canvas setup">▶7</a>
+            <a class="lsn-chip t" href="#w1-t8" title="Task 8 · Vibe-code your generator">▶8</a>
+            <a class="lsn-chip t" href="#w1-t9" title="Task 9 · Run an interactive audit">▶9</a>
+            <a class="lsn-chip f" href="#w1-final" title="Final task · hand in on Google Classroom">★ Final</a>
+          </div>
+        </div>
+      </nav>
       <section class="lp-wrap p1">
       <p class="lpart">Part 1 · How the machine actually works · ~50 min</p>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So what is an “algorithm” here?</h3></div><span class="ltime">~6 min</span></div>
+      <div id="w1-e1" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So what is an “algorithm” here?</h3></div><span class="ltime">~6 min</span></div>
       <p class="act-sub" style="max-width:66ch">You’ll hear “algorithm” thrown around constantly. In everyday computing it just means a fixed set of steps — a recipe. But a generative AI’s algorithm works differently, and that difference is the whole point.</p>
         <div class="algo-compare">
           <div class="algo-card recipe">
@@ -837,7 +893,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div>
           </div>
         </div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Be the algorithm</h3></div><span class="ltime">~5 min</span></div>
+      <div id="w1-a1" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Be the algorithm</h3></div><span class="ltime">~5 min</span></div>
         <div class="predict">
           <span class="pl">See it run · you be the algorithm</span>
           <div class="sentence" id="predict-sentence">The artist picked up the<span class="cursor"></span></div>
@@ -847,7 +903,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <span class="predict-note" id="predict-note">Each word offers a few likely next words, with the model's confidence. Pick one to extend the sentence — exactly what an LLM does, just faster and across the whole universe of words.</span>
           </div>
         </div>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">How a model pictures language</h3></div><span class="ltime">~7 min</span></div>
+      <div id="w1-e2" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">How a model pictures language</h3></div><span class="ltime">~7 min</span></div>
       <p class="act-sub" style="max-width:66ch">The best mental model is a <b>universe</b>: every word is a star, and words that mean similar things sit close together. Drag to explore it, and step through the four ideas — by the end you could explain an LLM to anyone.</p>
         <div class="galaxy-wrap">
           <div class="galaxy-stage">
@@ -872,7 +928,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div>
           </div>
         </div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Watch it learn — then map your own galaxy</h3></div><span class="ltime">~12 min</span></div>
+      <div id="w1-a2" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Watch it learn — then map your own galaxy</h3></div><span class="ltime">~12 min</span></div>
         <div class="learn">
           <span class="ll">Watch it learn · train → pattern → generate</span>
           <h4>How does it "spot patterns", then make something new?</h4>
@@ -900,8 +956,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <span class="learn-status" id="learn-status">The training data is loaded above. When you're ready, let the model study it.</span>
           </div>
         </div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 1 · in pairs · 20 min</span><h5>Map words as star constellations</h5><p>Each star is a word; the distance between stars is meaning. On paper, map a mini-galaxy of your own studio — <em>paint, oil, canvas</em> cluster tight, while <em>deadline</em> drifts far off — joining them with constellation lines of varying length.</p><div class="why purple"><b>Why:</b> this is how large language models work: they map culture as a universe of spatial coordinates, and a prompt navigates that sky. Demystifying the map is the first step to controlling it.</div></div>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Why it’s called a “neural network”</h3></div><span class="ltime">~5 min</span></div>
+      <div id="w1-t1" class="taskcard offline"><span class="tk-when">✎ Task 1 · in pairs · 20 min</span><h5>Map words as star constellations</h5><p>Each star is a word; the distance between stars is meaning. On paper, map a mini-galaxy of your own studio — <em>paint, oil, canvas</em> cluster tight, while <em>deadline</em> drifts far off — joining them with constellation lines of varying length.</p><div class="why purple"><b>Why:</b> this is how large language models work: they map culture as a universe of spatial coordinates, and a prompt navigates that sky. Demystifying the map is the first step to controlling it.</div></div>
+      <div id="w1-e3" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Why it’s called a “neural network”</h3></div><span class="ltime">~5 min</span></div>
       <p class="act-sub" style="max-width:66ch">The name isn’t an accident — these systems borrow one trick from the human brain. The resemblance is rough, but seeing it makes the whole thing far less alien.</p>
         <div class="brain-compare">
           <div class="brain-card you">
@@ -926,7 +982,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <div class="brain-takeaway">
           <p><b>The honest caveat:</b> this is an analogy, not an equivalence. A neural network does not feel, understand, or want anything — it has no body, no experience, no stake in the world. It borrows one mechanism from biology (strengthening useful connections) and runs it at enormous scale. Powerful, but not a mind.</p>
         </div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Fire together, wire together</h3></div><span class="ltime">~5 min</span></div>
+      <div id="w1-a3" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Fire together, wire together</h3></div><span class="ltime">~5 min</span></div>
         <div class="fire">
           <span class="fl">Try it · "what fires together, wires together"</span>
           <div class="fire-stage"><canvas id="fire-canvas"></canvas></div>
@@ -939,7 +995,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </section>
       <section class="lp-wrap p2">
       <p class="lpart">Part 2 · The idea as the medium · ~50 min</p>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Meet the ancestors</h3></div><span class="ltime">~10 min</span></div>
+      <div id="w1-e4" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Meet the ancestors</h3></div><span class="ltime">~10 min</span></div>
       <p class="act-sub" style="max-width:66ch">Two centuries before the chatbot, a handful of people invented your real toolkit: the idea that a written set of instructions could make art and music, not just sums. Tap each card — and notice the through-line to Dada, where Tristan Tzara pulled poems from a hat and Duchamp let gravity decide.</p>
         <div class="figs">
           <button class="flip" onclick="this.classList.toggle('flipped')" aria-label="Flip card: who is Charles Babbage">
@@ -1000,8 +1056,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           </button>
         </div>
         <a class="src-link" href="https://www.sciencemuseum.org.uk/objects-and-stories/lovelace-turing-and-invention-computers" target="_blank" rel="noopener">Read Ada's full story · Science Museum: Lovelace, Turing &amp; the invention of computers →</a>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 2 · 15 min</span><h5>Connect Dada to algorithms</h5><p>Unpack Tristan Tzara’s Dadaist hat poems and Marcel Duchamp’s use of gravity as a physics engine. Trace how avant-garde groups have long delegated design agency to random, rule-based systems.</p><div class="why purple"><b>Why:</b> algorithmic delegation is a classic modern-art strategy. An instruction loop doesn’t diminish your voice — it connects you to a rich history of systemic subversion.</div></div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Put the story in order</h3></div><span class="ltime">~8 min</span></div>
+      <div id="w1-t2" class="taskcard offline"><span class="tk-when">✎ Task 2 · 15 min</span><h5>Connect Dada to algorithms</h5><p>Unpack Tristan Tzara’s Dadaist hat poems and Marcel Duchamp’s use of gravity as a physics engine. Trace how avant-garde groups have long delegated design agency to random, rule-based systems.</p><div class="why purple"><b>Why:</b> algorithmic delegation is a classic modern-art strategy. An instruction loop doesn’t diminish your voice — it connects you to a rich history of systemic subversion.</div></div>
+      <div id="w1-a4" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Put the story in order</h3></div><span class="ltime">~8 min</span></div>
         <p class="act-sub">Five moments built the modern computer — and the idea that code could be creative. They're shuffled below. Drag the cards so the timeline runs earliest → latest, then press Check.</p>
         <div class="order-rows" id="order-rows">
           <div class="oslot"><div class="ocard" data-order="0" data-yr="1830s–40s"><span class="mark"></span><b>Babbage's Analytical Engine</b><span class="oc-d">Charles Babbage designs a mechanical, general-purpose calculating machine — far more than a fast adder.</span><span class="reveal-yr"></span></div></div>
@@ -1016,15 +1072,15 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <span id="order-feedback" class="order-fb"></span>
         </div>
         <a class="src-link" href="https://www.sciencemuseum.org.uk/objects-and-stories/lovelace-turing-and-invention-computers" target="_blank" rel="noopener">Adapted from the Science Museum · read the full story →</a>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">“The idea becomes a machine that makes the art”</h3></div><span class="ltime">~7 min</span></div>
+      <div id="w1-e5" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">“The idea becomes a machine that makes the art”</h3></div><span class="ltime">~7 min</span></div>
       <p class="act-sub" style="max-width:66ch">In 1968 Sol LeWitt sold not drawings but instructions. His <em>Wall Drawing No. 118</em> is a page of text; assistants render the lines. Writing a prompt is the very same move.</p>
       <div class="glass-dark knowledge" style="margin-top:24px; border-radius:18px">
         <span class="label mono" style="color:#f9a8d4">// Knowledge archive · The idea as machine</span>
         <p class="a" style="font-weight:500">In 1968 Sol LeWitt wrote that <em>"the idea becomes a machine that makes the art."</em> He didn't sell finished drawings to museums — he sold a certificate of written instructions and let others execute them. The work <em>was</em> the system, not the marks.</p>
         <p style="color:#cbd5e1">When you write a prompt you are doing precisely this: authoring a set of rules and delegating the rendering. Code stops being intimidating the moment you read it as a conceptual recipe rather than a foreign language.</p>
       </div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 3 · 15 min</span><h5>Map Sol LeWitt’s rules</h5><p>Examine LeWitt’s <em>Wall Drawing No. 118</em>. Analyse how he acted as an early system programmer: he didn’t sell physical drawings, he sold a page of text parameters and let gallery assistants render the lines.</p><div class="why pink"><b>Why:</b> to bridge coding syntax and fine art. Once you read code as a ‘conceptual recipe’, the fear of scripting disappears and prompts become a medium.</div></div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Paint your own LeWitt — then write the rules</h3></div><span class="ltime">~15 min</span></div>
+      <div id="w1-t3" class="taskcard offline"><span class="tk-when">✎ Task 3 · 15 min</span><h5>Map Sol LeWitt’s rules</h5><p>Examine LeWitt’s <em>Wall Drawing No. 118</em>. Analyse how he acted as an early system programmer: he didn’t sell physical drawings, he sold a page of text parameters and let gallery assistants render the lines.</p><div class="why pink"><b>Why:</b> to bridge coding syntax and fine art. Once you read code as a ‘conceptual recipe’, the fear of scripting disappears and prompts become a medium.</div></div>
+      <div id="w1-a5" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Paint your own LeWitt — then write the rules</h3></div><span class="ltime">~15 min</span></div>
         <p class="act-sub">LeWitt's wall drawings are built from a tiny vocabulary: lines in a few directions, in flat colours, filling a grid. Pick a direction and a colour, then click or drag across the cells. Hand it to the machine to finish if you like — that's the LeWitt way.</p>
         <div class="lewitt-wrap">
           <div class="lw-tools">
@@ -1056,8 +1112,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <button class="act-btn shuffle" onclick="lwClear()">Clear</button>
           <button class="act-btn check" onclick="lwDownload()">Download PNG</button>
         </div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 4 · in pairs · 20 min</span><h5>Sketch a pseudo-code system</h5><p>On paper, draft an original rule-set using logic — e.g. <em>“Draw concentric squares. IF they overlap a previous edge, THEN rotate the canvas 15° and switch colour.”</em> Swap sketchbooks and test-draw a partner’s system. Keep your sheet for the final build.</p><div class="why blue"><b>Why:</b> to learn programmatic logic away from screens. Master structuring systematic rules on paper before you direct Gemini Canvas conversationally.</div></div>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">But did you make it? Authorship &amp; ownership</h3></div><span class="ltime">~6 min</span></div>
+      <div id="w1-t4" class="taskcard offline"><span class="tk-when">✎ Task 4 · in pairs · 20 min</span><h5>Sketch a pseudo-code system</h5><p>On paper, draft an original rule-set using logic — e.g. <em>“Draw concentric squares. IF they overlap a previous edge, THEN rotate the canvas 15° and switch colour.”</em> Swap sketchbooks and test-draw a partner’s system. Keep your sheet for the final build.</p><div class="why blue"><b>Why:</b> to learn programmatic logic away from screens. Master structuring systematic rules on paper before you direct Gemini Canvas conversationally.</div></div>
+      <div id="w1-e6" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">But did you make it? Authorship &amp; ownership</h3></div><span class="ltime">~6 min</span></div>
         <div class="lw-think">
           <span class="lwt-tag">Why this matters · authorship &amp; ownership</span>
           <p class="lwt-lead">You just made a LeWitt. But <em>did you?</em> When you pressed "Let the machine finish", the tiles were placed by code, not your hand — yet the rules, the palette and the decision to stop were yours. That tension is the whole debate.</p>
@@ -1080,8 +1136,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <p>Whether you <em>own</em> what you direct is one debate. Whether the model should have <em>trained</em> on other people's work is a different one entirely. It's tempting to merge them, but notice the awkward parallel: a human artist also "trains" on every image they've ever seen, absorbing influences without asking permission. So is a model doing something genuinely new, or just the same thing at scale — and does scale change the ethics? We'll return to this properly in Week 2.</p>
           </div>
         </div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 5 · 15 min</span><h5>Audit the Warhol &amp; Hirst strategy</h5><p>Review Warhol’s Factory, where assistants mass-produced his prints, and Hirst, whose technicians paint his spot paintings — he has said they do it far better than his own erratic hand could. Map how your voice as a prompt designer matches this tradition of outsourcing craft for conceptual scale.</p><div class="why blue"><b>Why:</b> delegation is not ‘cheating’ — it is one of the most powerful strategies in contemporary art. Vibe-coding makes you the director, not a bystander.</div></div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">The human compiler</h3></div><span class="ltime">~10 min</span></div>
+      <div id="w1-t5" class="taskcard offline"><span class="tk-when">✎ Task 5 · 15 min</span><h5>Audit the Warhol &amp; Hirst strategy</h5><p>Review Warhol’s Factory, where assistants mass-produced his prints, and Hirst, whose technicians paint his spot paintings — he has said they do it far better than his own erratic hand could. Map how your voice as a prompt designer matches this tradition of outsourcing craft for conceptual scale.</p><div class="why blue"><b>Why:</b> delegation is not ‘cheating’ — it is one of the most powerful strategies in contemporary art. Vibe-coding makes you the director, not a bystander.</div></div>
+      <div id="w1-a6" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">The human compiler</h3></div><span class="ltime">~10 min</span></div>
       <p class="act-sub" style="max-width:66ch">A quick proof of how literal a machine is. One of you is the <b>Director</b> who can see the screen; the other is the <b>compiler</b> who draws only from your spoken rules. Use spatial words — <em>parallel, perpendicular, concentric</em> — never object names.</p>
       <div class="widget">
         <div class="widget-head">
@@ -1116,13 +1172,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           </div>
         </div>
       </div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 6 · in pairs · 15 min</span><h5>Act as a human interpreter</h5><p>Pair up. One of you is the <b>Director</b> and controls the Blind Drafter above (Privacy Shield on); issue strict, step-by-step verbal rules. Your partner is the <b>compiler</b> and draws exactly what they hear on paper — no feedback, no questions.</p><div class="why pink"><b>Why:</b> to witness the inevitable drift between written rules and final execution. Computers are literal, unthinking, highly predictable systems of execution.</div></div>
+      <div id="w1-t6" class="taskcard offline"><span class="tk-when">✎ Task 6 · in pairs · 15 min</span><h5>Act as a human interpreter</h5><p>Pair up. One of you is the <b>Director</b> and controls the Blind Drafter above (Privacy Shield on); issue strict, step-by-step verbal rules. Your partner is the <b>compiler</b> and draws exactly what they hear on paper — no feedback, no questions.</p><div class="why pink"><b>Why:</b> to witness the inevitable drift between written rules and final execution. Computers are literal, unthinking, highly predictable systems of execution.</div></div>
       </section>
       <section class="lp-wrap p3">
       <p class="lpart">Part 3 · Take a position, then build · ~50 min</p>
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So — what could this mean for us?</h3></div><span class="ltime">~5 min</span></div>
+      <div id="w1-e7" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So — what could this mean for us?</h3></div><span class="ltime">~5 min</span></div>
       <p class="act-sub" style="max-width:66ch">Now you know roughly how it works, the real question is what we do with it. In pairs, weigh up some genuine possibilities — there are no right answers here, only reasoned ones.</p>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Peril ↔ Promise</h3></div><span class="ltime">~10 min</span></div>
+      <div id="w1-a7" class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Peril ↔ Promise</h3></div><span class="ltime">~10 min</span></div>
           <div class="peer-howto">
             <span class="peer-step"><b>1</b> &nbsp;Read each possibility aloud with your partner.</span>
             <span class="peer-step"><b>2</b> &nbsp;Drag each onto the spectrum: peril ← → promise.</span>
@@ -1158,9 +1214,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       <p class="lpart" style="margin-top:34px">Build it · ~50 min</p>
       <div class="tasktrio">
-      <div class="taskcard"><span class="tk-when">▶ Task 7 · 10 min</span><h5>Direct the Canvas setup</h5><p>Open Gemini Canvas. Instruct it to build a full-viewport, responsive layout — asymmetrical, with the Manrope font and a precise pastel/charcoal palette. Reject every default preset.</p><div class="why pink"><b>Why:</b> if you don’t specify layout, margins and colour, the machine falls back to generic, homogenised templates. Specifying is how you keep creative control.</div></div>
-      <div class="taskcard"><span class="tk-when">▶ Task 8 · 25 min</span><h5>Vibe-code your generator</h5><p>Copy the starter prompt below into Gemini Canvas, then feed it your own rule-set from Task 4. Run the preview and refine line counts, colour weights and rotation entirely through conversation.</p><div class="why purple"><b>Why:</b> to master conversational prototyping — directing software by describing it, rather than hand-writing syntax.</div></div>
-      <div class="taskcard"><span class="tk-when">▶ Task 9 · 15 min</span><h5>Run an interactive audit</h5><p>Launch your file, test every control, and check it scales beautifully on a phone. Note how changing a single adjective in your prompt changes the compiled code.</p><div class="why blue"><b>Why:</b> to learn debugging as a design process. Testing layout and touch interactions is how you keep your web art accessible.</div></div>
+      <div id="w1-t7" class="taskcard"><span class="tk-when">▶ Task 7 · 10 min</span><h5>Direct the Canvas setup</h5><p>Open Gemini Canvas. Instruct it to build a full-viewport, responsive layout — asymmetrical, with the Manrope font and a precise pastel/charcoal palette. Reject every default preset.</p><div class="why pink"><b>Why:</b> if you don’t specify layout, margins and colour, the machine falls back to generic, homogenised templates. Specifying is how you keep creative control.</div></div>
+      <div id="w1-t8" class="taskcard"><span class="tk-when">▶ Task 8 · 25 min</span><h5>Vibe-code your generator</h5><p>Copy the starter prompt below into Gemini Canvas, then feed it your own rule-set from Task 4. Run the preview and refine line counts, colour weights and rotation entirely through conversation.</p><div class="why purple"><b>Why:</b> to master conversational prototyping — directing software by describing it, rather than hand-writing syntax.</div></div>
+      <div id="w1-t9" class="taskcard"><span class="tk-when">▶ Task 9 · 15 min</span><h5>Run an interactive audit</h5><p>Launch your file, test every control, and check it scales beautifully on a phone. Note how changing a single adjective in your prompt changes the compiled code.</p><div class="why blue"><b>Why:</b> to learn debugging as a design process. Testing layout and touch interactions is how you keep your web art accessible.</div></div>
       </div>
       <div class="prompt-term">
         <div class="prompt-bar">
@@ -1179,7 +1235,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 - Reject default templates: the layout must be asymmetrical and considered.
 - Put all HTML, CSS and JS inside the one index.html file.</textarea>
       </div>
-      <div class="finaltask">
+      <div id="w1-final" class="finaltask">
         <span class="ft-tag">★ Final task · hand in on Google Classroom</span>
         <h3>Publish your generator</h3>
         <p class="ft-lead">You authored the idea; the machine rendered it. Now export your piece and hand it in. (Full web-hosting comes in Week 5 — for now we submit the file itself.)</p>
