@@ -119,9 +119,9 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 .hero{ padding:48px 28px; position:relative; overflow:hidden; }
 @media(min-width:768px){ .hero{ padding:56px 48px; } }
 .hero > .badge, .hero > .hero-h, .hero > .lede, .hero > .hero-cta{ position:relative; z-index:1; }
-.hero-art{ position:absolute; right:1%; top:50%; transform:translateY(-50%); width:38%; max-width:420px; z-index:0; pointer-events:none; }
-.hero-art svg{ width:100%; height:auto; display:block; overflow:visible; pointer-events:auto; cursor:grab; touch-action:none; }
-.hero-art svg:active{ cursor:grabbing; }
+.hero-art{ position:absolute; right:1%; top:50%; transform:translateY(-50%); width:40%; max-width:440px; z-index:0; pointer-events:none; }
+.hero-art canvas{ width:100%; display:block; pointer-events:auto; cursor:grab; touch-action:none; }
+.hero-art canvas:active{ cursor:grabbing; }
 @media(max-width:1023px){ .hero-art{ display:none; } }
 .hero .blob{ position:absolute; border-radius:50%; filter:blur(60px); z-index:-1; }
 .hero .b1{ top:-96px; right:-80px; width:28rem; height:28rem; background:radial-gradient(circle at 30% 30%,rgba(244,114,182,.7),rgba(168,85,247,.4),transparent 70%); }
@@ -816,60 +816,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
   <div class="glass rounded-lg hero shadow">
     <div class="blob b1"></div><div class="blob b2"></div>
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-          <radialGradient id="pgV" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.3" stop-color="#ddd6fe"/><stop offset="0.6" stop-color="#8b5cf6"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
-          <radialGradient id="pgP" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.3" stop-color="#fbcfe8"/><stop offset="0.6" stop-color="#ec4899"/><stop offset="1" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
-          <radialGradient id="pgC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.3" stop-color="#a5f3fc"/><stop offset="0.6" stop-color="#06b6d4"/><stop offset="1" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
-          <filter id="glow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="4.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <g id="cpu-spin" transform="rotate(0 200 200)">
-        <!-- circuit traces (node -> chip) -->
-        <g fill="none" stroke="#57534e" stroke-opacity="0.42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path id="tr1" d="M338,142 L292,168 L246,194"/>
-          <path id="tr2" d="M62,142 L108,168 L154,194"/>
-          <path id="tr3" d="M200,60 L200,116 L200,168"/>
-          <path id="tr4" d="M62,300 L108,274 L154,248"/>
-          <path id="tr5" d="M338,300 L292,274 L246,248"/>
-          <g stroke-width="1.4">
-            <rect x="331" y="135" width="14" height="14" transform="rotate(45 338 142)"/>
-            <rect x="55" y="135" width="14" height="14" transform="rotate(45 62 142)"/>
-            <rect x="193" y="53" width="14" height="14" transform="rotate(45 200 60)"/>
-            <rect x="55" y="293" width="14" height="14" transform="rotate(45 62 300)"/>
-            <rect x="331" y="293" width="14" height="14" transform="rotate(45 338 300)"/>
-          </g>
-        </g>
-        <!-- processor cube (isometric line drawing) -->
-        <g fill="none" stroke="#292524" stroke-opacity="0.8" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round">
-          <path d="M200,168 L246,194 L200,220 L154,194 Z"/>
-          <path d="M246,194 L200,220 L200,270 L246,244 Z"/>
-          <path d="M154,194 L200,220 L200,270 L154,244 Z"/>
-          <g stroke-opacity="0.5" stroke-width="1.4">
-            <line x1="163" y1="249" x2="151" y2="256"/>
-            <line x1="177" y1="257" x2="165" y2="264"/>
-            <line x1="191" y1="265" x2="179" y2="272"/>
-            <line x1="209" y1="265" x2="221" y2="272"/>
-            <line x1="223" y1="257" x2="235" y2="264"/>
-            <line x1="237" y1="249" x2="249" y2="256"/>
-          </g>
-        </g>
-        <!-- die inset on the top face -->
-        <path d="M200,181 L223,194 L200,207 L177,194 Z" fill="none" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.4" stroke-linejoin="round"/>
-        <!-- pulsing core -->
-        <circle cx="200" cy="194" r="5" fill="url(#pgV)" filter="url(#glow)">
-          <animate attributeName="r" values="3.5;9;3.5" dur="2.6s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"/>
-        </circle>
-        <!-- light pulses travelling into the processor -->
-        <circle r="4.2" fill="url(#pgP)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0s"   repeatCount="indefinite"><mpath xlink:href="#tr1"/></animateMotion></circle>
-        <circle r="4.2" fill="url(#pgC)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath xlink:href="#tr2"/></animateMotion></circle>
-        <circle r="4.2" fill="url(#pgV)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite"><mpath xlink:href="#tr3"/></animateMotion></circle>
-        <circle r="4.2" fill="url(#pgC)" filter="url(#glow)"><animateMotion dur="2.6s" begin="1.9s" repeatCount="indefinite"><mpath xlink:href="#tr4"/></animateMotion></circle>
-        <circle r="4.2" fill="url(#pgP)" filter="url(#glow)"><animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite"><mpath xlink:href="#tr5"/></animateMotion></circle>
-        </g>
-      </svg>
-    </div>
+    <div class="hero-art" aria-hidden="true"><canvas id="cpu-canvas" title="drag to rotate"></canvas></div>
     <span class="badge grad">A Manifesto for Makers</span>
     <h2 class="hero-h">We will not teach you to bow to the machine. We will teach you to <span class="gradient-text">hotwire</span> it.</h2>
     <p class="lede">You might arrive at this curious, excited, wary, angry, or all four at once. Whatever your starting point, you bring questions worth taking seriously — about copyright, about the ecological cost of vast data centres, about the irreplaceable imprint of the human hand. <strong>Good.</strong> Those questions are not obstacles to learning; they are the substance of it.</p>
@@ -2185,24 +2132,110 @@ function showToast(){ var t=document.getElementById('toast'); t.classList.add('s
 
 window.addEventListener('resize',function(){ if(!document.getElementById('content-playgrounds').classList.contains('hidden')){ processTokens(); drawLeWitt(); drawCosine(); renderBland(); initMotion(); } });
 
-/* ===== hero processor · drag to spin ===== */
+/* ===== hero processor · 3D wireframe you can orbit ===== */
 (function(){
-  function initCpuSpin(){
-    var g=document.getElementById('cpu-spin'); if(!g) return;
-    var svg=document.querySelector('.hero-art svg'); if(!svg) return;
-    var angle=0, vel=0.12, idle=0.12, dragging=false, lastX=0, lastT=0;
-    function apply(){ g.setAttribute('transform','rotate('+angle.toFixed(2)+' 200 200)'); }
-    function px(e){ return e.touches&&e.touches[0]?e.touches[0].clientX:e.clientX; }
-    function down(e){ dragging=true; lastX=px(e); lastT=performance.now(); e.preventDefault(); }
-    function move(e){ if(!dragging) return; var x=px(e), now=performance.now(), dx=x-lastX, dt=Math.max(16,now-lastT);
-      angle+=dx*0.45; vel=(dx*0.45)*(16/dt); lastX=x; lastT=now; apply(); e.preventDefault(); }
+  function initCpu(){
+    var cv=document.getElementById('cpu-canvas'); if(!cv) return;
+    var ctx=cv.getContext('2d');
+    // ---- model (y up, board on y=0, die is a raised slab) ----
+    var V=function(x,y,z){ return {x:x,y:y,z:z}; };
+    var edges=[], pulses=[], TINT=['#ec4899','#06b6d4','#8b5cf6'];
+    function addPoly(pts){ for(var i=0;i<pts.length-1;i++) edges.push([pts[i],pts[i+1]]); }
+    // die box
+    var hx=46, hz=46, ty=34, by=12;
+    var A=V(-hx,ty,-hz),B=V(hx,ty,-hz),C=V(hx,ty,hz),D=V(-hx,ty,hz);
+    var E=V(-hx,by,-hz),F=V(hx,by,-hz),G=V(hx,by,hz),H=V(-hx,by,hz);
+    var die=[[A,B,1],[B,C,1],[C,D,1],[D,A,1],[E,F,1],[F,G,1],[G,H,1],[H,E,1],[A,E,1],[B,F,1],[C,G,1],[D,H,1]];
+    die.forEach(function(e){ edges.push(e); });
+    // top-face die pattern (inner square + cross)
+    var s=22, iy=ty+0.3;
+    edges.push([V(-s,iy,-s),V(s,iy,-s),2],[V(s,iy,-s),V(s,iy,s),2],[V(s,iy,s),V(-s,iy,s),2],[V(-s,iy,s),V(-s,iy,-s),2]);
+    // pins around the base (4 sides x 3)
+    function pins(side){
+      for(var k=-1;k<=1;k++){ var o=k*26;
+        if(side===0) edges.push([V(o,by-2,-hz),V(o,by-8,-hz-14),3]);
+        if(side===1) edges.push([V(o,by-2,hz),V(o,by-8,hz+14),3]);
+        if(side===2) edges.push([V(-hx,by-2,o),V(-hx-14,by-8,o),3]);
+        if(side===3) edges.push([V(hx,by-2,o),V(hx+14,by-8,o),3]);
+      }
+    }
+    pins(0);pins(1);pins(2);pins(3);
+    // traces on the board (y=0) -> nodes, with pulses running inward
+    var traces=[
+      [V(54,0,-12),V(120,0,-44),V(176,0,-44)],
+      [V(-54,0,-12),V(-120,0,-44),V(-176,0,-44)],
+      [V(0,0,-54),V(0,0,-120),V(44,0,-176)],
+      [V(-40,0,54),V(-96,0,116),V(-96,0,178)],
+      [V(40,0,54),V(96,0,116),V(96,0,178)]
+    ];
+    traces.forEach(function(tr,i){
+      for(var j=0;j<tr.length-1;j++) edges.push([tr[j],tr[j+1],0]);
+      // node square (billboarded later) stored as pulse path end
+      var seg=[], total=0;
+      for(var k=0;k<tr.length-1;k++){ var d=Math.hypot(tr[k+1].x-tr[k].x,tr[k+1].y-tr[k].y,tr[k+1].z-tr[k].z); seg.push(d); total+=d; }
+      pulses.push({ tr:tr, seg:seg, total:total, tint:TINT[i%3], phase:i*0.43, node:tr[tr.length-1] });
+    });
+    var coreP=V(0,ty+1,0);
+    // ---- camera / interaction ----
+    var ry=-0.5, rx=0.62, vyaw=0.0045, idle=0.0045, dragging=false, lx=0,ly=0,lt=0, W=0,H=0,dpr=1,t0=performance.now();
+    function size(){ var w=cv.clientWidth; if(w<10) return false; var h=Math.round(w*0.82);
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; }
+      W=w; H=h; return true; }
+    function proj(p){
+      var cy=Math.cos(ry),sy=Math.sin(ry), x=p.x*cy-p.z*sy, z=p.x*sy+p.z*cy;
+      var cx=Math.cos(rx),sx=Math.sin(rx), y=p.y*cx-z*sx, z2=p.y*sx+z*cx;
+      var CAM=470, f=470, sc=f/(CAM-z2);
+      return { X:W/2 + x*sc, Y:H*0.52 - y*sc, s:sc, z:z2 };
+    }
+    function lerp3(tr,seg,total,d){ // d in 0..1 along polyline
+      var target=d*total, acc=0;
+      for(var k=0;k<seg.length;k++){ if(acc+seg[k]>=target||k===seg.length-1){ var f=(target-acc)/(seg[k]||1); var a=tr[k],b=tr[k+1];
+        return V(a.x+(b.x-a.x)*f,a.y+(b.y-a.y)*f,a.z+(b.z-a.z)*f); } acc+=seg[k]; }
+      return tr[tr.length-1];
+    }
+    function render(now){
+      if(size()){
+        ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+        // edges with depth-fade
+        edges.forEach(function(e){
+          var a=proj(e[0]), b=proj(e[1]); var depth=(a.z+b.z)/2; var fade=0.45+0.55*Math.max(0,Math.min(1,(depth+120)/240));
+          var kind=e[2]||0;
+          if(kind===1){ ctx.strokeStyle='rgba(41,37,36,'+(0.85*fade)+')'; ctx.lineWidth=1.9; }
+          else if(kind===2){ ctx.strokeStyle='rgba(139,92,246,'+(0.7*fade)+')'; ctx.lineWidth=1.5; }
+          else if(kind===3){ ctx.strokeStyle='rgba(41,37,36,'+(0.5*fade)+')'; ctx.lineWidth=1.4; }
+          else { ctx.strokeStyle='rgba(87,83,78,'+(0.42*fade)+')'; ctx.lineWidth=1.5; }
+          ctx.beginPath(); ctx.moveTo(a.X,a.Y); ctx.lineTo(b.X,b.Y); ctx.stroke();
+        });
+        // nodes
+        pulses.forEach(function(pl){ var n=proj(pl.node); var r=4*n.s; ctx.save(); ctx.translate(n.X,n.Y); ctx.rotate(Math.PI/4);
+          ctx.strokeStyle='rgba(87,83,78,.5)'; ctx.lineWidth=1.3; ctx.strokeRect(-r,-r,r*2,r*2); ctx.restore(); });
+        // core glow
+        var cp=proj(coreP); var pulse=0.5+0.5*Math.sin((now-t0)/420);
+        glowDot(cp.X,cp.Y,(5+pulse*4)*cp.s,'#8b5cf6',0.55+0.45*pulse);
+        // travelling pulses (node -> die)
+        pulses.forEach(function(pl){ var d=((now-t0)/2600 + pl.phase)%1; var mp=proj(lerp3(pl.tr,pl.seg,pl.total,d));
+          glowDot(mp.X,mp.Y,4.4*mp.s,pl.tint,1); });
+      }
+      if(!dragging){ ry+=vyaw; vyaw+=(idle-vyaw)*0.03; if(vyaw>0.16)vyaw=0.16; if(vyaw<-0.16)vyaw=-0.16; }
+      requestAnimationFrame(render);
+    }
+    function glowDot(x,y,r,col,al){ ctx.save(); ctx.globalAlpha=al; ctx.shadowColor=col; ctx.shadowBlur=16;
+      var g=ctx.createRadialGradient(x,y,0,x,y,Math.max(2,r));
+      g.addColorStop(0,'#ffffff'); g.addColorStop(0.45,col); g.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,Math.max(2,r),0,7); ctx.fill();
+      ctx.shadowBlur=0; ctx.beginPath(); ctx.arc(x,y,Math.max(1.4,r*0.4),0,7); ctx.fillStyle='#fff'; ctx.fill(); ctx.restore(); }
+    // pointer orbit (both axes)
+    function pt(e){ return e.touches&&e.touches[0]?e.touches[0]:e; }
+    function down(e){ dragging=true; var p=pt(e); lx=p.clientX; ly=p.clientY; lt=performance.now(); e.preventDefault(); }
+    function move(e){ if(!dragging) return; var p=pt(e), now=performance.now(), dx=p.clientX-lx, dy=p.clientY-ly, dt=Math.max(16,now-lt);
+      ry+=dx*0.01; rx+=dy*0.01; if(rx>1.35)rx=1.35; if(rx<-0.35)rx=-0.35; vyaw=(dx*0.01)*(16/dt); lx=p.clientX; ly=p.clientY; lt=now; e.preventDefault(); }
     function up(){ dragging=false; }
-    svg.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
-    svg.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',up);
-    function loop(){ if(!dragging){ angle+=vel; vel+=(idle-vel)*0.04; if(vel>5)vel=5; if(vel<-5)vel=-5; apply(); } requestAnimationFrame(loop); }
-    apply(); requestAnimationFrame(loop);
+    cv.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+    cv.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',up);
+    requestAnimationFrame(render);
   }
-  if(document.readyState!=='loading') initCpuSpin(); else document.addEventListener('DOMContentLoaded',initCpuSpin);
+  if(document.readyState!=='loading') initCpu(); else document.addEventListener('DOMContentLoaded',initCpu);
 })();
 
 /* ===== LESSONS: week selector ===== */
