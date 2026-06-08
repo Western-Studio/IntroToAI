@@ -689,6 +689,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .ed-field{ margin-top:10px; border:1px solid #c7c3bd; border-radius:6px; padding:6px 8px; font-family:ui-monospace,monospace; font-size:8.5px; color:var(--s700); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .ed-go{ margin-top:10px; text-align:right; }
 .ed-go::after{ content:"INSERT"; background:#1a73e8; color:#fff; font-weight:800; font-size:9px; padding:5px 13px; border-radius:6px; }
+.code-box{ margin-top:9px; background:#0c0a09; color:#86efac; border-radius:6px; padding:8px 9px; font-family:ui-monospace,monospace; font-size:8.5px; line-height:1.55; height:72px; overflow:hidden; }
+.ed-actions{ display:flex; gap:7px; justify-content:flex-end; margin-top:9px; }
+.ed-next, .ed-ins{ font-weight:800; font-size:9px; padding:5px 12px; border-radius:6px; }
+.ed-next{ color:#1a73e8; } .ed-next.ghost{ color:var(--s500); }
+.ed-ins{ background:#1a73e8; color:#fff; }
 
 /* good vs bad prompt */
 .cmp{ display:grid; grid-template-columns:1fr; gap:16px; margin-top:22px; }
@@ -1452,17 +1457,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
   <div class="glass rounded panel">
     <span class="label indigo mono">// The key skill · embedding</span>
     <h2 class="brief-h">How to embed your code into a Google Site</h2>
-    <p class="act-sub" style="max-width:72ch">A Google Site can't <em>host</em> your raw <code>index.html</code> — but it can <b>embed</b> a page that lives somewhere public (like the GitHub Pages setup behind this very website). So it's always two moves: <b>host it, then embed the link.</b></p>
+    <p class="act-sub" style="max-width:72ch">Because each experiment is a <b>single self-contained file</b>, you don't need any separate web host — Google Sites can run your HTML, CSS and JavaScript directly. You simply paste your code into the <b>Embed code</b> box.</p>
     <div class="embed-steps">
-      <div class="estep">
-        <div class="estep-illus">
-          <div class="mock">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-url">yourname.github.io/portfolio</span></div>
-            <div class="mock-body"><div class="mock-canvas">▦ your generator,<br>running live at a URL</div></div>
-          </div>
-        </div>
-        <div class="estep-cap"><span class="estep-n">1</span><div><h5>Host it &amp; copy the link</h5><p>Put your <code>index.html</code> online (GitHub Pages, as in Week 5) so it has a public web address. Copy that URL.</p></div></div>
-      </div>
       <div class="estep">
         <div class="estep-illus">
           <div class="mock gs">
@@ -1473,27 +1469,37 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <div class="gs-item">▤ &nbsp;Google Docs</div>
           </div>
         </div>
-        <div class="estep-cap"><span class="estep-n">2</span><div><h5>In your Site: Insert → Embed</h5><p>Open the <b>Insert</b> panel on the right of the Google Sites editor and click <b>Embed</b>.</p></div></div>
+        <div class="estep-cap"><span class="estep-n">1</span><div><h5>In your Site: Insert → Embed</h5><p>Open the <b>Insert</b> panel on the right of the Google Sites editor and click <b>Embed</b>.</p></div></div>
       </div>
       <div class="estep">
         <div class="estep-illus">
           <div class="mock dlg">
-            <div class="dlg-title">Embed from the web</div>
-            <div class="ed-tabs"><span class="ed-tab sel">By URL</span><span class="ed-tab">Embed code</span></div>
-            <div class="ed-field">https://yourname.github.io/portfolio</div>
-            <div class="ed-go"></div>
+            <div class="dlg-title">Embed</div>
+            <div class="ed-tabs"><span class="ed-tab">By URL</span><span class="ed-tab sel">Embed code</span></div>
+            <div class="ed-field" style="color:var(--s400)">paste your code below…</div>
           </div>
         </div>
-        <div class="estep-cap"><span class="estep-n">3</span><div><h5>Paste the link, hit Insert</h5><p>Choose <b>By URL</b>, paste your address, and press <b>Insert</b>. (For more control, <b>Embed code</b> lets you paste an <code>&lt;iframe&gt;</code> with a set width and height.)</p></div></div>
+        <div class="estep-cap"><span class="estep-n">2</span><div><h5>Choose the EMBED CODE tab</h5><p>In the Embed dialog, switch from <em>By URL</em> to the <b>Embed code</b> tab.</p></div></div>
       </div>
       <div class="estep">
         <div class="estep-illus">
-          <div class="mock">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="pub-btn">Publish</span></div>
-            <div class="mock-body"><div class="mock-canvas">▦ live &amp; interactive<br>inside your page</div></div>
+          <div class="mock dlg">
+            <div class="dlg-title">Embed code</div>
+            <div class="code-box">&lt;html&gt;<br>&nbsp;&lt;style&gt; … &lt;/style&gt;<br>&nbsp;&lt;canvas&gt;&lt;/canvas&gt;<br>&nbsp;&lt;script&gt; … &lt;/script&gt;<br>&lt;/html&gt;</div>
+            <div class="ed-actions"><span class="ed-next">NEXT</span></div>
           </div>
         </div>
-        <div class="estep-cap"><span class="estep-n">4</span><div><h5>Resize &amp; Publish</h5><p>Drag the embed's handles so the whole canvas shows, then hit <b>Publish</b> (top-right) to put it live.</p></div></div>
+        <div class="estep-cap"><span class="estep-n">3</span><div><h5>Paste your HTML, CSS &amp; JS</h5><p>Copy everything from your <code>index.html</code> and paste it straight into the code box, then press <b>NEXT</b>.</p></div></div>
+      </div>
+      <div class="estep">
+        <div class="estep-illus">
+          <div class="mock dlg">
+            <div class="dlg-title">Preview</div>
+            <div class="mock-canvas" style="height:58px">▦ your code,<br>running in the preview</div>
+            <div class="ed-actions"><span class="ed-next ghost">BACK</span><span class="ed-ins">INSERT</span></div>
+          </div>
+        </div>
+        <div class="estep-cap"><span class="estep-n">4</span><div><h5>Preview, then Insert</h5><p><b>NEXT</b> shows you a live preview of your piece. Happy with it? Hit <b>INSERT</b> to drop it onto the page, then resize and <b>Publish</b>.</p></div></div>
       </div>
     </div>
   </div>
@@ -1597,7 +1603,7 @@ My rough idea: "a space invaders game that looks like my soft, pastel art style.
     <h3>Publish &amp; hand in your exhibition</h3>
     <p class="ft-lead">Everything you've built and everything you've learned, gathered into one site you authored end to end — then handed in on Google Classroom.</p>
     <div class="ft-steps">
-      <div class="ft-step"><span class="fs-n">01</span><h5>Gather</h5><p>A page or section for each experiment you've built, each <b>embedded and running live</b> from its hosted link.</p></div>
+      <div class="ft-step"><span class="fs-n">01</span><h5>Gather</h5><p>A page or section for each experiment you've built, each <b>embedded and running live</b> via the Embed code box.</p></div>
       <div class="ft-step"><span class="fs-n">02</span><h5>Explain</h5><p>Beneath each piece, your <b>80–120 word wall text</b> — what it does, the concept, where the machine drifted.</p></div>
       <div class="ft-step"><span class="fs-n">03</span><h5>Curate</h5><p>An <b>About page</b> with your artist statement, plus the prompts you used for several of your pieces.</p></div>
       <div class="ft-step"><span class="fs-n">04</span><h5>Publish</h5><p>Hit <b>Publish</b>, set link sharing on, and test the public URL on a different device.</p></div>
