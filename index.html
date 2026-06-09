@@ -143,7 +143,7 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 .hero-art{ position:absolute; right:1%; top:57%; transform:translateY(-50%); width:40%; max-width:440px; z-index:0; pointer-events:none; }
 .hero-art canvas{ width:100%; display:block; pointer-events:auto; cursor:grab; touch-action:none; }
 .hero-art canvas:active{ cursor:grabbing; }
-.hero-art.site-art{ top:60%; width:62%; max-width:690px; }
+.hero-art.site-art{ top:62%; width:46%; max-width:540px; }
 #excursions{ position:relative; }
 #notes-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:6; }
 @media(max-width:1023px){ .hero-art{ display:none; } }
@@ -2436,7 +2436,7 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
       dpr=Math.min(window.devicePixelRatio||1,2); if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; } W=w; H=h; return true; }
     function proj(p){ var cy=Math.cos(ry),sy=Math.sin(ry), x=p.x*cy-p.z*sy, z=p.x*sy+p.z*cy;
       var cx=Math.cos(rx),sx=Math.sin(rx), y=p.y*cx-z*sx, z2=p.y*sx+z*cx;
-      var CAM=440,f=440,Z=W/215,sc=f/(CAM-z2)*Z; return { X:W/2+x*sc, Y:H*0.5-y*sc, z:z2 }; }
+      var CAM=440,f=440,Z=W/235,sc=f/(CAM-z2)*Z; return { X:W/2+x*sc, Y:H*0.5-y*sc, z:z2 }; }
     function clamp(v){ return v<0?0:v>1?1:v; }
     function glowDot(x,y,r,col,al){ ctx.save(); ctx.globalAlpha=al; ctx.shadowColor=col; ctx.shadowBlur=16;
       var g=ctx.createRadialGradient(x,y,0,x,y,Math.max(2,r)); g.addColorStop(0,'#ffffff'); g.addColorStop(0.45,col); g.addColorStop(1,'rgba(255,255,255,0)');
