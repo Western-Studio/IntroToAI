@@ -2457,7 +2457,7 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
       dpr=Math.min(window.devicePixelRatio||1,2); if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; } W=w; H=h; return true; }
     function proj(p){ var cy=Math.cos(ry),sy=Math.sin(ry), x=p.x*cy-p.z*sy, z=p.x*sy+p.z*cy;
       var cx=Math.cos(rx),sx=Math.sin(rx), y=p.y*cx-z*sx, z2=p.y*sx+z*cx;
-      var CAM=440,f=440,Z=1.06,sc=f/(CAM-z2)*Z; return { X:W/2+x*sc, Y:H*0.5-y*sc, z:z2 }; }
+      var CAM=440,f=440,Z=W/215,sc=f/(CAM-z2)*Z; return { X:W/2+x*sc, Y:H*0.5-y*sc, z:z2 }; }
     function clamp(v){ return v<0?0:v>1?1:v; }
     function glowDot(x,y,r,col,al){ ctx.save(); ctx.globalAlpha=al; ctx.shadowColor=col; ctx.shadowBlur=16;
       var g=ctx.createRadialGradient(x,y,0,x,y,Math.max(2,r)); g.addColorStop(0,'#ffffff'); g.addColorStop(0.45,col); g.addColorStop(1,'rgba(255,255,255,0)');
