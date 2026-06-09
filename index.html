@@ -2485,7 +2485,7 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
         for(var n=0;n<notes.length;n++){ var note=notes[n];
           note.ry+=note.spin; note.pop=note.pop>0.01?note.pop*0.9:0;
           var u=((tt/note.dur)+note.ph)%1;
-          var alpha=clamp(Math.min(u/0.12,(1-u)/0.16),0,1);
+          var alpha=Math.max(0,Math.min(1, Math.min(u/0.12,(1-u)/0.16) ));
           var sc=note.s*base*(0.8+0.3*(1-u))*(1+0.4*note.pop);
           note.sx=(note.x + 0.025*Math.sin(tt*0.0007+note.sway))*W;
           note.sy=(srcY - u*(srcY-topY))*H;
