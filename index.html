@@ -815,9 +815,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .adv-card .alink{ margin-top:14px; display:inline-flex; align-items:center; gap:6px; align-self:flex-start; font-size:11px; font-weight:800; text-decoration:none; background:var(--clay); color:var(--cream); padding:8px 13px; border-radius:9px; }
 .adv-card .alink:hover{ background:#292524; }
 .adv-card .spacer{ flex:1; }
-.adv-card.has-octocat{ position:relative; overflow:hidden; }
+.adv-card.has-octocat{ position:relative; overflow:visible; }
 .adv-card.has-octocat > :not(.gh-octocat){ position:relative; z-index:1; }
-.gh-octocat{ position:absolute; top:12px; right:-26px; width:min(84%,300px); height:auto; z-index:0; pointer-events:none; }
+.gh-octocat{ position:absolute; top:-74px; right:-16px; width:min(116%,322px); height:auto; z-index:0; pointer-events:none; }
 .safe-note{ margin-top:20px; background:#fffaf0; border:1px solid rgba(180,120,40,.35); border-left:4px solid #f59e0b; border-radius:12px; padding:15px 17px; }
 .safe-note .sn-tag{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#b45309; }
 .safe-note p{ font-size:12px; color:var(--s700); line-height:1.65; margin-top:7px; }
@@ -1852,13 +1852,11 @@ My rough idea: "a space invaders game that looks like my soft, pastel art style.
             <radialGradient id="ghd" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.4" stop-color="#c4b5fd"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
             <filter id="ghf" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
-          <g fill="none" stroke="url(#ghg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4">
+          <g fill="none" stroke="url(#ghg)" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
             <path id="gh-ring" d="M40.8,29.5 A92 92 0 1 1 13.6,68.5"/>
             <circle cx="9.4" cy="84" r="4.5"/>
-            <path id="gh-body" d="M52,96 C48,150 70,202 100,202 C130,202 152,150 148,96 C148,70 126,60 100,60 C74,60 52,70 52,96 Z"/>
-            <path d="M72,64 L60,40 L88,60"/>
-            <path d="M128,64 L140,40 L112,60"/>
-            <path d="M58,150 C40,150 40,172 60,168 C72,166 78,158 82,150"/>
+            <path id="gh-body" d="M50,100 C48,80 52,72 64,66 L57,38 L92,60 C97,57 103,57 108,60 L143,38 L136,66 C148,72 152,80 150,100 C150,128 148,150 132,166 C124,173 116,176 108,176 L100,162 L92,176 C84,176 76,173 68,166 C52,150 50,128 50,100 Z"/>
+            <path d="M64,150 C46,147 42,168 60,166 C70,165 76,158 80,150"/>
           </g>
           <g filter="url(#ghf)">
             <circle r="3.4" fill="url(#ghd)"><animateMotion dur="6s" repeatCount="indefinite"><mpath xlink:href="#gh-ring"/></animateMotion></circle>
