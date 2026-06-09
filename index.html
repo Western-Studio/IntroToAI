@@ -2468,8 +2468,8 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     var GLYPH=glyph();
     var COLS=[['#ec4899','#8b5cf6'],['#8b5cf6','#06b6d4'],['#06b6d4','#ec4899'],['#f472b6','#38bdf8']];
     var GLOW=['#ec4899','#8b5cf6','#06b6d4','#f472b6','#38bdf8','#a855f7','#22d3ee'];
-    var defs=[ {x:0.58,s:0.78,f:523.25},{x:0.63,s:0.7,f:659.25},{x:0.55,s:0.82,f:587.33},
-               {x:0.66,s:0.68,f:783.99},{x:0.60,s:0.76,f:880.0},{x:0.62,s:0.72,f:1046.5},{x:0.57,s:0.74,f:698.46} ];
+    var defs=[ {x:0.84,s:0.78,f:523.25},{x:0.89,s:0.7,f:659.25},{x:0.81,s:0.82,f:587.33},
+               {x:0.92,s:0.68,f:783.99},{x:0.86,s:0.76,f:880.0},{x:0.88,s:0.72,f:1046.5},{x:0.83,s:0.74,f:698.46} ];
     var notes=defs.map(function(d,i){ return { x:d.x, s:d.s, f:d.f, ry:Math.random()*6, spin:0.01+Math.random()*0.012,
       ph:i/defs.length, sway:Math.random()*6, dur:7000+i*900, c:GLOW[i%GLOW.length], sx:0, sy:0, hitR:18, pop:0 }; });
     var W=0,H=0,dpr=1,t0=performance.now(), actx=null;
