@@ -2919,7 +2919,7 @@ function gxLoop(){
       ctx.beginPath(); ctx.arc(lp.x,lp.y, 10+Math.sin(gxAnim*4)*4, 0, Math.PI*2);
       ctx.strokeStyle='rgba(236,72,153,.7)'; ctx.lineWidth=2; ctx.stroke();
       ctx.fillStyle='#ec4899'; ctx.beginPath(); ctx.arc(lp.x,lp.y,pr,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='rgba(236,72,153,.95)'; ctx.font='700 11px Manrope'; ctx.fillText('← next star', lp.x+14, lp.y+4);
+      ctx.fillStyle='rgba(236,72,153,.95)'; ctx.font='700 11px Manrope'; ctx.textAlign='center'; ctx.fillText('next star ↓', lp.x, lp.y-16); ctx.textAlign='left';
     }
   }
   gxAnim_raf=requestAnimationFrame(gxLoop);
