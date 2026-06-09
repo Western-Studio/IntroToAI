@@ -1607,6 +1607,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
   <!-- intro -->
   <div class="glass rounded-lg hero shadow">
     <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="hero-art" aria-hidden="true"><canvas id="site-canvas" title="drag to move"></canvas></div>
     <span class="label blue mono">// The Brief · Your portfolio exhibition</span>
     <h2 class="hero-h">Build a Google Site that exhibits everything you make</h2>
     <p class="lede sm">As the course runs you will build a sketchbook of working web experiments — instruction-art generators, token maps, glitch collagers, motion mirrors and whatever else you dream up. Your overall project is to gather them into <strong>one living portfolio</strong>: a Google Site where each piece <strong>runs live, embedded straight from your own code</strong>, and each sits beside a short explanation of the idea behind it. Not screenshots of your work — your work itself, playable in the page. This is your exhibition.</p>
@@ -2362,6 +2363,59 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     requestAnimationFrame(render);
   }
   if(document.readyState!=='loading') initAda(); else document.addEventListener('DOMContentLoaded',initAda);
+})();
+
+/* ===== Brief hero · floating Google Site line-drawing with a pulsing embed ===== */
+(function(){
+  function initSite(){
+    var cv=document.getElementById('site-canvas'); if(!cv) return;
+    var ctx=cv.getContext('2d'), P=[];
+    function Vp(x,y,z){ return {x:x,y:y,z:z}; }
+    function rect(x0,y0,x1,y1,z,k,o){ P.push({p:[Vp(x0,y0,z),Vp(x1,y0,z),Vp(x1,y1,z),Vp(x0,y1,z),Vp(x0,y0,z)],k:k,o:o}); }
+    var FW=74,FH=50,FZ=5,BZ=-5;
+    rect(-FW,-FH,FW,FH,FZ,1,0.85); rect(-FW,-FH,FW,FH,BZ,1,0.35); // slab front + back
+    [[-FW,-FH],[FW,-FH],[FW,FH],[-FW,FH]].forEach(function(c){ P.push({p:[Vp(c[0],c[1],FZ),Vp(c[0],c[1],BZ)],k:1,o:0.5}); });
+    P.push({p:[Vp(-FW,34,FZ+0.2),Vp(FW,34,FZ+0.2)],k:1,o:0.6}); // chrome divider
+    [-66,-58,-50].forEach(function(x){ var L=[]; for(var a=0;a<=12;a++){ var an=a/12*Math.PI*2; L.push(Vp(x+Math.cos(an)*2.4,42+Math.sin(an)*2.4,FZ+0.2)); } P.push({p:L,k:0,o:0.6}); }); // traffic lights
+    rect(-40,38,62,46,FZ+0.2,0,0.5); // address bar
+    rect(-66,-34,2,26,FZ+0.3,2,0.85); // embed block
+    P.push({p:[Vp(-38,4,FZ+0.5),Vp(-38,-12,FZ+0.5),Vp(-24,-4,FZ+0.5),Vp(-38,4,FZ+0.5)],k:2,o:0.85}); // play triangle
+    [[14,62,22],[14,58,14],[14,60,6],[14,50,-2],[14,62,-10],[14,44,-18]].forEach(function(l){ P.push({p:[Vp(l[0],l[2],FZ+0.2),Vp(l[1],l[2],FZ+0.2)],k:0,o:0.45}); }); // text lines
+    rect(-66,-46,-24,-38,FZ+0.2,0,0.4); rect(-18,-46,24,-38,FZ+0.2,0,0.4); rect(30,-46,62,-38,FZ+0.2,0,0.4); // footer cards
+    var pulse=Vp(-32,-4,FZ+0.7);
+    var ry=-0.3, rx=0.12, dragging=false, lx=0,ly=0, W=0,H=0,dpr=1, t0=performance.now();
+    function size(){ var w=cv.clientWidth; if(w<10) return false; var h=Math.round(w*0.72);
+      dpr=Math.min(window.devicePixelRatio||1,2); if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; } W=w; H=h; return true; }
+    function proj(p){ var cy=Math.cos(ry),sy=Math.sin(ry), x=p.x*cy-p.z*sy, z=p.x*sy+p.z*cy;
+      var cx=Math.cos(rx),sx=Math.sin(rx), y=p.y*cx-z*sx, z2=p.y*sx+z*cx;
+      var CAM=440,f=440,Z=1.06,sc=f/(CAM-z2)*Z; return { X:W/2+x*sc, Y:H*0.5-y*sc, z:z2 }; }
+    function clamp(v){ return v<0?0:v>1?1:v; }
+    function glowDot(x,y,r,col,al){ ctx.save(); ctx.globalAlpha=al; ctx.shadowColor=col; ctx.shadowBlur=16;
+      var g=ctx.createRadialGradient(x,y,0,x,y,Math.max(2,r)); g.addColorStop(0,'#ffffff'); g.addColorStop(0.45,col); g.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,Math.max(2,r),0,7); ctx.fill(); ctx.restore(); }
+    function render(now){
+      if(size()){ ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+        for(var e=0;e<P.length;e++){ var pl=P[e]; ctx.beginPath();
+          for(var i=0;i<pl.p.length;i++){ var q=proj(pl.p[i]); if(i===0)ctx.moveTo(q.X,q.Y); else ctx.lineTo(q.X,q.Y); }
+          var mid=proj(pl.p[pl.p.length>>1]), fade=0.4+0.6*clamp((mid.z+60)/120), a=pl.o*fade;
+          if(pl.k===1){ ctx.strokeStyle='rgba(41,37,36,'+a+')'; ctx.lineWidth=1.7; }
+          else if(pl.k===2){ ctx.strokeStyle='rgba(6,182,212,'+a+')'; ctx.lineWidth=1.5; }
+          else { ctx.strokeStyle='rgba(87,83,78,'+a+')'; ctx.lineWidth=1.1; }
+          ctx.lineJoin='round'; ctx.lineCap='round'; ctx.stroke(); }
+        var pp=proj(pulse), ph=0.5+0.5*Math.sin((now-t0)/360); glowDot(pp.X,pp.Y,(5+ph*5),'#38bdf8',0.5+0.5*ph);
+      }
+      if(!dragging){ var tt=now-t0; ry+=((-0.12+0.30*Math.sin(tt*0.0005))-ry)*0.03; rx+=((0.10+0.07*Math.sin(tt*0.0004))-rx)*0.03; }
+      requestAnimationFrame(render);
+    }
+    function pt(e){ return e.touches&&e.touches[0]?e.touches[0]:e; }
+    function down(e){ dragging=true; var p=pt(e); lx=p.clientX; ly=p.clientY; e.preventDefault(); }
+    function move(e){ if(!dragging) return; var p=pt(e); ry+=(p.clientX-lx)*0.009; rx+=(p.clientY-ly)*0.009; if(rx>1)rx=1; if(rx<-0.7)rx=-0.7; lx=p.clientX; ly=p.clientY; e.preventDefault(); }
+    function up(){ dragging=false; }
+    cv.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+    cv.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',up);
+    requestAnimationFrame(render);
+  }
+  if(document.readyState!=='loading') initSite(); else document.addEventListener('DOMContentLoaded',initSite);
 })();
 
 /* ===== floating scroll-rail (scrub to top/bottom) ===== */
