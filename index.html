@@ -143,6 +143,7 @@ main{ max-width:1120px; margin:0 auto; padding:32px 16px; }
 .hero-art{ position:absolute; right:1%; top:57%; transform:translateY(-50%); width:40%; max-width:440px; z-index:0; pointer-events:none; }
 .hero-art canvas{ width:100%; display:block; pointer-events:auto; cursor:grab; touch-action:none; }
 .hero-art canvas:active{ cursor:grabbing; }
+.hero-art.site-art{ top:63%; width:47%; max-width:520px; }
 @media(max-width:1023px){ .hero-art{ display:none; } }
 .hero .blob{ position:absolute; border-radius:50%; filter:blur(60px); z-index:-1; }
 .hero .b1{ top:-96px; right:-80px; width:28rem; height:28rem; background:radial-gradient(circle at 30% 30%,rgba(244,114,182,.7),rgba(168,85,247,.4),transparent 70%); }
@@ -1607,7 +1608,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
   <!-- intro -->
   <div class="glass rounded-lg hero shadow">
     <div class="blob b1"></div><div class="blob b2"></div>
-    <div class="hero-art" aria-hidden="true"><canvas id="site-canvas" title="drag to move"></canvas></div>
+    <div class="hero-art site-art" aria-hidden="true"><canvas id="site-canvas" title="drag to move"></canvas></div>
     <span class="label blue mono">// The Brief · Your portfolio exhibition</span>
     <h2 class="hero-h">Build a Google Site that exhibits everything you make</h2>
     <p class="lede sm">As the course runs you will build a sketchbook of working web experiments — instruction-art generators, token maps, glitch collagers, motion mirrors and whatever else you dream up. Your overall project is to gather them into <strong>one living portfolio</strong>: a Google Site where each piece <strong>runs live, embedded straight from your own code</strong>, and each sits beside a short explanation of the idea behind it. Not screenshots of your work — your work itself, playable in the page. This is your exhibition.</p>
@@ -2383,6 +2384,13 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
     [[14,62,22],[14,58,14],[14,60,6],[14,50,-2],[14,62,-10],[14,44,-18]].forEach(function(l){ P.push({p:[Vp(l[0],l[2],FZ+0.2),Vp(l[1],l[2],FZ+0.2)],k:0,o:0.45}); }); // text lines
     rect(-66,-46,-24,-38,FZ+0.2,0,0.4); rect(-18,-46,24,-38,FZ+0.2,0,0.4); rect(30,-46,62,-38,FZ+0.2,0,0.4); // footer cards
     var pulse=Vp(-32,-4,FZ+0.7);
+    var tracers=[], TINT=['#ec4899','#06b6d4','#8b5cf6'];
+    function tracer(pts,phase){ var seg=[],tot=0; for(var i=0;i<pts.length-1;i++){ var d=Math.hypot(pts[i+1].x-pts[i].x,pts[i+1].y-pts[i].y,pts[i+1].z-pts[i].z); seg.push(d); tot+=d; } tracers.push({p:pts,seg:seg,total:tot,tint:TINT[tracers.length%3],phase:phase,dur:Math.max(2200,tot*12)}); }
+    tracer([Vp(-FW,-FH,FZ),Vp(FW,-FH,FZ),Vp(FW,FH,FZ),Vp(-FW,FH,FZ),Vp(-FW,-FH,FZ)],0);                          // around the window
+    tracer([Vp(-66,-34,FZ+0.3),Vp(2,-34,FZ+0.3),Vp(2,26,FZ+0.3),Vp(-66,26,FZ+0.3),Vp(-66,-34,FZ+0.3)],0.5);     // around the embed
+    tracer([Vp(-40,42,FZ+0.2),Vp(62,42,FZ+0.2)],0.2);   // address bar
+    tracer([Vp(14,6,FZ+0.2),Vp(60,6,FZ+0.2)],0.7);      // a text line
+    function lerpT(tr,d){ var target=d*tr.total,acc=0; for(var k=0;k<tr.seg.length;k++){ if(acc+tr.seg[k]>=target||k===tr.seg.length-1){ var f=(target-acc)/(tr.seg[k]||1),a=tr.p[k],b=tr.p[k+1]; return Vp(a.x+(b.x-a.x)*f,a.y+(b.y-a.y)*f,a.z+(b.z-a.z)*f); } acc+=tr.seg[k]; } return tr.p[tr.p.length-1]; }
     var ry=-0.3, rx=0.12, dragging=false, lx=0,ly=0, W=0,H=0,dpr=1, t0=performance.now();
     function size(){ var w=cv.clientWidth; if(w<10) return false; var h=Math.round(w*0.72);
       dpr=Math.min(window.devicePixelRatio||1,2); if(cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; cv.style.height=h+'px'; } W=w; H=h; return true; }
@@ -2403,6 +2411,7 @@ window.addEventListener('resize',function(){ if(!document.getElementById('conten
           else { ctx.strokeStyle='rgba(87,83,78,'+a+')'; ctx.lineWidth=1.1; }
           ctx.lineJoin='round'; ctx.lineCap='round'; ctx.stroke(); }
         var pp=proj(pulse), ph=0.5+0.5*Math.sin((now-t0)/360); glowDot(pp.X,pp.Y,(5+ph*5),'#38bdf8',0.5+0.5*ph);
+        for(var ti=0;ti<tracers.length;ti++){ var tr=tracers[ti], d=(((now-t0)/tr.dur)+tr.phase)%1, mp=proj(lerpT(tr,d)); glowDot(mp.X,mp.Y,3.6,tr.tint,1); }
       }
       if(!dragging){ var tt=now-t0; ry+=((-0.12+0.30*Math.sin(tt*0.0005))-ry)*0.03; rx+=((0.10+0.07*Math.sin(tt*0.0004))-rx)*0.03; }
       requestAnimationFrame(render);
