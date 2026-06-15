@@ -1038,9 +1038,17 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 @media(min-width:740px){ .hb-preview{ border-top:none; border-left:1px solid #e7e5e4; } }
 .hb-note{ font-size:11.5px; color:var(--s500); margin-top:9px; line-height:1.5; }
 .hb-note a{ color:#7c3aed; font-weight:700; }
+/* ===== refined part / section headers ===== */
+.part-head{ display:flex; align-items:center; gap:14px; }
+.lp-wrap.collapsible .part-head{ cursor:pointer; }
+.ph-main{ flex:1; min-width:0; }
+.ph-eyebrow{ display:block; font:800 11px ui-monospace,monospace; letter-spacing:.14em; text-transform:uppercase; color:#9333ea; }
+.ph-title{ font-size:clamp(19px,2.4vw,26px); font-weight:800; color:var(--s900); letter-spacing:-.02em; line-height:1.18; margin-top:5px; }
+.ph-time{ flex:none; font:700 11px ui-monospace,monospace; color:var(--s400); white-space:nowrap; }
+.lp-wrap.p1 .ph-eyebrow{ color:#db2777; } .lp-wrap.p2 .ph-eyebrow{ color:#7c3aed; } .lp-wrap.p3 .ph-eyebrow{ color:#0284c7; }
+.starter-head{ margin-top:34px; }
+.starter-head .ph-eyebrow{ color:#be185d; }
 /* ===== collapsible parts ===== */
-.lp-wrap.collapsible .part-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; }
-.lp-wrap.collapsible .part-head .lpart{ margin:0; }
 .part-chev{ font-size:20px; color:var(--s400); transition:transform .3s; flex:none; }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .part-body{ display:grid; grid-template-rows:1fr; transition:grid-template-rows .4s ease; }
@@ -1808,12 +1816,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </nav>
 
       <!-- STARTER -->
-      <p class="lpart" id="w2-start" style="margin-top:30px">Starter · recap last week · off screens · ~10 min</p>
+      <div class="part-head starter-head" id="w2-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">Recap last week</h3></div><span class="ph-time">off screens · ~10 min</span></div>
       <div class="taskcard offline"><span class="tk-when">✎ Starter · in pairs · 10 min</span><h5>Teach last week back to your partner</h5><p>Screens down. Take turns - <b>no notes</b> - to explain to your partner: <b>(1)</b> what is an <em>algorithm</em>, in your own words? <b>(2)</b> Sol LeWitt and Andy Warhol barely touched much of "their own" art - so how can it be theirs? <b>(3)</b> what does it mean to be the <em>author of an instruction</em>? If your partner can't follow you, go again until they can.</p><div class="why pink"><b>Why:</b> if you can teach it, you know it - which is the whole job today. It also warms up the one muscle you'll use all lesson: making a hard idea simple.</div></div>
 
       <!-- ===================== PART 1 · CHOOSE YOUR TOOL ===================== -->
       <section class="lp-wrap p1 collapsible" id="w2-p1">
-      <div class="part-head" onclick="togglePart(this)"><p class="lpart">Part 1 · Choose your build tool · ~25 min</p><span class="part-chev">▾</span></div>
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 1</span><h3 class="ph-title">Choose your build tool</h3></div><span class="ph-time">~25 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
       <p class="act-sub" style="max-width:70ch">There are two ways to build today's page. <b>Pick one and stick with it</b> - both earn full marks. The only rule: by the end you must be able to <b>read</b> the code on your page and say what it does.</p>
 
@@ -1874,7 +1882,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <!-- ===================== PART 2 · BUILD THE EXPLAINER ===================== -->
       <section class="lp-wrap p2 collapsible collapsed" id="w2-p2">
-      <div class="part-head" onclick="togglePart(this)"><p class="lpart">Part 2 · Build your explainer · ~50 min</p><span class="part-chev">▾</span></div>
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 2</span><h3 class="ph-title">Build your explainer</h3></div><span class="ph-time">~50 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
       <p class="act-sub" style="max-width:70ch">Time to build the first half of your page: a <b>title</b>, <b>what an algorithm is</b>, the <b>key terms</b>, and <b>how AI works</b> using them. Learn each idea here, then add it to your site with your chosen tool at the end of this part.</p>
 
@@ -2101,7 +2109,7 @@ Leave a clearly-marked empty section titled "Classification Mirror" - I'll add t
 
       <!-- ===================== PART 3 · INTERACTIVE + PUBLISH ===================== -->
       <section class="lp-wrap p3 collapsible collapsed" id="w2-p3">
-      <div class="part-head" onclick="togglePart(this)"><p class="lpart">Part 3 · Add the interactive piece, then publish · ~55 min</p><span class="part-chev">▾</span></div>
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 3</span><h3 class="ph-title">Add the interactive piece, then publish</h3></div><span class="ph-time">~55 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Where do the numbers come from?</h3></div><span class="ltime">~8 min</span></div>
