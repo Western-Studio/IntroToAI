@@ -847,6 +847,26 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 #scrollrail .sr-mark::after{ content:"Jump to steps"; position:absolute; left:20px; top:50%; transform:translateY(-50%); white-space:nowrap; font-size:9px; font-weight:800; letter-spacing:.04em; color:var(--s600); background:rgba(255,255,255,.92); padding:3px 7px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,.12); opacity:0; transition:opacity .15s; pointer-events:none; }
 #scrollrail .sr-mark:hover::after{ opacity:1; }
 @media(max-width:820px){ #scrollrail{ display:none; } }
+/* ===== WEEK 2 hub extras ===== */
+.gloss-grid{ display:grid; grid-template-columns:1fr; gap:10px; margin-top:18px; }
+@media(min-width:680px){ .gloss-grid{ grid-template-columns:1fr 1fr; } }
+.gloss{ background:rgba(255,255,255,.55); border:1px solid rgba(231,229,228,.7); border-radius:12px; padding:12px 15px; }
+.gloss b{ font-size:13px; color:var(--s900); } .gloss span{ display:block; font-size:12px; color:var(--s600); line-height:1.55; margin-top:3px; }
+.codeblk{ margin-top:14px; background:#0c0a09; border:1px solid #292524; border-radius:12px; padding:14px 16px; font-family:ui-monospace,monospace; font-size:11.5px; line-height:1.75; color:#e7e5e4; overflow-x:auto; white-space:pre; }
+.codeblk .tag{ color:#7dd3fc; } .codeblk .com{ color:#86efac; } .codeblk .att{ color:#fbcfe8; }
+.routes{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; }
+@media(min-width:760px){ .routes{ grid-template-columns:1fr 1fr; } }
+.route{ background:rgba(255,255,255,.5); border:1px solid rgba(231,229,228,.7); border-radius:16px; padding:18px 20px; }
+.route .r-tag{ font-size:10px; font-weight:800; font-family:ui-monospace,monospace; letter-spacing:.08em; text-transform:uppercase; }
+.route.a .r-tag{ color:#9333ea; } .route.b .r-tag{ color:#0369a1; }
+.route h5{ font-size:14px; font-weight:800; color:var(--s900); margin-top:5px; }
+.route p{ font-size:12.5px; color:var(--s600); line-height:1.6; margin-top:7px; }
+.route ul{ margin:8px 0 0; padding-left:18px; } .route li{ font-size:12px; color:var(--s600); line-height:1.6; }
+.route b{ color:var(--s900); }
+.crit-list{ list-style:none; padding:0; margin:14px 0 0; display:grid; gap:8px; }
+.crit-list li{ font-size:12.5px; color:var(--s700); line-height:1.5; padding-left:24px; position:relative; }
+.crit-list li::before{ content:"✦"; position:absolute; left:0; color:#9333ea; font-weight:800; }
+.crit-list b{ color:var(--s900); }
 </style>
 </head>
 <body>
@@ -1506,7 +1526,212 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
   </div>
 
   <!-- ===== WEEK 2-5 STUBS ===== -->
-  <div id="week-2" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 2 · Inside the Black Box: Vector Spaces & Token Maps</h3><p>Tokenisation, cosine similarity, dataset bias (Paglen &amp; Crawford's <em>Training Humans</em>) and a satirical "Classification Mirror" web app - coming in the next build.</p></div></div>
+  <div id="week-2" class="week-pane hidden">
+    <div class="glass rounded panel">
+      <div class="lesson-top">
+        <div class="intro">
+          <span class="lesson-badge">Week 2 · Contact time 2.5 hours</span>
+          <h3>Inside the Black Box: Vector Spaces &amp; Token Maps</h3>
+          <p>How does a machine "read"? This week you crack open the black box - words become tokens, tokens become numbers, numbers become directions in a space of meaning - and then you meet the uncomfortable truth: those numbers are only ever as fair as the human data they were learned from. Your job by the end is to turn all of that into a teaching tool clear enough for next year's class.</p>
+        </div>
+        <div class="companion">
+          <span class="ctag">// the job this week</span>
+          <h5>You are the teacher</h5>
+          <p>Everything you make today is built for one audience: <b style="color:#fbcfe8">next year's Year 12</b>. If you can explain tokens, vectors and bias clearly enough for them to get it, then you understand it. Confusion has nowhere to hide.</p>
+          <div class="flowdiag">
+            <div class="fd-node"><span class="fd-ico">✂</span><div class="fd-txt"><b>Tokens</b><span class="fd-sub">text cut into pieces</span></div></div>
+            <span class="fd-arrow">↓</span>
+            <div class="fd-node"><span class="fd-ico">✦</span><div class="fd-txt"><b>Vectors</b><span class="fd-sub">pieces become directions</span></div></div>
+            <span class="fd-arrow">↓</span>
+            <div class="fd-node"><span class="fd-ico">⚠</span><div class="fd-txt"><b>Bias</b><span class="fd-sub">learned from human data</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lpath-intro">
+        <span class="lpi-tag">// how this lesson runs</span>
+        <p>Today is <b>mostly hands-on and self-directed</b>: learn an idea, then immediately teach it back by building. You do <b>not</b> have to use AI - there's a hand-coded HTML route too - but <b>everyone</b> must be able to read and explain the code on their own page. There are no spectators here, and there is always a next small step. Don't like AI? Good - your sharpest work today is the critique.</p>
+        <div class="rhythm"><span class="rp e">Learn</span><span class="rp a">Teach it back</span><span class="rp e">Learn</span><span class="rp a">Build</span><span class="rp e">…</span><span class="rp a">★ Publish &amp; crit</span></div>
+      </div>
+
+      <!-- STARTER -->
+      <p class="lpart" style="margin-top:30px">Starter · recap last week · off screens · ~10 min</p>
+      <div class="taskcard offline"><span class="tk-when">✎ Starter · in pairs · 10 min</span><h5>Teach last week back to your partner</h5><p>Screens down. Take turns - <b>no notes</b> - to explain to your partner: <b>(1)</b> what is an <em>algorithm</em>, in your own words? <b>(2)</b> Sol LeWitt and Andy Warhol barely touched much of "their own" art - so how can it be theirs? <b>(3)</b> what does it mean to be the <em>author of an instruction</em>? If your partner can't follow you, go again until they can.</p><div class="why pink"><b>Why:</b> if you can teach it, you know it - which is the whole job today. It also warms up the one muscle you'll use all lesson: making a hard idea simple.</div></div>
+
+      <!-- ===================== PART 1 ===================== -->
+      <section class="lp-wrap p1">
+      <p class="lpart">Part 1 · Open the black box · ~45 min</p>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">From words to numbers</h3></div><span class="ltime">~6 min</span></div>
+      <p class="act-sub" style="max-width:66ch">A model cannot "read" letters. The very first thing it does is chop your text into small chunks called <b>tokens</b> (whole words, or word-pieces like "un-believ-able"), and swap each token for a list of numbers. That list of numbers is a <b>vector</b> - a position in a huge space of meaning. Everything else the model does is just maths on those numbers.</p>
+
+      <div class="glass rounded panel" style="padding:18px 20px; margin-top:16px">
+        <span class="label indigo mono">// Words you'll actually need</span>
+        <div class="gloss-grid">
+          <div class="gloss"><b>Token</b><span>A chunk of text - a word or part of a word. The model's smallest unit.</span></div>
+          <div class="gloss"><b>Vector</b><span>A list of numbers that gives a token a position, like map coordinates for meaning.</span></div>
+          <div class="gloss"><b>Embedding</b><span>The whole map - where every token sits in the space of meaning.</span></div>
+          <div class="gloss"><b>Cosine similarity</b><span>How close two vectors <em>point</em> - the model's measure of "similar meaning".</span></div>
+          <div class="gloss"><b>Dataset</b><span>The giant pile of human-made examples the model learned from.</span></div>
+          <div class="gloss"><b>Bias</b><span>Unfairness baked into a model because it was baked into that data.</span></div>
+          <div class="gloss"><b>HTML</b><span>The language web pages are written in - a set of labelled boxes called tags.</span></div>
+          <div class="gloss"><b>Tag</b><span>One HTML instruction, like &lt;h1&gt; (a heading) or &lt;p&gt; (a paragraph).</span></div>
+        </div>
+      </div>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Be the tokeniser</h3></div><span class="ltime">~8 min</span></div>
+      <div class="taskcard offline"><span class="tk-when">✎ Task 1 · on paper · 8 min</span><h5>Cut a sentence into tokens</h5><p>Write the sentence <em>"Sceptical artists hotwire the machine."</em> on paper, then chop it into <b>tokens</b> with scissors or slashes - one per word to start, then try splitting a long word into pieces. Number each token 1, 2, 3… You have just done the model's first move: turning language into a list of numbered chunks.</p><div class="why purple"><b>Why:</b> the "black box" feels less magic once you've done its first step by hand. Tokens are where every model begins.</div></div>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Meaning is a direction</h3></div><span class="ltime">~6 min</span></div>
+      <p class="act-sub" style="max-width:66ch">Once every token is a vector, the model judges meaning by the <b>angle</b> between vectors, not the distance. Words pointing the same way mean similar things. That's <b>cosine similarity</b> - and it's the maths behind autocomplete, search and recommendations. You already have two tools for this in <b>Universal Labs</b>: the Meaning-Space and the Cosine Compass.</p>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Interrogate the meaning-space</h3></div><span class="ltime">~12 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 2 · in Universal Labs · 12 min</span><h5>Use the Labs, write what you find</h5><p>Open <b>Universal Labs</b> and play with <b>Lab 01 (Meaning-Space)</b> and <b>Lab 03 (Cosine Compass)</b>. On paper or your site, answer in your own words: <b>(1)</b> Find two words that sit close together and two that sit far apart - why? <b>(2)</b> Type "river bank" then "money bank" - what happens to <em>bank</em>, and why? <b>(3)</b> On the Compass, when is similarity highest - small angle or large?</p><div class="why blue"><b>Why:</b> you're gathering the real examples you'll reuse later to <em>teach</em> this to next year. Notice it, name it, then you can explain it.</div></div>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Read the code you write</h3></div><span class="ltime">~8 min</span></div>
+      <p class="act-sub" style="max-width:66ch">Whether you hand-code or vibe-code today, you must be able to <b>read</b> your page. HTML is just a stack of labelled boxes called <b>tags</b>. A tag usually opens and closes around its content: <code>&lt;h1&gt;…&lt;/h1&gt;</code>. Here are the only five you need to start:</p>
+      <div class="codeblk">&lt;<span class="tag">h1</span>&gt;Inside the Black Box&lt;/<span class="tag">h1</span>&gt;        <span class="com">&lt;!-- a big heading --&gt;</span>
+&lt;<span class="tag">p</span>&gt;Words become numbers.&lt;/<span class="tag">p</span>&gt;            <span class="com">&lt;!-- a paragraph of text --&gt;</span>
+&lt;<span class="tag">input</span> <span class="att">id</span>="box"&gt;                          <span class="com">&lt;!-- a box to type into --&gt;</span>
+&lt;<span class="tag">button</span> <span class="att">onclick</span>="run()"&gt;Go&lt;/<span class="tag">button</span>&gt;   <span class="com">&lt;!-- a clickable button --&gt;</span>
+&lt;<span class="tag">script</span>&gt; … &lt;/<span class="tag">script</span>&gt;                    <span class="com">&lt;!-- the code that makes it do things --&gt;</span></div>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Label the tags</h3></div><span class="ltime">~5 min</span></div>
+      <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 5 min</span><h5>Translate the code into English</h5><p>Copy the five lines above onto paper and, next to each, write in plain English what it makes appear on the screen. No jargon - pretend you're explaining to someone who has never seen code. Keep this sheet; it's the key to reading your own page later.</p><div class="why pink"><b>Why:</b> this is the literacy that stops "vibe coding" being magic. If you can translate a line of code, you can change it on purpose.</div></div>
+      </section>
+
+      <!-- ===================== PART 2 ===================== -->
+      <section class="lp-wrap p2">
+      <p class="lpart">Part 2 · Bias in the data · ~40 min</p>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Where do the numbers come from?</h3></div><span class="ltime">~8 min</span></div>
+      <p class="act-sub" style="max-width:66ch">A model doesn't invent its sense of meaning - it <b>learns</b> it from a <b>dataset</b>: billions of examples scraped from the human world, each labelled by people. If the data is skewed, careless or prejudiced, the model quietly learns that too. There's an old computing phrase for it: <b>garbage in, garbage out</b>. The maths looks neutral; the data behind it rarely is.</p>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Training Humans · the receipts</h3></div><span class="ltime">~10 min</span></div>
+      <div class="glass-dark knowledge" style="margin-top:18px; border-radius:18px">
+        <span class="label mono" style="color:#f9a8d4">// Knowledge archive · dataset bias</span>
+        <p class="a" style="font-weight:500">In 2019 the artist <b>Trevor Paglen</b> and researcher <b>Kate Crawford</b> dug into the giant image datasets used to train AI - including ImageNet. They found photographs of ordinary people sorted into thousands of categories, many of them crude, judgemental or outright offensive - labels no one in the photos ever agreed to.</p>
+        <p style="color:#cbd5e1">Their point: a model's "objective" maths is built on messy, human, often prejudiced labelling. The bias isn't a glitch you can patch out - it is baked into the data the system was grown from. To understand any classifier, ask first: <em>who labelled the training data, and with what assumptions?</em></p>
+      </div>
+      <a class="src-link" href="https://excavating.ai/" target="_blank" rel="noopener">Read the artists' own essay · Crawford &amp; Paglen, "Excavating AI" →</a>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Design the Classification Mirror</h3></div><span class="ltime">~14 min</span></div>
+      <div class="taskcard offline"><span class="tk-when">✎ Task 4 · on paper · 14 min</span><h5>Sketch a classifier that exposes itself</h5><p>Imagine a careless AI that "classifies" people from a photo. On paper, sketch a <b>Classification Mirror</b>: pick an everyday object (or yourself) and write the <b>absurd, clearly-unfair labels</b> a biased system might stamp on it with total confidence. Make it funny - but the joke must have a <b>target</b>: it should make the unfairness obvious. Keep this; it becomes the interactive centrepiece of your build.</p><div class="why blue"><b>Why:</b> satire is a serious tool. Exaggerating a biased classifier is one of the clearest ways to <em>teach</em> what's wrong with it - which is exactly your job for next year's class.</div></div>
+      </section>
+
+      <!-- ===================== PART 3 ===================== -->
+      <section class="lp-wrap p3">
+      <p class="lpart">Part 3 · Build the teaching tool · ~55 min</p>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">The brief: teach next year's class</h3></div><span class="ltime">~5 min</span></div>
+      <p class="act-sub" style="max-width:70ch">Build <b>one interactive web page</b> that teaches this week's ideas to a 15-year-old who knows nothing - and publish it on your Google Site. It must cover <b>all three</b> ideas in plain English and include <b>at least one working interactive element</b> (your Classification Mirror is the obvious one). It must contain:</p>
+      <ul style="max-width:70ch; margin-top:8px; padding-left:20px; color:var(--s600); font-size:13px; line-height:1.7">
+        <li>A plain-English explanation of <b>tokens</b>, <b>vectors / cosine similarity</b>, and <b>dataset bias</b>.</li>
+        <li>At least one <b>interactive demo</b> (a tokeniser, a similarity slider, or the <b>Classification Mirror</b>).</li>
+        <li>One line on <b>why bias matters</b> - your own view, from Part 2.</li>
+      </ul>
+      <p class="act-sub" style="max-width:70ch; margin-top:10px">Pick your route. Both are full marks - the only rule is you must be able to <b>read your own code</b>.</p>
+      <div class="routes">
+        <div class="route a">
+          <span class="r-tag">▶ Route A · vibe-code</span>
+          <h5>Direct Gemini Canvas</h5>
+          <p>Use the starter prompt below, then refine it by conversation. Faster to something polished - but you must annotate the code afterwards.</p>
+        </div>
+        <div class="route b">
+          <span class="r-tag">✎ Route B · hand-build</span>
+          <h5>Write the HTML yourself</h5>
+          <p>Don't want to use AI? Start from the skeleton below and fill it in. Slower, but every line is yours and you'll understand all of it.</p>
+        </div>
+      </div>
+
+      <div class="prompt-term">
+        <div class="prompt-bar">
+          <h4>⌨ Route A · copyable starter prompt · Gemini Canvas</h4>
+          <button class="copy-btn" onclick="copyToClipboard('prompt-w2')">Copy prompt</button>
+        </div>
+        <textarea id="prompt-w2" class="prompt-area" readonly>Build a single self-contained index.html that teaches three ideas to a 15-year-old, with interactive demos. No external libraries; put all HTML, CSS and JS in the one file; comment every section so I can read it.
+
+1. TOKENS - a text box where I type a sentence and it splits into tokens, showing the count.
+2. VECTORS & SIMILARITY - let me pick two words and show a simple "similarity" bar that moves (you may fake the scores with a small built-in table of word pairs).
+3. DATASET BIAS - a satirical "Classification Mirror": a button that "classifies" the user with deliberately absurd, clearly-unfair labels, then a sentence explaining that real classifiers learn labels like these from biased human data.
+
+Design: clean and friendly, Manrope font, soft pastel palette, big readable text, works on a phone. Put a short plain-English explanation under each demo. Reject generic templates.</textarea>
+      </div>
+
+      <div class="prompt-term">
+        <div class="prompt-bar">
+          <h4>⌨ Route B · copyable HTML skeleton · build from scratch</h4>
+          <button class="copy-btn" onclick="copyToClipboard('code-w2')">Copy code</button>
+        </div>
+        <textarea id="code-w2" class="prompt-area" readonly>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Inside the Black Box&lt;/title&gt;
+  &lt;style&gt;
+    body{ font-family:sans-serif; max-width:680px; margin:40px auto; padding:0 16px; line-height:1.6; }
+    h1{ color:#5b21b6; }
+    .demo{ border:2px solid #ddd; border-radius:12px; padding:16px; margin-top:20px; }
+    button{ font-size:16px; padding:8px 14px; border-radius:8px; cursor:pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Inside the Black Box&lt;/h1&gt;
+  &lt;p&gt;Type a sentence and watch it get cut into tokens.&lt;/p&gt;
+
+  &lt;div class="demo"&gt;
+    &lt;input id="box" placeholder="Type a sentence..."&gt;
+    &lt;button onclick="tokenise()"&gt;Tokenise&lt;/button&gt;
+    &lt;p id="out"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    // this runs when the button is clicked
+    function tokenise(){
+      var text = document.getElementById('box').value;   // read the box
+      var tokens = text.split(' ');                       // cut on spaces
+      document.getElementById('out').innerText =
+        tokens.length + ' tokens: ' + tokens.join(' | ');
+    }
+  &lt;/script&gt;
+
+  &lt;!-- NOW ADD: a section on vectors, and your Classification Mirror --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+      </div>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Build it - then read it back</h3></div><span class="ltime">~35 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 5 · build · ~30 min</span><h5>Make your teaching tool</h5><p>Build the page (Route A or B), then embed it on your Google Site (Insert → Embed → Embed code → paste your HTML). Aim for <b>clear over clever</b>: a Year-9 reader should leave understanding one new thing.</p><div class="why purple"><b>Why:</b> teaching forces real understanding. The gaps in what <em>you</em> know show up the moment you try to explain it simply.</div></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 6 · required · ~8 min</span><h5>Annotate your own code</h5><p>Paste your finished code into your Site (or a doc) and <b>add a comment to at least 5 lines</b> explaining, in plain English, what each does. If you vibe-coded it and can't explain a line, ask the AI "what does this line do and why?" until you can.</p><div class="why blue"><b>Why:</b> this is the non-negotiable skill of the course - you direct the machine, so you must understand what it hands back. No black boxes of your own.</div></div>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">8</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Swap &amp; critique</h3></div><span class="ltime">~15 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 7 · peer crit · 15 min</span><h5>Review a classmate's teaching tool</h5><p>Open someone else's published Site and review it against the checklist below. Be kind, be specific, be useful - written feedback, not just "it's good".</p>
+        <ul class="crit-list">
+          <li><b>Clarity -</b> could a Year-9 actually understand it? Where did you get lost?</li>
+          <li><b>Accuracy -</b> are tokens, vectors and bias explained <em>correctly</em>?</li>
+          <li><b>Interactive -</b> does the demo work, and does it make a point?</li>
+          <li><b>Ownership -</b> ask the author to read you any 3 lines of their code. Could they?</li>
+          <li><b>One star, one step -</b> name the strongest thing, and the single most useful fix.</li>
+        </ul>
+      </div>
+
+      <div class="finaltask">
+        <span class="ft-tag">★ Final task · hand in on Google Classroom</span>
+        <h3>Publish your teaching tool</h3>
+        <p class="ft-lead">You opened the black box - now make it open for the next class. Publish your page on your Google Site and hand in the link.</p>
+        <div class="ft-deliver">
+          <span class="fd-tag">Hand in on Google Classroom</span>
+          <ul>
+            <li><b>Your Google Site link</b> - with the teaching tool embedded and running, covering tokens, vectors and bias plus one working interactive element.</li>
+            <li><b>Your annotated code</b> - at least 5 lines explained in your own words.</li>
+            <li><b>The crit you gave</b> a classmate, and a <b>100-word reflection:</b> what was hardest to explain - and where might your <em>own</em> tool be biased or unclear?</li>
+          </ul>
+          <div class="ft-classroom"><span class="cl-pill">Minimum to hand in: a working page that explains ONE of the three ideas with ONE interactive element. Build up from there.</span></div>
+        </div>
+      </div>
+      </section>
+    </div>
+  </div>
   <div id="week-3" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 3 · Visual Homogenisation & "The Bland Paste"</h3><p>Attention weights, Grayson Perry's critique, glitch-art history and a "Bland Paste Collager" that rebels against perfect rendering.</p></div></div>
   <div id="week-4" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 4 · Embodied Interaction & Browser Webcams</h3><p>Media streams, motion vectors, Universal Everything and Memo Akten, and a privacy-first "Particle Flow Mirror".</p></div></div>
   <div id="week-5" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 5 · Radical Web Publishing & Net Art Exhibits</h3><p>Net-art history (Olia Lialina), static hosting vs sandboxes, portfolio curation and a live launch via Google Site embedding.</p></div></div>
