@@ -1048,6 +1048,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .lab-card p{ font-size:12.5px; color:var(--s600); line-height:1.6; }
 .lab-card p+p{ margin-top:7px; }
 .lab-card b{ color:var(--s900); }
+/* ===== source-content note ===== */
+.src-note{ margin-top:22px; padding:16px 18px; border:1px solid rgba(231,229,228,.9); border-left:4px solid #7c3aed; border-radius:12px; background:rgba(124,58,237,.04); }
+.src-note-h{ display:block; font:800 13.5px Manrope,system-ui,sans-serif; color:var(--s900); }
+.src-note p{ font-size:12.5px; color:var(--s600); line-height:1.6; margin-top:6px; max-width:72ch; }
+.src-note p b{ color:var(--s900); }
+.src-note .goal-sections{ margin-top:13px; }
 /* ===== "your turn" build banner ===== */
 .buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(5,150,105,.12), rgba(13,148,136,.06)); border:1px solid #99f6e4; border-left:4px solid #059669; }
 .bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#047857; }
@@ -1867,7 +1873,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <div class="route b">
           <span class="r-tag">✎ Tool B · hand-code</span>
           <h5>The live HTML builder</h5>
-          <p>Write the HTML yourself in the builder on this page (or the Tryit editor). Slower, but every line is yours and you'll understand all of it.</p>
+          <p>Write the HTML yourself in the builder on this page (or the <a href="https://www.w3schools.com/tryit/" target="_blank" rel="noopener" style="color:#0369a1;font-weight:700">W3Schools Tryit editor</a>). Slower, but every line is yours and you'll understand all of it.</p>
         </div>
       </div>
 
@@ -1890,7 +1896,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <p class="hb-note">These five get you a long way - but there are many more. For a full, searchable list of HTML tags, visit <a href="https://www.w3schools.com/html/" target="_blank" rel="noopener">w3schools.com/html →</a></p>
 
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Try the builder</h3></div><span class="ltime">~9 min</span></div>
-      <p class="act-sub" style="max-width:70ch">Type HTML on the left and watch it render live on the right. This is your non-AI tool - a sandbox to try things and <em>see</em> what each tag does. Hand-coders will build their page here (or in the Tryit editor); vibe-coders can use it to test snippets Gemini gives them.</p>
+      <p class="act-sub" style="max-width:70ch">Type HTML on the left and watch it render live on the right. This is your non-AI tool - a sandbox to try things and <em>see</em> what each tag does. Hand-coders will build their page here (or in the <a href="https://www.w3schools.com/tryit/" target="_blank" rel="noopener" style="color:#7c3aed;font-weight:700">Tryit editor</a>); vibe-coders can use it to test snippets Gemini gives them.</p>
       <div class="htmlbuilder" id="hb">
         <div class="hb-head"><span>✎ Live HTML builder</span><button onclick="hbReset()">↺ Reset</button></div>
         <div class="hb-grid">
@@ -1928,7 +1934,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </div>
       <div class="routes">
         <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Prompt it to build the shell</h5><p>Open Gemini Canvas. Write a prompt (in your own words) that sets up the page and an empty section for each idea, in the style you want - then refine by chatting. Use the tips below, and practise in the box first.</p></div>
-        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Lay out the structure</h5><p>In the builder (Part 1) or Tryit, set up <code>&lt;head&gt;</code> + <code>&lt;body&gt;</code>, an <code>&lt;h1&gt;</code> title, and an empty <code>&lt;h2&gt;</code> + <code>&lt;p&gt;</code> for each section (algorithm, key terms, how AI works, Classification Mirror). Style it your way.</p></div>
+        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Lay out the structure</h5><p>In the builder (Part 1) or the <a href="https://www.w3schools.com/tryit/" target="_blank" rel="noopener" style="color:#0369a1;font-weight:700">Tryit editor</a>, set up <code>&lt;head&gt;</code> + <code>&lt;body&gt;</code>, an <code>&lt;h1&gt;</code> title, and an empty <code>&lt;h2&gt;</code> + <code>&lt;p&gt;</code> for each section (algorithm, key terms, how AI works, Classification Mirror). Style it your way.</p></div>
       </div>
       <div class="pc-tips">
         <span class="pc-tips-h">Tips for a strong build prompt</span>
@@ -1946,6 +1952,16 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <textarea id="pc-input" class="pc-input" placeholder="Write the prompt you'd give the AI to set up your page…"></textarea>
         <button class="pc-btn" onclick="pcCheck()">Check my prompt</button>
         <div id="pc-out" class="pc-out"></div>
+      </div>
+
+      <div class="src-note">
+        <span class="src-note-h">📚 Use the following as your source for content</span>
+        <p>As you learn each idea below, add it to your page - but you <b>must write the explanation in your own words and style</b>, never copy ours. Tick each one off once it's on your site:</p>
+        <div class="goal-sections">
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">What is an algorithm?</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">The key terms (token, vector, bias…)</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">How AI works, end to end</span></span>
+        </div>
       </div>
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">What is an algorithm?</h3></div><span class="ltime">~4 min</span></div>
