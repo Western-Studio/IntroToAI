@@ -284,7 +284,10 @@ input[type=range]::-moz-range-thumb{ width:18px; height:18px; border:none; borde
 .star:hover .tip{ display:block; }
 .star .tip b{ color:#a5b4fc; }
 /* Lab 01 · meaning-space */
-#sem-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:5; border-radius:16px; }
+#sem-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:5; border-radius:16px; touch-action:none; }
+.sky-zoom{ position:absolute; top:10px; right:10px; z-index:20; display:flex; flex-direction:column; gap:5px; }
+.sky-zoom button{ width:30px; height:30px; border-radius:8px; border:1px solid rgba(148,163,184,.4); background:rgba(15,23,42,.82); color:#e2e8f0; font:700 17px ui-monospace,monospace; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+.sky-zoom button:hover{ background:rgba(30,41,59,.96); }
 .sky-tip{ position:absolute; z-index:30; display:none; background:#0f172a; border:1px solid rgba(99,102,241,.4); color:#fff; font-family:ui-monospace,monospace; font-size:9px; line-height:1.5; padding:6px 8px; border-radius:7px; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
 .sky-tip b{ color:#a5b4fc; }
 .lab-chips{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin-top:13px; }
@@ -2263,10 +2266,15 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <div id="tok-capsules" class="muted-box"></div>
       </div>
       <div style="margin-top:16px">
-        <span class="field-label" style="margin:0">Meaning-space · hover a star, then click any two to measure their angle</span>
+        <span class="field-label" style="margin:0">Meaning-space · click any two stars to measure their angle · scroll or pinch to zoom, drag to pan</span>
         <div class="sky" id="sem-sky" style="height:300px; margin-top:8px; padding:0">
           <canvas id="sem-canvas"></canvas>
           <div id="sky-tip" class="sky-tip"></div>
+          <div class="sky-zoom">
+            <button onclick="semZoom(1.4)" aria-label="Zoom in">+</button>
+            <button onclick="semZoom(0.7)" aria-label="Zoom out">−</button>
+            <button onclick="semZoomReset()" aria-label="Reset view">⟳</button>
+          </div>
         </div>
       </div>
       <div id="sem-readout" class="readout">Click two word-stars to measure the <b>angle</b> between them - a small angle means similar meaning.</div>
@@ -2661,7 +2669,12 @@ var SEM_SENSES={
   current:{ nature:['river','water','ocean','sea','flow','tide'], tech:['electric','wire','power','circuit','voltage'] },
   model:  { tech:['data','machine','train','neural','algorithm','learning','dataset'], art:['pose','fashion','figure','draw','paint','sketch'] }
 };
-var SEM={ stars:[], links:[], sel:[], prev:{}, raf:null, ctx:null, W:0,H:0,cx:0,cy:0,R:0 };
+var SEM={ stars:[], links:[], sel:[], prev:{}, raf:null, ctx:null, W:0,H:0,cx:0,cy:0,R:0, z:1, panX:0, panY:0 };
+function semScreen(wx,wy){ return { x:(wx-SEM.cx)*SEM.z+SEM.cx+SEM.panX, y:(wy-SEM.cy)*SEM.z+SEM.cy+SEM.panY }; }
+function semWorld(mx,my){ return { x:(mx-SEM.cx-SEM.panX)/SEM.z+SEM.cx, y:(my-SEM.cy-SEM.panY)/SEM.z+SEM.cy }; }
+function semZoomAt(mx,my,f){ var wb=semWorld(mx,my); SEM.z=Math.max(0.6,Math.min(6,SEM.z*f)); SEM.panX=mx-(wb.x-SEM.cx)*SEM.z-SEM.cx; SEM.panY=my-(wb.y-SEM.cy)*SEM.z-SEM.cy; semRender(); }
+function semZoom(f){ semZoomAt(SEM.W/2,SEM.H/2,f); }
+function semZoomReset(){ SEM.z=1; SEM.panX=0; SEM.panY=0; semRender(); }
 function semHash(s){ var h=0; for(var i=0;i<s.length;i++) h=s.charCodeAt(i)+((h<<5)-h); return h; }
 function semTheme(word, ctx){
   word=word.toLowerCase();
@@ -2723,18 +2736,24 @@ function processTokens(){
     }
   }
   SEM.links=L;
-  cv.onclick=function(e){ var r=cv.getBoundingClientRect(), hit=semHit(e.clientX-r.left,e.clientY-r.top); if(hit<0) return;
-    var pos=SEM.sel.indexOf(hit); if(pos>-1) SEM.sel.splice(pos,1); else { SEM.sel.push(hit); if(SEM.sel.length>2) SEM.sel.shift(); }
-    semRender(); semReadout(); };
-  cv.onmousemove=function(e){ var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, hit=semHit(mx,my), tip=document.getElementById('sky-tip');
-    if(hit>-1){ var s=SEM.stars[hit]; cv.style.cursor='pointer'; tip.style.display='block';
-      tip.style.left=Math.min(SEM.W-96,s.sx+12)+'px'; tip.style.top=Math.max(2,s.sy-42)+'px';
+  SEM.z=1; SEM.panX=0; SEM.panY=0;
+  var down=false, moved=false, sx0=0, sy0=0, px0=0, py0=0;
+  cv.onpointerdown=function(e){ down=true; moved=false; var r=cv.getBoundingClientRect(); sx0=e.clientX-r.left; sy0=e.clientY-r.top; px0=SEM.panX; py0=SEM.panY; if(cv.setPointerCapture){ try{ cv.setPointerCapture(e.pointerId); }catch(_){} } };
+  cv.onpointermove=function(e){ var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, tip=document.getElementById('sky-tip');
+    if(down){ var dx=mx-sx0, dy=my-sy0; if(moved||Math.abs(dx)+Math.abs(dy)>4){ moved=true; SEM.panX=px0+dx; SEM.panY=py0+dy; if(tip) tip.style.display='none'; cv.style.cursor='grabbing'; semRender(); } return; }
+    var hit=semHit(mx,my);
+    if(hit>-1){ var s=SEM.stars[hit], sc=semScreen(s.sx,s.sy); cv.style.cursor='pointer'; tip.style.display='block';
+      tip.style.left=Math.min(SEM.W-96,sc.x+12)+'px'; tip.style.top=Math.max(2,sc.y-42)+'px';
       tip.innerHTML='<b>'+s.word+'</b><br>'+(s.theme?SEM_THEMES[s.theme].label:'unmapped')+(s.freq>1?' · ×'+s.freq:'')+'<br>vec ('+(s.vx/SEM.R).toFixed(2)+', '+(s.vy/SEM.R).toFixed(2)+')';
-    } else { tip.style.display='none'; cv.style.cursor='default'; } };
-  cv.onmouseleave=function(){ var tip=document.getElementById('sky-tip'); if(tip) tip.style.display='none'; };
+    } else { tip.style.display='none'; cv.style.cursor=SEM.z>1?'grab':'default'; } };
+  cv.onpointerup=function(e){ if(!down) return; down=false; cv.style.cursor='default';
+    if(!moved){ var r=cv.getBoundingClientRect(), hit=semHit(e.clientX-r.left,e.clientY-r.top);
+      if(hit>=0){ var pos=SEM.sel.indexOf(hit); if(pos>-1) SEM.sel.splice(pos,1); else { SEM.sel.push(hit); if(SEM.sel.length>2) SEM.sel.shift(); } semRender(); semReadout(); } } };
+  cv.onpointerleave=function(){ var tip=document.getElementById('sky-tip'); if(tip) tip.style.display='none'; };
+  cv.onwheel=function(e){ e.preventDefault(); var r=cv.getBoundingClientRect(); semZoomAt(e.clientX-r.left, e.clientY-r.top, e.deltaY<0?1.15:0.87); };
   semAnimate(); semReadout();
 }
-function semHit(mx,my){ var best=-1, bd=1e9; SEM.stars.forEach(function(s,i){ var rr=Math.min(13,4+(s.freq-1)*2.6)+8, d=Math.hypot(mx-s.sx,my-s.sy); if(d<=rr && d<bd){ bd=d; best=i; } }); return best; }
+function semHit(mx,my){ var w=semWorld(mx,my), best=-1, bd=1e9; SEM.stars.forEach(function(s,i){ var rr=Math.min(13,4+(s.freq-1)*2.6)+8, d=Math.hypot(w.x-s.sx,w.y-s.sy); if(d<=rr && d<bd){ bd=d; best=i; } }); return best; }
 function semAnimate(){
   if(SEM.raf) cancelAnimationFrame(SEM.raf);
   SEM.stars.forEach(function(s){ var p=SEM.prev[s.key]; s.fx=p?p.x:SEM.cx; s.fy=p?p.y:SEM.cy; s.ax=s.fx; s.ay=s.fy; });
@@ -2753,6 +2772,7 @@ function semRender(){
   ctx.clearRect(0,0,W,H);
   var g=ctx.createRadialGradient(cx,cy,8,cx,cy,Math.max(W,H)*0.72);
   g.addColorStop(0,'#0c1430'); g.addColorStop(1,'#020617'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  ctx.save(); ctx.translate(cx+SEM.panX, cy+SEM.panY); ctx.scale(SEM.z, SEM.z); ctx.translate(-cx,-cy);
   Object.keys(SEM_THEMES).forEach(function(t){ var th=SEM_THEMES[t], a=th.ang*Math.PI/180;
     ctx.strokeStyle='rgba(148,163,184,.10)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(a)*R*1.05, cy-Math.sin(a)*R*1.05); ctx.stroke();
     ctx.fillStyle='rgba(148,163,184,.45)'; ctx.font='700 9px ui-monospace,monospace'; ctx.textAlign='center';
@@ -2780,6 +2800,7 @@ function semRender(){
     if(seld){ ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(s.ax,s.ay,r+4,0,7); ctx.stroke(); }
     ctx.fillStyle='#e2e8f0'; ctx.font='700 11px ui-monospace,monospace'; ctx.textAlign='center';
     ctx.fillText(s.word, s.ax, s.ay-r-6); });
+  ctx.restore();
 }
 function semReadout(){
   var el=document.getElementById('sem-readout'); if(!el) return;
