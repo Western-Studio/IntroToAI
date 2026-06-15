@@ -1037,6 +1037,14 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .pc-item .ic{ flex:none; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:#fff; }
 .pc-item.ok .ic{ background:#059669; } .pc-item.no .ic{ background:#cbb8f0; }
 .pc-item b{ color:var(--s900); }
+/* ===== labs explainer ===== */
+.lab-ex{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px; }
+@media(min-width:720px){ .lab-ex{ grid-template-columns:1fr 1fr; } }
+.lab-card{ background:rgba(255,255,255,.6); border:1px solid rgba(231,229,228,.85); border-radius:14px; padding:14px 16px; }
+.lab-tag{ display:block; font:800 10px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#0284c7; margin-bottom:7px; }
+.lab-card p{ font-size:12.5px; color:var(--s600); line-height:1.6; }
+.lab-card p+p{ margin-top:7px; }
+.lab-card b{ color:var(--s900); }
 /* ===== "your turn" build banner ===== */
 .buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(5,150,105,.12), rgba(13,148,136,.06)); border:1px solid #99f6e4; border-left:4px solid #059669; }
 .bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#047857; }
@@ -2075,7 +2083,20 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <span class="pipe-count" id="pipe-count">1 / 9</span>
         </div>
       </div>
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Gather real examples in the Labs</h3></div><span class="ltime">~10 min</span></div>
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">See the maths in the Labs</h3></div><span class="ltime">~12 min</span></div>
+      <p class="act-sub" style="max-width:70ch">Everything above has been words and diagrams. These two Labs make it <em>real</em> - they're live, playable versions of the ideas, and the clearest way to show next year's class what "meaning as numbers" actually looks like. Here's what each one is teaching you:</p>
+      <div class="lab-ex">
+        <div class="lab-card">
+          <span class="lab-tag">Lab 01 · Meaning-Space</span>
+          <p>An <b>embedding</b> made visible. Every word is plotted as a dot on a map; words used in similar ways sit close together, unrelated words sit far apart.</p>
+          <p><b>It teaches:</b> that meaning can be a <em>position</em> - the core idea behind tokens becoming vectors.</p>
+        </div>
+        <div class="lab-card">
+          <span class="lab-tag">Lab 03 · Cosine Compass</span>
+          <p>Pick two words and it draws the <b>angle</b> between their vectors and shows the <b>cosine</b> score. A small angle gives a score near 1; a wide angle drops toward 0.</p>
+          <p><b>It teaches:</b> <em>cosine similarity</em> - how a model measures "how alike" two meanings are.</p>
+        </div>
+      </div>
       <div class="taskcard"><span class="tk-when">▶ Task 2 · in Universal Labs · 10 min</span><h5>Find examples you can reuse to teach</h5><p>Open <b>Universal Labs</b> and play with <b>Lab 01 (Meaning-Space)</b> and <b>Lab 03 (Cosine Compass)</b>. Jot down: <b>(1)</b> two words that sit close and two far apart - why? <b>(2)</b> type "river bank" then "money bank" - what happens to <em>bank</em>? <b>(3)</b> when is similarity highest - small angle or large? Use these on your page.</p><div class="why blue"><b>Why:</b> the clearest teaching uses concrete examples. Collect them now, explain them on your site later.</div></div>
 
       <div class="buildnow">
