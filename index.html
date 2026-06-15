@@ -916,6 +916,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .gv-svg .emb.hi{ fill:#db2777; }
 .gv-svg .et{ font:700 8px ui-monospace,monospace; fill:#9d174d; opacity:0; }
 .gloss.open .gv-svg .et{ animation:gfade .3s .5s forwards; }
+.gv-svg .emb-ray{ stroke:#c4b5fd; stroke-width:1.6; stroke-linecap:round; stroke-dasharray:120; stroke-dashoffset:120; }
+.gloss.open .gv-svg .emb-ray{ animation:gdraw .6s .55s ease forwards; }
+.gloss.open .gv-svg .emb-ray.r2{ animation-delay:.7s; }
+.gv-svg .emb-arc{ fill:none; stroke:#9333ea; stroke-width:1.3; stroke-dasharray:34; stroke-dashoffset:34; }
+.gloss.open .gv-svg .emb-arc{ animation:gdraw .5s 1.15s forwards; }
+.gv-svg .emb-th{ font:italic 700 9px Georgia,serif; fill:#7c3aed; opacity:0; }
+.gloss.open .gv-svg .emb-th{ animation:gfade .3s 1.35s forwards; }
 /* cosine */
 @keyframes gcos{ 0%,38%{ transform:rotate(-54deg) } 100%{ transform:rotate(-22deg) } }
 .cos-svg{ width:188px; height:auto; }
@@ -1698,8 +1705,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <div class="gloss-hd"><b>Embedding</b></div>
             <span>The whole map - where every token sits in the space of meaning.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
-              <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><circle class="emb" cx="30" cy="20" r="4"/><circle class="emb hi" cx="98" cy="22" r="4"/><circle class="emb hi" cx="110" cy="30" r="4"/><circle class="emb" cx="45" cy="44" r="4"/><circle class="emb" cx="22" cy="38" r="4"/><circle class="emb" cx="70" cy="50" r="4"/><text class="et" x="84" y="18">king</text><text class="et" x="112" y="42">queen</text></svg></div>
+              <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><circle cx="16" cy="58" r="2" fill="#a78bfa"/><line class="emb-ray" x1="16" y1="58" x2="98" y2="22"/><line class="emb-ray r2" x1="16" y1="58" x2="110" y2="30"/><path class="emb-arc" d="M 43.5 45.9 A 30 30 0 0 1 44.8 49.4"/><text class="emb-th" x="49" y="51">θ</text><circle class="emb" cx="30" cy="20" r="4"/><circle class="emb hi" cx="98" cy="22" r="4"/><circle class="emb hi" cx="110" cy="30" r="4"/><circle class="emb" cx="40" cy="47" r="4"/><circle class="emb" cx="24" cy="40" r="4"/><circle class="emb" cx="70" cy="51" r="4"/><text class="et" x="84" y="17">king</text><text class="et" x="112" y="42">queen</text></svg></div>
               <p class="gloss-more">The full map of every token's position. Words used in similar ways land near each other - "king" sits close to "queen".</p>
+              <p class="gloss-more">Draw an arrow from the origin out to each word, and the <em>angle</em> (θ) between those two arrows is small - that small angle <em>is</em> the high cosine similarity from the next card.</p>
             </div></div></div>
           </div>
 
