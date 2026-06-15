@@ -938,13 +938,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .cos-svg .cos-lblB{ font:700 9px ui-monospace,monospace; fill:#be185d; }
 .cos-svg .cos-read{ font:700 9px ui-monospace,monospace; fill:#9333ea; opacity:0; } .gloss.open .cos-svg .cos-read{ animation:gfade .5s 1.55s forwards; }
 /* dataset */
-.ds{ flex-direction:column; gap:5px; align-items:flex-start; padding-left:18px; }
-.ds-row{ width:0; height:9px; border-radius:3px; background:linear-gradient(90deg,#7c3aed,#c4b5fd); }
-.gloss.open .ds-row{ animation:gdsgrow .5s ease both; }
-.gloss.open .ds-row:nth-child(2){animation-delay:.1s}
-.gloss.open .ds-row:nth-child(3){animation-delay:.2s}
-.gloss.open .ds-row:nth-child(4){animation-delay:.3s}
-.gloss.open .ds-row:nth-child(5){animation-delay:.4s}
+.ds{ flex-wrap:wrap; gap:7px; height:auto; padding:14px 12px; }
+.ds-tile{ display:inline-flex; align-items:center; gap:5px; background:#fff; border:1px solid #e9d5ff; border-radius:8px; padding:3px 8px 3px 5px; opacity:0; box-shadow:0 1px 2px rgba(124,58,237,.07); }
+.gloss.open .ds-tile{ animation:gpop .42s ease both; }
+.ds-emo{ font-size:14px; line-height:1; }
+.ds-lab{ font:700 9px ui-monospace,monospace; color:#6d28d9; }
 /* bias */
 .bias{ align-items:flex-end; gap:7px; }
 .bias-bar{ width:13px; border-radius:3px 3px 0 0; background:#c4b5fd; transform:scaleY(0); transform-origin:bottom; }
@@ -1740,7 +1738,16 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <div class="gloss-hd"><b>Dataset</b></div>
             <span>The giant pile of human-made examples the model learned from.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
-              <div class="gviz ds"><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span></div>
+              <div class="gviz ds">
+                <span class="ds-tile" style="animation-delay:.04s"><span class="ds-emo">🐱</span><span class="ds-lab">cat</span></span>
+                <span class="ds-tile" style="animation-delay:.10s"><span class="ds-emo">🌳</span><span class="ds-lab">tree</span></span>
+                <span class="ds-tile" style="animation-delay:.16s"><span class="ds-emo">🚗</span><span class="ds-lab">car</span></span>
+                <span class="ds-tile" style="animation-delay:.22s"><span class="ds-emo">🏠</span><span class="ds-lab">house</span></span>
+                <span class="ds-tile" style="animation-delay:.28s"><span class="ds-emo">🐶</span><span class="ds-lab">dog</span></span>
+                <span class="ds-tile" style="animation-delay:.34s"><span class="ds-emo">☕</span><span class="ds-lab">cup</span></span>
+                <span class="ds-tile" style="animation-delay:.40s"><span class="ds-emo">🐦</span><span class="ds-lab">bird</span></span>
+                <span class="ds-tile" style="animation-delay:.46s"><span class="ds-emo">⚽</span><span class="ds-lab">ball</span></span>
+              </div>
               <p class="gloss-more">Everything the model learned from - billions of human-made examples, each labelled by people. The model is a mirror of this pile.</p>
               <p class="gloss-more"><b>Common myth:</b> the model keeps copies of everything it trained on. <b>Reality:</b> it learns <em>patterns</em> from the examples rather than storing them - though it can occasionally echo fragments of what it saw.</p>
               <p class="gloss-more"><b>The real debate:</b> a lot of this data was scraped from the open web without asking. Many artists and writers feel their work was used without consent or payment; AI companies argue that learning patterns is fair, transformative use. Courts, governments and new licensing deals are still settling it - so "it's all theft" and "it's all fine" are both too simple.</p>
