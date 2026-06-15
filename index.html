@@ -867,6 +867,89 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .crit-list li{ font-size:12.5px; color:var(--s700); line-height:1.5; padding-left:24px; position:relative; }
 .crit-list li::before{ content:"✦"; position:absolute; left:0; color:#9333ea; font-weight:800; }
 .crit-list b{ color:var(--s900); }
+/* ===== glossary interactive reveals ===== */
+.gloss{ cursor:pointer; transition:border-color .2s,background .2s; }
+.gloss:hover{ border-color:#c4b5fd; background:rgba(255,255,255,.82); }
+.gloss-hd{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.gloss .gplus{ flex:none; width:18px; height:18px; border-radius:50%; background:rgba(124,58,237,.12); color:#7c3aed; font-weight:800; font-size:13px; line-height:18px; text-align:center; transition:transform .3s; }
+.gloss.open .gplus{ transform:rotate(135deg); }
+.gloss-reveal{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .42s ease; }
+.gloss.open .gloss-reveal{ grid-template-rows:1fr; }
+.gloss-reveal>.gr-wrap{ overflow:hidden; min-height:0; }
+.gr-in{ padding-top:12px; margin-top:11px; border-top:1px dashed rgba(168,162,158,.45); }
+.gloss-more{ font-size:11.5px; color:var(--s600); line-height:1.55; margin-top:10px; }
+.gviz{ height:74px; border-radius:10px; background:rgba(124,58,237,.05); display:flex; align-items:center; justify-content:center; gap:5px; padding:0 10px; overflow:hidden; }
+.gv-svg{ width:138px; height:64px; }
+@keyframes gfade{ to{opacity:1} }
+@keyframes gdraw{ to{stroke-dashoffset:0} }
+@keyframes gpop{ from{opacity:0;transform:translateY(7px) scale(.8)} to{opacity:1;transform:none} }
+@keyframes ggrow{ from{transform:scaleY(0)} to{transform:scaleY(1)} }
+@keyframes gslideL{ from{opacity:0;transform:translateX(-15px)} to{opacity:1;transform:none} }
+@keyframes gslideR{ from{opacity:0;transform:translateX(15px)} to{opacity:1;transform:none} }
+@keyframes gdsgrow{ from{width:0} to{width:80%} }
+@keyframes gsweep{ 0%,45%{transform:rotate(34deg)} 100%{transform:rotate(0)} }
+/* token chips */
+.tok-chip{ opacity:0; padding:4px 8px; background:#fff; border:1px solid #ddd6fe; border-radius:6px; font-size:11px; font-weight:700; color:#6d28d9; font-family:ui-monospace,monospace; }
+.gloss.open .tok-chip{ animation:gpop .4s ease both; }
+.gloss.open .tok-chip:nth-child(2){ animation-delay:.1s }
+.gloss.open .tok-chip:nth-child(3){ animation-delay:.2s }
+.gloss.open .tok-chip:nth-child(4){ animation-delay:.3s }
+/* vector */
+.gv-svg .ax{ stroke:#d6c9f5; stroke-width:1.4; }
+.gv-svg .vec{ stroke:#7c3aed; stroke-width:2.6; stroke-linecap:round; stroke-dasharray:130; stroke-dashoffset:130; }
+.gloss.open .gv-svg .vec{ animation:gdraw .7s ease forwards; }
+.gv-svg .vh{ fill:#7c3aed; opacity:0; }
+.gloss.open .gv-svg .vh{ animation:gfade .3s .55s forwards; }
+.gv-svg .vt{ font:700 9px ui-monospace,monospace; fill:#6d28d9; opacity:0; }
+.gloss.open .gv-svg .vt{ animation:gfade .3s .65s forwards; }
+/* embedding */
+.gv-svg .emb{ fill:#7c3aed; opacity:0; transform-box:fill-box; transform-origin:center; }
+.gloss.open .gv-svg .emb{ animation:gpop .4s ease both; }
+.gloss.open .gv-svg .emb:nth-of-type(2){animation-delay:.08s}
+.gloss.open .gv-svg .emb:nth-of-type(3){animation-delay:.16s}
+.gloss.open .gv-svg .emb:nth-of-type(4){animation-delay:.24s}
+.gloss.open .gv-svg .emb:nth-of-type(5){animation-delay:.32s}
+.gloss.open .gv-svg .emb:nth-of-type(6){animation-delay:.4s}
+.gv-svg .emb.hi{ fill:#db2777; }
+.gv-svg .et{ font:700 8px ui-monospace,monospace; fill:#9d174d; opacity:0; }
+.gloss.open .gv-svg .et{ animation:gfade .3s .5s forwards; }
+/* cosine */
+.gv-svg .cosA,.gv-svg .cosbl{ stroke-width:2.4; stroke-linecap:round; }
+.gv-svg .cosA{ stroke:#7c3aed; } .gv-svg .cosbl{ stroke:#db2777; }
+.gv-svg .cosB{ transform-box:view-box; transform-origin:20px 58px; }
+.gloss.open .gv-svg .cosB{ animation:gsweep 1.5s ease forwards; }
+.gv-svg .cosarc{ fill:none; stroke:#a78bfa; stroke-width:1.3; stroke-dasharray:46; stroke-dashoffset:46; }
+.gloss.open .gv-svg .cosarc{ animation:gdraw .8s 1s forwards; }
+/* dataset */
+.ds{ flex-direction:column; gap:5px; align-items:flex-start; padding-left:18px; }
+.ds-row{ width:0; height:9px; border-radius:3px; background:linear-gradient(90deg,#7c3aed,#c4b5fd); }
+.gloss.open .ds-row{ animation:gdsgrow .5s ease both; }
+.gloss.open .ds-row:nth-child(2){animation-delay:.1s}
+.gloss.open .ds-row:nth-child(3){animation-delay:.2s}
+.gloss.open .ds-row:nth-child(4){animation-delay:.3s}
+.gloss.open .ds-row:nth-child(5){animation-delay:.4s}
+/* bias */
+.bias{ align-items:flex-end; gap:7px; }
+.bias-bar{ width:13px; border-radius:3px 3px 0 0; background:#c4b5fd; transform:scaleY(0); transform-origin:bottom; }
+.bias-bar.hot{ background:#db2777; }
+.gloss.open .bias-bar{ animation:ggrow .55s ease forwards; }
+.gloss.open .bias-bar:nth-child(2){animation-delay:.08s}
+.gloss.open .bias-bar:nth-child(3){animation-delay:.16s}
+.gloss.open .bias-bar:nth-child(4){animation-delay:.24s}
+.gloss.open .bias-bar:nth-child(5){animation-delay:.32s}
+/* html nested boxes */
+.htmlb{ border:2px solid #c4b5fd; border-radius:7px; padding:6px 7px; opacity:0; }
+.htmlb .lbl{ display:block; font:700 8px ui-monospace,monospace; color:#7c3aed; margin-bottom:3px; }
+.gloss.open .htmlb{ animation:gpop .4s ease both; }
+.gloss.open .htmlb .htmlb{ animation-delay:.13s; border-color:#a78bfa; }
+.gloss.open .htmlb .htmlb .htmlb{ animation-delay:.26s; border-color:#7c3aed; }
+/* tag wrap */
+.tagviz{ font:700 14px ui-monospace,monospace; }
+.tg{ color:#7c3aed; opacity:0; }
+.tg-mid{ color:var(--s900); opacity:0; padding:0 5px; }
+.gloss.open .tg.o{ animation:gslideL .5s ease forwards; }
+.gloss.open .tg-mid{ animation:gfade .4s .25s forwards; }
+.gloss.open .tg.c{ animation:gslideR .5s .25s forwards; }
 </style>
 </head>
 <body>
@@ -1567,15 +1650,81 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <div class="glass rounded panel" style="padding:18px 20px; margin-top:16px">
         <span class="label indigo mono">// Words you'll actually need</span>
+        <p style="font-size:11.5px;color:var(--s500);margin:4px 0 0">Tap a card to see it in action.</p>
         <div class="gloss-grid">
-          <div class="gloss"><b>Token</b><span>A chunk of text - a word or part of a word. The model's smallest unit.</span></div>
-          <div class="gloss"><b>Vector</b><span>A list of numbers that gives a token a position, like map coordinates for meaning.</span></div>
-          <div class="gloss"><b>Embedding</b><span>The whole map - where every token sits in the space of meaning.</span></div>
-          <div class="gloss"><b>Cosine similarity</b><span>How close two vectors <em>point</em> - the model's measure of "similar meaning".</span></div>
-          <div class="gloss"><b>Dataset</b><span>The giant pile of human-made examples the model learned from.</span></div>
-          <div class="gloss"><b>Bias</b><span>Unfairness baked into a model because it was baked into that data.</span></div>
-          <div class="gloss"><b>HTML</b><span>The language web pages are written in - a set of labelled boxes called tags.</span></div>
-          <div class="gloss"><b>Tag</b><span>One HTML instruction, like &lt;h1&gt; (a heading) or &lt;p&gt; (a paragraph).</span></div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Token</b><span class="gplus">+</span></div>
+            <span>A chunk of text - a word or part of a word. The model's smallest unit.</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz"><div class="tok-chip">the</div><div class="tok-chip">cat</div><div class="tok-chip">sat</div><div class="tok-chip">down</div></div>
+              <p class="gloss-more">Models can't read letters. They first chop text into tokens - sometimes whole words, sometimes pieces like "play-ing". Each token then gets its own number.</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Vector</b><span class="gplus">+</span></div>
+            <span>A list of numbers that gives a token a position, like map coordinates for meaning.</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><line class="ax" x1="16" y1="52" x2="128" y2="52"/><line class="ax" x1="16" y1="52" x2="16" y2="8"/><line class="vec" x1="16" y1="52" x2="104" y2="18"/><polygon class="vh" points="104,18 93,19 98,27"/><text class="vt" x="106" y="16">cat</text></svg></div>
+              <p class="gloss-more">Each token becomes a list of numbers - coordinates that drop it somewhere in a huge space of meaning, like a pin on a map.</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Embedding</b><span class="gplus">+</span></div>
+            <span>The whole map - where every token sits in the space of meaning.</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><circle class="emb" cx="30" cy="20" r="4"/><circle class="emb hi" cx="98" cy="22" r="4"/><circle class="emb hi" cx="110" cy="30" r="4"/><circle class="emb" cx="45" cy="44" r="4"/><circle class="emb" cx="22" cy="38" r="4"/><circle class="emb" cx="70" cy="50" r="4"/><text class="et" x="84" y="18">king</text><text class="et" x="112" y="42">queen</text></svg></div>
+              <p class="gloss-more">The full map of every token's position. Words used in similar ways land near each other - "king" sits close to "queen".</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Cosine similarity</b><span class="gplus">+</span></div>
+            <span>How close two vectors <em>point</em> - the model's measure of "similar meaning".</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><path class="cosarc" d="M 44 53 A 26 26 0 0 0 40 40"/><line class="cosA" x1="20" y1="58" x2="110" y2="20"/><g class="cosB"><line class="cosbl" x1="20" y1="58" x2="110" y2="20"/></g></svg></div>
+              <p class="gloss-more">The model judges meaning by the <em>angle</em> between two vectors. Small angle = pointing the same way = similar meaning.</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Dataset</b><span class="gplus">+</span></div>
+            <span>The giant pile of human-made examples the model learned from.</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz ds"><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span></div>
+              <p class="gloss-more">Everything the model learned from - billions of human-made examples, each labelled by people. The model is a mirror of this pile.</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Bias</b><span class="gplus">+</span></div>
+            <span>Unfairness baked into a model because it was baked into that data.</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz bias" style="height:56px"><span class="bias-bar" style="height:14px"></span><span class="bias-bar" style="height:22px"></span><span class="bias-bar hot" style="height:48px"></span><span class="bias-bar hot" style="height:54px"></span><span class="bias-bar" style="height:18px"></span></div>
+              <p class="gloss-more">If the data leans one way, the model learns that lean. Skewed data in → skewed answers out. The maths looks neutral; the data often isn't.</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>HTML</b><span class="gplus">+</span></div>
+            <span>The language web pages are written in - a set of labelled boxes called tags.</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz" style="height:auto;padding:10px"><div class="htmlb"><span class="lbl">&lt;html&gt;</span><div class="htmlb"><span class="lbl">&lt;body&gt;</span><div class="htmlb"><span class="lbl">&lt;p&gt;</span></div></div></div></div>
+              <p class="gloss-more">Web pages are built from nested boxes. Each box is a tag wrapping some content - and boxes sit inside other boxes.</p>
+            </div></div></div>
+          </div>
+
+          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
+            <div class="gloss-hd"><b>Tag</b><span class="gplus">+</span></div>
+            <span>One HTML instruction, like &lt;h1&gt; (a heading) or &lt;p&gt; (a paragraph).</span>
+            <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
+              <div class="gviz tagviz"><span class="tg o">&lt;p&gt;</span><span class="tg-mid">Hello</span><span class="tg c">&lt;/p&gt;</span></div>
+              <p class="gloss-more">One instruction, written as an opening and closing pair that wraps content: <code>&lt;p&gt;Hello&lt;/p&gt;</code> makes a paragraph that says Hello.</p>
+            </div></div></div>
+          </div>
+
         </div>
       </div>
 
@@ -2867,6 +3016,10 @@ function copyToClipboard(id){
   try{ document.execCommand('copy'); showToast(); }catch(e){}
   document.body.removeChild(t);
 }
+
+/* glossary reveal: toggle replays the open animations */
+function toggleGloss(el){ el.classList.toggle('open'); el.setAttribute('aria-expanded', el.classList.contains('open')); }
+document.addEventListener('keydown',function(e){ var a=document.activeElement; if(a&&a.classList&&a.classList.contains('gloss')&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); toggleGloss(a); } });
 
 /* ===== BRAIN: fire together, wire together ===== */
 var fireStrength=1, firePulse=-1, fireRAF=0, fireStarted=false;
