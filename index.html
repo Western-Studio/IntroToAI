@@ -1016,6 +1016,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .goal-sec b{ display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; border-radius:50%; background:#7c3aed; color:#fff; font-size:11px; }
 .goal-foot{ font-size:12.5px; color:var(--s600); margin-top:15px; }
 .goal-foot b{ color:var(--s900); }
+/* ===== "your turn" build banner ===== */
+.buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(219,39,119,.10), rgba(124,58,237,.07)); border:1px solid #f5d0fe; border-left:4px solid #db2777; }
+.bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#be185d; }
+.bn-h{ font-size:16px; font-weight:800; color:var(--s900); margin-top:5px; }
+.buildnow p{ font-size:13px; color:var(--s700); line-height:1.6; margin-top:6px; max-width:70ch; }
+.buildnow p b{ color:var(--s900); }
 /* ===== live HTML builder ===== */
 .htmlbuilder{ margin-top:16px; border:1px solid #ddd6fe; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 2px 8px rgba(124,58,237,.06); }
 .hb-head{ display:flex; align-items:center; justify-content:space-between; padding:8px 14px; background:#1c1917; color:#e7e5e4; font:700 11px ui-monospace,monospace; }
@@ -1965,8 +1971,11 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Gather real examples in the Labs</h3></div><span class="ltime">~10 min</span></div>
       <div class="taskcard"><span class="tk-when">▶ Task 2 · in Universal Labs · 10 min</span><h5>Find examples you can reuse to teach</h5><p>Open <b>Universal Labs</b> and play with <b>Lab 01 (Meaning-Space)</b> and <b>Lab 03 (Cosine Compass)</b>. Jot down: <b>(1)</b> two words that sit close and two far apart - why? <b>(2)</b> type "river bank" then "money bank" - what happens to <em>bank</em>? <b>(3)</b> when is similarity highest - small angle or large? Use these on your page.</p><div class="why blue"><b>Why:</b> the clearest teaching uses concrete examples. Collect them now, explain them on your site later.</div></div>
 
-      <p class="lpart" style="margin-top:32px">Now add it to your site</p>
-      <p class="act-sub" style="max-width:70ch">Add a title and these sections (algorithm, key terms, how AI works) to your page - using your tool from Part 1.</p>
+      <div class="buildnow">
+        <span class="bn-badge">🛠 Your turn · build</span>
+        <h4 class="bn-h">Now add it to your site</h4>
+        <p>Add a title and these sections (algorithm, key terms, how AI works) to your page - using your tool from Part 1.</p>
+      </div>
       <div class="routes">
         <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Direct the Canvas</h5><p>Paste the prompt below into Gemini Canvas, then refine by chatting - swap in your own words and the examples you found in the Labs.</p></div>
         <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Build in the editor</h5><p>Paste the HTML below into the builder (Part 1) or the Tryit editor, then rewrite the text in your own words.</p></div>
@@ -2031,8 +2040,11 @@ Leave a clearly-marked empty section titled "Classification Mirror" - I'll add t
 
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Design the Classification Mirror</h3></div><span class="ltime">~14 min</span></div>
       <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 14 min</span><h5>Sketch a classifier that exposes itself</h5><p>Imagine a careless AI that "classifies" people from a photo. On paper, sketch a <b>Classification Mirror</b>: pick an everyday object (or yourself) and write the <b>absurd, clearly-unfair labels</b> a biased system might stamp on it with total confidence. Make it funny - but the joke must have a <b>target</b>: it should make the unfairness obvious. Keep this; it becomes the interactive centrepiece of your build.</p><div class="why blue"><b>Why:</b> satire is a serious tool. Exaggerating a biased classifier is one of the clearest ways to <em>teach</em> what's wrong with it - which is exactly your job for next year's class.</div></div>
-      <p class="lpart" style="margin-top:32px">Now build the interactive piece</p>
-      <p class="act-sub" style="max-width:70ch">Add your <b>Classification Mirror</b> - the interactive demo your page needs - using your tool. Use the absurd labels from your sketch.</p>
+      <div class="buildnow">
+        <span class="bn-badge">🛠 Your turn · build</span>
+        <h4 class="bn-h">Now build the interactive piece</h4>
+        <p>Add your <b>Classification Mirror</b> - the interactive demo your page needs - using your tool. Use the absurd labels from your sketch.</p>
+      </div>
       <div class="routes">
         <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Ask for the Mirror</h5><p>Paste the prompt below, then refine the labels by chatting until they're funny and clearly make the point.</p></div>
         <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Paste &amp; adapt</h5><p>Drop the snippet below into your page (just before <code>&lt;/body&gt;</code>) and swap in your own labels.</p></div>
