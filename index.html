@@ -365,7 +365,7 @@ input[type=range]::-moz-range-thumb{ width:18px; height:18px; border:none; borde
 .companion .fd-node:nth-child(5) .fd-ico{ background:rgba(125,211,252,.12); border:1px solid rgba(125,211,252,.32); color:#7dd3fc; }
 .companion .fd-txt{ display:flex; flex-direction:column; }
 .companion .fd-txt b{ font-size:12.5px; font-weight:700; color:#fff; }
-.companion .fd-sub{ font-size:10px; color:#a8b6c8; font-family:ui-monospace,monospace; margin-top:2px; }
+.companion .fd-sub{ font-size:10px; color:#cbd6e4; font-family:ui-monospace,monospace; margin-top:2px; }
 .companion .fd-arrow{ text-align:center; color:#475569; font-size:13px; line-height:1; }
 /* widget */
 .widget{ background:#1c1917; border:1px solid #292524; border-radius:24px; padding:24px; color:var(--cream); margin-top:24px; }
@@ -1012,13 +1012,17 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .goalbox h3{ font-size:20px; font-weight:800; color:var(--s900); margin-top:8px; line-height:1.25; }
 .goalbox>p{ font-size:13.5px; color:var(--s600); line-height:1.6; margin-top:9px; max-width:72ch; }
 .goal-sections{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
-.goal-sec{ display:inline-flex; align-items:center; gap:7px; background:#fff; border:1px solid #e9d5ff; border-radius:999px; padding:6px 13px 6px 6px; font-size:12px; font-weight:600; color:var(--s700); }
-.goal-sec b{ display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; border-radius:50%; background:#7c3aed; color:#fff; font-size:11px; }
+.goal-sec{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #e9d5ff; border-radius:999px; padding:6px 13px 6px 7px; font-size:12px; font-weight:600; color:var(--s700); cursor:pointer; transition:background .15s,border-color .15s; user-select:none; }
+.goal-sec:hover{ background:#faf5ff; border-color:#d8b4fe; }
+.goal-sec .tick{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; border:2px solid #c4b5fd; color:#fff; font-size:11px; line-height:1; transition:background .15s,border-color .15s; }
+.goal-sec.done{ color:var(--s500); }
+.goal-sec.done .tick{ background:#059669; border-color:#059669; }
+.goal-sec.done .gs-txt{ text-decoration:line-through; }
 .goal-foot{ font-size:12.5px; color:var(--s600); margin-top:15px; }
 .goal-foot b{ color:var(--s900); }
 /* ===== "your turn" build banner ===== */
-.buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(219,39,119,.10), rgba(124,58,237,.07)); border:1px solid #f5d0fe; border-left:4px solid #db2777; }
-.bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#be185d; }
+.buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(5,150,105,.12), rgba(13,148,136,.06)); border:1px solid #99f6e4; border-left:4px solid #059669; }
+.bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#047857; }
 .bn-h{ font-size:16px; font-weight:800; color:var(--s900); margin-top:5px; }
 .buildnow p{ font-size:13px; color:var(--s700); line-height:1.6; margin-top:6px; max-width:70ch; }
 .buildnow p b{ color:var(--s900); }
@@ -1034,6 +1038,21 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 @media(min-width:740px){ .hb-preview{ border-top:none; border-left:1px solid #e7e5e4; } }
 .hb-note{ font-size:11.5px; color:var(--s500); margin-top:9px; line-height:1.5; }
 .hb-note a{ color:#7c3aed; font-weight:700; }
+/* ===== Week 2 sticky part nav ===== */
+.w2nav{ position:sticky; top:8px; z-index:40; display:flex; flex-wrap:wrap; gap:5px; align-items:center; margin-top:24px; padding:9px 12px; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(231,229,228,.9); border-radius:14px; box-shadow:0 4px 16px -9px rgba(28,25,23,.45); }
+.w2nav .w2n-lab{ font:800 10px ui-monospace,monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--s400); margin-right:4px; }
+.w2nav a{ font:700 11.5px Manrope,system-ui,sans-serif; text-decoration:none; padding:6px 11px; border-radius:9px; color:var(--s700); border:1px solid rgba(231,229,228,.9); transition:background .15s,color .15s,border-color .15s; }
+.w2nav a:hover{ background:#faf5ff; }
+.w2nav a.s{ color:#be185d; } .w2nav a.p1{ color:#db2777; } .w2nav a.p2{ color:#7c3aed; } .w2nav a.p3{ color:#0284c7; }
+.lp-wrap, #w2-start{ scroll-margin-top:72px; }
+/* ===== respect reduced motion ===== */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  .tok-chip,.tok-num,.tok-word,.tok-arrow,.tok-cap,.gv-svg .vh,.gv-svg .vt,.gv-svg .emb,.gv-svg .et,.gv-svg .emb-th,.cos-svg .cosA-g,.cos-svg .cosB,.cos-svg .cos-th,.cos-svg .cos-read,.htmlb,.tg,.tg-mid,.ds-tile{ opacity:1 !important; }
+  .gv-svg .vec,.gv-svg .emb-ray,.gv-svg .emb-arc,.cos-svg .cosarc{ stroke-dashoffset:0 !important; }
+  .bias-bar{ transform:scaleY(1) !important; }
+  .cos-svg .cosB{ transform:rotate(-22deg) !important; }
+}
 </style>
 </head>
 <body>
@@ -1699,12 +1718,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         <div class="intro">
           <span class="lesson-badge">Week 2 · Contact time 2.5 hours</span>
           <h3>Inside the Black Box: Vector Spaces &amp; Token Maps</h3>
-          <p>How does a machine "read"? This week you crack open the black box - words become tokens, tokens become numbers, numbers become directions in a space of meaning - and then you meet the uncomfortable truth: those numbers are only ever as fair as the human data they were learned from. Your job by the end is to turn all of that into a teaching tool clear enough for next year's class.</p>
+          <p>How does a machine "read"? This week you crack open the black box - how words become numbers, and why those numbers are only ever as fair as the data they came from. Then you turn what you learn into a teaching tool for next year's class.</p>
         </div>
         <div class="companion">
           <span class="ctag">// the job this week</span>
           <h5>You are the teacher</h5>
-          <p>Everything you make today is built for one audience: <b style="color:#fbcfe8">next year's Year 12</b>. If you can explain tokens, vectors and bias clearly enough for them to get it, then you understand it. Confusion has nowhere to hide.</p>
+          <p>Everything today is built for one audience: <b style="color:#fbcfe8">next year's Year 12</b>. If you can explain it to them, you understand it.</p>
           <div class="flowdiag">
             <div class="fd-node"><span class="fd-ico">✂</span><div class="fd-txt"><b>Tokens</b><span class="fd-sub">text cut into pieces</span></div></div>
             <span class="fd-arrow">↓</span>
@@ -1718,29 +1737,39 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="goalbox">
         <span class="goal-tag">🎯 Today's mission</span>
         <h3>Build a one-page site that teaches AI to next year's class</h3>
-        <p>By the end of today you'll have published a single web page that explains how AI works - clear enough for a 15-year-old who knows nothing - with one interactive demo they can play with. You'll build it step by step, learning each idea as you add it.</p>
+        <p>By the end of today you'll publish a single web page that explains how AI works - clear enough for a 15-year-old who knows nothing - with one interactive demo. You'll build it step by step. <b>Tick these off as you go:</b></p>
         <div class="goal-sections">
-          <span class="goal-sec"><b>1</b> A title for your page</span>
-          <span class="goal-sec"><b>2</b> What is an algorithm?</span>
-          <span class="goal-sec"><b>3</b> The key terms</span>
-          <span class="goal-sec"><b>4</b> How AI works, using them</span>
-          <span class="goal-sec"><b>5</b> An interactive Classification Mirror</span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">A title for your page</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">What is an algorithm?</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">The key terms</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">How AI works, using them</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">An interactive Classification Mirror</span></span>
         </div>
-        <p class="goal-foot">Two ways to build it - <b>direct an AI (Gemini Canvas)</b> or <b>hand-code it</b> in the builder inside this page. You choose in Part 1, then each part walks you through the next piece.</p>
+        <p class="goal-foot"><b>Minimum to pass:</b> a one-page site that explains <em>one</em> idea clearly with <em>one</em> working interactive bit. Start there - everything else builds on it.</p>
+        <p class="goal-foot" style="margin-top:8px">Two ways to build it - <b>direct an AI (Gemini Canvas)</b> or <b>hand-code it</b> in the builder inside this page. You choose in Part 1.</p>
       </div>
 
       <div class="lpath-intro">
         <span class="lpi-tag">// how this lesson runs</span>
-        <p>Today is <b>mostly hands-on and self-directed</b>: learn an idea, then immediately teach it back by building. You do <b>not</b> have to use AI - there's a hand-coded HTML route too - but <b>everyone</b> must be able to read and explain the code on their own page. There are no spectators here, and there is always a next small step. Whatever you make of AI, today is about understanding how it really works - because understanding is what lets you use it well <em>and</em> judge it fairly.</p>
+        <p>Today is <b>mostly hands-on</b>: learn an idea, then immediately build it into your page. Two routes - direct an AI or hand-code it - but <b>everyone</b> must be able to read their own code. Whatever you make of AI, today is about understanding how it really works.</p>
         <div class="rhythm"><span class="rp e">Learn</span><span class="rp a">Teach it back</span><span class="rp e">Learn</span><span class="rp a">Build</span><span class="rp e">…</span><span class="rp a">★ Publish &amp; crit</span></div>
       </div>
 
+      <nav class="w2nav" aria-label="Lesson parts">
+        <span class="w2n-lab">This lesson</span>
+        <a class="s" href="#w2-start">Starter</a>
+        <a class="p1" href="#w2-p1">1 · Choose tool</a>
+        <a class="p2" href="#w2-p2">2 · Build explainer</a>
+        <a class="p3" href="#w2-p3">3 · Interactive + publish</a>
+        <a class="p3" href="#w2-final">★ Hand in</a>
+      </nav>
+
       <!-- STARTER -->
-      <p class="lpart" style="margin-top:30px">Starter · recap last week · off screens · ~10 min</p>
+      <p class="lpart" id="w2-start" style="margin-top:30px">Starter · recap last week · off screens · ~10 min</p>
       <div class="taskcard offline"><span class="tk-when">✎ Starter · in pairs · 10 min</span><h5>Teach last week back to your partner</h5><p>Screens down. Take turns - <b>no notes</b> - to explain to your partner: <b>(1)</b> what is an <em>algorithm</em>, in your own words? <b>(2)</b> Sol LeWitt and Andy Warhol barely touched much of "their own" art - so how can it be theirs? <b>(3)</b> what does it mean to be the <em>author of an instruction</em>? If your partner can't follow you, go again until they can.</p><div class="why pink"><b>Why:</b> if you can teach it, you know it - which is the whole job today. It also warms up the one muscle you'll use all lesson: making a hard idea simple.</div></div>
 
       <!-- ===================== PART 1 · CHOOSE YOUR TOOL ===================== -->
-      <section class="lp-wrap p1">
+      <section class="lp-wrap p1" id="w2-p1">
       <p class="lpart">Part 1 · Choose your build tool · ~25 min</p>
       <p class="act-sub" style="max-width:70ch">There are two ways to build today's page. <b>Pick one and stick with it</b> - both earn full marks. The only rule: by the end you must be able to <b>read</b> the code on your page and say what it does.</p>
 
@@ -1799,7 +1828,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </section>
 
       <!-- ===================== PART 2 · BUILD THE EXPLAINER ===================== -->
-      <section class="lp-wrap p2">
+      <section class="lp-wrap p2" id="w2-p2">
       <p class="lpart">Part 2 · Build your explainer · ~50 min</p>
       <p class="act-sub" style="max-width:70ch">Time to build the first half of your page: a <b>title</b>, <b>what an algorithm is</b>, the <b>key terms</b>, and <b>how AI works</b> using them. Learn each idea here, then add it to your site with your chosen tool at the end of this part.</p>
 
@@ -2024,7 +2053,7 @@ Leave a clearly-marked empty section titled "Classification Mirror" - I'll add t
       </section>
 
       <!-- ===================== PART 3 · INTERACTIVE + PUBLISH ===================== -->
-      <section class="lp-wrap p3">
+      <section class="lp-wrap p3" id="w2-p3">
       <p class="lpart">Part 3 · Add the interactive piece, then publish · ~55 min</p>
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Where do the numbers come from?</h3></div><span class="ltime">~8 min</span></div>
@@ -2096,7 +2125,7 @@ Leave a clearly-marked empty section titled "Classification Mirror" - I'll add t
         </ul>
       </div>
 
-      <div class="finaltask">
+      <div class="finaltask" id="w2-final">
         <span class="ft-tag">★ Final task · hand in on Google Classroom</span>
         <h3>Publish your teaching tool</h3>
         <p class="ft-lead">You opened the black box - now make it open for the next class. Publish your page on your Google Site and hand in the link.</p>
