@@ -874,6 +874,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .gloss-reveal>.gr-wrap{ overflow:hidden; min-height:0; }
 .gr-in{ padding-top:12px; margin-top:11px; border-top:1px dashed rgba(168,162,158,.45); }
 .gloss-more{ font-size:11.5px; color:var(--s600); line-height:1.55; margin-top:10px; }
+.gr-ask{ margin-top:13px; padding:11px 13px; background:rgba(124,58,237,.06); border:1px solid #e9d5ff; border-radius:10px; }
+.gr-ask-h{ display:block; font:800 9.5px ui-monospace,monospace; letter-spacing:.04em; text-transform:uppercase; color:#7c3aed; margin-bottom:8px; }
+.gr-ask ul{ list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+.gr-ask li{ font-size:11.5px; color:var(--s700); line-height:1.5; padding-left:18px; position:relative; }
+.gr-ask li::before{ content:"?"; position:absolute; left:0; top:-1px; color:#9333ea; font-weight:800; }
+.gr-ask b{ color:var(--s900); }
 .gviz{ height:74px; border-radius:10px; background:rgba(124,58,237,.05); display:flex; align-items:center; justify-content:center; gap:5px; padding:0 10px; overflow:hidden; }
 .gv-svg{ width:138px; height:64px; }
 @keyframes gfade{ to{opacity:1} }
@@ -1749,8 +1755,18 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
                 <span class="ds-tile" style="animation-delay:.46s"><span class="ds-emo">⚽</span><span class="ds-lab">ball</span></span>
               </div>
               <p class="gloss-more">Everything the model learned from - billions of human-made examples, each labelled by people. The model is a mirror of this pile.</p>
-              <p class="gloss-more"><b>Common myth:</b> the model keeps copies of everything it trained on. <b>Reality:</b> it learns <em>patterns</em> from the examples rather than storing them - though it can occasionally echo fragments of what it saw.</p>
-              <p class="gloss-more"><b>The real debate:</b> a lot of training data was scraped from the open web without asking - but not by everyone. Some companies license and pay for their data, or use opt-in, stock and public-domain sources; others scraped broadly and argue that learning patterns is fair, transformative use. Many artists and writers feel their work was used without consent or payment. Courts, governments and new licensing deals are still settling it - so "all AI is theft" and "it's all fine" are both too simple.</p>
+              <p class="gloss-more"><b>Myth:</b> it keeps copies of everything it trained on.</p>
+              <p class="gloss-more"><b>Closer to the truth:</b> it learns <em>patterns</em>, not copies - though it can sometimes echo fragments of what it saw.</p>
+              <p class="gloss-more"><b>The real debate:</b> a lot of training data was scraped from the open web without asking - but not by everyone. Some companies license and pay for their data, or use opt-in, stock and public-domain sources; others scraped broadly and call it fair, transformative use.</p>
+              <p class="gloss-more">Many creators feel their work was used without consent or payment. Courts and new licensing deals are still settling it - so "all AI is theft" and "it's all fine" are both too simple.</p>
+              <div class="gr-ask">
+                <span class="gr-ask-h">How to judge any AI tool - ask:</span>
+                <ul>
+                  <li>Where did its <b>training data</b> come from?</li>
+                  <li>Was it <b>licensed or scraped</b> - can creators opt out or get paid?</li>
+                  <li>Does the maker actually <b>say</b> - and can you check?</li>
+                </ul>
+              </div>
             </div></div></div>
           </div>
 
