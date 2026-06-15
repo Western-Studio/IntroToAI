@@ -1049,7 +1049,12 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .starter-head{ margin-top:34px; }
 .starter-head .ph-eyebrow{ color:#be185d; }
 /* ===== collapsible parts ===== */
-.part-chev{ font-size:20px; color:var(--s400); transition:transform .3s; flex:none; }
+.part-chev{ flex:none; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; color:#fff; background:#9333ea; box-shadow:0 3px 9px -3px rgba(124,58,237,.6); transition:transform .3s, filter .2s; }
+.lp-wrap.p1 .part-chev{ background:#db2777; box-shadow:0 3px 9px -3px rgba(219,39,119,.6); }
+.lp-wrap.p2 .part-chev{ background:#7c3aed; box-shadow:0 3px 9px -3px rgba(124,58,237,.6); }
+.lp-wrap.p3 .part-chev{ background:#0284c7; box-shadow:0 3px 9px -3px rgba(2,132,199,.6); }
+.lp-wrap.collapsible .part-head:hover .part-chev{ filter:brightness(1.08); }
+.lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .part-body{ display:grid; grid-template-rows:1fr; transition:grid-template-rows .4s ease; }
 .lp-wrap.collapsed .part-body{ grid-template-rows:0fr; }
@@ -1820,7 +1825,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="taskcard offline"><span class="tk-when">✎ Starter · in pairs · 10 min</span><h5>Teach last week back to your partner</h5><p>Screens down. Take turns - <b>no notes</b> - to explain to your partner: <b>(1)</b> what is an <em>algorithm</em>, in your own words? <b>(2)</b> Sol LeWitt and Andy Warhol barely touched much of "their own" art - so how can it be theirs? <b>(3)</b> what does it mean to be the <em>author of an instruction</em>? If your partner can't follow you, go again until they can.</p><div class="why pink"><b>Why:</b> if you can teach it, you know it - which is the whole job today. It also warms up the one muscle you'll use all lesson: making a hard idea simple.</div></div>
 
       <!-- ===================== PART 1 · CHOOSE YOUR TOOL ===================== -->
-      <section class="lp-wrap p1 collapsible" id="w2-p1">
+      <section class="lp-wrap p1 collapsible collapsed" id="w2-p1">
       <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 1</span><h3 class="ph-title">Choose your build tool</h3></div><span class="ph-time">~25 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
       <p class="act-sub" style="max-width:70ch">There are two ways to build today's page. <b>Pick one and stick with it</b> - both earn full marks. The only rule: by the end you must be able to <b>read</b> the code on your page and say what it does.</p>
