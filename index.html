@@ -1006,6 +1006,28 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .pipe-ctrl #pipe-play{ background:#7c3aed; color:#fff; border-color:#7c3aed; }
 .pipe-ctrl #pipe-play:hover{ background:#6d28d9; }
 .pipe-count{ margin-left:auto; font:700 11px ui-monospace,monospace; color:var(--s500); }
+/* ===== goal banner ===== */
+.goalbox{ margin-top:22px; padding:22px 24px; border-radius:18px; background:linear-gradient(135deg, rgba(124,58,237,.10), rgba(2,132,199,.08)); border:1px solid #ddd6fe; }
+.goal-tag{ display:inline-block; font:800 11px ui-monospace,monospace; letter-spacing:.05em; text-transform:uppercase; color:#7c3aed; }
+.goalbox h3{ font-size:20px; font-weight:800; color:var(--s900); margin-top:8px; line-height:1.25; }
+.goalbox>p{ font-size:13.5px; color:var(--s600); line-height:1.6; margin-top:9px; max-width:72ch; }
+.goal-sections{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.goal-sec{ display:inline-flex; align-items:center; gap:7px; background:#fff; border:1px solid #e9d5ff; border-radius:999px; padding:6px 13px 6px 6px; font-size:12px; font-weight:600; color:var(--s700); }
+.goal-sec b{ display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; border-radius:50%; background:#7c3aed; color:#fff; font-size:11px; }
+.goal-foot{ font-size:12.5px; color:var(--s600); margin-top:15px; }
+.goal-foot b{ color:var(--s900); }
+/* ===== live HTML builder ===== */
+.htmlbuilder{ margin-top:16px; border:1px solid #ddd6fe; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 2px 8px rgba(124,58,237,.06); }
+.hb-head{ display:flex; align-items:center; justify-content:space-between; padding:8px 14px; background:#1c1917; color:#e7e5e4; font:700 11px ui-monospace,monospace; }
+.hb-head button{ font:700 10px ui-monospace,monospace; background:#7c3aed; color:#fff; border:none; padding:5px 11px; border-radius:6px; cursor:pointer; }
+.hb-head button:hover{ background:#6d28d9; }
+.hb-grid{ display:grid; grid-template-columns:1fr; }
+@media(min-width:740px){ .hb-grid{ grid-template-columns:1fr 1fr; } }
+.hb-code{ border:none; outline:none; resize:vertical; min-height:240px; padding:14px; font:12px/1.65 ui-monospace,monospace; color:#1c1917; background:#fafaf9; }
+.hb-preview{ border:none; border-top:1px solid #e7e5e4; min-height:240px; width:100%; background:#fff; }
+@media(min-width:740px){ .hb-preview{ border-top:none; border-left:1px solid #e7e5e4; } }
+.hb-note{ font-size:11.5px; color:var(--s500); margin-top:9px; line-height:1.5; }
+.hb-note a{ color:#7c3aed; font-weight:700; }
 </style>
 </head>
 <body>
@@ -1687,6 +1709,20 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       </div>
 
+      <div class="goalbox">
+        <span class="goal-tag">🎯 Today's mission</span>
+        <h3>Build a one-page site that teaches AI to next year's class</h3>
+        <p>By the end of today you'll have published a single web page that explains how AI works - clear enough for a 15-year-old who knows nothing - with one interactive demo they can play with. You'll build it step by step, learning each idea as you add it.</p>
+        <div class="goal-sections">
+          <span class="goal-sec"><b>1</b> A title for your page</span>
+          <span class="goal-sec"><b>2</b> What is an algorithm?</span>
+          <span class="goal-sec"><b>3</b> The key terms</span>
+          <span class="goal-sec"><b>4</b> How AI works, using them</span>
+          <span class="goal-sec"><b>5</b> An interactive Classification Mirror</span>
+        </div>
+        <p class="goal-foot">Two ways to build it - <b>direct an AI (Gemini Canvas)</b> or <b>hand-code it</b> in the builder inside this page. You choose in Part 1, then each part walks you through the next piece.</p>
+      </div>
+
       <div class="lpath-intro">
         <span class="lpi-tag">// how this lesson runs</span>
         <p>Today is <b>mostly hands-on and self-directed</b>: learn an idea, then immediately teach it back by building. You do <b>not</b> have to use AI - there's a hand-coded HTML route too - but <b>everyone</b> must be able to read and explain the code on their own page. There are no spectators here, and there is always a next small step. Whatever you make of AI, today is about understanding how it really works - because understanding is what lets you use it well <em>and</em> judge it fairly.</p>
@@ -1697,12 +1733,74 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <p class="lpart" style="margin-top:30px">Starter · recap last week · off screens · ~10 min</p>
       <div class="taskcard offline"><span class="tk-when">✎ Starter · in pairs · 10 min</span><h5>Teach last week back to your partner</h5><p>Screens down. Take turns - <b>no notes</b> - to explain to your partner: <b>(1)</b> what is an <em>algorithm</em>, in your own words? <b>(2)</b> Sol LeWitt and Andy Warhol barely touched much of "their own" art - so how can it be theirs? <b>(3)</b> what does it mean to be the <em>author of an instruction</em>? If your partner can't follow you, go again until they can.</p><div class="why pink"><b>Why:</b> if you can teach it, you know it - which is the whole job today. It also warms up the one muscle you'll use all lesson: making a hard idea simple.</div></div>
 
-      <!-- ===================== PART 1 ===================== -->
+      <!-- ===================== PART 1 · CHOOSE YOUR TOOL ===================== -->
       <section class="lp-wrap p1">
-      <p class="lpart">Part 1 · Open the black box · ~45 min</p>
+      <p class="lpart">Part 1 · Choose your build tool · ~25 min</p>
+      <p class="act-sub" style="max-width:70ch">There are two ways to build today's page. <b>Pick one and stick with it</b> - both earn full marks. The only rule: by the end you must be able to <b>read</b> the code on your page and say what it does.</p>
 
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">From words to numbers</h3></div><span class="ltime">~6 min</span></div>
-      <p class="act-sub" style="max-width:66ch">A model cannot "read" letters. The very first thing it does is chop your text into small chunks called <b>tokens</b> (whole words, or word-pieces like "un-believ-able"), and swap each token for a list of numbers. That list of numbers is a <b>vector</b> - a position in a huge space of meaning. Everything else the model does is just maths on those numbers.</p>
+      <div class="glass rounded panel" style="padding:18px 20px; margin-top:18px; border-left:4px solid #9333ea">
+        <span class="label indigo mono">// why this skill matters</span>
+        <h5 style="font-size:14px;font-weight:800;color:var(--s900);margin:7px 0 0">Vibe coding is a digital artist's superpower</h5>
+        <p style="font-size:12.5px;color:var(--s600);line-height:1.65;margin-top:8px">For years, making something interactive or generative meant first spending months learning to code. Vibe coding flips that: you describe what you want in plain language and shape it by conversation - so your <b>taste, ideas and art direction</b> become the real skill, not memorising syntax. A single artist can now prototype an interactive site, a generative piece or a custom tool in an afternoon - things that used to need a developer and a budget.</p>
+        <p style="font-size:12.5px;color:var(--s600);line-height:1.65;margin-top:8px">The catch is that the machine only does what you can <b>direct and read</b>. So the people who get the most out of it aren't the best typists; they're the ones with the clearest vision who can steer the tool and check its work. That's a skill you already have as an artist - you're just pointing it somewhere new.</p>
+      </div>
+
+      <div class="routes">
+        <div class="route a">
+          <span class="r-tag">▶ Tool A · vibe-code</span>
+          <h5>Direct Gemini Canvas</h5>
+          <p>Describe what you want in plain English and refine it by chatting. Fast, powerful, and great for the interactive parts - but you must be able to read what it hands back.</p>
+        </div>
+        <div class="route b">
+          <span class="r-tag">✎ Tool B · hand-code</span>
+          <h5>The live HTML builder</h5>
+          <p>Write the HTML yourself in the builder on this page (or the Tryit editor). Slower, but every line is yours and you'll understand all of it.</p>
+        </div>
+      </div>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Read the code you write</h3></div><span class="ltime">~8 min</span></div>
+      <p class="act-sub" style="max-width:66ch">Whichever tool you choose, you must be able to <b>read</b> your page. HTML is just a stack of labelled boxes called <b>tags</b>. A tag usually opens and closes around its content: <code>&lt;h1&gt;…&lt;/h1&gt;</code>. Here are the only five you need to start:</p>
+      <div class="codeblk">&lt;<span class="tag">h1</span>&gt;Inside the Black Box&lt;/<span class="tag">h1</span>&gt;        <span class="com">&lt;!-- a big heading --&gt;</span>
+&lt;<span class="tag">p</span>&gt;Words become numbers.&lt;/<span class="tag">p</span>&gt;            <span class="com">&lt;!-- a paragraph of text --&gt;</span>
+&lt;<span class="tag">input</span> <span class="att">id</span>="box"&gt;                          <span class="com">&lt;!-- a box to type into --&gt;</span>
+&lt;<span class="tag">button</span> <span class="att">onclick</span>="run()"&gt;Go&lt;/<span class="tag">button</span>&gt;   <span class="com">&lt;!-- a clickable button --&gt;</span>
+&lt;<span class="tag">script</span>&gt; … &lt;/<span class="tag">script</span>&gt;                    <span class="com">&lt;!-- the code that makes it do things --&gt;</span></div>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Try the builder</h3></div><span class="ltime">~9 min</span></div>
+      <p class="act-sub" style="max-width:70ch">Type HTML on the left and watch it render live on the right. This is your non-AI tool - a sandbox to try things and <em>see</em> what each tag does. Hand-coders will build their page here (or in the Tryit editor); vibe-coders can use it to test snippets Gemini gives them.</p>
+      <div class="htmlbuilder" id="hb">
+        <div class="hb-head"><span>✎ Live HTML builder</span><button onclick="hbReset()">↺ Reset</button></div>
+        <div class="hb-grid">
+          <textarea id="hb-code" class="hb-code" spellcheck="false" oninput="hbRun()">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body{ font-family:sans-serif; max-width:640px; margin:26px auto; padding:0 16px; line-height:1.6; color:#1c1917; }
+    h1{ color:#7c3aed; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Inside the Black Box&lt;/h1&gt;
+  &lt;p&gt;Edit me! Change the heading, add a paragraph, and watch the preview update.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+          <iframe id="hb-preview" class="hb-preview" title="Live preview" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="hb-note">Everything runs in your browser - nothing is sent anywhere. Want more room, or to save your work? <a href="https://www.w3schools.com/tryit/" target="_blank" rel="noopener">Open the W3Schools Tryit editor →</a></p>
+      <div class="taskcard"><span class="tk-when">▶ Task 1 · 9 min</span><h5>Make three changes, then read them aloud</h5><p>In the builder above: <b>(1)</b> change the heading text, <b>(2)</b> add a second <code>&lt;p&gt;</code> paragraph, <b>(3)</b> change the <code>h1</code> colour. Then point at each tag and say out loud what it does. If you can do that, you're ready to build for real.</p><div class="why pink"><b>Why:</b> this is the literacy that stops coding being magic. If you can read a line, you can change it on purpose - whether you typed it or an AI did.</div></div>
+      </section>
+
+      <!-- ===================== PART 2 · BUILD THE EXPLAINER ===================== -->
+      <section class="lp-wrap p2">
+      <p class="lpart">Part 2 · Build your explainer · ~50 min</p>
+      <p class="act-sub" style="max-width:70ch">Time to build the first half of your page: a <b>title</b>, <b>what an algorithm is</b>, the <b>key terms</b>, and <b>how AI works</b> using them. Learn each idea here, then add it to your site with your chosen tool at the end of this part.</p>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">What is an algorithm?</h3></div><span class="ltime">~4 min</span></div>
+      <p class="act-sub" style="max-width:66ch">You met this last week: an <b>algorithm</b> is just a set of step-by-step instructions a computer follows - like a recipe. AI is built from algorithms, but with a twist: instead of being told every rule, it <em>learns</em> its rules from data. That's what the rest of this part unpacks.</p>
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">The key terms</h3></div><span class="ltime">~12 min</span></div>
+      <p class="act-sub" style="max-width:66ch">A model cannot "read" letters. It chops text into <b>tokens</b>, turns each into a <b>vector</b>, and does maths on those numbers. These are the words your page must explain - the cards below show each one in action (they animate as you reach them).</p>
 
       <div class="glass rounded panel" style="padding:18px 20px; margin-top:16px">
         <span class="label indigo mono">// Words you'll actually need</span>
@@ -1844,26 +1942,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       </div>
 
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Be the tokeniser</h3></div><span class="ltime">~8 min</span></div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 1 · on paper · 8 min</span><h5>Cut a sentence into tokens</h5><p>Write the sentence <em>"Sceptical artists hotwire the machine."</em> on paper, then chop it into <b>tokens</b> with scissors or slashes - one per word to start, then try splitting a long word into pieces. Number each token 1, 2, 3… You have just done the model's first move: turning language into a list of numbered chunks.</p><div class="why purple"><b>Why:</b> the "black box" feels less magic once you've done its first step by hand. Tokens are where every model begins.</div></div>
-
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Meaning is a direction</h3></div><span class="ltime">~6 min</span></div>
-      <p class="act-sub" style="max-width:66ch">Once every token is a vector, the model judges meaning by the <b>angle</b> between vectors, not the distance. Words pointing the same way mean similar things. That's <b>cosine similarity</b> - and it's the maths behind autocomplete, search and recommendations. You already have two tools for this in <b>Universal Labs</b>: the Meaning-Space and the Cosine Compass.</p>
-
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Interrogate the meaning-space</h3></div><span class="ltime">~12 min</span></div>
-      <div class="taskcard"><span class="tk-when">▶ Task 2 · in Universal Labs · 12 min</span><h5>Use the Labs, write what you find</h5><p>Open <b>Universal Labs</b> and play with <b>Lab 01 (Meaning-Space)</b> and <b>Lab 03 (Cosine Compass)</b>. On paper or your site, answer in your own words: <b>(1)</b> Find two words that sit close together and two that sit far apart - why? <b>(2)</b> Type "river bank" then "money bank" - what happens to <em>bank</em>, and why? <b>(3)</b> On the Compass, when is similarity highest - small angle or large?</p><div class="why blue"><b>Why:</b> you're gathering the real examples you'll reuse later to <em>teach</em> this to next year. Notice it, name it, then you can explain it.</div></div>
-
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Read the code you write</h3></div><span class="ltime">~8 min</span></div>
-      <p class="act-sub" style="max-width:66ch">Whether you hand-code or vibe-code today, you must be able to <b>read</b> your page. HTML is just a stack of labelled boxes called <b>tags</b>. A tag usually opens and closes around its content: <code>&lt;h1&gt;…&lt;/h1&gt;</code>. Here are the only five you need to start:</p>
-      <div class="codeblk">&lt;<span class="tag">h1</span>&gt;Inside the Black Box&lt;/<span class="tag">h1</span>&gt;        <span class="com">&lt;!-- a big heading --&gt;</span>
-&lt;<span class="tag">p</span>&gt;Words become numbers.&lt;/<span class="tag">p</span>&gt;            <span class="com">&lt;!-- a paragraph of text --&gt;</span>
-&lt;<span class="tag">input</span> <span class="att">id</span>="box"&gt;                          <span class="com">&lt;!-- a box to type into --&gt;</span>
-&lt;<span class="tag">button</span> <span class="att">onclick</span>="run()"&gt;Go&lt;/<span class="tag">button</span>&gt;   <span class="com">&lt;!-- a clickable button --&gt;</span>
-&lt;<span class="tag">script</span>&gt; … &lt;/<span class="tag">script</span>&gt;                    <span class="com">&lt;!-- the code that makes it do things --&gt;</span></div>
-
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Label the tags</h3></div><span class="ltime">~5 min</span></div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 5 min</span><h5>Translate the code into English</h5><p>Copy the five lines above onto paper and, next to each, write in plain English what it makes appear on the screen. No jargon - pretend you're explaining to someone who has never seen code. Keep this sheet; it's the key to reading your own page later.</p><div class="why pink"><b>Why:</b> this is the literacy that stops "vibe coding" being magic. If you can translate a line of code, you can change it on purpose.</div></div>
-      <div class="glass rounded panel" style="padding:20px 22px; margin-top:24px">
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">How AI works, end to end</h3></div><span class="ltime">~8 min</span></div>
+      <p class="act-sub" style="max-width:70ch">Here's the whole journey in order - the backbone of your "how AI works" section. Press play and watch every term above appear in sequence, from training all the way to the answer.</p>
+      <div class="glass rounded panel" style="padding:20px 22px; margin-top:18px">
         <span class="label indigo mono">// the big picture · end to end</span>
         <h3 style="font-size:18px;font-weight:800;color:var(--s900);margin:7px 0 0">From training to answer</h3>
         <p class="act-sub" style="max-width:70ch;margin-top:8px">Press play to walk the whole journey - how a model is first <b>built</b>, then how it turns <b>your prompt</b> into a <b>response</b>. Every term from the cards above shows up, in order.</p>
@@ -1880,16 +1961,66 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <span class="pipe-count" id="pipe-count">1 / 9</span>
         </div>
       </div>
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Gather real examples in the Labs</h3></div><span class="ltime">~10 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 2 · in Universal Labs · 10 min</span><h5>Find examples you can reuse to teach</h5><p>Open <b>Universal Labs</b> and play with <b>Lab 01 (Meaning-Space)</b> and <b>Lab 03 (Cosine Compass)</b>. Jot down: <b>(1)</b> two words that sit close and two far apart - why? <b>(2)</b> type "river bank" then "money bank" - what happens to <em>bank</em>? <b>(3)</b> when is similarity highest - small angle or large? Use these on your page.</p><div class="why blue"><b>Why:</b> the clearest teaching uses concrete examples. Collect them now, explain them on your site later.</div></div>
+
+      <p class="lpart" style="margin-top:32px">Now add it to your site</p>
+      <p class="act-sub" style="max-width:70ch">Add a title and these sections (algorithm, key terms, how AI works) to your page - using your tool from Part 1.</p>
+      <div class="routes">
+        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Direct the Canvas</h5><p>Paste the prompt below into Gemini Canvas, then refine by chatting - swap in your own words and the examples you found in the Labs.</p></div>
+        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Build in the editor</h5><p>Paste the HTML below into the builder (Part 1) or the Tryit editor, then rewrite the text in your own words.</p></div>
+      </div>
+      <div class="prompt-term">
+        <div class="prompt-bar"><h4>⌨ Gemini prompt · the explainer sections</h4><button class="copy-btn" onclick="copyToClipboard('prompt-explain')">Copy prompt</button></div>
+        <textarea id="prompt-explain" class="prompt-area" readonly>Create a single, self-contained, mobile-friendly web page that teaches how AI works to a 15-year-old. Put all HTML and CSS in one file and comment each section so I can read it. Use a clean, friendly style with big readable text and a soft pastel palette. Reject generic templates.
+
+Include these sections, each a heading + a short plain-English paragraph:
+1. A title and one-line intro for the page.
+2. "What is an algorithm?" - step-by-step instructions a computer follows, like a recipe.
+3. "The key words" - one friendly sentence each for: token, vector, embedding, cosine similarity, dataset, bias.
+4. "How AI actually works" - in order: it trains on a dataset, learns patterns into an embedding, is tuned by a reward system (human feedback); then for a prompt it tokenises the text, looks up each token's vector, predicts the next token over and over, and turns the result back into words.
+
+Leave a clearly-marked empty section titled "Classification Mirror" - I'll add that next.</textarea>
+      </div>
+      <div class="prompt-term">
+        <div class="prompt-bar"><h4>⌨ Hand-code · paste into the builder</h4><button class="copy-btn" onclick="copyToClipboard('code-explain')">Copy code</button></div>
+        <textarea id="code-explain" class="prompt-area" readonly>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Inside the Black Box&lt;/title&gt;
+  &lt;style&gt;
+    body{ font-family:sans-serif; max-width:640px; margin:30px auto; padding:0 16px; line-height:1.6; color:#1c1917; }
+    h1{ color:#7c3aed; } h2{ color:#5b21b6; margin-top:26px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Inside the Black Box&lt;/h1&gt;
+  &lt;p&gt;A quick, friendly guide to how AI actually works.&lt;/p&gt;
+
+  &lt;h2&gt;What is an algorithm?&lt;/h2&gt;
+  &lt;p&gt;A set of step-by-step instructions a computer follows - like a recipe.&lt;/p&gt;
+
+  &lt;h2&gt;The key words&lt;/h2&gt;
+  &lt;p&gt;&lt;b&gt;Token:&lt;/b&gt; a chunk of text. &lt;b&gt;Vector:&lt;/b&gt; a list of numbers giving it a position. &lt;b&gt;Embedding:&lt;/b&gt; the map of all those positions. &lt;b&gt;Cosine similarity:&lt;/b&gt; how close two meanings point. &lt;b&gt;Dataset:&lt;/b&gt; what it learned from. &lt;b&gt;Bias:&lt;/b&gt; unfairness learned from skewed data.&lt;/p&gt;
+
+  &lt;h2&gt;How AI actually works&lt;/h2&gt;
+  &lt;p&gt;It trains on a huge dataset, learning patterns into an embedding, then is tuned by human feedback. When you type a prompt it splits into tokens, looks up their vectors, predicts the next token over and over, and turns the result back into words.&lt;/p&gt;
+
+  &lt;!-- Part 3 will add the Classification Mirror here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+      </div>
       </section>
 
-      <!-- ===================== PART 2 ===================== -->
-      <section class="lp-wrap p2">
-      <p class="lpart">Part 2 · Bias in the data · ~40 min</p>
+      <!-- ===================== PART 3 · INTERACTIVE + PUBLISH ===================== -->
+      <section class="lp-wrap p3">
+      <p class="lpart">Part 3 · Add the interactive piece, then publish · ~55 min</p>
 
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Where do the numbers come from?</h3></div><span class="ltime">~8 min</span></div>
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Where do the numbers come from?</h3></div><span class="ltime">~8 min</span></div>
       <p class="act-sub" style="max-width:66ch">A model doesn't invent its sense of meaning - it <b>learns</b> it from a <b>dataset</b>: billions of examples scraped from the human world, each labelled by people. If the data is skewed, careless or prejudiced, the model quietly learns that too. There's an old computing phrase for it: <b>garbage in, garbage out</b>. The maths looks neutral; the data behind it rarely is.</p>
 
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Training Humans · the receipts</h3></div><span class="ltime">~10 min</span></div>
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Training Humans · the receipts</h3></div><span class="ltime">~10 min</span></div>
       <div class="glass-dark knowledge" style="margin-top:18px; border-radius:18px">
         <span class="label mono" style="color:#f9a8d4">// Knowledge archive · dataset bias</span>
         <p class="a" style="font-weight:500">In 2019 the artist <b>Trevor Paglen</b> and researcher <b>Kate Crawford</b> dug into the giant image datasets used to train AI - including ImageNet. They found photographs of ordinary people sorted into thousands of categories, many of them crude, judgemental or outright offensive - labels no one in the photos ever agreed to.</p>
@@ -1897,103 +2028,52 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </div>
       <a class="src-link" href="https://excavating.ai/" target="_blank" rel="noopener">Read the artists' own essay · Crawford &amp; Paglen, "Excavating AI" →</a>
 
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Design the Classification Mirror</h3></div><span class="ltime">~14 min</span></div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 4 · on paper · 14 min</span><h5>Sketch a classifier that exposes itself</h5><p>Imagine a careless AI that "classifies" people from a photo. On paper, sketch a <b>Classification Mirror</b>: pick an everyday object (or yourself) and write the <b>absurd, clearly-unfair labels</b> a biased system might stamp on it with total confidence. Make it funny - but the joke must have a <b>target</b>: it should make the unfairness obvious. Keep this; it becomes the interactive centrepiece of your build.</p><div class="why blue"><b>Why:</b> satire is a serious tool. Exaggerating a biased classifier is one of the clearest ways to <em>teach</em> what's wrong with it - which is exactly your job for next year's class.</div></div>
-      </section>
-
-      <!-- ===================== PART 3 ===================== -->
-      <section class="lp-wrap p3">
-      <p class="lpart">Part 3 · Build the teaching tool · ~55 min</p>
-
-      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">6</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">The brief: teach next year's class</h3></div><span class="ltime">~5 min</span></div>
-      <p class="act-sub" style="max-width:70ch">Build <b>one interactive web page</b> that teaches this week's ideas to a 15-year-old who knows nothing - and publish it on your Google Site. It must cover <b>all three</b> ideas in plain English and include <b>at least one working interactive element</b> (your Classification Mirror is the obvious one). It must contain:</p>
-      <ul style="max-width:70ch; margin-top:8px; padding-left:20px; color:var(--s600); font-size:13px; line-height:1.7">
-        <li>A plain-English explanation of <b>tokens</b>, <b>vectors / cosine similarity</b>, and <b>dataset bias</b>.</li>
-        <li>At least one <b>interactive demo</b> (a tokeniser, a similarity slider, or the <b>Classification Mirror</b>).</li>
-        <li>One line on <b>why bias matters</b> - your own view, from Part 2.</li>
-      </ul>
-      <div class="glass rounded panel" style="padding:18px 20px; margin-top:18px; border-left:4px solid #9333ea">
-        <span class="label indigo mono">// why this skill matters</span>
-        <h5 style="font-size:14px;font-weight:800;color:var(--s900);margin:7px 0 0">Vibe coding is a digital artist's superpower</h5>
-        <p style="font-size:12.5px;color:var(--s600);line-height:1.65;margin-top:8px">For years, making something interactive or generative meant first spending months learning to code. Vibe coding flips that: you describe what you want in plain language and shape it by conversation - so your <b>taste, ideas and art direction</b> become the real skill, not memorising syntax. A single artist can now prototype an interactive site, a generative piece or a custom tool in an afternoon - things that used to need a developer and a budget.</p>
-        <p style="font-size:12.5px;color:var(--s600);line-height:1.65;margin-top:8px">The catch - and why Part 1 mattered - is that the machine only does what you can <b>direct and read</b>. So the artists who get the most out of it aren't the best typists; they're the ones with the clearest vision who can steer the tool and check its work. That's a skill you already have as an artist - you're just pointing it somewhere new.</p>
-      </div>
-      <p class="act-sub" style="max-width:70ch; margin-top:18px">Pick your route. Both are full marks - the only rule is you must be able to <b>read your own code</b>.</p>
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Design the Classification Mirror</h3></div><span class="ltime">~14 min</span></div>
+      <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 14 min</span><h5>Sketch a classifier that exposes itself</h5><p>Imagine a careless AI that "classifies" people from a photo. On paper, sketch a <b>Classification Mirror</b>: pick an everyday object (or yourself) and write the <b>absurd, clearly-unfair labels</b> a biased system might stamp on it with total confidence. Make it funny - but the joke must have a <b>target</b>: it should make the unfairness obvious. Keep this; it becomes the interactive centrepiece of your build.</p><div class="why blue"><b>Why:</b> satire is a serious tool. Exaggerating a biased classifier is one of the clearest ways to <em>teach</em> what's wrong with it - which is exactly your job for next year's class.</div></div>
+      <p class="lpart" style="margin-top:32px">Now build the interactive piece</p>
+      <p class="act-sub" style="max-width:70ch">Add your <b>Classification Mirror</b> - the interactive demo your page needs - using your tool. Use the absurd labels from your sketch.</p>
       <div class="routes">
-        <div class="route a">
-          <span class="r-tag">▶ Route A · vibe-code</span>
-          <h5>Direct Gemini Canvas</h5>
-          <p>Use the starter prompt below, then refine it by conversation. Faster to something polished - but you must annotate the code afterwards.</p>
-        </div>
-        <div class="route b">
-          <span class="r-tag">✎ Route B · hand-build</span>
-          <h5>Write the HTML yourself</h5>
-          <p>Don't want to use AI? Start from the skeleton below and fill it in. Slower, but every line is yours and you'll understand all of it.</p>
-        </div>
+        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Ask for the Mirror</h5><p>Paste the prompt below, then refine the labels by chatting until they're funny and clearly make the point.</p></div>
+        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Paste &amp; adapt</h5><p>Drop the snippet below into your page (just before <code>&lt;/body&gt;</code>) and swap in your own labels.</p></div>
       </div>
-
       <div class="prompt-term">
-        <div class="prompt-bar">
-          <h4>⌨ Route A · copyable starter prompt · Gemini Canvas</h4>
-          <button class="copy-btn" onclick="copyToClipboard('prompt-w2')">Copy prompt</button>
-        </div>
-        <textarea id="prompt-w2" class="prompt-area" readonly>Build a single self-contained index.html that teaches three ideas to a 15-year-old, with interactive demos. No external libraries; put all HTML, CSS and JS in the one file; comment every section so I can read it.
+        <div class="prompt-bar"><h4>⌨ Gemini prompt · the Classification Mirror</h4><button class="copy-btn" onclick="copyToClipboard('prompt-mirror')">Copy prompt</button></div>
+        <textarea id="prompt-mirror" class="prompt-area" readonly>Now add an interactive "Classification Mirror" section to my page - a satire of a biased AI classifier.
 
-1. TOKENS - a text box where I type a sentence and it splits into tokens, showing the count.
-2. VECTORS & SIMILARITY - let me pick two words and show a simple "similarity" bar that moves (you may fake the scores with a small built-in table of word pairs).
-3. DATASET BIAS - a satirical "Classification Mirror": a button that "classifies" the user with deliberately absurd, clearly-unfair labels, then a sentence explaining that real classifiers learn labels like these from biased human data.
-
-Design: clean and friendly, Manrope font, soft pastel palette, big readable text, works on a phone. Put a short plain-English explanation under each demo. Reject generic templates.</textarea>
+- A button labelled "Classify me".
+- When clicked, show one or two deliberately absurd, clearly-unfair labels with fake high "confidence" percentages. Keep them silly, never targeting real groups of people.
+- Under the result, a line: "Real classifiers learn labels like these from biased human data - that's the point."
+- Match my page's existing style, and comment the JavaScript so I can read it.</textarea>
       </div>
-
       <div class="prompt-term">
-        <div class="prompt-bar">
-          <h4>⌨ Route B · copyable HTML skeleton · build from scratch</h4>
-          <button class="copy-btn" onclick="copyToClipboard('code-w2')">Copy code</button>
-        </div>
-        <textarea id="code-w2" class="prompt-area" readonly>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;Inside the Black Box&lt;/title&gt;
-  &lt;style&gt;
-    body{ font-family:sans-serif; max-width:680px; margin:40px auto; padding:0 16px; line-height:1.6; }
-    h1{ color:#5b21b6; }
-    .demo{ border:2px solid #ddd; border-radius:12px; padding:16px; margin-top:20px; }
-    button{ font-size:16px; padding:8px 14px; border-radius:8px; cursor:pointer; }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Inside the Black Box&lt;/h1&gt;
-  &lt;p&gt;Type a sentence and watch it get cut into tokens.&lt;/p&gt;
+        <div class="prompt-bar"><h4>⌨ Hand-code · the Classification Mirror</h4><button class="copy-btn" onclick="copyToClipboard('code-mirror')">Copy code</button></div>
+        <textarea id="code-mirror" class="prompt-area" readonly>&lt;h2&gt;Classification Mirror&lt;/h2&gt;
+&lt;p&gt;A satire of a careless, biased classifier. Press the button.&lt;/p&gt;
+&lt;button onclick="classifyMe()"&gt;Classify me&lt;/button&gt;
+&lt;p id="verdict"&gt;&lt;/p&gt;
 
-  &lt;div class="demo"&gt;
-    &lt;input id="box" placeholder="Type a sentence..."&gt;
-    &lt;button onclick="tokenise()"&gt;Tokenise&lt;/button&gt;
-    &lt;p id="out"&gt;&lt;/p&gt;
-  &lt;/div&gt;
-
-  &lt;script&gt;
-    // this runs when the button is clicked
-    function tokenise(){
-      var text = document.getElementById('box').value;   // read the box
-      var tokens = text.split(' ');                       // cut on spaces
-      document.getElementById('out').innerText =
-        tokens.length + ' tokens: ' + tokens.join(' | ');
-    }
-  &lt;/script&gt;
-
-  &lt;!-- NOW ADD: a section on vectors, and your Classification Mirror --&gt;
-&lt;/body&gt;
-&lt;/html&gt;</textarea>
+&lt;script&gt;
+  // a list of absurd, obviously-unfair labels (keep them silly, not cruel)
+  var labels = [
+    "87% likely to enjoy queuing",
+    "92% 'probably a wizard'",
+    "78% suspected cat in disguise",
+    "95% confirmed crisp enthusiast"
+  ];
+  // runs when the button is clicked
+  function classifyMe(){
+    var pick = labels[Math.floor(Math.random() * labels.length)];   // pick a random label
+    document.getElementById('verdict').innerText =
+      pick + " - and real classifiers learn labels like these from biased human data.";
+  }
+&lt;/script&gt;</textarea>
       </div>
 
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Build it - then read it back</h3></div><span class="ltime">~35 min</span></div>
-      <div class="taskcard"><span class="tk-when">▶ Task 5 · build · ~30 min</span><h5>Make your teaching tool</h5><p>Build the page (Route A or B), then embed it on your Google Site (Insert → Embed → Embed code → paste your HTML). Aim for <b>clear over clever</b>: a Year-9 reader should leave understanding one new thing.</p><div class="why purple"><b>Why:</b> teaching forces real understanding. The gaps in what <em>you</em> know show up the moment you try to explain it simply.</div></div>
-      <div class="taskcard"><span class="tk-when">▶ Task 6 · required · ~8 min</span><h5>Annotate your own code</h5><p>Paste your finished code into your Site (or a doc) and <b>add a comment to at least 5 lines</b> explaining, in plain English, what each does. If you vibe-coded it and can't explain a line, ask the AI "what does this line do and why?" until you can.</p><div class="why blue"><b>Why:</b> this is the non-negotiable skill of the course - you direct the machine, so you must understand what it hands back. No black boxes of your own.</div></div>
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Annotate your own code</h3></div><span class="ltime">~8 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 4 · required · ~8 min</span><h5>Explain at least 5 lines</h5><p>Add a comment to at least <b>5 lines</b> of your page explaining, in plain English, what each does. If you vibe-coded it and can't explain a line, ask the AI "what does this line do and why?" until you can.</p><div class="why blue"><b>Why:</b> this is the non-negotiable skill of the course - you direct the machine, so you must understand what it hands back. No black boxes of your own.</div></div>
 
-      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">8</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Swap &amp; critique</h3></div><span class="ltime">~15 min</span></div>
-      <div class="taskcard"><span class="tk-when">▶ Task 7 · peer crit · 15 min</span><h5>Review a classmate's teaching tool</h5><p>Open someone else's published Site and review it against the checklist below. Be kind, be specific, be useful - written feedback, not just "it's good".</p>
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Swap &amp; critique</h3></div><span class="ltime">~15 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Task 5 · peer crit · 15 min</span><h5>Review a classmate's teaching tool</h5><p>Open someone else's published Site and review it against the checklist below. Be kind, be specific, be useful - written feedback, not just "it's good".</p>
         <ul class="crit-list">
           <li><b>Clarity -</b> could a Year-9 actually understand it? Where did you get lost?</li>
           <li><b>Accuracy -</b> are tokens, vectors and bias explained <em>correctly</em>?</li>
@@ -3208,6 +3288,13 @@ function pipeToggle(){ if(pipeTimer){ pipeStop(); } else { pipeStart(); } }
 function pipeStart(){ if(pipeI>=pipeData.length-1) pipeI=0; document.getElementById('pipe-play').textContent='❚❚ Pause'; pipeRender(); pipeTimer=setInterval(function(){ if(pipeI>=pipeData.length-1){ pipeStop(); } else { pipeI++; pipeRender(); } },3600); }
 function pipeStop(){ if(pipeTimer){ clearInterval(pipeTimer); pipeTimer=null; } var b=document.getElementById('pipe-play'); if(b) b.textContent=(pipeI>=pipeData.length-1?'↻ Replay':'▶ Play'); }
 if(document.readyState!=='loading'){ pipeInit(); } else { document.addEventListener('DOMContentLoaded', pipeInit); }
+
+/* ===== live HTML builder ===== */
+var HB_DEFAULT='';
+function hbRun(){ var c=document.getElementById('hb-code'), f=document.getElementById('hb-preview'); if(c&&f) f.srcdoc=c.value; }
+function hbReset(){ var c=document.getElementById('hb-code'); if(c){ c.value=HB_DEFAULT; hbRun(); } }
+function hbInit(){ var c=document.getElementById('hb-code'); if(!c) return; HB_DEFAULT=c.value; hbRun(); }
+if(document.readyState!=='loading'){ hbInit(); } else { document.addEventListener('DOMContentLoaded', hbInit); }
 
 /* ===== BRAIN: fire together, wire together ===== */
 var fireStrength=1, firePulse=-1, fireRAF=0, fireStarted=false;
