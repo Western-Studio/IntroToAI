@@ -1038,6 +1038,32 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 @media(min-width:740px){ .hb-preview{ border-top:none; border-left:1px solid #e7e5e4; } }
 .hb-note{ font-size:11.5px; color:var(--s500); margin-top:9px; line-height:1.5; }
 .hb-note a{ color:#7c3aed; font-weight:700; }
+/* ===== collapsible parts ===== */
+.lp-wrap.collapsible .part-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; }
+.lp-wrap.collapsible .part-head .lpart{ margin:0; }
+.part-chev{ font-size:20px; color:var(--s400); transition:transform .3s; flex:none; }
+.lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
+.part-body{ display:grid; grid-template-rows:1fr; transition:grid-template-rows .4s ease; }
+.lp-wrap.collapsed .part-body{ grid-template-rows:0fr; }
+.part-inner{ overflow:hidden; min-height:0; }
+.lp-wrap.collapsed{ padding-bottom:24px; }
+/* ===== final-site wireframe ===== */
+.wfwrap{ margin-top:16px; }
+.wireframe{ max-width:330px; margin:0 auto; border:1px solid #d6d3d1; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 8px 24px -12px rgba(28,25,23,.45); }
+.wf-bar{ display:flex; gap:5px; padding:9px 12px; background:#f5f5f4; border-bottom:1px solid #e7e5e4; }
+.wf-bar span{ width:9px; height:9px; border-radius:50%; background:#d6d3d1; }
+.wf-body{ padding:16px 18px 20px; }
+.wf-title{ font:800 16px Manrope,system-ui,sans-serif; color:#7c3aed; }
+.wf-sub{ font-size:9.5px; color:#a8a29e; margin-top:3px; font-family:ui-monospace,monospace; }
+.wf-h{ font:800 11px Manrope,system-ui,sans-serif; color:#44403c; margin-top:14px; }
+.wf-lines{ display:flex; flex-direction:column; gap:5px; margin-top:6px; }
+.wf-lines i{ height:6px; border-radius:3px; background:#e7e5e4; }
+.wf-lines i:last-child{ width:65%; }
+.wf-demo{ margin-top:8px; display:flex; align-items:center; gap:9px; }
+.wf-btn{ font:700 10px Manrope,system-ui,sans-serif; background:#059669; color:#fff; padding:5px 11px; border-radius:7px; }
+.wf-result{ flex:1; height:7px; border-radius:4px; background:#fde68a; }
+.wf-tag{ display:inline-block; font:700 8px ui-monospace,monospace; color:#059669; background:rgba(5,150,105,.1); border-radius:5px; padding:2px 6px; margin-left:7px; vertical-align:middle; }
+.wf-cap{ font-size:11.5px; color:var(--s500); margin-top:11px; line-height:1.5; text-align:center; max-width:60ch; margin-left:auto; margin-right:auto; }
 /* ===== Week 2 sticky part nav ===== */
 .w2nav{ position:sticky; top:8px; z-index:40; display:flex; flex-wrap:wrap; gap:5px; align-items:center; margin-top:24px; padding:9px 12px; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(231,229,228,.9); border-radius:14px; box-shadow:0 4px 16px -9px rgba(28,25,23,.45); }
 .w2nav .w2n-lab{ font:800 10px ui-monospace,monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--s400); margin-right:4px; }
@@ -1747,6 +1773,24 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
         <p class="goal-foot"><b>Minimum to pass:</b> a one-page site that explains <em>one</em> idea clearly with <em>one</em> working interactive bit. Start there - everything else builds on it.</p>
         <p class="goal-foot" style="margin-top:8px">Two ways to build it - <b>direct an AI (Gemini Canvas)</b> or <b>hand-code it</b> in the builder inside this page. You choose in Part 1.</p>
+        <div class="wfwrap">
+          <div class="wireframe" aria-hidden="true">
+            <div class="wf-bar"><span></span><span></span><span></span></div>
+            <div class="wf-body">
+              <div class="wf-title">Your title</div>
+              <div class="wf-sub">one-line intro</div>
+              <div class="wf-h">What is an algorithm?</div>
+              <div class="wf-lines"><i></i><i></i></div>
+              <div class="wf-h">The key terms</div>
+              <div class="wf-lines"><i></i><i></i><i></i></div>
+              <div class="wf-h">How AI works</div>
+              <div class="wf-lines"><i></i><i></i></div>
+              <div class="wf-h">Classification Mirror <span class="wf-tag">interactive</span></div>
+              <div class="wf-demo"><span class="wf-btn">Classify me</span><i class="wf-result"></i></div>
+            </div>
+          </div>
+          <p class="wf-cap">A rough wireframe of the finished page - yours should contain these blocks, in roughly this order. Style it however you like.</p>
+        </div>
       </div>
 
       <div class="lpath-intro">
@@ -1758,10 +1802,10 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <nav class="w2nav" aria-label="Lesson parts">
         <span class="w2n-lab">This lesson</span>
         <a class="s" href="#w2-start">Starter</a>
-        <a class="p1" href="#w2-p1">1 · Choose tool</a>
-        <a class="p2" href="#w2-p2">2 · Build explainer</a>
-        <a class="p3" href="#w2-p3">3 · Interactive + publish</a>
-        <a class="p3" href="#w2-final">★ Hand in</a>
+        <a class="p1" href="#w2-p1" onclick="return openPart('w2-p1')">1 · Choose tool</a>
+        <a class="p2" href="#w2-p2" onclick="return openPart('w2-p2')">2 · Build explainer</a>
+        <a class="p3" href="#w2-p3" onclick="return openPart('w2-p3')">3 · Interactive + publish</a>
+        <a class="p3" href="#w2-final" onclick="return openPart('w2-p3','w2-final')">★ Hand in</a>
       </nav>
 
       <!-- STARTER -->
@@ -1769,8 +1813,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="taskcard offline"><span class="tk-when">✎ Starter · in pairs · 10 min</span><h5>Teach last week back to your partner</h5><p>Screens down. Take turns - <b>no notes</b> - to explain to your partner: <b>(1)</b> what is an <em>algorithm</em>, in your own words? <b>(2)</b> Sol LeWitt and Andy Warhol barely touched much of "their own" art - so how can it be theirs? <b>(3)</b> what does it mean to be the <em>author of an instruction</em>? If your partner can't follow you, go again until they can.</p><div class="why pink"><b>Why:</b> if you can teach it, you know it - which is the whole job today. It also warms up the one muscle you'll use all lesson: making a hard idea simple.</div></div>
 
       <!-- ===================== PART 1 · CHOOSE YOUR TOOL ===================== -->
-      <section class="lp-wrap p1" id="w2-p1">
-      <p class="lpart">Part 1 · Choose your build tool · ~25 min</p>
+      <section class="lp-wrap p1 collapsible" id="w2-p1">
+      <div class="part-head" onclick="togglePart(this)"><p class="lpart">Part 1 · Choose your build tool · ~25 min</p><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
       <p class="act-sub" style="max-width:70ch">There are two ways to build today's page. <b>Pick one and stick with it</b> - both earn full marks. The only rule: by the end you must be able to <b>read</b> the code on your page and say what it does.</p>
 
       <div class="routes">
@@ -1825,11 +1870,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </div>
       <p class="hb-note">Everything runs in your browser - nothing is sent anywhere. Want more room, or to save your work? <a href="https://www.w3schools.com/tryit/" target="_blank" rel="noopener">Open the W3Schools Tryit editor →</a></p>
       <div class="taskcard"><span class="tk-when">▶ Task 1 · 9 min</span><h5>Make three changes, then read them aloud</h5><p>In the builder above: <b>(1)</b> change the heading text, <b>(2)</b> add a second <code>&lt;p&gt;</code> paragraph, <b>(3)</b> change the <code>h1</code> colour. Then point at each tag and say out loud what it does. If you can do that, you're ready to build for real.</p><div class="why pink"><b>Why:</b> this is the literacy that stops coding being magic. If you can read a line, you can change it on purpose - whether you typed it or an AI did.</div></div>
+      </div></div>
       </section>
 
       <!-- ===================== PART 2 · BUILD THE EXPLAINER ===================== -->
-      <section class="lp-wrap p2" id="w2-p2">
-      <p class="lpart">Part 2 · Build your explainer · ~50 min</p>
+      <section class="lp-wrap p2 collapsible collapsed" id="w2-p2">
+      <div class="part-head" onclick="togglePart(this)"><p class="lpart">Part 2 · Build your explainer · ~50 min</p><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
       <p class="act-sub" style="max-width:70ch">Time to build the first half of your page: a <b>title</b>, <b>what an algorithm is</b>, the <b>key terms</b>, and <b>how AI works</b> using them. Learn each idea here, then add it to your site with your chosen tool at the end of this part.</p>
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">What is an algorithm?</h3></div><span class="ltime">~4 min</span></div>
@@ -2050,11 +2097,13 @@ Leave a clearly-marked empty section titled "Classification Mirror" - I'll add t
 &lt;/body&gt;
 &lt;/html&gt;</textarea>
       </div>
+      </div></div>
       </section>
 
       <!-- ===================== PART 3 · INTERACTIVE + PUBLISH ===================== -->
-      <section class="lp-wrap p3" id="w2-p3">
-      <p class="lpart">Part 3 · Add the interactive piece, then publish · ~55 min</p>
+      <section class="lp-wrap p3 collapsible collapsed" id="w2-p3">
+      <div class="part-head" onclick="togglePart(this)"><p class="lpart">Part 3 · Add the interactive piece, then publish · ~55 min</p><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">5</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Where do the numbers come from?</h3></div><span class="ltime">~8 min</span></div>
       <p class="act-sub" style="max-width:66ch">A model doesn't invent its sense of meaning - it <b>learns</b> it from a <b>dataset</b>: billions of examples scraped from the human world, each labelled by people. If the data is skewed, careless or prejudiced, the model quietly learns that too. There's an old computing phrase for it: <b>garbage in, garbage out</b>. The maths looks neutral; the data behind it rarely is.</p>
@@ -2139,6 +2188,7 @@ Leave a clearly-marked empty section titled "Classification Mirror" - I'll add t
           <div class="ft-classroom"><span class="cl-pill">Minimum to hand in: a working page that explains ONE of the three ideas with ONE interactive element. Build up from there.</span></div>
         </div>
       </div>
+      </div></div>
       </section>
     </div>
   </div>
@@ -3337,6 +3387,10 @@ function hbRun(){ var c=document.getElementById('hb-code'), f=document.getElemen
 function hbReset(){ var c=document.getElementById('hb-code'); if(c){ c.value=HB_DEFAULT; hbRun(); } }
 function hbInit(){ var c=document.getElementById('hb-code'); if(!c) return; HB_DEFAULT=c.value; hbRun(); }
 if(document.readyState!=='loading'){ hbInit(); } else { document.addEventListener('DOMContentLoaded', hbInit); }
+
+/* ===== collapsible lesson parts ===== */
+function togglePart(head){ var sec=head.closest('.lp-wrap'); if(sec) sec.classList.toggle('collapsed'); }
+function openPart(id, target){ var sec=document.getElementById(id); if(sec) sec.classList.remove('collapsed'); var t=document.getElementById(target||id); if(t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); return false; }
 
 /* ===== BRAIN: fire together, wire together ===== */
 var fireStrength=1, firePulse=-1, fireRAF=0, fireStarted=false;
