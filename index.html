@@ -1054,6 +1054,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .src-note p{ font-size:12.5px; color:var(--s600); line-height:1.6; margin-top:6px; max-width:72ch; }
 .src-note p b{ color:var(--s900); }
 .src-note .goal-sections{ margin-top:13px; }
+/* ===== ground-rule (safety) callout ===== */
+.ground-rule{ margin-top:11px; padding:11px 14px; border-radius:10px; background:rgba(220,38,38,.07); border:1px solid #fecaca; border-left:4px solid #dc2626; font-size:12px; color:var(--s700); line-height:1.55; }
+.ground-rule b{ color:#b91c1c; }
 /* ===== "your turn" build banner ===== */
 .buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(5,150,105,.12), rgba(13,148,136,.06)); border:1px solid #99f6e4; border-left:4px solid #059669; }
 .bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#047857; }
@@ -2171,11 +2174,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <a class="src-link" href="https://excavating.ai/" target="_blank" rel="noopener">Read the artists' own essay · Crawford &amp; Paglen, "Excavating AI" →</a>
 
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Design the Classification Mirror</h3></div><span class="ltime">~14 min</span></div>
-      <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 14 min</span><h5>Sketch a classifier that exposes itself</h5><p>Imagine a careless AI that "classifies" people from a photo. On paper, sketch a <b>Classification Mirror</b>: pick an everyday object (or yourself) and write the <b>absurd, clearly-unfair labels</b> a biased system might stamp on it with total confidence. Make it funny - but the joke must have a <b>target</b>: it should make the unfairness obvious. Keep this; it becomes the interactive centrepiece of your build.</p><div class="why blue"><b>Why:</b> satire is a serious tool. Exaggerating a biased classifier is one of the clearest ways to <em>teach</em> what's wrong with it - which is exactly your job for next year's class.</div></div>
+      <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 14 min</span><h5>Sketch a classifier that exposes itself</h5><p>Imagine a careless AI that slaps confident labels on whatever it's shown. On paper, sketch a <b>Classification Mirror</b>: pick an <b>everyday object</b> (a mug, a trainer, a houseplant) - or yourself - and write the <b>absurd, clearly-unfair labels</b> a biased system might stamp on it with total confidence. The <b>target of the joke is the careless machine</b> - it should make the unfairness obvious. Keep this; it becomes the interactive centrepiece of your build.</p>
+        <div class="ground-rule"><b>⚠ Ground rule - read this:</b> your labels must be <b>silly and harmless</b>. They must <b>never</b> be offensive, insulting or hurtful to any person or group - nothing about someone's appearance, race, gender, religion, disability, or anything similar. Aim the joke squarely at <em>the AI</em>, never at people. If you're unsure, leave it out.</div>
+        <div class="why blue"><b>Why:</b> satire is a serious tool. Exaggerating a biased classifier is one of the clearest ways to <em>teach</em> what's wrong with it - done respectfully.</div></div>
       <div class="buildnow">
         <span class="bn-badge">🛠 Your turn · build</span>
         <h4 class="bn-h">Now build the interactive piece</h4>
-        <p>Add your <b>Classification Mirror</b> - the interactive demo your page needs - using your tool. Use the absurd labels from your sketch.</p>
+        <p>Add your <b>Classification Mirror</b> - the interactive demo your page needs - using your tool. Use the absurd labels from your sketch. <b>Keep them silly and harmless - never aimed at a real person or group.</b></p>
       </div>
       <div class="routes">
         <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Ask for the Mirror</h5><p>Paste the prompt below, then refine the labels by chatting until they're funny and clearly make the point.</p></div>
