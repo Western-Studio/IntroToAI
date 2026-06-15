@@ -868,13 +868,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .crit-list li::before{ content:"✦"; position:absolute; left:0; color:#9333ea; font-weight:800; }
 .crit-list b{ color:var(--s900); }
 /* ===== glossary interactive reveals ===== */
-.gloss{ cursor:pointer; transition:border-color .2s,background .2s; }
-.gloss:hover{ border-color:#c4b5fd; background:rgba(255,255,255,.82); }
+.gloss{ transition:border-color .2s,background .2s; }
 .gloss-hd{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-.gloss .gplus{ flex:none; width:18px; height:18px; border-radius:50%; background:rgba(124,58,237,.12); color:#7c3aed; font-weight:800; font-size:13px; line-height:18px; text-align:center; transition:transform .3s; }
-.gloss.open .gplus{ transform:rotate(135deg); }
-.gloss-reveal{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .42s ease; }
-.gloss.open .gloss-reveal{ grid-template-rows:1fr; }
+.gloss-reveal{ display:grid; grid-template-rows:1fr; }
 .gloss-reveal>.gr-wrap{ overflow:hidden; min-height:0; }
 .gr-in{ padding-top:12px; margin-top:11px; border-top:1px dashed rgba(168,162,158,.45); }
 .gloss-more{ font-size:11.5px; color:var(--s600); line-height:1.55; margin-top:10px; }
@@ -1650,11 +1646,10 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <div class="glass rounded panel" style="padding:18px 20px; margin-top:16px">
         <span class="label indigo mono">// Words you'll actually need</span>
-        <p style="font-size:11.5px;color:var(--s500);margin:4px 0 0">Tap a card to see it in action.</p>
         <div class="gloss-grid">
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Token</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Token</b></div>
             <span>A chunk of text - a word or part of a word. The model's smallest unit.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz"><div class="tok-chip">the</div><div class="tok-chip">cat</div><div class="tok-chip">sat</div><div class="tok-chip">down</div></div>
@@ -1662,8 +1657,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Vector</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Vector</b></div>
             <span>A list of numbers that gives a token a position, like map coordinates for meaning.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><line class="ax" x1="16" y1="52" x2="128" y2="52"/><line class="ax" x1="16" y1="52" x2="16" y2="8"/><line class="vec" x1="16" y1="52" x2="104" y2="18"/><polygon class="vh" points="104,18 93,19 98,27"/><text class="vt" x="106" y="16">cat</text></svg></div>
@@ -1671,8 +1666,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Embedding</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Embedding</b></div>
             <span>The whole map - where every token sits in the space of meaning.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><circle class="emb" cx="30" cy="20" r="4"/><circle class="emb hi" cx="98" cy="22" r="4"/><circle class="emb hi" cx="110" cy="30" r="4"/><circle class="emb" cx="45" cy="44" r="4"/><circle class="emb" cx="22" cy="38" r="4"/><circle class="emb" cx="70" cy="50" r="4"/><text class="et" x="84" y="18">king</text><text class="et" x="112" y="42">queen</text></svg></div>
@@ -1680,8 +1675,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Cosine similarity</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Cosine similarity</b></div>
             <span>How close two vectors <em>point</em> - the model's measure of "similar meaning".</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz"><svg class="gv-svg" viewBox="0 0 138 64"><path class="cosarc" d="M 44 53 A 26 26 0 0 0 40 40"/><line class="cosA" x1="20" y1="58" x2="110" y2="20"/><g class="cosB"><line class="cosbl" x1="20" y1="58" x2="110" y2="20"/></g></svg></div>
@@ -1689,8 +1684,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Dataset</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Dataset</b></div>
             <span>The giant pile of human-made examples the model learned from.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz ds"><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span><span class="ds-row"></span></div>
@@ -1698,8 +1693,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Bias</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Bias</b></div>
             <span>Unfairness baked into a model because it was baked into that data.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz bias" style="height:56px"><span class="bias-bar" style="height:14px"></span><span class="bias-bar" style="height:22px"></span><span class="bias-bar hot" style="height:48px"></span><span class="bias-bar hot" style="height:54px"></span><span class="bias-bar" style="height:18px"></span></div>
@@ -1707,8 +1702,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>HTML</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>HTML</b></div>
             <span>The language web pages are written in - a set of labelled boxes called tags.</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz" style="height:auto;padding:10px"><div class="htmlb"><span class="lbl">&lt;html&gt;</span><div class="htmlb"><span class="lbl">&lt;body&gt;</span><div class="htmlb"><span class="lbl">&lt;p&gt;</span></div></div></div></div>
@@ -1716,8 +1711,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             </div></div></div>
           </div>
 
-          <div class="gloss" onclick="toggleGloss(this)" role="button" tabindex="0" aria-expanded="false">
-            <div class="gloss-hd"><b>Tag</b><span class="gplus">+</span></div>
+          <div class="gloss">
+            <div class="gloss-hd"><b>Tag</b></div>
             <span>One HTML instruction, like &lt;h1&gt; (a heading) or &lt;p&gt; (a paragraph).</span>
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz tagviz"><span class="tg o">&lt;p&gt;</span><span class="tg-mid">Hello</span><span class="tg c">&lt;/p&gt;</span></div>
@@ -3017,9 +3012,14 @@ function copyToClipboard(id){
   document.body.removeChild(t);
 }
 
-/* glossary reveal: toggle replays the open animations */
-function toggleGloss(el){ el.classList.toggle('open'); el.setAttribute('aria-expanded', el.classList.contains('open')); }
-document.addEventListener('keydown',function(e){ var a=document.activeElement; if(a&&a.classList&&a.classList.contains('gloss')&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); toggleGloss(a); } });
+/* glossary cards stay open; play each visual when it scrolls into view */
+function setupGloss(){
+  var cards=document.querySelectorAll('.gloss'); if(!cards.length) return;
+  if(!('IntersectionObserver' in window)){ cards.forEach(function(c){ c.classList.add('open'); }); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('open', e.isIntersecting); }); },{threshold:0.35});
+  cards.forEach(function(c){ io.observe(c); });
+}
+if(document.readyState!=='loading'){ setupGloss(); } else { document.addEventListener('DOMContentLoaded', setupGloss); }
 
 /* ===== BRAIN: fire together, wire together ===== */
 var fireStrength=1, firePulse=-1, fireRAF=0, fireStarted=false;
