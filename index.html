@@ -895,6 +895,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .tok-word{ opacity:0; align-self:center; font:700 11px ui-monospace,monospace; color:var(--s500); }
 .tok-arrow{ opacity:0; align-self:center; color:#a78bfa; font-weight:800; font-size:13px; }
 .gloss.open .tok-word,.gloss.open .tok-arrow{ animation:gfade .3s ease forwards; }
+.tok-cap{ opacity:0; margin:2px 0 0; font:600 9px ui-monospace,monospace; color:var(--s500); text-align:center; }
+.gloss.open .tok-cap{ animation:gfade .4s 1.3s ease forwards; }
 /* vector */
 .gv-svg .ax{ stroke:#d6c9f5; stroke-width:1.4; }
 .gv-svg .vec{ stroke:#7c3aed; stroke-width:2.6; stroke-linecap:round; stroke-dasharray:130; stroke-dashoffset:130; }
@@ -1659,19 +1661,20 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz tokviz">
                 <div class="tok-line">
-                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.05s">the</span><span class="tok-num" style="animation-delay:.35s">1</span></span>
-                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.15s">cat</span><span class="tok-num" style="animation-delay:.45s">2</span></span>
-                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.25s">sat</span><span class="tok-num" style="animation-delay:.55s">3</span></span>
-                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.35s">down</span><span class="tok-num" style="animation-delay:.65s">4</span></span>
+                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.05s">the</span><span class="tok-num" style="animation-delay:.35s">262</span></span>
+                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.15s">cat</span><span class="tok-num" style="animation-delay:.45s">3797</span></span>
+                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.25s">sat</span><span class="tok-num" style="animation-delay:.55s">3332</span></span>
+                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.35s">down</span><span class="tok-num" style="animation-delay:.65s">866</span></span>
                 </div>
                 <div class="tok-line">
                   <span class="tok-word" style="animation-delay:.5s">"playing"</span>
                   <span class="tok-arrow" style="animation-delay:.65s">→</span>
-                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.8s">play</span><span class="tok-num" style="animation-delay:1.05s">5</span></span>
-                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.9s">ing</span><span class="tok-num" style="animation-delay:1.15s">6</span></span>
+                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.8s">play</span><span class="tok-num" style="animation-delay:1.05s">1759</span></span>
+                  <span class="tok-cell"><span class="tok-chip" style="animation-delay:.9s">ing</span><span class="tok-num" style="animation-delay:1.15s">278</span></span>
                 </div>
+                <p class="tok-cap">↑ token IDs - each token's index in the model's vocabulary (illustrative)</p>
               </div>
-              <p class="gloss-more">Models can't read letters. They first chop text into tokens - sometimes whole words, sometimes pieces like "play-ing". Each token then gets its own number.</p>
+              <p class="gloss-more">Models can't read letters. They first chop text into tokens - sometimes whole words, sometimes pieces like "play-ing". Each token is then swapped for its <em>token ID</em>: a single whole number, but a big arbitrary one - its slot in a vocabulary of tens of thousands (not a tidy 1, 2, 3). That ID is then looked up and turned into a vector - see the next card.</p>
             </div></div></div>
           </div>
 
