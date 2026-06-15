@@ -1851,8 +1851,10 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </div>
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Read the code you write</h3></div><span class="ltime">~8 min</span></div>
-      <p class="act-sub" style="max-width:66ch">Whichever tool you choose, you must be able to <b>read</b> your page. HTML is just a stack of labelled boxes called <b>tags</b>. A tag usually opens and closes around its content: <code>&lt;h1&gt;…&lt;/h1&gt;</code>. Here are the only five you need to start:</p>
-      <div class="codeblk">&lt;<span class="tag">h1</span>&gt;Inside the Black Box&lt;/<span class="tag">h1</span>&gt;        <span class="com">&lt;!-- a big heading --&gt;</span>
+      <p class="act-sub" style="max-width:66ch">Whichever tool you choose, you must be able to <b>read</b> your page. HTML is just a stack of labelled boxes called <b>tags</b>. A tag usually opens and closes around its content: <code>&lt;h1&gt;…&lt;/h1&gt;</code>. Here are the core ones - the outer structure first, then the content that goes inside it:</p>
+      <div class="codeblk">&lt;<span class="tag">head</span>&gt; … &lt;/<span class="tag">head</span>&gt;                  <span class="com">&lt;!-- page info: title, styles --&gt;</span>
+&lt;<span class="tag">body</span>&gt; … &lt;/<span class="tag">body</span>&gt;                  <span class="com">&lt;!-- everything you can actually see --&gt;</span>
+&lt;<span class="tag">h1</span>&gt;Inside the Black Box&lt;/<span class="tag">h1</span>&gt;        <span class="com">&lt;!-- a big heading --&gt;</span>
 &lt;<span class="tag">p</span>&gt;Words become numbers.&lt;/<span class="tag">p</span>&gt;            <span class="com">&lt;!-- a paragraph of text --&gt;</span>
 &lt;<span class="tag">input</span> <span class="att">id</span>="box"&gt;                          <span class="com">&lt;!-- a box to type into --&gt;</span>
 &lt;<span class="tag">button</span> <span class="att">onclick</span>="run()"&gt;Go&lt;/<span class="tag">button</span>&gt;   <span class="com">&lt;!-- a clickable button --&gt;</span>
