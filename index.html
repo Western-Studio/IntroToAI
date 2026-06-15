@@ -1916,7 +1916,34 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <section class="lp-wrap p2 collapsible collapsed" id="w2-p2">
       <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 2</span><h3 class="ph-title">Build your explainer</h3></div><span class="ph-time">~50 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
-      <p class="act-sub" style="max-width:70ch">Time to build the first half of your page: a <b>title</b>, <b>what an algorithm is</b>, the <b>key terms</b>, and <b>how AI works</b> using them. Learn each idea here, then add it to your site with your chosen tool at the end of this part.</p>
+      <p class="act-sub" style="max-width:70ch">This part you build the <b>explainer half</b> of your page. First set up the <b>shell</b> - the page, its title and its look. Then learn each idea below and add it in, in your own words.</p>
+
+      <div class="buildnow">
+        <span class="bn-badge">🛠 Your turn · build the shell</span>
+        <h4 class="bn-h">Set up your page first</h4>
+        <p>Before you learn the content, build the <b>shell</b>: one web page with a title, a clear empty section for each idea, and the look you want. You'll fill those sections with real explanations as you learn them below. <b>We won't give you a prompt to copy</b> - writing your own is the skill.</p>
+      </div>
+      <div class="routes">
+        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Prompt it to build the shell</h5><p>Open Gemini Canvas. Write a prompt (in your own words) that sets up the page and an empty section for each idea, in the style you want - then refine by chatting. Use the tips below, and practise in the box first.</p></div>
+        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Lay out the structure</h5><p>In the builder (Part 1) or Tryit, set up <code>&lt;head&gt;</code> + <code>&lt;body&gt;</code>, an <code>&lt;h1&gt;</code> title, and an empty <code>&lt;h2&gt;</code> + <code>&lt;p&gt;</code> for each section (algorithm, key terms, how AI works, Classification Mirror). Style it your way.</p></div>
+      </div>
+      <div class="pc-tips">
+        <span class="pc-tips-h">Tips for a strong build prompt</span>
+        <ul class="crit-list">
+          <li><b>Give the AI a role</b> - e.g. "act as a friendly web designer making a page for teenagers".</li>
+          <li>Insist on <b>one self-contained HTML page</b> (all the code in a single file) so it embeds in your <b>Google Site</b>.</li>
+          <li>Say <b>who it's for</b> - "a 15-year-old who knows nothing".</li>
+          <li>Describe the <b>look</b> - clean, friendly, pastel, big text, works on a phone.</li>
+          <li>Ask for <b>engaging sections</b> - simple analogies, icons and small <b>animations</b> to explain ideas.</li>
+          <li>Ask it to <b>comment the code</b> so you can read it, and to <b>reject generic templates</b>.</li>
+        </ul>
+      </div>
+      <div class="pcoach">
+        <div class="pc-head">✍️ Practise your prompt <span class="pc-sub">runs in your browser · checks for the ingredients above, not the wording</span></div>
+        <textarea id="pc-input" class="pc-input" placeholder="Write the prompt you'd give the AI to set up your page…"></textarea>
+        <button class="pc-btn" onclick="pcCheck()">Check my prompt</button>
+        <div id="pc-out" class="pc-out"></div>
+      </div>
 
       <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">2</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">What is an algorithm?</h3></div><span class="ltime">~4 min</span></div>
       <p class="act-sub" style="max-width:66ch">You met this last week: an <b>algorithm</b> is just a set of step-by-step instructions a computer follows - like a recipe. AI is built from algorithms, but with a twist: instead of being told every rule, it <em>learns</em> its rules from data. That's what the rest of this part unpacks.</p>
@@ -2100,29 +2127,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="taskcard"><span class="tk-when">▶ Task 2 · in Universal Labs · 10 min</span><h5>Find examples you can reuse to teach</h5><p>Open <b>Universal Labs</b> and play with <b>Lab 01 (Meaning-Space)</b> and <b>Lab 03 (Cosine Compass)</b>. Jot down: <b>(1)</b> two words that sit close and two far apart - why? <b>(2)</b> type "river bank" then "money bank" - what happens to <em>bank</em>? <b>(3)</b> when is similarity highest - small angle or large? Use these on your page.</p><div class="why blue"><b>Why:</b> the clearest teaching uses concrete examples. Collect them now, explain them on your site later.</div></div>
 
       <div class="buildnow">
-        <span class="bn-badge">🛠 Your turn · build</span>
-        <h4 class="bn-h">Now go and build it</h4>
-        <p>Head to your tool and build the title + first sections (algorithm, key terms, how AI works). <b>We're not giving you a prompt to copy</b> - learning to write your own is the real skill. Here's how to do it well.</p>
-      </div>
-      <div class="routes">
-        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Write your own prompt</h5><p>Open Gemini Canvas and describe the page you want <em>in your own words</em>, then refine it by chatting. Use the checklist below to make your prompt strong - and practise it in the box first.</p></div>
-        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Build the structure yourself</h5><p>Open the builder (Part 1) or the Tryit editor. Start with <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>, add an <code>&lt;h1&gt;</code> title, then an <code>&lt;h2&gt;</code> + <code>&lt;p&gt;</code> for each section. Write the explanations in your own words.</p></div>
-      </div>
-      <div class="pc-tips">
-        <span class="pc-tips-h">Ingredients of a strong prompt</span>
-        <ul class="crit-list">
-          <li>Says <b>who it's for</b> - "a 15-year-old who knows nothing".</li>
-          <li>Lists <b>what to include</b> - algorithm, the key terms (token, vector…), how AI works.</li>
-          <li>Asks it to <b>comment the code</b> so you can read and explain it.</li>
-          <li>Describes the <b>look</b> - clean, friendly, pastel, works on a phone.</li>
-          <li>Says <b>"reject generic templates"</b> so it isn't bland.</li>
-        </ul>
-      </div>
-      <div class="pcoach">
-        <div class="pc-head">✍️ Practise your prompt <span class="pc-sub">runs in your browser · checks for the ingredients above, not the wording</span></div>
-        <textarea id="pc-input" class="pc-input" placeholder="Write the prompt you'd give the AI to build your explainer page…"></textarea>
-        <button class="pc-btn" onclick="pcCheck()">Check my prompt</button>
-        <div id="pc-out" class="pc-out"></div>
+        <span class="bn-badge">🛠 Your turn · add the content</span>
+        <h4 class="bn-h">Now fill your sections in</h4>
+        <p>You've learned it all - go back to the page you set up and write each section <b>in your own words</b> (or vibe it in, then check you can read it). Use the examples you found in the Labs. Aim for <b>clear over clever</b>: a Year-9 reader should leave understanding one new thing.</p>
       </div>
       </div></div>
       </section>
@@ -3424,27 +3431,30 @@ function pcCheck(){
   var el=document.getElementById('pc-input'); if(!el) return;
   var v=(el.value||'').toLowerCase();
   var checks=[
-    { ok:/(15|fifteen|year ?9|year ?12|teenager|beginner|knows nothing|someone who|11|12|13|14|child|kid|student|novice)/.test(v),
-      no:'<b>Name the audience.</b> Say who it\'s for - e.g. "a 15-year-old who knows nothing".',
-      yes:'<b>Audience named.</b> The AI will pitch it at the right level.' },
-    { ok:(/algorithm/.test(v) && /(token|vector|key term|key word)/.test(v) && /bias/.test(v)) || /section/.test(v),
-      no:'<b>List what to include.</b> Name the sections: algorithm, the key terms (token, vector…), and bias.',
-      yes:'<b>Content listed.</b> You told it which sections to build.' },
+    { ok:/(act as|you are|pretend|play the role|in the role|as an? [a-z ]{2,24}(designer|developer|teacher|tutor|coder))/.test(v),
+      no:'<b>Give the AI a role.</b> Start with "Act as a friendly web designer making a page for teenagers…".',
+      yes:'<b>Role set.</b> Giving the AI a persona sharpens its output.' },
+    { ok:/(self.?contained|single (html )?(page|file)|one (html )?(page|file)|one file|embed)/.test(v),
+      no:'<b>Ask for one self-contained page.</b> Say "all the code in a single HTML file" so it embeds in your Google Site.',
+      yes:'<b>Single page requested.</b> That\'s what embeds cleanly in Google Sites.' },
+    { ok:/(15|fifteen|year ?9|year ?12|teenager|beginner|knows nothing|someone who|child|kid|student|novice)/.test(v),
+      no:'<b>Name the audience.</b> e.g. "for a 15-year-old who knows nothing".',
+      yes:'<b>Audience named.</b> It\'ll pitch the level right.' },
+    { ok:/(style|colour|color|font|pastel|clean|friendly|mobile|phone|layout|design|big text|readable)/.test(v),
+      no:'<b>Describe the look.</b> e.g. "clean, friendly, pastel, big text, works on a phone".',
+      yes:'<b>Look described.</b> It won\'t have to guess your taste.' },
+    { ok:/(anim|analog|metaphor|icon|illustrat|interactive|engaging|diagram|visual)/.test(v),
+      no:'<b>Ask for engaging sections.</b> Request simple analogies, icons and small animations to explain ideas.',
+      yes:'<b>Engagement requested.</b> Analogies and animations make it teach better.' },
     { ok:/(comment|explain|readable|read it|annotat|so i can read)/.test(v),
-      no:'<b>Ask for readable code.</b> Add "comment each part so I can read it" - you must understand the output.',
+      no:'<b>Ask for readable code.</b> "Comment each part so I can read it" - you must understand the output.',
       yes:'<b>Readability requested.</b> You\'ll be able to read what it makes.' },
-    { ok:/(style|colour|color|font|pastel|clean|friendly|mobile|phone|layout|design|big text|readable text)/.test(v),
-      no:'<b>Describe the look.</b> Mention style - e.g. "clean, friendly, pastel, works on a phone".',
-      yes:'<b>Style described.</b> It won\'t have to guess your taste.' },
     { ok:/(not generic|avoid template|no template|original|reject|don.?t use a template|unique|not bland)/.test(v),
-      no:'<b>Push for original.</b> Add "reject generic templates" so it doesn\'t hand you a bland default.',
-      yes:'<b>Originality pushed.</b> Less chance of a bland template.' },
-    { ok:v.trim().length>=140,
-      no:'<b>Add detail.</b> Short prompts get generic results - be specific about exactly what you want.',
-      yes:'<b>Nice and specific.</b> Plenty for the AI to work with.' }
+      no:'<b>Push for original.</b> Add "reject generic templates" so it isn\'t bland.',
+      yes:'<b>Originality pushed.</b> Less chance of a bland template.' }
   ];
   var n=0; checks.forEach(function(c){ if(c.ok) n++; });
-  var verdict = n>=5 ? 'strong prompt!' : (n>=3 ? 'getting there - add the missing bits' : 'keep going - add more');
+  var verdict = n>=6 ? 'strong prompt!' : (n>=4 ? 'getting there - add the missing bits' : 'keep going - add more');
   var html='<div class="pc-score">'+n+' / '+checks.length+' ingredients · '+verdict+'</div>';
   checks.forEach(function(c){
     html+='<div class="pc-item '+(c.ok?'ok':'no')+'"><span class="ic">'+(c.ok?'✓':'+')+'</span><span>'+(c.ok?c.yes:c.no)+'</span></div>';
