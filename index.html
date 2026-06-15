@@ -979,6 +979,33 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .gloss.open .tg.o{ animation:gslideL .5s ease forwards; }
 .gloss.open .tg-mid{ animation:gfade .4s .25s forwards; }
 .gloss.open .tg.c{ animation:gslideR .5s .25s forwards; }
+/* ===== pipeline player ===== */
+.pp-badge{ display:inline-block; font:800 10px ui-monospace,monospace; letter-spacing:.05em; text-transform:uppercase; padding:5px 12px; border-radius:999px; }
+.pp-badge.train{ background:rgba(147,51,234,.12); color:#7c3aed; }
+.pp-badge.use{ background:rgba(2,132,199,.12); color:#0369a1; }
+.pipe-track{ display:flex; align-items:center; margin:16px 4px; }
+.pipe-dot{ flex:none; width:13px; height:13px; border-radius:50%; background:#e7e5e4; border:2px solid #e7e5e4; cursor:pointer; transition:transform .3s, background .3s, box-shadow .3s, border-color .3s; }
+.pipe-seg{ flex:1; height:2px; background:#e7e5e4; transition:background .3s; }
+.pipe-dot.done{ background:#c4b5fd; border-color:#c4b5fd; }
+.pipe-dot.use.done{ background:#7dd3fc; border-color:#7dd3fc; }
+.pipe-dot.act{ background:#7c3aed; border-color:#7c3aed; transform:scale(1.4); box-shadow:0 0 0 4px rgba(124,58,237,.15); }
+.pipe-dot.use.act{ background:#0369a1; border-color:#0369a1; box-shadow:0 0 0 4px rgba(2,132,199,.15); }
+.pipe-seg.done{ background:#c4b5fd; } .pipe-seg.use.done{ background:#7dd3fc; }
+.pipe-stage{ display:flex; gap:16px; align-items:center; background:rgba(124,58,237,.05); border:1px solid rgba(231,229,228,.8); border-radius:14px; padding:18px 20px; min-height:104px; }
+.pipe-ico{ font-size:40px; flex:none; line-height:1; }
+.pipe-body h4{ font-size:15px; font-weight:800; color:var(--s900); }
+.pipe-body p{ font-size:13px; color:var(--s600); line-height:1.6; margin-top:5px; }
+.pipe-body b{ color:var(--s900); }
+.pipe-stage.in .pipe-ico{ animation:pipeInI .45s ease; }
+.pipe-stage.in .pipe-body{ animation:pipeIn .45s ease; }
+@keyframes pipeIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+@keyframes pipeInI{ from{opacity:0; transform:scale(.6)} to{opacity:1; transform:none} }
+.pipe-ctrl{ display:flex; align-items:center; gap:9px; margin-top:14px; }
+.pipe-ctrl button{ font:700 12px ui-monospace,monospace; padding:7px 14px; border-radius:9px; border:1px solid #ddd6fe; background:#fff; color:#6d28d9; cursor:pointer; transition:background .2s; }
+.pipe-ctrl button:hover{ background:#f5f3ff; }
+.pipe-ctrl #pipe-play{ background:#7c3aed; color:#fff; border-color:#7c3aed; }
+.pipe-ctrl #pipe-play:hover{ background:#6d28d9; }
+.pipe-count{ margin-left:auto; font:700 11px ui-monospace,monospace; color:var(--s500); }
 </style>
 </head>
 <body>
@@ -1836,6 +1863,23 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">3</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Label the tags</h3></div><span class="ltime">~5 min</span></div>
       <div class="taskcard offline"><span class="tk-when">✎ Task 3 · on paper · 5 min</span><h5>Translate the code into English</h5><p>Copy the five lines above onto paper and, next to each, write in plain English what it makes appear on the screen. No jargon - pretend you're explaining to someone who has never seen code. Keep this sheet; it's the key to reading your own page later.</p><div class="why pink"><b>Why:</b> this is the literacy that stops "vibe coding" being magic. If you can translate a line of code, you can change it on purpose.</div></div>
+      <div class="glass rounded panel" style="padding:20px 22px; margin-top:24px">
+        <span class="label indigo mono">// the big picture · end to end</span>
+        <h3 style="font-size:18px;font-weight:800;color:var(--s900);margin:7px 0 0">From training to answer</h3>
+        <p class="act-sub" style="max-width:70ch;margin-top:8px">Press play to walk the whole journey - how a model is first <b>built</b>, then how it turns <b>your prompt</b> into a <b>response</b>. Every term from the cards above shows up, in order.</p>
+        <div style="margin-top:16px"><span class="pp-badge train" id="pipe-phase">① Training the model</span></div>
+        <div class="pipe-track" id="pipe-track"></div>
+        <div class="pipe-stage in" id="pipe-stage">
+          <div class="pipe-ico" id="pipe-ico">📚</div>
+          <div class="pipe-body"><h4 id="pipe-term">Training data</h4><p id="pipe-text"></p></div>
+        </div>
+        <div class="pipe-ctrl">
+          <button onclick="pipePrev()">‹ Back</button>
+          <button id="pipe-play" onclick="pipeToggle()">▶ Play</button>
+          <button onclick="pipeNext()">Next ›</button>
+          <span class="pipe-count" id="pipe-count">1 / 9</span>
+        </div>
+      </div>
       </section>
 
       <!-- ===================== PART 2 ===================== -->
@@ -3120,6 +3164,50 @@ function setupGloss(){
   cards.forEach(function(c){ io.observe(c); });
 }
 if(document.readyState!=='loading'){ setupGloss(); } else { document.addEventListener('DOMContentLoaded', setupGloss); }
+
+/* ===== pipeline player: training -> answer ===== */
+var pipeData=[
+  {p:'train',ico:'📚',term:'Training data',text:"It starts with a huge <b>dataset</b> - billions of human-made examples (text, images), each <b>labelled</b> by people. This is everything the model will ever learn from."},
+  {p:'train',ico:'🧠',term:'Learning patterns',text:"The model reads the data over and over, tweaking millions of internal numbers (its <b>weights</b>) to get better at predicting what comes next. In doing so it builds an <b>embedding</b> - a map of meaning where similar tokens sit close together."},
+  {p:'train',ico:'⭐',term:'Reward system',text:"Then it's fine-tuned with feedback: people <b>rate</b> sample answers, and the model is nudged toward the responses humans judged helpful, honest and safe. This is the <b>reward system</b> - RLHF, reinforcement learning from human feedback."},
+  {p:'train',ico:'✅',term:'Trained model',text:"Training stops. The model is now frozen - a fixed <b>embedding space</b> plus learned weights. It keeps no copy of the original data, just the patterns it distilled. Ready to use."},
+  {p:'use',ico:'⌨️',term:'Your prompt',text:"You type a <b>prompt</b> - say, <em>“Why is the sky blue?”</em> Nothing new is learned now; the trained model simply responds."},
+  {p:'use',ico:'✂️',term:'Tokenisation',text:"Your prompt is chopped into <b>tokens</b>, and each token is swapped for its <b>token ID</b> - its slot in the model's vocabulary."},
+  {p:'use',ico:'✦',term:'Embedding lookup',text:"Each ID is looked up and turned into its <b>vector</b>, dropping your words into the very same <b>embedding space</b> the model built during training."},
+  {p:'use',ico:'🎲',term:'Prediction',text:"Using its learned patterns, the model predicts the most likely <b>next token</b> - then feeds that back in and predicts the next, one token at a time. <b>Cosine similarity</b> between vectors is part of how it weighs what fits."},
+  {p:'use',ico:'💬',term:'The response',text:"Those output tokens are <b>detokenised</b> - turned back into words - and streamed to you as the answer you read. Same machine, same maths, every single time."}
+];
+var pipeI=0, pipeTimer=null;
+function pipeInit(){
+  var track=document.getElementById('pipe-track'); if(!track) return;
+  var h='';
+  pipeData.forEach(function(d,i){
+    if(i>0) h+='<span class="pipe-seg'+(d.p==='use'?' use':'')+'"></span>';
+    h+='<span class="pipe-dot'+(d.p==='use'?' use':'')+'" onclick="pipeGo('+i+')" title="'+d.term+'"></span>';
+  });
+  track.innerHTML=h;
+  pipeRender();
+}
+function pipeRender(){
+  var d=pipeData[pipeI];
+  document.getElementById('pipe-ico').textContent=d.ico;
+  document.getElementById('pipe-term').textContent=d.term;
+  document.getElementById('pipe-text').innerHTML=d.text;
+  var ph=document.getElementById('pipe-phase');
+  ph.textContent=d.p==='train'?'① Training the model':'② Using the model (inference)';
+  ph.className='pp-badge '+d.p;
+  document.getElementById('pipe-count').textContent=(pipeI+1)+' / '+pipeData.length;
+  var dots=document.querySelectorAll('.pipe-dot'); dots.forEach(function(dot,i){ dot.classList.toggle('act',i===pipeI); dot.classList.toggle('done',i<pipeI); });
+  var segs=document.querySelectorAll('.pipe-seg'); segs.forEach(function(s,i){ s.classList.toggle('done',i<pipeI); });
+  var st=document.getElementById('pipe-stage'); st.classList.remove('in'); void st.offsetWidth; st.classList.add('in');
+}
+function pipeGo(i){ pipeStop(); pipeI=(i+pipeData.length)%pipeData.length; pipeRender(); }
+function pipeNext(){ if(pipeI<pipeData.length-1){ pipeI++; pipeRender(); } else { pipeStop(); } }
+function pipePrev(){ if(pipeI>0){ pipeStop(); pipeI--; pipeRender(); } }
+function pipeToggle(){ if(pipeTimer){ pipeStop(); } else { pipeStart(); } }
+function pipeStart(){ if(pipeI>=pipeData.length-1) pipeI=0; document.getElementById('pipe-play').textContent='❚❚ Pause'; pipeRender(); pipeTimer=setInterval(function(){ if(pipeI>=pipeData.length-1){ pipeStop(); } else { pipeI++; pipeRender(); } },3600); }
+function pipeStop(){ if(pipeTimer){ clearInterval(pipeTimer); pipeTimer=null; } var b=document.getElementById('pipe-play'); if(b) b.textContent=(pipeI>=pipeData.length-1?'↻ Replay':'▶ Play'); }
+if(document.readyState!=='loading'){ pipeInit(); } else { document.addEventListener('DOMContentLoaded', pipeInit); }
 
 /* ===== BRAIN: fire together, wire together ===== */
 var fireStrength=1, firePulse=-1, fireRAF=0, fireStarted=false;
