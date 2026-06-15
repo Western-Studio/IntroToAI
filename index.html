@@ -2813,10 +2813,26 @@ function semRender(){
   SEM.stars.forEach(function(s,i){ var r=Math.min(13,4+(s.freq-1)*2.6), seld=SEM.sel.indexOf(i)>-1;
     ctx.save(); ctx.shadowColor=s.col; ctx.shadowBlur=seld?24:Math.min(20,8+(s.freq-1)*4);
     ctx.fillStyle=s.col; ctx.beginPath(); ctx.arc(s.ax,s.ay,r,0,7); ctx.fill(); ctx.restore();
-    if(seld){ ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(s.ax,s.ay,r+4,0,7); ctx.stroke(); }
-    ctx.fillStyle='#e2e8f0'; ctx.font='700 11px ui-monospace,monospace'; ctx.textAlign='center';
-    ctx.fillText(s.word, s.ax, s.ay-r-6); });
+    if(seld){ ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(s.ax,s.ay,r+4,0,7); ctx.stroke(); } });
   ctx.restore();
+  /* word labels: fixed screen size + nudged apart so they never overlap (zoom in to separate clusters) */
+  ctx.font='700 11px ui-monospace,monospace'; ctx.textAlign='center';
+  var placed=[];
+  var order=SEM.stars.map(function(_,i){ return i; }).sort(function(a,b){ return SEM.stars[b].freq-SEM.stars[a].freq; });
+  order.forEach(function(i){ var s=SEM.stars[i], sc=semScreen(s.ax,s.ay), r=Math.min(13,4+(s.freq-1)*2.6)*SEM.z;
+    if(sc.x<-60||sc.x>SEM.W+60||sc.y<-30||sc.y>SEM.H+30) return;
+    var w=ctx.measureText(s.word).width, h=12, x=sc.x, y=sc.y-r-7, down=false, tries=0;
+    function rectAt(){ return { l:x-w/2-2, r:x+w/2+2, t:y-h, b:y+3 }; }
+    var rect=rectAt();
+    while(tries<16 && placed.some(function(p){ return !(rect.r<p.l||rect.l>p.r||rect.b<p.t||rect.t>p.b); })){
+      tries++;
+      if(!down && tries<=7){ y-=(h+2); } else { down=true; y=(tries===8)?(sc.y+r+h+2):(y+(h+2)); }
+      rect=rectAt();
+    }
+    placed.push(rect);
+    ctx.lineWidth=3.2; ctx.lineJoin='round'; ctx.strokeStyle='rgba(2,6,23,.88)'; ctx.strokeText(s.word,x,y);
+    ctx.fillStyle=(SEM.sel.indexOf(i)>-1)?'#ffffff':'#e2e8f0'; ctx.fillText(s.word,x,y);
+  });
 }
 function semReadout(){
   var el=document.getElementById('sem-readout'); if(!el) return;
