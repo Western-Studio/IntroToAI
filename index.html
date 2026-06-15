@@ -880,6 +880,10 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .gr-ask li{ font-size:11.5px; color:var(--s700); line-height:1.5; padding-left:18px; position:relative; }
 .gr-ask li::before{ content:"?"; position:absolute; left:0; top:-1px; color:#9333ea; font-weight:800; }
 .gr-ask b{ color:var(--s900); }
+.gr-eg{ margin-top:13px; padding:11px 13px; background:rgba(219,39,119,.06); border:1px solid #fbcfe8; border-radius:10px; }
+.gr-eg-h{ display:block; font:800 9.5px ui-monospace,monospace; letter-spacing:.04em; text-transform:uppercase; color:#be185d; margin-bottom:6px; }
+.gr-eg p{ font-size:11.5px; color:var(--s700); line-height:1.55; margin:0; }
+.gr-eg b{ color:var(--s900); }
 .gviz{ height:74px; border-radius:10px; background:rgba(124,58,237,.05); display:flex; align-items:center; justify-content:center; gap:5px; padding:0 10px; overflow:hidden; }
 .gv-svg{ width:138px; height:64px; }
 @keyframes gfade{ to{opacity:1} }
@@ -1776,6 +1780,10 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <div class="gloss-reveal"><div class="gr-wrap"><div class="gr-in">
               <div class="gviz bias" style="height:56px"><span class="bias-bar" style="height:14px"></span><span class="bias-bar" style="height:22px"></span><span class="bias-bar hot" style="height:48px"></span><span class="bias-bar hot" style="height:54px"></span><span class="bias-bar" style="height:18px"></span></div>
               <p class="gloss-more">If the data leans one way, the model learns that lean. Skewed data in → skewed answers out. The maths looks neutral; the data often isn't.</p>
+              <div class="gr-eg">
+                <span class="gr-eg-h">▸ Real example</span>
+                <p>Early face-recognition systems were trained mostly on photos of light-skinned men - so they were far less accurate at identifying women and people with darker skin. The data leaned one way, so the model did too. The hopeful part: once researchers <b>measured</b> the gap, it could be (and is being) reduced.</p>
+              </div>
             </div></div></div>
           </div>
 
