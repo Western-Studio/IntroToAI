@@ -1020,6 +1020,23 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .goal-sec.done .gs-txt{ text-decoration:line-through; }
 .goal-foot{ font-size:12.5px; color:var(--s600); margin-top:15px; }
 .goal-foot b{ color:var(--s900); }
+/* ===== prompt tips + practice coach ===== */
+.pc-tips{ margin-top:16px; padding:14px 16px; border:1px solid #ddd6fe; border-radius:12px; background:rgba(124,58,237,.05); }
+.pc-tips-h{ display:block; font:800 9.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#7c3aed; margin-bottom:2px; }
+.pcoach{ margin-top:16px; border:1px solid #ddd6fe; border-radius:14px; background:#fff; padding:16px 18px; }
+.pc-head{ font:800 13px Manrope,system-ui,sans-serif; color:var(--s900); display:flex; flex-wrap:wrap; align-items:baseline; gap:9px; }
+.pc-sub{ font:600 10px ui-monospace,monospace; color:var(--s400); }
+.pc-input{ width:100%; min-height:120px; margin-top:11px; border:1px solid #e7e5e4; border-radius:10px; padding:11px 13px; font:13px/1.55 Manrope,system-ui,sans-serif; color:var(--s900); resize:vertical; box-sizing:border-box; }
+.pc-input:focus{ outline:none; border-color:#c4b5fd; box-shadow:0 0 0 3px rgba(196,181,253,.4); }
+.pc-btn{ margin-top:11px; font:700 12px Manrope,system-ui,sans-serif; background:#7c3aed; color:#fff; border:none; padding:9px 17px; border-radius:9px; cursor:pointer; transition:background .2s; }
+.pc-btn:hover{ background:#6d28d9; }
+.pc-out{ margin-top:14px; display:none; }
+.pc-out.show{ display:block; }
+.pc-score{ font:800 12.5px ui-monospace,monospace; color:#7c3aed; margin-bottom:10px; }
+.pc-item{ display:flex; gap:9px; align-items:flex-start; font-size:12.5px; line-height:1.5; padding:5px 0; color:var(--s700); }
+.pc-item .ic{ flex:none; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:#fff; }
+.pc-item.ok .ic{ background:#059669; } .pc-item.no .ic{ background:#cbb8f0; }
+.pc-item b{ color:var(--s900); }
 /* ===== "your turn" build banner ===== */
 .buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(5,150,105,.12), rgba(13,148,136,.06)); border:1px solid #99f6e4; border-left:4px solid #059669; }
 .bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#047857; }
@@ -2063,53 +2080,28 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <div class="buildnow">
         <span class="bn-badge">🛠 Your turn · build</span>
-        <h4 class="bn-h">Now add it to your site</h4>
-        <p>Add a title and these sections (algorithm, key terms, how AI works) to your page - using your tool from Part 1.</p>
+        <h4 class="bn-h">Now go and build it</h4>
+        <p>Head to your tool and build the title + first sections (algorithm, key terms, how AI works). <b>We're not giving you a prompt to copy</b> - learning to write your own is the real skill. Here's how to do it well.</p>
       </div>
       <div class="routes">
-        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Direct the Canvas</h5><p>Paste the prompt below into Gemini Canvas, then refine by chatting - swap in your own words and the examples you found in the Labs.</p></div>
-        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Build in the editor</h5><p>Paste the HTML below into the builder (Part 1) or the Tryit editor, then rewrite the text in your own words.</p></div>
+        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Write your own prompt</h5><p>Open Gemini Canvas and describe the page you want <em>in your own words</em>, then refine it by chatting. Use the checklist below to make your prompt strong - and practise it in the box first.</p></div>
+        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Build the structure yourself</h5><p>Open the builder (Part 1) or the Tryit editor. Start with <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>, add an <code>&lt;h1&gt;</code> title, then an <code>&lt;h2&gt;</code> + <code>&lt;p&gt;</code> for each section. Write the explanations in your own words.</p></div>
       </div>
-      <div class="prompt-term">
-        <div class="prompt-bar"><h4>⌨ Gemini prompt · the explainer sections</h4><button class="copy-btn" onclick="copyToClipboard('prompt-explain')">Copy prompt</button></div>
-        <textarea id="prompt-explain" class="prompt-area" readonly>Create a single, self-contained, mobile-friendly web page that teaches how AI works to a 15-year-old. Put all HTML and CSS in one file and comment each section so I can read it. Use a clean, friendly style with big readable text and a soft pastel palette. Reject generic templates.
-
-Include these sections, each a heading + a short plain-English paragraph:
-1. A title and one-line intro for the page.
-2. "What is an algorithm?" - step-by-step instructions a computer follows, like a recipe.
-3. "The key words" - one friendly sentence each for: token, vector, embedding, cosine similarity, dataset, bias.
-4. "How AI actually works" - in order: it trains on a dataset, learns patterns into an embedding, is tuned by a reward system (human feedback); then for a prompt it tokenises the text, looks up each token's vector, predicts the next token over and over, and turns the result back into words.
-
-Leave a clearly-marked empty section titled "Classification Mirror" - I'll add that next.</textarea>
+      <div class="pc-tips">
+        <span class="pc-tips-h">Ingredients of a strong prompt</span>
+        <ul class="crit-list">
+          <li>Says <b>who it's for</b> - "a 15-year-old who knows nothing".</li>
+          <li>Lists <b>what to include</b> - algorithm, the key terms (token, vector…), how AI works.</li>
+          <li>Asks it to <b>comment the code</b> so you can read and explain it.</li>
+          <li>Describes the <b>look</b> - clean, friendly, pastel, works on a phone.</li>
+          <li>Says <b>"reject generic templates"</b> so it isn't bland.</li>
+        </ul>
       </div>
-      <div class="prompt-term">
-        <div class="prompt-bar"><h4>⌨ Hand-code · paste into the builder</h4><button class="copy-btn" onclick="copyToClipboard('code-explain')">Copy code</button></div>
-        <textarea id="code-explain" class="prompt-area" readonly>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;Inside the Black Box&lt;/title&gt;
-  &lt;style&gt;
-    body{ font-family:sans-serif; max-width:640px; margin:30px auto; padding:0 16px; line-height:1.6; color:#1c1917; }
-    h1{ color:#7c3aed; } h2{ color:#5b21b6; margin-top:26px; }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Inside the Black Box&lt;/h1&gt;
-  &lt;p&gt;A quick, friendly guide to how AI actually works.&lt;/p&gt;
-
-  &lt;h2&gt;What is an algorithm?&lt;/h2&gt;
-  &lt;p&gt;A set of step-by-step instructions a computer follows - like a recipe.&lt;/p&gt;
-
-  &lt;h2&gt;The key words&lt;/h2&gt;
-  &lt;p&gt;&lt;b&gt;Token:&lt;/b&gt; a chunk of text. &lt;b&gt;Vector:&lt;/b&gt; a list of numbers giving it a position. &lt;b&gt;Embedding:&lt;/b&gt; the map of all those positions. &lt;b&gt;Cosine similarity:&lt;/b&gt; how close two meanings point. &lt;b&gt;Dataset:&lt;/b&gt; what it learned from. &lt;b&gt;Bias:&lt;/b&gt; unfairness learned from skewed data.&lt;/p&gt;
-
-  &lt;h2&gt;How AI actually works&lt;/h2&gt;
-  &lt;p&gt;It trains on a huge dataset, learning patterns into an embedding, then is tuned by human feedback. When you type a prompt it splits into tokens, looks up their vectors, predicts the next token over and over, and turns the result back into words.&lt;/p&gt;
-
-  &lt;!-- Part 3 will add the Classification Mirror here --&gt;
-&lt;/body&gt;
-&lt;/html&gt;</textarea>
+      <div class="pcoach">
+        <div class="pc-head">✍️ Practise your prompt <span class="pc-sub">runs in your browser · checks for the ingredients above, not the wording</span></div>
+        <textarea id="pc-input" class="pc-input" placeholder="Write the prompt you'd give the AI to build your explainer page…"></textarea>
+        <button class="pc-btn" onclick="pcCheck()">Check my prompt</button>
+        <div id="pc-out" class="pc-out"></div>
       </div>
       </div></div>
       </section>
@@ -3405,6 +3397,39 @@ if(document.readyState!=='loading'){ hbInit(); } else { document.addEventListene
 /* ===== collapsible lesson parts ===== */
 function togglePart(head){ var sec=head.closest('.lp-wrap'); if(sec) sec.classList.toggle('collapsed'); }
 function openPart(id, target){ var sec=document.getElementById(id); if(sec) sec.classList.remove('collapsed'); var t=document.getElementById(target||id); if(t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); return false; }
+
+/* ===== prompt practice coach (no API - heuristic checklist) ===== */
+function pcCheck(){
+  var el=document.getElementById('pc-input'); if(!el) return;
+  var v=(el.value||'').toLowerCase();
+  var checks=[
+    { ok:/(15|fifteen|year ?9|year ?12|teenager|beginner|knows nothing|someone who|11|12|13|14|child|kid|student|novice)/.test(v),
+      no:'<b>Name the audience.</b> Say who it\'s for - e.g. "a 15-year-old who knows nothing".',
+      yes:'<b>Audience named.</b> The AI will pitch it at the right level.' },
+    { ok:(/algorithm/.test(v) && /(token|vector|key term|key word)/.test(v) && /bias/.test(v)) || /section/.test(v),
+      no:'<b>List what to include.</b> Name the sections: algorithm, the key terms (token, vector…), and bias.',
+      yes:'<b>Content listed.</b> You told it which sections to build.' },
+    { ok:/(comment|explain|readable|read it|annotat|so i can read)/.test(v),
+      no:'<b>Ask for readable code.</b> Add "comment each part so I can read it" - you must understand the output.',
+      yes:'<b>Readability requested.</b> You\'ll be able to read what it makes.' },
+    { ok:/(style|colour|color|font|pastel|clean|friendly|mobile|phone|layout|design|big text|readable text)/.test(v),
+      no:'<b>Describe the look.</b> Mention style - e.g. "clean, friendly, pastel, works on a phone".',
+      yes:'<b>Style described.</b> It won\'t have to guess your taste.' },
+    { ok:/(not generic|avoid template|no template|original|reject|don.?t use a template|unique|not bland)/.test(v),
+      no:'<b>Push for original.</b> Add "reject generic templates" so it doesn\'t hand you a bland default.',
+      yes:'<b>Originality pushed.</b> Less chance of a bland template.' },
+    { ok:v.trim().length>=140,
+      no:'<b>Add detail.</b> Short prompts get generic results - be specific about exactly what you want.',
+      yes:'<b>Nice and specific.</b> Plenty for the AI to work with.' }
+  ];
+  var n=0; checks.forEach(function(c){ if(c.ok) n++; });
+  var verdict = n>=5 ? 'strong prompt!' : (n>=3 ? 'getting there - add the missing bits' : 'keep going - add more');
+  var html='<div class="pc-score">'+n+' / '+checks.length+' ingredients · '+verdict+'</div>';
+  checks.forEach(function(c){
+    html+='<div class="pc-item '+(c.ok?'ok':'no')+'"><span class="ic">'+(c.ok?'✓':'+')+'</span><span>'+(c.ok?c.yes:c.no)+'</span></div>';
+  });
+  var out=document.getElementById('pc-out'); out.innerHTML=html; out.classList.add('show');
+}
 
 /* ===== BRAIN: fire together, wire together ===== */
 var fireStrength=1, firePulse=-1, fireRAF=0, fireStarted=false;
