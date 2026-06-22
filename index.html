@@ -1078,6 +1078,10 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .cm-v{ font:700 13px ui-monospace,monospace; color:var(--s900); background:#fff; border:1px solid #e7e5e4; border-left:3px solid #cbd5e1; border-radius:8px; padding:8px 12px; animation:gpop .35s ease both; }
 .cm-truth{ margin-top:11px; font-size:12px; color:var(--s700); background:#f5f5f4; border:1px solid #e7e5e4; border-left:3px solid #44403c; border-radius:8px; padding:9px 12px; line-height:1.55; }
 .cm-truth b{ color:var(--s900); }
+/* ===== bland-paste grid (Week 3) ===== */
+.blandgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:14px; max-width:340px; }
+.blandgrid>div{ aspect-ratio:1; border-radius:10px; background:linear-gradient(135deg,#cdbce6,#bcc9e6); }
+.blandgrid>div.odd{ background:linear-gradient(135deg,#7c3aed,#db2777); box-shadow:0 0 0 3px #1c1917, 0 6px 16px -6px rgba(124,58,237,.7); transform:scale(1.05); }
 /* ===== "your turn" build banner ===== */
 .buildnow{ margin-top:30px; padding:15px 20px 17px; border-radius:14px; background:linear-gradient(135deg, rgba(5,150,105,.12), rgba(13,148,136,.06)); border:1px solid #99f6e4; border-left:4px solid #059669; }
 .bn-badge{ display:inline-flex; align-items:center; gap:7px; font:800 10.5px ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; color:#047857; }
@@ -2286,7 +2290,144 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </section>
     </div>
   </div>
-  <div id="week-3" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 3 · Visual Homogenisation & "The Bland Paste"</h3><p>Attention weights, Grayson Perry's critique, glitch-art history and a "Bland Paste Collager" that rebels against perfect rendering.</p></div></div>
+  <div id="week-3" class="week-pane hidden">
+    <div class="glass rounded panel">
+      <div class="lesson-top">
+        <div class="intro">
+          <span class="lesson-badge">Week 3 · Contact time 2.5 hours</span>
+          <h3>The Bland Paste: Why AI Makes Everything Look the Same</h3>
+          <p>AI is trained to predict the <em>most likely</em> thing - so, left to its defaults, it drifts toward a smooth, tasteful, forgettable average. This week you finish last week's site, then learn about that "sameness" problem and make something that deliberately refuses it.</p>
+        </div>
+        <div class="companion">
+          <span class="ctag">// the job this week</span>
+          <h5>Finish, then defy the average</h5>
+          <p>First, finish the AI teaching site you started last week. Then learn why AI gravitates to a bland "average" - and add one element that's unmistakably <b style="color:#fbcfe8">yours</b>.</p>
+        </div>
+      </div>
+
+      <div class="goalbox">
+        <span class="goal-tag">🎯 Today's mission</span>
+        <h3>Finish your AI site - then make it un-bland</h3>
+        <p>Most of today is yours to <b>finish and polish</b> the teaching site you began last week. Then we look at AI's "sameness problem" and you add one touch that's clearly your own. Tick these off:</p>
+        <div class="goal-sections">
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Finish last week's site</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Embed it on your "Lesson 2" page</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Learn the "bland paste" problem</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Add one un-bland, you-only touch</span></span>
+        </div>
+        <p class="goal-foot"><b>Roughly the first hour is build time</b> - pick up exactly where you left off. No AI required: hand-coders, keep going in the HTML builder or the Tryit editor.</p>
+      </div>
+
+      <div class="lpath-intro">
+        <span class="lpi-tag">// how this lesson runs</span>
+        <p>Build first, theory second. Spend the first stretch finishing your site, then a short, sharp look at why AI outputs drift to the average - and a quick creative challenge to break out of it. Use the map below to move between parts.</p>
+      </div>
+
+      <nav class="w2nav" aria-label="Lesson parts">
+        <span class="w2n-lab">This lesson</span>
+        <a class="s" href="#w3-start">Starter</a>
+        <a class="p1" href="#w3-p1" onclick="return openPart('w3-p1')">1 · Finish your build</a>
+        <a class="p2" href="#w3-p2" onclick="return openPart('w3-p2')">2 · The Bland Paste</a>
+        <a class="p2" href="#w3-final" onclick="return openPart('w3-p2','w3-final')">★ Hand in</a>
+      </nav>
+
+      <!-- STARTER -->
+      <div class="part-head starter-head" id="w3-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">Where are you up to?</h3></div><span class="ph-time">in pairs · ~5 min</span></div>
+      <div class="taskcard"><span class="tk-when">▶ Starter · in pairs · 5 min</span><h5>Status check with your partner</h5><p>Open your site from last week. Tell your partner: <b>(1)</b> what's <em>working</em>, <b>(2)</b> what's <em>missing or broken</em>, and <b>(3)</b> the <b>one thing</b> you'll fix first today. Write that one thing at the top of your notes.</p><div class="why pink"><b>Why:</b> naming your next step out loud is the fastest way to stop staring at a screen and start building.</div></div>
+
+      <!-- PART 1 -->
+      <section class="lp-wrap p1 collapsible" id="w3-p1">
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 1</span><h3 class="ph-title">Finish your build</h3></div><span class="ph-time">~60 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
+
+      <div class="buildnow">
+        <span class="bn-badge">🛠 Your turn · build</span>
+        <h4 class="bn-h">Pick up your site and finish it</h4>
+        <p>This is the main event today. Open last week's teaching site and get it <b>working and embedded</b>. Hand-coders - keep going; you don't need AI for any of this.</p>
+      </div>
+
+      <div class="src-note">
+        <span class="src-note-h">✅ A finished site has all of these</span>
+        <p>Use this as your checklist - tick each one once it's done and on your page:</p>
+        <div class="goal-sections">
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">A title + one-line intro</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">What is an algorithm?</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">The key terms</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">How AI works</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">A working Classification Mirror</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Embedded on your Google Site</span></span>
+        </div>
+      </div>
+
+      <div class="routes">
+        <div class="route a"><span class="r-tag">▶ If you're on Gemini</span><h5>Refine by chatting</h5><p>Ask Gemini Canvas to complete or fix the missing sections - one at a time. After each change, read what it gave you and make sure you can explain it.</p></div>
+        <div class="route b"><span class="r-tag">✎ If you're hand-coding</span><h5>Keep building the HTML</h5><p>Work in the <a href="https://www.w3schools.com/tryit/" target="_blank" rel="noopener" style="color:#0369a1;font-weight:700">Tryit editor</a> (or the live builder in Lesson 2, Part 1). Build one section at a time and preview as you go.</p></div>
+      </div>
+
+      <div class="pc-tips">
+        <span class="pc-tips-h">Common hand-coding fixes</span>
+        <ul class="crit-list">
+          <li>Every opening tag needs a <b>closing tag</b> - <code>&lt;h2&gt;</code> needs <code>&lt;/h2&gt;</code>.</li>
+          <li>Put your <code>&lt;script&gt;</code> just before <code>&lt;/body&gt;</code> so the page loads first.</li>
+          <li>Button not working? The names must match: <code>onclick="classifyMe()"</code> ↔ <code>function classifyMe()</code>.</li>
+          <li>Nothing showing? Right-click → Inspect → <b>Console</b> to read the error.</li>
+          <li>To embed in Google Sites: <b>Insert → Embed → Embed code</b>, then paste your whole HTML.</li>
+        </ul>
+      </div>
+
+      <div class="taskcard"><span class="tk-when">▶ Task 1 · ~55 min</span><h5>Get it working and embedded</h5><p>Finish every item on the checklist above, then embed the page on your <b>"Lesson 2"</b> Google Site page so it runs live. Stuck on one bug for more than a few minutes? Ask a neighbour or the teacher - don't stall.</p><div class="why blue"><b>Why:</b> a finished, working thing you understand beats a fancy one you don't. Done and clear is the goal.</div></div>
+
+      </div></div>
+      </section>
+
+      <!-- PART 2 -->
+      <section class="lp-wrap p2 collapsible collapsed" id="w3-p2">
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 2</span><h3 class="ph-title">The Bland Paste</h3></div><span class="ph-time">~30 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
+
+      <div class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Why AI makes everything look the same</h3></div><span class="ltime">~6 min</span></div>
+      <p class="act-sub" style="max-width:70ch">An AI is trained to predict the <b>most likely</b> next pixel, word or shape - and the most likely thing is, by definition, the <em>average</em> of everything it has seen. So left to its defaults, AI drifts toward a smooth, symmetrical, tasteful - and forgettable - middle. Critics call it the <b>"bland paste"</b>: lots of polish, very little point of view.</p>
+      <div class="blandgrid">
+        <div></div><div></div><div></div><div></div>
+        <div></div><div class="odd"></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div>
+      </div>
+      <p class="act-sub" style="max-width:70ch; margin-top:10px; font-size:12.5px; color:var(--s500)">Every tile is the AI default. Your taste is the odd one out - and that's the value only <em>you</em> can add.</p>
+
+      <div class="lab-ex">
+        <div class="lab-card"><span class="lab-tag">The averaging effect</span><p>Because models reward the likeliest output, anything rare, weird or personal gets smoothed away. Sameness isn't a glitch - it's exactly what "most likely" means.</p></div>
+        <div class="lab-card"><span class="lab-tag">Taste is the antidote</span><p>Artists like <b>Grayson Perry</b> argue that craft, specificity and a clear point of view are what resist the average. The more precise your direction, the less bland the result.</p></div>
+      </div>
+
+      <div class="lstep a"><div class="lbadge"><span class="lk">ACT</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Activity</span><h3 class="lt2">Spot the sameness</h3></div><span class="ltime">~6 min</span></div>
+      <div class="taskcard offline"><span class="tk-when">✎ Task 2 · in pairs · 6 min</span><h5>Name the tell-tale signs</h5><p>Think of "default" AI images or websites you've seen. With your partner, list <b>three tell-tale signs</b> that something was made on autopilot - the things that make it look generic. Keep your list; you'll deliberately avoid them next.</p><div class="why purple"><b>Why:</b> you can't break a pattern you can't name. Spotting the bland is the first step to beating it.</div></div>
+
+      <div class="buildnow">
+        <span class="bn-badge">🛠 Your turn · build</span>
+        <h4 class="bn-h">Add one un-bland touch</h4>
+        <p>Make <b>one element</b> of your site unmistakably yours - something the AI default would never produce. A hand-picked colour, your own doodle or icon, a strange layout, a deliberate glitch, a personal example. Just one, done with intent.</p>
+      </div>
+      <div class="taskcard"><span class="tk-when">▶ Task 3 · ~12 min</span><h5>Make it yours</h5><p>Pick one part of your page and give it a clear point of view. Hand-coders: change a colour, font or layout by hand. Vibe-coders: <b>don't</b> just say "make it nicer" - give a specific, personal instruction. Then write one sentence: what did you change, and how does it defy the average?</p><div class="why blue"><b>Why:</b> this is the skill that survives AI - taste and intent. The tool gives you the average; you supply the point.</div></div>
+
+      </div></div>
+      </section>
+
+      <div class="finaltask" id="w3-final">
+        <span class="ft-tag">★ Final task · add it to your site</span>
+        <h3>Update your "Lesson 2" page</h3>
+        <p class="ft-lead">No new link to submit - keep everything on the same <b>"Lesson 2"</b> page you made last week.</p>
+        <div class="ft-deliver">
+          <span class="fd-tag">Make sure your page has</span>
+          <ul>
+            <li><b>Your finished teaching tool</b> - embedded and working (title, algorithm, key terms, how AI works, and the Classification Mirror).</li>
+            <li><b>Your un-bland touch</b> - one element that's clearly yours.</li>
+            <li><b>One sentence</b> - what you changed to defy the "average", in your own words.</li>
+          </ul>
+          <div class="ft-classroom"><span class="cl-pill">When your page is finished and your un-bland touch is in, mark the task done on Google Classroom.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="week-4" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 4 · Embodied Interaction & Browser Webcams</h3><p>Media streams, motion vectors, Universal Everything and Memo Akten, and a privacy-first "Particle Flow Mirror".</p></div></div>
   <div id="week-5" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 5 · Radical Web Publishing & Net Art Exhibits</h3><p>Net-art history (Olia Lialina), static hosting vs sandboxes, portfolio curation and a live launch via Google Site embedding.</p></div></div>
 </section>
