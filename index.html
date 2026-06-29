@@ -1182,6 +1182,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 #pf-canvas{ width:100%; height:auto; display:block; background:#bfe6ff; }
 .pf-hud{ position:absolute; top:8px; left:10px; right:10px; display:flex; justify-content:space-between; font:800 13px ui-monospace,monospace; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.55); pointer-events:none; }
 .pf-hud b{ color:#fcd34d; }
+.pf-hud-r{ display:flex; align-items:center; gap:8px; }
+.pf-refresh{ pointer-events:auto; width:24px; height:24px; border-radius:7px; border:1px solid rgba(255,255,255,.55); background:rgba(15,23,42,.5); color:#fff; font-size:14px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.pf-refresh:hover{ background:rgba(15,23,42,.85); }
 .pf-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,.55); padding:14px; }
 .pf-card{ background:#fff; border-radius:14px; padding:16px 18px; max-width:92%; box-shadow:0 12px 32px -12px rgba(0,0,0,.6); }
 .pf-card h4{ font:800 16px Manrope,system-ui,sans-serif; color:var(--s900); text-align:center; }
@@ -2577,7 +2580,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="pf">
         <div class="pf-stagewrap">
           <canvas id="pf-canvas" width="640" height="360"></canvas>
-          <div class="pf-hud"><span>⚽ <b id="pf-power">0</b></span><span id="pf-lvl">Level 1</span></div>
+          <div class="pf-hud"><span>⚽ <b id="pf-power">0</b></span><span class="pf-hud-r"><span id="pf-lvl">Level 1</span><button class="pf-refresh" onclick="pfRestart()" title="Restart game" aria-label="Restart game">↻</button></span></div>
           <div class="pf-overlay" id="pf-select">
             <div class="pf-card">
               <h4>Choose your character</h4>
@@ -4043,7 +4046,7 @@ function pfAnswerGate(btn,k){ var Q=pfCurQ(), fb=document.getElementById('pf-fb'
 function pfNextQ(){ pf.qPtr++; pf.gateGot++; pfRenderQ(); }
 function pfPassGate(){ var q=document.getElementById('pf-quiz'); if(q)q.style.display='none'; if(pf.level<PF_LEVELS.length-1) pfStartLevel(pf.level+1); else pfWin(); }
 function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4 style="color:#7c3aed">🚀 You cleared all three levels!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Footballs collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
-function pfRestart(){ pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; var w=document.getElementById('pf-win'); if(w)w.style.display='none'; var s=document.getElementById('pf-select'); if(s)s.style.display='flex'; pf.running=false; pf.p=null; }
+function pfRestart(){ pf.powers=0; pf.level=0; pf.running=false; pf.p=null; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; var lv=document.getElementById('pf-lvl'); if(lv)lv.textContent='Level 1'; ['pf-win','pf-quiz'].forEach(function(id){ var e=document.getElementById(id); if(e)e.style.display='none'; }); var s=document.getElementById('pf-select'); if(s)s.style.display='flex'; }
 function pfBindControls(){
   window.addEventListener('keydown',function(e){ var k=pfKey(e.key); if(k){ pf.keys[k]=true; if(pf.running) e.preventDefault(); } });
   window.addEventListener('keyup',function(e){ var k=pfKey(e.key); if(k) pf.keys[k]=false; });
