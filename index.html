@@ -1162,18 +1162,20 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .mq-q{ font:800 15px Manrope,system-ui,sans-serif; color:var(--s900); line-height:1.35; }
 .mq-opts{ display:grid; gap:8px; margin-top:12px; }
 .mq-opt{ text-align:left; font:600 13px Manrope,system-ui,sans-serif; color:var(--s800); background:#f8fafc; border:2px solid #e2e8f0; border-radius:10px; padding:10px 13px; cursor:pointer; transition:border-color .12s, background .12s; }
-.mq-opt:hover{ border-color:#fcd34d; background:#fffbeb; }
+.mq-opt:hover{ border-color:#c4b5fd; background:#f5f3ff; }
 .mq-opt:disabled{ cursor:default; }
-.mq-opt.right{ border-color:#16a34a; background:#dcfce7; }
+.mq-opt.right{ border-color:#059669; background:#d1fae5; }
 .mq-opt.wrong{ border-color:#dc2626; background:#fee2e2; animation:mqshake .3s; }
 @keyframes mqshake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
 .mq-fb{ font:700 12.5px Manrope,system-ui,sans-serif; margin-top:11px; min-height:18px; }
-.mq-fb.ok{ color:#16a34a; } .mq-fb.no{ color:#dc2626; }
+.mq-fb.ok{ color:#059669; } .mq-fb.no{ color:#dc2626; }
+.mq-next{ display:inline-block; margin-left:10px; font:800 11px Manrope,system-ui,sans-serif; background:#7c3aed; color:#fff; border:none; padding:6px 13px; border-radius:7px; cursor:pointer; vertical-align:middle; }
+.mq-next:hover{ background:#6d28d9; }
 .mq-win{ text-align:center; padding:6px 0 4px; }
 .mq-win h4{ font:800 18px Manrope,system-ui,sans-serif; color:#16a34a; }
 .mq-win p{ font-size:13px; color:var(--s600); margin-top:6px; }
-.mq-btn{ margin-top:13px; font:800 13px Manrope,system-ui,sans-serif; background:#e52521; color:#fff; border:none; padding:10px 18px; border-radius:10px; cursor:pointer; transition:background .2s; }
-.mq-btn:hover{ background:#c61f1b; }
+.mq-btn{ margin-top:13px; font:800 13px Manrope,system-ui,sans-serif; background:#7c3aed; color:#fff; border:none; padding:10px 18px; border-radius:10px; cursor:pointer; transition:background .2s; }
+.mq-btn:hover{ background:#6d28d9; }
 /* ===== AI Quest platformer (Week 4 starter) ===== */
 .pf{ margin-top:16px; max-width:640px; }
 .pf-stagewrap{ position:relative; border:2px solid #1e293b; border-radius:14px 14px 0 0; overflow:hidden; line-height:0; }
@@ -1191,7 +1193,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .pf-controls{ display:flex; gap:8px; background:#1e293b; padding:10px; border-radius:0 0 14px 14px; }
 .pf-c{ flex:1; font:800 15px Manrope,system-ui,sans-serif; background:#475569; color:#fff; border:none; border-radius:9px; padding:13px 8px; cursor:pointer; user-select:none; -webkit-user-select:none; touch-action:none; }
 .pf-c:active{ background:#334155; }
-.pf-c.pf-jump{ flex:1.5; background:#e52521; } .pf-c.pf-jump:active{ background:#c61f1b; }
+.pf-c.pf-jump{ flex:1; background:#7c3aed; } .pf-c.pf-jump:active{ background:#6d28d9; }
 .lp-wrap.collapsible .part-head:hover .part-chev{ filter:brightness(1.08); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
@@ -3977,14 +3979,23 @@ function celebrateCert(btn){
 }
 /* ===== AI Quest mini-game (Week 4 starter) ===== */
 var MQ_Q=[
-  { q:"When you send a prompt, what is the very FIRST thing the model does?", a:["Looks the answer up in a database","Splits your text into tokens","Works out the cosine of your sentence"], c:1, fb:"It tokenises first - splits your text into tokens." },
-  { q:"A token is turned into a vector. What does that vector represent?", a:["Its position in a space of meaning","How many letters the word has","How often the word appears online"], c:0, fb:"A vector is coordinates - a position in meaning-space." },
-  { q:"Cosine similarity between two word-vectors measures…", a:["The distance in pixels between them","How many letters they share","The angle between them - how aligned their meanings are"], c:2, fb:"It's the angle: a small angle means similar meaning." },
-  { q:"Where does AI bias mainly come from?", a:["Random errors in the maths","Patterns in the human data it learned from","The programming language used"], c:1, fb:"Bias is learned from skewed human data, not random noise." },
-  { q:"LeWitt's assistants drew his wall pieces from his written rules. The work is usually considered…", a:["His - authorship can live in the idea","The assistants', since they made the marks","Un-authored, as no one person made it"], c:0, fb:"Authorship can live in the idea, not the hand that executes it." },
-  { q:"What does the reward step (RLHF) in training actually do?", a:["Pays the model to answer faster","Adds more web pages to the training data","Uses human ratings to steer it toward better answers"], c:2, fb:"Humans rate sample answers; the model is tuned toward the preferred ones." },
-  { q:"An AI model's 'knowledge' is really…", a:["A stored copy of the internet it searches","Statistical patterns learned from training data","Rules written by hand by engineers"], c:1, fb:"Learned patterns - not a stored copy, not hand-written rules." },
-  { q:"Which prompt is most likely to give a useful result?", a:["\"Tell me about jobs\"","\"Act as a careers adviser: suggest 3 jobs for someone who likes art and coding, with reasons\"","\"jobs??\""], c:1, fb:"A role + a clear task + detail beats a vague prompt every time." }
+  { q:"What is the very FIRST thing a model does with your prompt?", a:["Looks it up in a database","Splits your text into tokens","Searches the live web"], c:1, fb:"It tokenises first - splits the text into tokens." },
+  { q:"A 'token' is…", a:["A whole sentence","A chunk of text - a word or word-piece","A single pixel"], c:1, fb:"Tokens are chunks of text - words or word-pieces." },
+  { q:"A token is turned into a vector. A vector is…", a:["A list of numbers giving it a position in meaning-space","The word spelled backwards","A web link"], c:0, fb:"A vector = coordinates in a space of meaning." },
+  { q:"The whole 'map' of where every token sits is called the…", a:["Embedding","Spreadsheet","Firewall"], c:0, fb:"The embedding is the map of all token positions." },
+  { q:"Cosine similarity measures…", a:["The pixel distance between words","The angle between two vectors","How many letters two words share"], c:1, fb:"It's the angle - a small angle means similar meaning." },
+  { q:"Two word-vectors with a SMALL angle are…", a:["Opposite in meaning","Similar in meaning","Totally unrelated"], c:1, fb:"Small angle, high cosine, similar meaning." },
+  { q:"AI bias mainly comes from…", a:["Random maths errors","Patterns in the human data it trained on","The choice of programming language"], c:1, fb:"Bias is learned from skewed human data." },
+  { q:"A hiring AI trained mostly on men's CVs began downranking women. Why?", a:["A bug in the code","It learned the bias in its training data","Bad luck"], c:1, fb:"Skewed data in, skewed decisions out." },
+  { q:"LeWitt wrote the rules; assistants drew the work. It's considered…", a:["His - authorship can live in the idea","The assistants' alone","Un-authored"], c:0, fb:"Authorship can live in the idea, not the hand." },
+  { q:"You direct an AI to make a piece from your detailed idea. The strongest claim is…", a:["It can't be art at all","The authorship can still be yours","The AI is the sole author"], c:1, fb:"Like LeWitt - the idea and direction can carry authorship." },
+  { q:"A model's 'knowledge' is really…", a:["A stored copy of the internet","Statistical patterns learned from training data","Hand-written rules"], c:1, fb:"Learned patterns - not a stored copy." },
+  { q:"In training, the reward step (RLHF)…", a:["Pays the model","Uses human ratings to steer it to better answers","Deletes old data"], c:1, fb:"Humans rate answers; the model is tuned toward the good ones." },
+  { q:"Which prompt is most likely to work well?", a:["\"write something\"","\"Act as a tutor: explain photosynthesis to a 12-year-old in 3 steps\"","\"info pls\""], c:1, fb:"Role + clear task + detail beats a vague prompt." },
+  { q:"Adding 'reject generic templates' to a prompt helps because…", a:["It makes the AI faster","It pushes back against the bland, average default","It saves money"], c:1, fb:"Specific direction fights the 'bland average'." },
+  { q:"Why do AI images often look samey or 'bland'?", a:["They predict the most likely (average) result","They are always low-resolution","They copy one famous artist"], c:0, fb:"Models drift to the average - the 'bland paste'." },
+  { q:"NotebookLM is most useful because it…", a:["Browses the whole internet","Answers grounded in YOUR sources, with citations","Only writes code"], c:1, fb:"It's grounded in your uploaded sources and cites them." },
+  { q:"A 'Gem' in Gemini is…", a:["A paid upgrade","A saved, custom version with your own instructions","A type of GPU"], c:1, fb:"A reusable custom assistant you set up once." }
 ];
 var pf={ ctx:null, p:null, keys:{}, camX:0, powers:0, levelPowers:0, level:0, color:'#7c3aed', charType:'cat', running:false, raf:0, tick:0, gateNeed:0, gateGot:0, gatePool:[] };
 var PF_W=640, PF_H=360, GRAV=0.6, RUN=2.5, JUMP=12.0;
@@ -4013,7 +4024,7 @@ function pfStartLevel(n){
 function pfLoop(){ pf.raf=requestAnimationFrame(pfLoop); pf.tick++; if(pf.running) pfUpdate(); pfRender(); }
 function pfUpdate(){
   var L=PF_LEVELS[pf.level], p=pf.p; if(!p) return;
-  p.vx=RUN;                                   /* auto-run: the level moves continuously */
+  p.vx=RUN+pf.level*0.7;                      /* auto-run, and each level is faster */
   if(pf.keys.up && p.onGround){ p.vy=-JUMP; p.onGround=false; }
   p.vy+=GRAV; if(p.vy>16)p.vy=16;
   p.x+=p.vx; if(p.x>L.len-p.w)p.x=L.len-p.w;
@@ -4026,9 +4037,10 @@ function pfUpdate(){
 function pfCollide(p,plats,axis){ for(var i=0;i<plats.length;i++){ var pl=plats[i]; if(p.x<pl.x+pl.w&&p.x+p.w>pl.x&&p.y<pl.y+pl.h&&p.y+p.h>pl.y){ if(axis==='x'){ if(p.vx>0)p.x=pl.x-p.w; else if(p.vx<0)p.x=pl.x+pl.w; } else { if(p.vy>0){ p.y=pl.y-p.h; p.vy=0; p.onGround=true; } else if(p.vy<0){ p.y=pl.y+pl.h; p.vy=0; } } } } }
 function pfOpenGate(){ pf.gateNeed=pf.levelPowers>=5?3:(pf.levelPowers>=3?4:5); pf.gateGot=0; pf.gatePool=MQ_Q.slice().sort(function(){return Math.random()-0.5;}); var ov=document.getElementById('pf-quiz'); if(ov)ov.style.display='flex'; pfRenderQ(); }
 function pfRenderQ(){ var ov=document.getElementById('pf-quiz'); if(!ov) return; if(pf.gateGot>=pf.gateNeed){ pfPassGate(); return; } var Q=pf.gatePool[pf.gateGot%pf.gatePool.length]; var h='<div class="pf-card"><span class="pf-gate-tag">🚪 Level gate · '+pf.gateGot+' / '+pf.gateNeed+' correct to pass</span><p class="mq-q">'+Q.q+'</p><div class="mq-opts">'; Q.a.forEach(function(o,k){ h+='<button class="mq-opt" onclick="pfAnswerGate(this,'+k+')">'+o+'</button>'; }); h+='</div><p class="mq-fb" id="pf-fb"></p></div>'; ov.innerHTML=h; }
-function pfAnswerGate(btn,k){ var Q=pf.gatePool[pf.gateGot%pf.gatePool.length], fb=document.getElementById('pf-fb'); if(k===Q.c){ btn.classList.add('right'); document.querySelectorAll('#pf-quiz .mq-opt').forEach(function(b){b.disabled=true;}); if(fb){fb.className='mq-fb ok'; fb.textContent='✓ '+Q.fb;} pf.gateGot++; setTimeout(pfRenderQ,800); } else { btn.classList.add('wrong'); if(fb){fb.className='mq-fb no'; fb.textContent='✗ Try again to pass the gate.';} setTimeout(function(){btn.classList.remove('wrong');},460); } }
+function pfAnswerGate(btn,k){ var Q=pf.gatePool[pf.gateGot%pf.gatePool.length], fb=document.getElementById('pf-fb'); if(k===Q.c){ btn.classList.add('right'); document.querySelectorAll('#pf-quiz .mq-opt').forEach(function(b){b.disabled=true;}); if(fb){ fb.className='mq-fb ok'; fb.innerHTML='✓ '+Q.fb+' <button class="mq-next" onclick="pfNextQ()">Next →</button>'; } } else { btn.classList.add('wrong'); btn.disabled=true; if(fb){fb.className='mq-fb no'; fb.textContent='✗ Not quite - try another answer.';} } }
+function pfNextQ(){ pf.gateGot++; pfRenderQ(); }
 function pfPassGate(){ var q=document.getElementById('pf-quiz'); if(q)q.style.display='none'; if(pf.level<PF_LEVELS.length-1) pfStartLevel(pf.level+1); else pfWin(); }
-function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4>🏝️ You reached the end!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Powers collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
+function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4 style="color:#7c3aed">🌆 You cleared all three levels!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Powers collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
 function pfRestart(){ pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; var w=document.getElementById('pf-win'); if(w)w.style.display='none'; var s=document.getElementById('pf-select'); if(s)s.style.display='flex'; pf.running=false; pf.p=null; }
 function pfBindControls(){
   window.addEventListener('keydown',function(e){ var k=pfKey(e.key); if(k){ pf.keys[k]=true; if(pf.running) e.preventDefault(); } });
@@ -4038,15 +4050,30 @@ function pfBindControls(){
 function pfKey(key){ key=(key||'').toLowerCase(); if(key==='arrowleft'||key==='a')return'left'; if(key==='arrowright'||key==='d')return'right'; if(key==='arrowup'||key==='w'||key===' '||key==='spacebar')return'up'; return null; }
 function pfBtn(id,k){ var el=document.getElementById(id); if(!el)return; var dn=function(e){ e.preventDefault(); pf.keys[k]=true; }, up=function(e){ e.preventDefault(); pf.keys[k]=false; }; el.addEventListener('pointerdown',dn); el.addEventListener('pointerup',up); el.addEventListener('pointerleave',up); el.addEventListener('pointercancel',up); }
 function pfRender(){
-  var ctx=pf.ctx; if(!ctx) return; var L=PF_LEVELS[pf.level]||PF_LEVELS[0], cx=pf.camX, th=L.theme;
+  var ctx=pf.ctx; if(!ctx) return; var L=PF_LEVELS[pf.level]||PF_LEVELS[0], cx=pf.camX, th=L.theme, T=pf.tick;
   var g=ctx.createLinearGradient(0,0,0,PF_H);
-  if(th==='city'){ g.addColorStop(0,'#7fb6e8'); g.addColorStop(.7,'#cde4f6'); g.addColorStop(1,'#e9f2fa'); }
-  else if(th==='sunset'){ g.addColorStop(0,'#3b0764'); g.addColorStop(.45,'#9d174d'); g.addColorStop(.8,'#f97316'); g.addColorStop(1,'#fbbf24'); }
-  else { g.addColorStop(0,'#5db8ff'); g.addColorStop(.5,'#bfe6ff'); g.addColorStop(.72,'#ffe7bd'); g.addColorStop(1,'#ffce8a'); }
+  if(th==='city'){ g.addColorStop(0,'#7c9fd6'); g.addColorStop(.55,'#bcd2f0'); g.addColorStop(1,'#eef2fb'); }
+  else if(th==='sunset'){ g.addColorStop(0,'#4c1d95'); g.addColorStop(.4,'#7c3aed'); g.addColorStop(.7,'#db2777'); g.addColorStop(1,'#f59e0b'); }
+  else { g.addColorStop(0,'#38bdf8'); g.addColorStop(.5,'#bae6fd'); g.addColorStop(.74,'#fde8c8'); g.addColorStop(1,'#fcd9a0'); }
   ctx.fillStyle=g; ctx.fillRect(0,0,PF_W,PF_H);
-  if(th==='beach'){ ctx.fillStyle='#ffd84a'; ctx.beginPath(); ctx.arc(PF_W-96,84,38,0,7); ctx.fill(); ctx.fillStyle='#27b0bf'; ctx.fillRect(0,242,PF_W,40); ctx.fillStyle='rgba(255,255,255,.22)'; for(var s=0;s<PF_W+44;s+=44){ ctx.fillRect(s-((cx*0.4)%44),254,20,3); } }
-  else if(th==='city'){ ctx.fillStyle='rgba(255,255,255,.78)'; [140,380,580].forEach(function(p,i){ var x=((p-cx*0.2)%(PF_W+160)); if(x<-160)x+=PF_W+160; pfCloud(ctx,x,54+i*20); }); pfSkyline(ctx,cx,'#a7bcd4','#8aa1bd',272,true); }
-  else if(th==='sunset'){ ctx.fillStyle='#fde68a'; ctx.beginPath(); ctx.arc(PF_W-92,152,42,0,7); ctx.fill(); ctx.fillStyle='rgba(255,255,255,.8)'; for(var i=0;i<28;i++){ var sx=((i*89 - cx*0.15)%PF_W); if(sx<0)sx+=PF_W; ctx.fillRect(sx,18+(i*47)%118,2,2); } pfSkyline(ctx,cx,'#3a1d53','#2a1240',278,false); }
+  if(th==='beach'){
+    pfSun(ctx,PF_W-100,80,40,'#fb923c','#fde68a');
+    pfClouds(ctx,cx,[[150,52],[420,40],[610,68]]);
+    ctx.strokeStyle='rgba(255,255,255,.8)'; ctx.lineWidth=2; for(var b=0;b<4;b++){ var bxg=(((b*180 - cx*0.3 + T*0.4)%(PF_W+80))+PF_W+80)%(PF_W+80); pfBird(ctx,bxg,66+(b%2)*22); }
+    ctx.fillStyle='#0ea5b7'; ctx.fillRect(0,240,PF_W,42);
+    ctx.fillStyle='rgba(255,255,255,.22)'; for(var s=0;s<PF_W+44;s+=44){ ctx.fillRect(s-((cx*0.4+T*0.3)%44),252,20,3); }
+    pfBoat(ctx,(((300 - cx*0.5)%(PF_W+220))+PF_W+220)%(PF_W+220)-110,238);
+  } else if(th==='city'){
+    pfSun(ctx,110,72,30,'#fde68a','#fffbeb');
+    pfClouds(ctx,cx,[[200,48],[470,64],[650,40]]);
+    pfSkyline(ctx,cx,0.28,'#c7d4ea','#b4c4e2',256,false);
+    pfSkyline(ctx,cx,0.55,'#8497bd','#6e83ad',280,'warm');
+  } else if(th==='sunset'){
+    pfSun(ctx,PF_W/2+50,168,52,'#fde68a','#fff7e0');
+    for(var i=0;i<30;i++){ var sx=(((i*83 - cx*0.12)%PF_W)+PF_W)%PF_W, tw=0.35+0.6*Math.abs(Math.sin(T*0.05+i)); ctx.fillStyle='rgba(255,255,255,'+tw+')'; ctx.fillRect(sx,16+(i*41)%108,2,2); }
+    pfSkyline(ctx,cx,0.28,'#5b2a86','#4a1f70',260,false);
+    pfSkyline(ctx,cx,0.55,'#2a1240','#1c0c2e',282,'neon');
+  }
   ctx.save(); ctx.translate(-cx,0);
   if(th==='beach'){ [120,470,830,1180,1560,1980].forEach(function(px){ if(px<L.len) pfPalm(ctx,px,316); }); }
   L.platforms.forEach(function(pl){ pfBlock(ctx,pl,th); });
@@ -4055,12 +4082,16 @@ function pfRender(){
   ctx.restore();
 }
 function pfRnd(n){ var x=Math.sin(n*127.1)*43758.5; return x-Math.floor(x); }
+function pfSun(ctx,x,y,r,c1,c2){ var rg=ctx.createRadialGradient(x,y,2,x,y,r); rg.addColorStop(0,c2); rg.addColorStop(1,c1); ctx.fillStyle=rg; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill(); }
 function pfCloud(ctx,x,y){ ctx.beginPath(); ctx.arc(x,y,14,0,7); ctx.arc(x+16,y+5,11,0,7); ctx.arc(x-13,y+5,10,0,7); ctx.fill(); }
-function pfSkyline(ctx,cx,cA,cB,baseY,windows){ var off=cx*0.5; for(var i=-1;i<13;i++){ var idx=i+Math.floor(off/130); var bx=i*130-(off%130); var bw=78+Math.floor(pfRnd(idx)*46); var bh=64+Math.floor(pfRnd(idx+9)*150); ctx.fillStyle=((((idx%2)+2)%2))?cA:cB; ctx.fillRect(bx,baseY-bh,bw,bh); if(windows){ ctx.fillStyle='rgba(255,238,170,.85)'; for(var wy=baseY-bh+12; wy<baseY-10; wy+=18){ for(var wx=bx+8; wx<bx+bw-10; wx+=15){ if(pfRnd(wx*0.13+wy*0.7)>0.45) ctx.fillRect(wx,wy,6,8); } } } } }
+function pfClouds(ctx,cx,arr){ ctx.fillStyle='rgba(255,255,255,.82)'; arr.forEach(function(c){ var x=(((c[0]-cx*0.2)%(PF_W+160))+PF_W+160)%(PF_W+160)-80; pfCloud(ctx,x,c[1]); }); }
+function pfBird(ctx,x,y){ ctx.beginPath(); ctx.moveTo(x-6,y); ctx.quadraticCurveTo(x-3,y-4,x,y); ctx.quadraticCurveTo(x+3,y-4,x+6,y); ctx.stroke(); }
+function pfBoat(ctx,x,y){ ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(x,y-26); ctx.lineTo(x,y-3); ctx.lineTo(x+17,y-3); ctx.closePath(); ctx.fill(); ctx.fillStyle='#db2777'; ctx.beginPath(); ctx.moveTo(x-2,y-26); ctx.lineTo(x-2,y-5); ctx.lineTo(x-15,y-5); ctx.closePath(); ctx.fill(); ctx.fillStyle='#1e293b'; ctx.fillRect(x-18,y-3,40,6); }
+function pfSkyline(ctx,cx,par,cA,cB,baseY,mode){ var off=cx*par; for(var i=-1;i<13;i++){ var idx=i+Math.floor(off/130); var bx=i*130-(off%130); var bw=78+Math.floor(pfRnd(idx)*46); var bh=64+Math.floor(pfRnd(idx+9)*150); ctx.fillStyle=((((idx%2)+2)%2))?cA:cB; ctx.fillRect(bx,baseY-bh,bw,bh); if(mode){ for(var wy=baseY-bh+12; wy<baseY-10; wy+=18){ for(var wx=bx+8; wx<bx+bw-10; wx+=15){ if(pfRnd(wx*0.13+wy*0.7)>0.5){ ctx.fillStyle=(mode==='neon')?((pfRnd(wx+wy)>0.5)?'#f0abfc':'#a78bfa'):'rgba(255,238,170,.85)'; ctx.fillRect(wx,wy,6,8); } } } } } }
 function pfBlock(ctx,pl,th){ if(pl.t==='ground'){ var g1='#f1cd8a',g2='#e7b86b'; if(th==='city'){g1='#7b8794';g2='#5b6672';} else if(th==='sunset'){g1='#241a3a';g2='#181229';} ctx.fillStyle=g1; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle=g2; ctx.fillRect(pl.x,pl.y,pl.w,6); } else { var b='#9a6b34'; if(th==='city')b='#94a3b8'; else if(th==='sunset')b='#7c4dbb'; ctx.fillStyle=b; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='rgba(255,255,255,.28)'; ctx.fillRect(pl.x,pl.y,pl.w,4); } }
 function pfDiamond(ctx,x,y){ var bob=Math.sin(pf.tick*0.08+x*0.05)*3; ctx.save(); ctx.translate(x,y+bob); ctx.rotate(pf.tick*0.05); ctx.fillStyle='#fcd34d'; ctx.strokeStyle='#b45309'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(9,0); ctx.lineTo(0,9); ctx.lineTo(-9,0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore(); }
 function pfPalm(ctx,x,baseY){ ctx.save(); ctx.strokeStyle='#9a6b3a'; ctx.lineWidth=6; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(x,baseY); ctx.quadraticCurveTo(x-7,baseY-36,x+5,baseY-62); ctx.stroke(); ctx.fillStyle='#28a85a'; for(var a=-2;a<=2;a++){ var ang=-Math.PI/2+a*0.55, tx=x+5, ty=baseY-62; ctx.beginPath(); ctx.moveTo(tx,ty); ctx.quadraticCurveTo(tx+Math.cos(ang)*20,ty+Math.sin(ang)*20-8,tx+Math.cos(ang)*40,ty+Math.sin(ang)*40); ctx.quadraticCurveTo(tx+Math.cos(ang)*22,ty+Math.sin(ang)*22+2,tx,ty); ctx.fill(); } ctx.restore(); }
-function pfGoal(ctx,gx){ var gy=316; ctx.fillStyle='#475569'; ctx.fillRect(gx,gy-78,4,78); ctx.fillStyle='#e52521'; ctx.beginPath(); ctx.moveTo(gx+4,gy-78); ctx.lineTo(gx+36,gy-67); ctx.lineTo(gx+4,gy-56); ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='700 9px ui-monospace,monospace'; ctx.fillText('END',gx+9,gy-69); }
+function pfGoal(ctx,gx){ var gy=316; ctx.fillStyle='#475569'; ctx.fillRect(gx,gy-78,4,78); ctx.fillStyle='#db2777'; ctx.beginPath(); ctx.moveTo(gx+4,gy-78); ctx.lineTo(gx+36,gy-67); ctx.lineTo(gx+4,gy-56); ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='700 9px ui-monospace,monospace'; ctx.fillText('END',gx+9,gy-69); }
 function pfTri(ctx,x1,y1,x2,y2,x3,y3){ ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.lineTo(x3,y3); ctx.closePath(); ctx.fill(); }
 function pfPlayer(ctx,p){ if(!p) return; var col=pf.color, t=pf.charType, x=p.x, y=p.y, w=p.w, h=p.h, hop=(!p.onGround)?-2:0;
   ctx.save(); ctx.translate(0,hop); ctx.fillStyle=col;
