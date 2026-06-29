@@ -1131,6 +1131,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .lp-wrap.p1 .ph-eyebrow{ color:#db2777; } .lp-wrap.p2 .ph-eyebrow{ color:#7c3aed; } .lp-wrap.p3 .ph-eyebrow{ color:#0284c7; }
 .starter-head{ margin-top:34px; }
 .starter-head .ph-eyebrow{ color:#be185d; }
+.lp-wrap .starter-head{ margin-top:0; }
+.starter-head .part-chev{ background:#db2777; box-shadow:0 3px 9px -3px rgba(219,39,119,.6); }
 /* ===== collapsible parts ===== */
 .part-chev{ flex:none; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; line-height:1; color:#fff; background:#9333ea; box-shadow:0 3px 9px -3px rgba(124,58,237,.6); transition:transform .3s, filter .2s; }
 .lp-wrap.p1 .part-chev{ background:#db2777; box-shadow:0 3px 9px -3px rgba(219,39,119,.6); }
@@ -2572,7 +2574,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <nav class="w2nav" aria-label="Lesson parts">
         <span class="w2n-lab">This lesson</span>
-        <a class="s" href="#w4-start">Starter</a>
+        <a class="s" href="#w4-start" onclick="return openPart('w4-start')">Starter</a>
         <a class="p1" href="#w4-p1" onclick="return openPart('w4-p1')">1 · Get certified</a>
         <a class="p2" href="#w4-p2" onclick="return openPart('w4-p2')">2 · NotebookLM</a>
         <a class="p3" href="#w4-p3" onclick="return openPart('w4-p3')">3 · Gems</a>
@@ -2581,7 +2583,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </nav>
 
       <!-- STARTER -->
-      <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Play This First</h3></div><span class="ph-time">~10 min</span></div>
+      <section class="lp-wrap collapsible collapsed" id="w4-start">
+      <div class="part-head starter-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Play This First</h3></div><span class="ph-time">~10 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
       <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and time your jumps</b> through three auto-scrolling levels - beach 🏖️, city 🏙️ and outer space 🚀 - grabbing ⚽ footballs as you run. The more you collect, the <b>fewer questions</b> at each level's gate (5, 4 or 3). Clear all three to win.</p>
 
       <div class="pf" id="pf-game">
@@ -2620,6 +2624,8 @@ Questions: write your own multiple-choice questions on a topic of your choice (e
 
 Colour scheme: a clean, modern palette - deep purple (#7C3AED), bright pink (#DB2777) and sky blue (#0EA5E9) as accents on soft off-white backgrounds. Big, readable text. Works on a phone with on-screen buttons. Reject generic templates.</textarea>
       </div>
+      </div></div>
+      </section>
 
       <!-- PART 1 · CERTIFICATION -->
       <section class="lp-wrap p1 collapsible collapsed" id="w4-p1">
