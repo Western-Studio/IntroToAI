@@ -1174,6 +1174,26 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .mq-win p{ font-size:13px; color:var(--s600); margin-top:6px; }
 .mq-btn{ margin-top:13px; font:800 13px Manrope,system-ui,sans-serif; background:#e52521; color:#fff; border:none; padding:10px 18px; border-radius:10px; cursor:pointer; transition:background .2s; }
 .mq-btn:hover{ background:#c61f1b; }
+/* ===== AI Quest platformer (Week 4 starter) ===== */
+.pf{ margin-top:16px; max-width:640px; }
+.pf-stagewrap{ position:relative; border:2px solid #1e293b; border-radius:14px 14px 0 0; overflow:hidden; line-height:0; }
+#pf-canvas{ width:100%; height:auto; display:block; background:#bfe6ff; }
+.pf-hud{ position:absolute; top:8px; left:10px; right:10px; display:flex; justify-content:space-between; font:800 13px ui-monospace,monospace; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.55); pointer-events:none; }
+.pf-hud b{ color:#fcd34d; }
+.pf-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,.55); padding:14px; }
+.pf-card{ background:#fff; border-radius:14px; padding:16px 18px; max-width:92%; box-shadow:0 12px 32px -12px rgba(0,0,0,.6); }
+.pf-card h4{ font:800 16px Manrope,system-ui,sans-serif; color:var(--s900); text-align:center; }
+.pf-chars{ display:flex; gap:11px; justify-content:center; flex-wrap:wrap; margin:14px 0 8px; }
+.pf-char{ width:46px; height:46px; border-radius:12px; border:3px solid rgba(255,255,255,.85); cursor:pointer; box-shadow:0 3px 9px -2px rgba(0,0,0,.45); position:relative; transition:transform .12s; }
+.pf-char:hover{ transform:translateY(-3px) scale(1.06); }
+.pf-char::before, .pf-char::after{ content:''; position:absolute; top:15px; width:7px; height:7px; border-radius:50%; background:#fff; }
+.pf-char::before{ left:11px; } .pf-char::after{ right:11px; }
+.pf-hint{ font-size:11px; color:var(--s500); text-align:center; line-height:1.55; max-width:38ch; margin:8px auto 0; }
+.pf-gate-tag{ display:block; font:800 10px ui-monospace,monospace; letter-spacing:.05em; text-transform:uppercase; color:#7c3aed; margin-bottom:8px; }
+.pf-controls{ display:flex; gap:8px; background:#1e293b; padding:10px; border-radius:0 0 14px 14px; }
+.pf-c{ flex:1; font:800 15px Manrope,system-ui,sans-serif; background:#475569; color:#fff; border:none; border-radius:9px; padding:13px 8px; cursor:pointer; user-select:none; -webkit-user-select:none; touch-action:none; }
+.pf-c:active{ background:#334155; }
+.pf-c.pf-jump{ flex:1.5; background:#e52521; } .pf-c.pf-jump:active{ background:#c61f1b; }
 .lp-wrap.collapsible .part-head:hover .part-chev{ filter:brightness(1.08); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
@@ -2552,33 +2572,44 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <!-- STARTER -->
       <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Race to Bowser's Castle</h3></div><span class="ph-time">~10 min</span></div>
-      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Play the game below</b> - clear each level by answering correctly; get it wrong and Bowser blocks the path until you fix it. Reach the castle to win.</p>
+      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and platform through the Malibu scene</b> - jump on blocks, grab ◆ powers, and reach the END flag. The more powers you collect, the <b>fewer questions</b> you face at each level's gate (5, 4 or 3). Clear the final gate to win.</p>
 
-      <div class="mq" id="mq">
-        <div class="mq-hud"><span>🪙 <b id="mq-score">0</b></span><span id="mq-level">World 1-1</span></div>
-        <div class="mq-track"><span class="mq-flag">🏰</span><span class="mq-hero" id="mq-hero">🍄</span></div>
-        <div class="mq-stage" id="mq-stage"></div>
+      <div class="pf">
+        <div class="pf-stagewrap">
+          <canvas id="pf-canvas" width="640" height="360"></canvas>
+          <div class="pf-hud"><span>◆ <b id="pf-power">0</b></span><span id="pf-lvl">Level 1</span></div>
+          <div class="pf-overlay" id="pf-select">
+            <div class="pf-card">
+              <h4>Choose your character</h4>
+              <div class="pf-chars" id="pf-chars"></div>
+              <p class="pf-hint">Move: ◀ ▶ or A&nbsp;D · Jump: ▲ / Space / W · grab ◆ powers and reach the END flag. More powers = fewer questions at the gate!</p>
+            </div>
+          </div>
+          <div class="pf-overlay" id="pf-quiz" style="display:none"></div>
+          <div class="pf-overlay" id="pf-win" style="display:none"></div>
+        </div>
+        <div class="pf-controls">
+          <button class="pf-c" id="pf-left" aria-label="Move left">◀</button>
+          <button class="pf-c" id="pf-right" aria-label="Move right">▶</button>
+          <button class="pf-c pf-jump" id="pf-up" aria-label="Jump">JUMP ▲</button>
+        </div>
       </div>
 
       <p class="act-sub" style="max-width:70ch; margin-top:18px"><b>Using AI?</b> Build your <em>own</em> version - paste this prompt into Gemini Canvas, then make it harder, funnier and yours.</p>
       <div class="prompt-term">
-        <div class="prompt-bar"><h4>⌨ Make your own AI Quest · Gemini Canvas</h4><button class="copy-btn" onclick="copyToClipboard('mq-prompt')">Copy prompt</button></div>
-        <textarea id="mq-prompt" class="prompt-area" readonly>Build a single self-contained index.html browser game in the style of a retro Mario platformer-quiz that tests me on what I've learned about AI. No external libraries; put all HTML, CSS and JS in one file; comment the code so I can read it.
+        <div class="prompt-bar"><h4>⌨ Make your own AI Quest platformer · Gemini Canvas</h4><button class="copy-btn" onclick="copyToClipboard('mq-prompt')">Copy prompt</button></div>
+        <textarea id="mq-prompt" class="prompt-area" readonly>Build a single self-contained index.html browser platformer that doubles as an AI quiz. No external libraries; put all HTML, CSS and JS in one file; comment the code so I can read it.
 
 Gameplay:
-- A character moves along a level toward "Bowser's Castle" at the end.
-- Each step is a multiple-choice question. A correct answer scores points (like collecting coins) and moves the character forward; a wrong answer blocks the path - you can't move on until you get it right.
-- The final question is inside Bowser's Castle; clear it to win, with a celebration screen showing the score.
+- Let me CHOOSE a character (a few colour options).
+- A side-scrolling platformer set in a bright "Malibu beach" scene (sky, sun, sea, sand, palm trees).
+- I can run and JUMP on blocks, and COLLECT power-ups scattered around the level.
+- At the end of each level is a quiz "gate": I answer multiple-choice questions to pass. The MORE power-ups I collected, the FEWER questions I need (5, 4 or 3).
+- A wrong answer keeps the gate shut until I get it right. Clear the final level to win, with a celebration.
 
-Write clear questions and correct answers covering:
-1. How AI works - tokens, vectors, predicting the next token.
-2. Why bias happens - skewed / biased training data.
-3. Authorship - can the idea be the art even if a machine or assistant makes it? (Sol LeWitt)
-4. Cosine similarity - a small angle between word-vectors means similar meaning.
-5. The PARTS prompting method (use my class notes for what PARTS stands for).
-6. What makes a strong prompt.
+Questions should test: how AI works (tokens, vectors, predicting the next token), why bias happens (skewed training data), authorship (Sol LeWitt - the idea as the art), cosine similarity (a small angle = similar meaning), the PARTS prompting method (use my class notes for what PARTS stands for), and what makes a strong prompt.
 
-Design: bright retro colours, a pixel/arcade feel, big readable text, works on a phone. Reject generic templates.</textarea>
+Design: bright and fun, big readable text, works on a phone with on-screen buttons. Use my colours. Reject generic templates.</textarea>
       </div>
 
       <!-- PART 1 · CERTIFICATION -->
@@ -3957,42 +3988,74 @@ var MQ_Q=[
   { q:"Sol LeWitt wrote the rules; assistants drew the art. Whose art is it?", a:["LeWitt's - the idea is the art","The assistants' only","Nobody's"], c:0, fb:"Authorship can live in the idea, not the hand." },
   { q:"What makes a prompt strong?", a:["Saying who it's for and what to include","Being as vague as possible","Using the fewest words"], c:0, fb:"Specific direction - audience, goal, detail - wins." }
 ];
-var mq={ i:0, score:0 };
-function mqStart(){ mq.i=0; mq.score=0; mqRender(); }
-function mqRender(){
-  var stage=document.getElementById('mq-stage'); if(!stage) return;
-  if(mq.i>=MQ_Q.length){ mqWin(); return; }
-  var Q=MQ_Q[mq.i], last=(mq.i===MQ_Q.length-1);
-  var sc=document.getElementById('mq-score'); if(sc) sc.textContent=mq.score;
-  var lv=document.getElementById('mq-level'); if(lv) lv.textContent=last?'🏰 Bowser’s Castle':'World 1-'+(mq.i+1);
-  var hero=document.getElementById('mq-hero'); if(hero) hero.style.left=(2+(mq.i/MQ_Q.length)*84)+'%';
-  var html='<p class="mq-q">'+(last?'🏰 FINAL: ':'')+Q.q+'</p><div class="mq-opts">';
-  Q.a.forEach(function(opt,k){ html+='<button class="mq-opt" onclick="mqAnswer(this,'+k+')">'+opt+'</button>'; });
-  html+='</div><p class="mq-fb" id="mq-fb"></p>';
-  stage.innerHTML=html;
+var pf={ ctx:null, p:null, keys:{}, camX:0, powers:0, levelPowers:0, level:0, color:'#7c3aed', running:false, raf:0, tick:0, gateNeed:0, gateGot:0, gatePool:[] };
+var PF_W=640, PF_H=360, GRAV=0.62, MOVE=2.7, JUMP=11.8;
+var PF_COLORS=['#7c3aed','#db2777','#0ea5e9','#f59e0b','#10b981'];
+var PF_LEVELS=[
+  { len:1900, goal:1820,
+    platforms:[ {x:0,y:316,w:1900,h:44,t:'ground'},{x:250,y:262,w:74,h:16},{x:380,y:222,w:74,h:16},{x:520,y:186,w:84,h:16},{x:700,y:248,w:90,h:16},{x:880,y:208,w:74,h:16},{x:1040,y:262,w:96,h:16},{x:1230,y:216,w:84,h:16},{x:1420,y:250,w:96,h:16},{x:1600,y:200,w:84,h:16} ],
+    powers:[ {x:287,y:236},{x:417,y:196},{x:562,y:160},{x:925,y:182},{x:1272,y:190},{x:1642,y:172} ] },
+  { len:2200, goal:2120,
+    platforms:[ {x:0,y:316,w:2200,h:44,t:'ground'},{x:230,y:250,w:70,h:16},{x:360,y:206,w:70,h:16},{x:500,y:170,w:80,h:16},{x:640,y:226,w:80,h:16},{x:800,y:188,w:70,h:16},{x:960,y:152,w:80,h:16},{x:1140,y:210,w:90,h:16},{x:1320,y:172,w:80,h:16},{x:1500,y:232,w:90,h:16},{x:1680,y:194,w:80,h:16},{x:1860,y:158,w:80,h:16} ],
+    powers:[ {x:265,y:224},{x:535,y:144},{x:835,y:162},{x:995,y:126},{x:1355,y:146},{x:1715,y:168},{x:1895,y:132} ] }
+];
+function pfInit(){ var cv=document.getElementById('pf-canvas'); if(!cv) return; pf.ctx=cv.getContext('2d'); pfBuildCharSelect(); pfBindControls(); pf.level=0; pfLoop(); }
+function pfBuildCharSelect(){ var box=document.getElementById('pf-chars'); if(!box) return; box.innerHTML=''; PF_COLORS.forEach(function(c){ var b=document.createElement('button'); b.className='pf-char'; b.style.background=c; b.onclick=function(){ pf.color=c; pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; pfStartLevel(0); }; box.appendChild(b); }); }
+function pfStartLevel(n){
+  pf.level=n; pf.levelPowers=0;
+  var L=PF_LEVELS[n]; L.powers.forEach(function(pw){ pw.taken=false; });
+  pf.p={ x:40, y:286, w:24, h:30, vx:0, vy:0, onGround:true }; pf.camX=0; pf.keys={};
+  var s=document.getElementById('pf-select'), q=document.getElementById('pf-quiz'), w=document.getElementById('pf-win'), lv=document.getElementById('pf-lvl');
+  if(s)s.style.display='none'; if(q)q.style.display='none'; if(w)w.style.display='none'; if(lv)lv.textContent='Level '+(n+1);
+  pf.running=true;
 }
-function mqAnswer(btn,k){
-  var Q=MQ_Q[mq.i], fb=document.getElementById('mq-fb');
-  if(k===Q.c){
-    btn.classList.add('right'); mq.score+=100;
-    var sc=document.getElementById('mq-score'); if(sc) sc.textContent=mq.score;
-    if(fb){ fb.className='mq-fb ok'; fb.textContent='✓ '+Q.fb+'   +100'; }
-    document.querySelectorAll('.mq-opt').forEach(function(b){ b.disabled=true; });
-    setTimeout(function(){ mq.i++; mqRender(); }, 950);
-  } else {
-    btn.classList.add('wrong');
-    if(fb){ fb.className='mq-fb no'; fb.textContent='✗ Bowser blocks the way! Try again.'; }
-    setTimeout(function(){ btn.classList.remove('wrong'); }, 480);
-  }
+function pfLoop(){ pf.raf=requestAnimationFrame(pfLoop); pf.tick++; if(pf.running) pfUpdate(); pfRender(); }
+function pfUpdate(){
+  var L=PF_LEVELS[pf.level], p=pf.p; if(!p) return;
+  p.vx=(pf.keys.right?MOVE:0)-(pf.keys.left?MOVE:0);
+  if(pf.keys.up && p.onGround){ p.vy=-JUMP; p.onGround=false; }
+  p.vy+=GRAV; if(p.vy>16)p.vy=16;
+  p.x+=p.vx; if(p.x<0)p.x=0; if(p.x>L.len-p.w)p.x=L.len-p.w; pfCollide(p,L.platforms,'x');
+  p.y+=p.vy; p.onGround=false; pfCollide(p,L.platforms,'y');
+  pf.camX=Math.max(0,Math.min(L.len-PF_W,p.x-PF_W*0.4));
+  var cx=p.x+p.w/2, cy=p.y+p.h/2;
+  L.powers.forEach(function(pw){ if(!pw.taken && Math.abs(cx-pw.x)<22 && Math.abs(cy-pw.y)<24){ pw.taken=true; pf.powers++; pf.levelPowers++; var pe=document.getElementById('pf-power'); if(pe)pe.textContent=pf.powers; } });
+  if(p.x+p.w>L.goal){ pf.running=false; pfOpenGate(); }
 }
-function mqWin(){
-  var stage=document.getElementById('mq-stage'); if(!stage) return;
-  var hero=document.getElementById('mq-hero'); if(hero) hero.style.left='88%';
-  var lv=document.getElementById('mq-level'); if(lv) lv.textContent='🏆 You win!';
-  stage.innerHTML='<div class="mq-win"><h4>🏰 Castle cleared!</h4><p>You scored <b>'+mq.score+'</b> and proved you know your stuff. Now on to the certification!</p><button class="mq-btn" onclick="mqStart()">↻ Play again</button></div>';
-  if(typeof celebrateCert==='function') celebrateCert(null);
+function pfCollide(p,plats,axis){ for(var i=0;i<plats.length;i++){ var pl=plats[i]; if(p.x<pl.x+pl.w&&p.x+p.w>pl.x&&p.y<pl.y+pl.h&&p.y+p.h>pl.y){ if(axis==='x'){ if(p.vx>0)p.x=pl.x-p.w; else if(p.vx<0)p.x=pl.x+pl.w; } else { if(p.vy>0){ p.y=pl.y-p.h; p.vy=0; p.onGround=true; } else if(p.vy<0){ p.y=pl.y+pl.h; p.vy=0; } } } } }
+function pfOpenGate(){ pf.gateNeed=pf.levelPowers>=5?3:(pf.levelPowers>=3?4:5); pf.gateGot=0; pf.gatePool=MQ_Q.slice().sort(function(){return Math.random()-0.5;}); var ov=document.getElementById('pf-quiz'); if(ov)ov.style.display='flex'; pfRenderQ(); }
+function pfRenderQ(){ var ov=document.getElementById('pf-quiz'); if(!ov) return; if(pf.gateGot>=pf.gateNeed){ pfPassGate(); return; } var Q=pf.gatePool[pf.gateGot%pf.gatePool.length]; var h='<div class="pf-card"><span class="pf-gate-tag">🚪 Level gate · '+pf.gateGot+' / '+pf.gateNeed+' correct to pass</span><p class="mq-q">'+Q.q+'</p><div class="mq-opts">'; Q.a.forEach(function(o,k){ h+='<button class="mq-opt" onclick="pfAnswerGate(this,'+k+')">'+o+'</button>'; }); h+='</div><p class="mq-fb" id="pf-fb"></p></div>'; ov.innerHTML=h; }
+function pfAnswerGate(btn,k){ var Q=pf.gatePool[pf.gateGot%pf.gatePool.length], fb=document.getElementById('pf-fb'); if(k===Q.c){ btn.classList.add('right'); document.querySelectorAll('#pf-quiz .mq-opt').forEach(function(b){b.disabled=true;}); if(fb){fb.className='mq-fb ok'; fb.textContent='✓ '+Q.fb;} pf.gateGot++; setTimeout(pfRenderQ,800); } else { btn.classList.add('wrong'); if(fb){fb.className='mq-fb no'; fb.textContent='✗ Try again to pass the gate.';} setTimeout(function(){btn.classList.remove('wrong');},460); } }
+function pfPassGate(){ var q=document.getElementById('pf-quiz'); if(q)q.style.display='none'; if(pf.level<PF_LEVELS.length-1) pfStartLevel(pf.level+1); else pfWin(); }
+function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4>🏝️ You reached the end!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Powers collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
+function pfRestart(){ pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; var w=document.getElementById('pf-win'); if(w)w.style.display='none'; var s=document.getElementById('pf-select'); if(s)s.style.display='flex'; pf.running=false; pf.p=null; }
+function pfBindControls(){
+  window.addEventListener('keydown',function(e){ var k=pfKey(e.key); if(k){ pf.keys[k]=true; if(pf.running) e.preventDefault(); } });
+  window.addEventListener('keyup',function(e){ var k=pfKey(e.key); if(k) pf.keys[k]=false; });
+  pfBtn('pf-left','left'); pfBtn('pf-right','right'); pfBtn('pf-up','up');
 }
-if(document.readyState!=='loading'){ mqStart(); } else { document.addEventListener('DOMContentLoaded', mqStart); }
+function pfKey(key){ key=(key||'').toLowerCase(); if(key==='arrowleft'||key==='a')return'left'; if(key==='arrowright'||key==='d')return'right'; if(key==='arrowup'||key==='w'||key===' '||key==='spacebar')return'up'; return null; }
+function pfBtn(id,k){ var el=document.getElementById(id); if(!el)return; var dn=function(e){ e.preventDefault(); pf.keys[k]=true; }, up=function(e){ e.preventDefault(); pf.keys[k]=false; }; el.addEventListener('pointerdown',dn); el.addEventListener('pointerup',up); el.addEventListener('pointerleave',up); el.addEventListener('pointercancel',up); }
+function pfRender(){
+  var ctx=pf.ctx; if(!ctx) return; var L=PF_LEVELS[pf.level]||PF_LEVELS[0], cx=pf.camX;
+  var g=ctx.createLinearGradient(0,0,0,PF_H); g.addColorStop(0,'#5db8ff'); g.addColorStop(.5,'#bfe6ff'); g.addColorStop(.72,'#ffe7bd'); g.addColorStop(1,'#ffce8a'); ctx.fillStyle=g; ctx.fillRect(0,0,PF_W,PF_H);
+  ctx.fillStyle='#ffd84a'; ctx.beginPath(); ctx.arc(PF_W-96,84,38,0,7); ctx.fill();
+  ctx.fillStyle='#27b0bf'; ctx.fillRect(0,242,PF_W,40);
+  ctx.fillStyle='rgba(255,255,255,.22)'; for(var w=0;w<PF_W+44;w+=44){ ctx.fillRect(w-((cx*0.4)%44),254,20,3); }
+  ctx.save(); ctx.translate(-cx,0);
+  [120,470,830,1180,1560,1980].forEach(function(px){ if(px<L.len) pfPalm(ctx,px,316); });
+  L.platforms.forEach(function(pl){ pfBlock(ctx,pl); });
+  L.powers.forEach(function(pw){ if(!pw.taken) pfDiamond(ctx,pw.x,pw.y); });
+  pfGoal(ctx,L.goal); pfPlayer(ctx,pf.p);
+  ctx.restore();
+}
+function pfBlock(ctx,pl){ if(pl.t==='ground'){ ctx.fillStyle='#f1cd8a'; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='#e7b86b'; ctx.fillRect(pl.x,pl.y,pl.w,6); } else { ctx.fillStyle='#9a6b34'; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='#b07d3f'; ctx.fillRect(pl.x,pl.y,pl.w,5); ctx.strokeStyle='rgba(60,30,0,.35)'; ctx.lineWidth=1; ctx.strokeRect(pl.x+.5,pl.y+.5,pl.w-1,pl.h-1); } }
+function pfDiamond(ctx,x,y){ var bob=Math.sin(pf.tick*0.08+x*0.05)*3; ctx.save(); ctx.translate(x,y+bob); ctx.rotate(pf.tick*0.05); ctx.fillStyle='#fcd34d'; ctx.strokeStyle='#b45309'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(9,0); ctx.lineTo(0,9); ctx.lineTo(-9,0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore(); }
+function pfPalm(ctx,x,baseY){ ctx.save(); ctx.strokeStyle='#9a6b3a'; ctx.lineWidth=6; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(x,baseY); ctx.quadraticCurveTo(x-7,baseY-36,x+5,baseY-62); ctx.stroke(); ctx.fillStyle='#28a85a'; for(var a=-2;a<=2;a++){ var ang=-Math.PI/2+a*0.55, tx=x+5, ty=baseY-62; ctx.beginPath(); ctx.moveTo(tx,ty); ctx.quadraticCurveTo(tx+Math.cos(ang)*20,ty+Math.sin(ang)*20-8,tx+Math.cos(ang)*40,ty+Math.sin(ang)*40); ctx.quadraticCurveTo(tx+Math.cos(ang)*22,ty+Math.sin(ang)*22+2,tx,ty); ctx.fill(); } ctx.restore(); }
+function pfGoal(ctx,gx){ var gy=316; ctx.fillStyle='#475569'; ctx.fillRect(gx,gy-78,4,78); ctx.fillStyle='#e52521'; ctx.beginPath(); ctx.moveTo(gx+4,gy-78); ctx.lineTo(gx+36,gy-67); ctx.lineTo(gx+4,gy-56); ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='700 9px ui-monospace,monospace'; ctx.fillText('END',gx+9,gy-69); }
+function pfPlayer(ctx,p){ if(!p) return; ctx.save(); ctx.fillStyle=pf.color; pfRound(ctx,p.x,p.y,p.w,p.h,7); ctx.fill(); var dir=pf.keys.left?-1:1; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(p.x+p.w/2+dir*4,p.y+12,4,0,7); ctx.fill(); ctx.fillStyle='#1e293b'; ctx.beginPath(); ctx.arc(p.x+p.w/2+dir*5,p.y+12,2,0,7); ctx.fill(); ctx.restore(); }
+function pfRound(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+if(document.readyState!=='loading'){ pfInit(); } else { document.addEventListener('DOMContentLoaded', pfInit); }
 /* step sub-nav (Week 1): expand the containing part before jumping */
 document.addEventListener('click', function(e){ var a=e.target.closest&&e.target.closest('.lsn-chip'); if(!a) return; var href=a.getAttribute('href'); if(!href||href.charAt(0)!=='#') return; var t=document.getElementById(href.slice(1)); if(!t) return; var sec=t.closest&&t.closest('.lp-wrap'); if(sec&&sec.classList.contains('collapsed')){ e.preventDefault(); sec.classList.remove('collapsed'); setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); } });
 
