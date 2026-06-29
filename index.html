@@ -1197,6 +1197,13 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .pf-c{ flex:1; font:800 15px Manrope,system-ui,sans-serif; background:#475569; color:#fff; border:none; border-radius:9px; padding:13px 8px; cursor:pointer; user-select:none; -webkit-user-select:none; touch-action:none; }
 .pf-c:active{ background:#334155; }
 .pf-c.pf-jump{ flex:1; background:#7c3aed; } .pf-c.pf-jump:active{ background:#6d28d9; }
+.pf-c.pf-fs{ flex:0 0 auto; font:800 11px Manrope,system-ui,sans-serif; background:#334155; padding:13px 14px; }
+.pf-c.pf-fs:active{ background:#1e293b; }
+.pf:fullscreen{ max-width:none; width:100%; height:100%; background:#0b1026; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; padding:2vh 2vw; box-sizing:border-box; }
+.pf:fullscreen .pf-stagewrap{ width:min(96vw,calc((96vh - 70px) * 1.7778)); }
+.pf:fullscreen .pf-controls{ width:min(96vw,calc((96vh - 70px) * 1.7778)); box-sizing:border-box; }
+.pf:-webkit-full-screen{ max-width:none; width:100%; height:100%; background:#0b1026; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2vh 2vw; box-sizing:border-box; }
+.pf:-webkit-full-screen .pf-stagewrap, .pf:-webkit-full-screen .pf-controls{ width:min(96vw,calc((96vh - 70px) * 1.7778)); box-sizing:border-box; }
 .lp-wrap.collapsible .part-head:hover .part-chev{ filter:brightness(1.08); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
@@ -2577,7 +2584,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Play This First</h3></div><span class="ph-time">~10 min</span></div>
       <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and time your jumps</b> through three auto-scrolling levels - beach 🏖️, city 🏙️ and outer space 🚀 - grabbing ⚽ footballs as you run. The more you collect, the <b>fewer questions</b> at each level's gate (5, 4 or 3). Clear all three to win.</p>
 
-      <div class="pf">
+      <div class="pf" id="pf-game">
         <div class="pf-stagewrap">
           <canvas id="pf-canvas" width="640" height="360"></canvas>
           <div class="pf-hud"><span>⚽ <b id="pf-power">0</b></span><span class="pf-hud-r"><span id="pf-lvl">Level 1</span><button class="pf-refresh" onclick="pfRestart()" title="Restart game" aria-label="Restart game">↻</button></span></div>
@@ -2593,6 +2600,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
         <div class="pf-controls">
           <button class="pf-c pf-jump" id="pf-up" aria-label="Jump">JUMP  ▲</button>
+          <button class="pf-c pf-fs" onclick="pfFull()" title="Play full screen (press Esc to exit)" aria-label="Play full screen">⛶ Full screen</button>
         </div>
       </div>
 
@@ -4046,6 +4054,7 @@ function pfAnswerGate(btn,k){ var Q=pfCurQ(), fb=document.getElementById('pf-fb'
 function pfNextQ(){ pf.qPtr++; pf.gateGot++; pfRenderQ(); }
 function pfPassGate(){ var q=document.getElementById('pf-quiz'); if(q)q.style.display='none'; if(pf.level<PF_LEVELS.length-1) pfStartLevel(pf.level+1); else pfWin(); }
 function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4 style="color:#7c3aed">🚀 You cleared all three levels!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Footballs collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
+function pfFull(){ var el=document.getElementById('pf-game'); if(!el) return; var fsEl=document.fullscreenElement||document.webkitFullscreenElement; if(!fsEl){ var req=el.requestFullscreen||el.webkitRequestFullscreen; if(req) req.call(el); } else { var ex=document.exitFullscreen||document.webkitExitFullscreen; if(ex) ex.call(document); } }
 function pfRestart(){ pf.powers=0; pf.level=0; pf.running=false; pf.p=null; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; var lv=document.getElementById('pf-lvl'); if(lv)lv.textContent='Level 1'; ['pf-win','pf-quiz'].forEach(function(id){ var e=document.getElementById(id); if(e)e.style.display='none'; }); var s=document.getElementById('pf-select'); if(s)s.style.display='flex'; }
 function pfBindControls(){
   window.addEventListener('keydown',function(e){ var k=pfKey(e.key); if(k){ pf.keys[k]=true; if(pf.running) e.preventDefault(); } });
