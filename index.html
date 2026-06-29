@@ -1151,6 +1151,29 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .linkbtn{ display:inline-flex; align-items:center; gap:7px; margin-top:13px; font:700 13px Manrope,system-ui,sans-serif; background:#7c3aed; color:#fff; text-decoration:none; padding:10px 18px; border-radius:10px; transition:background .2s,transform .1s; }
 .linkbtn:hover{ background:#6d28d9; } .linkbtn:active{ transform:scale(.98); }
 .linkbtn.g{ background:#1a73e8; } .linkbtn.g:hover{ background:#1666cc; }
+/* ===== AI Quest mini-game (Week 4 starter) ===== */
+.mq{ margin-top:16px; max-width:640px; border:2px solid #1e293b; border-radius:16px; overflow:hidden; box-shadow:0 8px 22px -12px rgba(28,25,23,.55); }
+.mq-hud{ display:flex; justify-content:space-between; align-items:center; padding:8px 14px; background:#1e293b; color:#fff; font:800 12px ui-monospace,monospace; }
+.mq-hud b{ color:#fcd34d; }
+.mq-track{ position:relative; height:58px; background:linear-gradient(180deg,#5c94fc 0%,#5c94fc 60%,#e06a1e 60%,#c2410c 100%); border-bottom:4px solid #7a3b10; overflow:hidden; }
+.mq-flag{ position:absolute; right:10px; bottom:7px; font-size:26px; z-index:2; }
+.mq-hero{ position:absolute; bottom:7px; left:2%; font-size:24px; z-index:3; transition:left .5s cubic-bezier(.5,-0.35,.5,1.35); }
+.mq-stage{ background:#fff; padding:16px 18px; }
+.mq-q{ font:800 15px Manrope,system-ui,sans-serif; color:var(--s900); line-height:1.35; }
+.mq-opts{ display:grid; gap:8px; margin-top:12px; }
+.mq-opt{ text-align:left; font:600 13px Manrope,system-ui,sans-serif; color:var(--s800); background:#f8fafc; border:2px solid #e2e8f0; border-radius:10px; padding:10px 13px; cursor:pointer; transition:border-color .12s, background .12s; }
+.mq-opt:hover{ border-color:#fcd34d; background:#fffbeb; }
+.mq-opt:disabled{ cursor:default; }
+.mq-opt.right{ border-color:#16a34a; background:#dcfce7; }
+.mq-opt.wrong{ border-color:#dc2626; background:#fee2e2; animation:mqshake .3s; }
+@keyframes mqshake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+.mq-fb{ font:700 12.5px Manrope,system-ui,sans-serif; margin-top:11px; min-height:18px; }
+.mq-fb.ok{ color:#16a34a; } .mq-fb.no{ color:#dc2626; }
+.mq-win{ text-align:center; padding:6px 0 4px; }
+.mq-win h4{ font:800 18px Manrope,system-ui,sans-serif; color:#16a34a; }
+.mq-win p{ font-size:13px; color:var(--s600); margin-top:6px; }
+.mq-btn{ margin-top:13px; font:800 13px Manrope,system-ui,sans-serif; background:#e52521; color:#fff; border:none; padding:10px 18px; border-radius:10px; cursor:pointer; transition:background .2s; }
+.mq-btn:hover{ background:#c61f1b; }
 .lp-wrap.collapsible .part-head:hover .part-chev{ filter:brightness(1.08); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
 .lp-wrap.collapsed .part-chev{ transform:rotate(-90deg); }
@@ -2528,8 +2551,35 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       </nav>
 
       <!-- STARTER -->
-      <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">Tool check-in</h3></div><span class="ph-time">in pairs · ~5 min</span></div>
-      <div class="taskcard"><span class="tk-when">▶ Starter · in pairs · 5 min</span><h5>What have you actually used?</h5><p>Tell your partner: <b>(1)</b> one AI tool you've genuinely used (for school or fun), <b>(2)</b> one thing it did well, and <b>(3)</b> one thing you <em>wish</em> it could do. Hold onto that wish - you might build it today.</p><div class="why pink"><b>Why:</b> the best tool-users start from a real need. Naming yours focuses everything that follows.</div></div>
+      <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Race to Bowser's Castle</h3></div><span class="ph-time">~10 min</span></div>
+      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Play the game below</b> - clear each level by answering correctly; get it wrong and Bowser blocks the path until you fix it. Reach the castle to win.</p>
+
+      <div class="mq" id="mq">
+        <div class="mq-hud"><span>🪙 <b id="mq-score">0</b></span><span id="mq-level">World 1-1</span></div>
+        <div class="mq-track"><span class="mq-flag">🏰</span><span class="mq-hero" id="mq-hero">🍄</span></div>
+        <div class="mq-stage" id="mq-stage"></div>
+      </div>
+
+      <p class="act-sub" style="max-width:70ch; margin-top:18px"><b>Using AI?</b> Build your <em>own</em> version - paste this prompt into Gemini Canvas, then make it harder, funnier and yours.</p>
+      <div class="prompt-term">
+        <div class="prompt-bar"><h4>⌨ Make your own AI Quest · Gemini Canvas</h4><button class="copy-btn" onclick="copyToClipboard('mq-prompt')">Copy prompt</button></div>
+        <textarea id="mq-prompt" class="prompt-area" readonly>Build a single self-contained index.html browser game in the style of a retro Mario platformer-quiz that tests me on what I've learned about AI. No external libraries; put all HTML, CSS and JS in one file; comment the code so I can read it.
+
+Gameplay:
+- A character moves along a level toward "Bowser's Castle" at the end.
+- Each step is a multiple-choice question. A correct answer scores points (like collecting coins) and moves the character forward; a wrong answer blocks the path - you can't move on until you get it right.
+- The final question is inside Bowser's Castle; clear it to win, with a celebration screen showing the score.
+
+Write clear questions and correct answers covering:
+1. How AI works - tokens, vectors, predicting the next token.
+2. Why bias happens - skewed / biased training data.
+3. Authorship - can the idea be the art even if a machine or assistant makes it? (Sol LeWitt)
+4. Cosine similarity - a small angle between word-vectors means similar meaning.
+5. The PARTS prompting method (use my class notes for what PARTS stands for).
+6. What makes a strong prompt.
+
+Design: bright retro colours, a pixel/arcade feel, big readable text, works on a phone. Reject generic templates.</textarea>
+      </div>
 
       <!-- PART 1 · CERTIFICATION -->
       <section class="lp-wrap p1 collapsible collapsed" id="w4-p1">
@@ -3898,6 +3948,51 @@ function celebrateCert(btn){
   }
   requestAnimationFrame(frame);
 }
+/* ===== AI Quest mini-game (Week 4 starter) ===== */
+var MQ_Q=[
+  { q:"When you send a prompt, what does the AI do FIRST?", a:["Chops it into tokens","Phones a human","Searches Google"], c:0, fb:"Tokens first - then each becomes a vector." },
+  { q:"Each token becomes a list of numbers. That list is called a…", a:["Vector","Selfie","Cookie"], c:0, fb:"A vector - coordinates in a space of meaning." },
+  { q:"Two word-vectors point almost the same way (a small angle). That means…", a:["Similar meaning","Opposite meaning","Nothing at all"], c:0, fb:"Small angle = high cosine = similar meaning." },
+  { q:"Why can an AI give unfair, biased results?", a:["It learned from skewed human data","Computers are evil","Pure random luck"], c:0, fb:"Garbage in, garbage out - bias comes from the data." },
+  { q:"Sol LeWitt wrote the rules; assistants drew the art. Whose art is it?", a:["LeWitt's - the idea is the art","The assistants' only","Nobody's"], c:0, fb:"Authorship can live in the idea, not the hand." },
+  { q:"What makes a prompt strong?", a:["Saying who it's for and what to include","Being as vague as possible","Using the fewest words"], c:0, fb:"Specific direction - audience, goal, detail - wins." }
+];
+var mq={ i:0, score:0 };
+function mqStart(){ mq.i=0; mq.score=0; mqRender(); }
+function mqRender(){
+  var stage=document.getElementById('mq-stage'); if(!stage) return;
+  if(mq.i>=MQ_Q.length){ mqWin(); return; }
+  var Q=MQ_Q[mq.i], last=(mq.i===MQ_Q.length-1);
+  var sc=document.getElementById('mq-score'); if(sc) sc.textContent=mq.score;
+  var lv=document.getElementById('mq-level'); if(lv) lv.textContent=last?'🏰 Bowser’s Castle':'World 1-'+(mq.i+1);
+  var hero=document.getElementById('mq-hero'); if(hero) hero.style.left=(2+(mq.i/MQ_Q.length)*84)+'%';
+  var html='<p class="mq-q">'+(last?'🏰 FINAL: ':'')+Q.q+'</p><div class="mq-opts">';
+  Q.a.forEach(function(opt,k){ html+='<button class="mq-opt" onclick="mqAnswer(this,'+k+')">'+opt+'</button>'; });
+  html+='</div><p class="mq-fb" id="mq-fb"></p>';
+  stage.innerHTML=html;
+}
+function mqAnswer(btn,k){
+  var Q=MQ_Q[mq.i], fb=document.getElementById('mq-fb');
+  if(k===Q.c){
+    btn.classList.add('right'); mq.score+=100;
+    var sc=document.getElementById('mq-score'); if(sc) sc.textContent=mq.score;
+    if(fb){ fb.className='mq-fb ok'; fb.textContent='✓ '+Q.fb+'   +100'; }
+    document.querySelectorAll('.mq-opt').forEach(function(b){ b.disabled=true; });
+    setTimeout(function(){ mq.i++; mqRender(); }, 950);
+  } else {
+    btn.classList.add('wrong');
+    if(fb){ fb.className='mq-fb no'; fb.textContent='✗ Bowser blocks the way! Try again.'; }
+    setTimeout(function(){ btn.classList.remove('wrong'); }, 480);
+  }
+}
+function mqWin(){
+  var stage=document.getElementById('mq-stage'); if(!stage) return;
+  var hero=document.getElementById('mq-hero'); if(hero) hero.style.left='88%';
+  var lv=document.getElementById('mq-level'); if(lv) lv.textContent='🏆 You win!';
+  stage.innerHTML='<div class="mq-win"><h4>🏰 Castle cleared!</h4><p>You scored <b>'+mq.score+'</b> and proved you know your stuff. Now on to the certification!</p><button class="mq-btn" onclick="mqStart()">↻ Play again</button></div>';
+  if(typeof celebrateCert==='function') celebrateCert(null);
+}
+if(document.readyState!=='loading'){ mqStart(); } else { document.addEventListener('DOMContentLoaded', mqStart); }
 /* step sub-nav (Week 1): expand the containing part before jumping */
 document.addEventListener('click', function(e){ var a=e.target.closest&&e.target.closest('.lsn-chip'); if(!a) return; var href=a.getAttribute('href'); if(!href||href.charAt(0)!=='#') return; var t=document.getElementById(href.slice(1)); if(!t) return; var sec=t.closest&&t.closest('.lp-wrap'); if(sec&&sec.classList.contains('collapsed')){ e.preventDefault(); sec.classList.remove('collapsed'); setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); } });
 
