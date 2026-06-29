@@ -2572,17 +2572,17 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <!-- STARTER -->
       <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Race to Bowser's Castle</h3></div><span class="ph-time">~10 min</span></div>
-      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and time your jumps</b> through three auto-scrolling levels - beach 🏖️, city 🏙️ and outer space 🚀 - grabbing ◆ powers as you run. The more powers you collect, the <b>fewer questions</b> at each level's gate (5, 4 or 3). Clear all three to win.</p>
+      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and time your jumps</b> through three auto-scrolling levels - beach 🏖️, city 🏙️ and outer space 🚀 - grabbing ⚽ footballs as you run. The more you collect, the <b>fewer questions</b> at each level's gate (5, 4 or 3). Clear all three to win.</p>
 
       <div class="pf">
         <div class="pf-stagewrap">
           <canvas id="pf-canvas" width="640" height="360"></canvas>
-          <div class="pf-hud"><span>◆ <b id="pf-power">0</b></span><span id="pf-lvl">Level 1</span></div>
+          <div class="pf-hud"><span>⚽ <b id="pf-power">0</b></span><span id="pf-lvl">Level 1</span></div>
           <div class="pf-overlay" id="pf-select">
             <div class="pf-card">
               <h4>Choose your character</h4>
               <div class="pf-chars" id="pf-chars"></div>
-              <p class="pf-hint">You auto-run forward - just JUMP (tap the button, or Space / ▲ / W) to leap up, grab ◆ powers and reach the END flag. More powers = fewer questions at the gate!</p>
+              <p class="pf-hint">You auto-run forward - just JUMP (tap the button, or Space / ▲ / W) to leap up, grab ⚽ footballs and reach the END flag. The more you collect, the fewer questions at the gate!</p>
             </div>
           </div>
           <div class="pf-overlay" id="pf-quiz" style="display:none"></div>
@@ -4042,7 +4042,7 @@ function pfRenderQ(){ var ov=document.getElementById('pf-quiz'); if(!ov) return;
 function pfAnswerGate(btn,k){ var Q=pfCurQ(), fb=document.getElementById('pf-fb'); if(k===Q.c){ btn.classList.add('right'); document.querySelectorAll('#pf-quiz .mq-opt').forEach(function(b){b.disabled=true;}); if(fb){ fb.className='mq-fb ok'; fb.innerHTML='✓ '+Q.fb+' <button class="mq-next" onclick="pfNextQ()">Next →</button>'; } } else { btn.classList.add('wrong'); btn.disabled=true; if(fb){fb.className='mq-fb no'; fb.textContent='✗ Not quite - try another answer.';} } }
 function pfNextQ(){ pf.qPtr++; pf.gateGot++; pfRenderQ(); }
 function pfPassGate(){ var q=document.getElementById('pf-quiz'); if(q)q.style.display='none'; if(pf.level<PF_LEVELS.length-1) pfStartLevel(pf.level+1); else pfWin(); }
-function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4 style="color:#7c3aed">🚀 You cleared all three levels!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Powers collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
+function pfWin(){ pf.running=false; var ov=document.getElementById('pf-win'); if(ov){ ov.style.display='flex'; ov.innerHTML='<div class="pf-card" style="text-align:center"><h4 style="color:#7c3aed">🚀 You cleared all three levels!</h4><p style="font-size:13px;color:var(--s600);margin-top:6px">Footballs collected: <b>'+pf.powers+'</b>. You know your AI — now go get certified!</p><button class="mq-btn" onclick="pfRestart()">↻ Play again</button></div>'; } if(typeof celebrateCert==='function') celebrateCert(null); }
 function pfRestart(){ pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; var w=document.getElementById('pf-win'); if(w)w.style.display='none'; var s=document.getElementById('pf-select'); if(s)s.style.display='flex'; pf.running=false; pf.p=null; }
 function pfBindControls(){
   window.addEventListener('keydown',function(e){ var k=pfKey(e.key); if(k){ pf.keys[k]=true; if(pf.running) e.preventDefault(); } });
@@ -4079,7 +4079,7 @@ function pfRender(){
   ctx.save(); ctx.translate(-cx,0);
   if(th==='beach'){ [120,470,830,1180,1560,1980].forEach(function(px){ if(px<L.len) pfPalm(ctx,px,316); }); }
   L.platforms.forEach(function(pl){ pfBlock(ctx,pl,th); });
-  L.powers.forEach(function(pw){ if(!pw.taken) pfDiamond(ctx,pw.x,pw.y); });
+  L.powers.forEach(function(pw){ if(!pw.taken) pfBall(ctx,pw.x,pw.y); });
   pfGoal(ctx,L.goal); pfPlayer(ctx,pf.p);
   ctx.restore();
 }
@@ -4102,7 +4102,11 @@ function pfSchool(ctx,cx,baseY){ var off=cx*0.4, topY=baseY-148;
   ctx.fillStyle='#fff'; ctx.fillRect(PF_W/2-44,topY-1,88,16); ctx.fillStyle='#7c3aed'; ctx.font='800 11px Manrope,system-ui,sans-serif'; ctx.textAlign='center'; ctx.fillText('SCHOOL',PF_W/2,topY+11); ctx.textAlign='left';
 }
 function pfBlock(ctx,pl,th){ if(pl.t==='ground'){ var g1='#f1cd8a',g2='#e7b86b'; if(th==='city'){g1='#7b8794';g2='#5b6672';} else if(th==='space'){g1='#150f33';g2='#7c3aed';} ctx.fillStyle=g1; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle=g2; ctx.fillRect(pl.x,pl.y,pl.w,6); } else { var b='#9a6b34'; if(th==='city')b='#94a3b8'; else if(th==='space')b='#4c1d95'; ctx.fillStyle=b; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='rgba(255,255,255,.28)'; ctx.fillRect(pl.x,pl.y,pl.w,4); } }
-function pfDiamond(ctx,x,y){ var bob=Math.sin(pf.tick*0.08+x*0.05)*3; ctx.save(); ctx.translate(x,y+bob); ctx.rotate(pf.tick*0.05); ctx.fillStyle='#fcd34d'; ctx.strokeStyle='#b45309'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(9,0); ctx.lineTo(0,9); ctx.lineTo(-9,0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore(); }
+function pfBall(ctx,x,y){ var bob=Math.sin(pf.tick*0.08+x*0.05)*3, r=10, P=1.2566; ctx.save(); ctx.translate(x,y+bob); ctx.rotate(pf.tick*0.035);
+  ctx.fillStyle='#ffffff'; ctx.beginPath(); ctx.arc(0,0,r,0,7); ctx.fill(); ctx.lineWidth=1.5; ctx.strokeStyle='#475569'; ctx.stroke();
+  ctx.fillStyle='#1e293b'; ctx.beginPath(); for(var i=0;i<5;i++){ var a=-Math.PI/2+i*P, px=Math.cos(a)*r*0.4, py=Math.sin(a)*r*0.4; if(i)ctx.lineTo(px,py); else ctx.moveTo(px,py); } ctx.closePath(); ctx.fill();
+  ctx.strokeStyle='#1e293b'; ctx.lineWidth=1.2; for(var j=0;j<5;j++){ var a2=-Math.PI/2+j*P; ctx.beginPath(); ctx.moveTo(Math.cos(a2)*r*0.4,Math.sin(a2)*r*0.4); ctx.lineTo(Math.cos(a2)*r*0.95,Math.sin(a2)*r*0.95); ctx.stroke(); }
+  ctx.restore(); }
 function pfPalm(ctx,x,baseY){ ctx.save(); ctx.strokeStyle='#9a6b3a'; ctx.lineWidth=6; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(x,baseY); ctx.quadraticCurveTo(x-7,baseY-36,x+5,baseY-62); ctx.stroke(); ctx.fillStyle='#28a85a'; for(var a=-2;a<=2;a++){ var ang=-Math.PI/2+a*0.55, tx=x+5, ty=baseY-62; ctx.beginPath(); ctx.moveTo(tx,ty); ctx.quadraticCurveTo(tx+Math.cos(ang)*20,ty+Math.sin(ang)*20-8,tx+Math.cos(ang)*40,ty+Math.sin(ang)*40); ctx.quadraticCurveTo(tx+Math.cos(ang)*22,ty+Math.sin(ang)*22+2,tx,ty); ctx.fill(); } ctx.restore(); }
 function pfGoal(ctx,gx){ var gy=316; ctx.fillStyle='#475569'; ctx.fillRect(gx,gy-78,4,78); ctx.fillStyle='#db2777'; ctx.beginPath(); ctx.moveTo(gx+4,gy-78); ctx.lineTo(gx+36,gy-67); ctx.lineTo(gx+4,gy-56); ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='700 9px ui-monospace,monospace'; ctx.fillText('END',gx+9,gy-69); }
 function pfTri(ctx,x1,y1,x2,y2,x3,y3){ ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.lineTo(x3,y3); ctx.closePath(); ctx.fill(); }
