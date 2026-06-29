@@ -1184,10 +1184,8 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .pf-card{ background:#fff; border-radius:14px; padding:16px 18px; max-width:92%; box-shadow:0 12px 32px -12px rgba(0,0,0,.6); }
 .pf-card h4{ font:800 16px Manrope,system-ui,sans-serif; color:var(--s900); text-align:center; }
 .pf-chars{ display:flex; gap:11px; justify-content:center; flex-wrap:wrap; margin:14px 0 8px; }
-.pf-char{ width:46px; height:46px; border-radius:12px; border:3px solid rgba(255,255,255,.85); cursor:pointer; box-shadow:0 3px 9px -2px rgba(0,0,0,.45); position:relative; transition:transform .12s; }
-.pf-char:hover{ transform:translateY(-3px) scale(1.06); }
-.pf-char::before, .pf-char::after{ content:''; position:absolute; top:15px; width:7px; height:7px; border-radius:50%; background:#fff; }
-.pf-char::before{ left:11px; } .pf-char::after{ right:11px; }
+.pf-char{ width:50px; height:50px; border-radius:13px; border:3px solid rgba(255,255,255,.9); cursor:pointer; box-shadow:0 3px 9px -2px rgba(0,0,0,.45); font-size:26px; line-height:1; display:flex; align-items:center; justify-content:center; transition:transform .12s; }
+.pf-char:hover{ transform:translateY(-3px) scale(1.08); }
 .pf-hint{ font-size:11px; color:var(--s500); text-align:center; line-height:1.55; max-width:38ch; margin:8px auto 0; }
 .pf-gate-tag{ display:block; font:800 10px ui-monospace,monospace; letter-spacing:.05em; text-transform:uppercase; color:#7c3aed; margin-bottom:8px; }
 .pf-controls{ display:flex; gap:8px; background:#1e293b; padding:10px; border-radius:0 0 14px 14px; }
@@ -2572,7 +2570,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 
       <!-- STARTER -->
       <div class="part-head starter-head" id="w4-start"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">AI Quest: Race to Bowser's Castle</h3></div><span class="ph-time">~10 min</span></div>
-      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and platform through the Malibu scene</b> - jump on blocks, grab ◆ powers, and reach the END flag. The more powers you collect, the <b>fewer questions</b> you face at each level's gate (5, 4 or 3). Clear the final gate to win.</p>
+      <p class="act-sub" style="max-width:70ch">Warm up by testing what you remember from the last three weeks. <b>Pick a character and time your jumps</b> through three auto-scrolling levels - beach 🏖️, city 🏙️ and sunset 🌆 - grabbing ◆ powers as you run. The more powers you collect, the <b>fewer questions</b> at each level's gate (5, 4 or 3). Clear all three to win.</p>
 
       <div class="pf">
         <div class="pf-stagewrap">
@@ -2582,16 +2580,14 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
             <div class="pf-card">
               <h4>Choose your character</h4>
               <div class="pf-chars" id="pf-chars"></div>
-              <p class="pf-hint">Move: ◀ ▶ or A&nbsp;D · Jump: ▲ / Space / W · grab ◆ powers and reach the END flag. More powers = fewer questions at the gate!</p>
+              <p class="pf-hint">You auto-run forward - just JUMP (tap the button, or Space / ▲ / W) to leap up, grab ◆ powers and reach the END flag. More powers = fewer questions at the gate!</p>
             </div>
           </div>
           <div class="pf-overlay" id="pf-quiz" style="display:none"></div>
           <div class="pf-overlay" id="pf-win" style="display:none"></div>
         </div>
         <div class="pf-controls">
-          <button class="pf-c" id="pf-left" aria-label="Move left">◀</button>
-          <button class="pf-c" id="pf-right" aria-label="Move right">▶</button>
-          <button class="pf-c pf-jump" id="pf-up" aria-label="Jump">JUMP ▲</button>
+          <button class="pf-c pf-jump" id="pf-up" aria-label="Jump">JUMP  ▲</button>
         </div>
       </div>
 
@@ -3981,26 +3977,31 @@ function celebrateCert(btn){
 }
 /* ===== AI Quest mini-game (Week 4 starter) ===== */
 var MQ_Q=[
-  { q:"When you send a prompt, what does the AI do FIRST?", a:["Chops it into tokens","Phones a human","Searches Google"], c:0, fb:"Tokens first - then each becomes a vector." },
-  { q:"Each token becomes a list of numbers. That list is called a…", a:["Vector","Selfie","Cookie"], c:0, fb:"A vector - coordinates in a space of meaning." },
-  { q:"Two word-vectors point almost the same way (a small angle). That means…", a:["Similar meaning","Opposite meaning","Nothing at all"], c:0, fb:"Small angle = high cosine = similar meaning." },
-  { q:"Why can an AI give unfair, biased results?", a:["It learned from skewed human data","Computers are evil","Pure random luck"], c:0, fb:"Garbage in, garbage out - bias comes from the data." },
-  { q:"Sol LeWitt wrote the rules; assistants drew the art. Whose art is it?", a:["LeWitt's - the idea is the art","The assistants' only","Nobody's"], c:0, fb:"Authorship can live in the idea, not the hand." },
-  { q:"What makes a prompt strong?", a:["Saying who it's for and what to include","Being as vague as possible","Using the fewest words"], c:0, fb:"Specific direction - audience, goal, detail - wins." }
+  { q:"When you send a prompt, what is the very FIRST thing the model does?", a:["Looks the answer up in a database","Splits your text into tokens","Works out the cosine of your sentence"], c:1, fb:"It tokenises first - splits your text into tokens." },
+  { q:"A token is turned into a vector. What does that vector represent?", a:["Its position in a space of meaning","How many letters the word has","How often the word appears online"], c:0, fb:"A vector is coordinates - a position in meaning-space." },
+  { q:"Cosine similarity between two word-vectors measures…", a:["The distance in pixels between them","How many letters they share","The angle between them - how aligned their meanings are"], c:2, fb:"It's the angle: a small angle means similar meaning." },
+  { q:"Where does AI bias mainly come from?", a:["Random errors in the maths","Patterns in the human data it learned from","The programming language used"], c:1, fb:"Bias is learned from skewed human data, not random noise." },
+  { q:"LeWitt's assistants drew his wall pieces from his written rules. The work is usually considered…", a:["His - authorship can live in the idea","The assistants', since they made the marks","Un-authored, as no one person made it"], c:0, fb:"Authorship can live in the idea, not the hand that executes it." },
+  { q:"What does the reward step (RLHF) in training actually do?", a:["Pays the model to answer faster","Adds more web pages to the training data","Uses human ratings to steer it toward better answers"], c:2, fb:"Humans rate sample answers; the model is tuned toward the preferred ones." },
+  { q:"An AI model's 'knowledge' is really…", a:["A stored copy of the internet it searches","Statistical patterns learned from training data","Rules written by hand by engineers"], c:1, fb:"Learned patterns - not a stored copy, not hand-written rules." },
+  { q:"Which prompt is most likely to give a useful result?", a:["\"Tell me about jobs\"","\"Act as a careers adviser: suggest 3 jobs for someone who likes art and coding, with reasons\"","\"jobs??\""], c:1, fb:"A role + a clear task + detail beats a vague prompt every time." }
 ];
-var pf={ ctx:null, p:null, keys:{}, camX:0, powers:0, levelPowers:0, level:0, color:'#7c3aed', running:false, raf:0, tick:0, gateNeed:0, gateGot:0, gatePool:[] };
-var PF_W=640, PF_H=360, GRAV=0.62, MOVE=2.7, JUMP=11.8;
-var PF_COLORS=['#7c3aed','#db2777','#0ea5e9','#f59e0b','#10b981'];
+var pf={ ctx:null, p:null, keys:{}, camX:0, powers:0, levelPowers:0, level:0, color:'#7c3aed', charType:'cat', running:false, raf:0, tick:0, gateNeed:0, gateGot:0, gatePool:[] };
+var PF_W=640, PF_H=360, GRAV=0.6, RUN=2.5, JUMP=12.0;
+var PF_CHARS=[ {t:'cat',c:'#7c3aed',e:'🐱'},{t:'dog',c:'#f59e0b',e:'🐶'},{t:'bunny',c:'#db2777',e:'🐰'},{t:'bear',c:'#0ea5e9',e:'🐻'},{t:'frog',c:'#10b981',e:'🐸'} ];
 var PF_LEVELS=[
-  { len:1900, goal:1820,
-    platforms:[ {x:0,y:316,w:1900,h:44,t:'ground'},{x:250,y:262,w:74,h:16},{x:380,y:222,w:74,h:16},{x:520,y:186,w:84,h:16},{x:700,y:248,w:90,h:16},{x:880,y:208,w:74,h:16},{x:1040,y:262,w:96,h:16},{x:1230,y:216,w:84,h:16},{x:1420,y:250,w:96,h:16},{x:1600,y:200,w:84,h:16} ],
-    powers:[ {x:287,y:236},{x:417,y:196},{x:562,y:160},{x:925,y:182},{x:1272,y:190},{x:1642,y:172} ] },
-  { len:2200, goal:2120,
-    platforms:[ {x:0,y:316,w:2200,h:44,t:'ground'},{x:230,y:250,w:70,h:16},{x:360,y:206,w:70,h:16},{x:500,y:170,w:80,h:16},{x:640,y:226,w:80,h:16},{x:800,y:188,w:70,h:16},{x:960,y:152,w:80,h:16},{x:1140,y:210,w:90,h:16},{x:1320,y:172,w:80,h:16},{x:1500,y:232,w:90,h:16},{x:1680,y:194,w:80,h:16},{x:1860,y:158,w:80,h:16} ],
-    powers:[ {x:265,y:224},{x:535,y:144},{x:835,y:162},{x:995,y:126},{x:1355,y:146},{x:1715,y:168},{x:1895,y:132} ] }
+  { theme:'beach', len:2000, goal:1900,
+    platforms:[ {x:0,y:316,w:2000,h:44,t:'ground'},{x:430,y:250,w:84,h:16},{x:760,y:232,w:84,h:16},{x:1120,y:250,w:90,h:16},{x:1480,y:236,w:90,h:16} ],
+    powers:[ {x:300,y:236},{x:560,y:212},{x:820,y:202},{x:980,y:236},{x:1240,y:214},{x:1520,y:206},{x:1720,y:236} ] },
+  { theme:'city', len:2200, goal:2100,
+    platforms:[ {x:0,y:316,w:2200,h:44,t:'ground'},{x:380,y:244,w:84,h:16},{x:720,y:228,w:84,h:16},{x:1080,y:244,w:90,h:16},{x:1440,y:228,w:90,h:16},{x:1800,y:244,w:90,h:16} ],
+    powers:[ {x:300,y:234},{x:520,y:208},{x:760,y:200},{x:1020,y:234},{x:1300,y:210},{x:1560,y:202},{x:1820,y:212},{x:1980,y:234} ] },
+  { theme:'sunset', len:2400, goal:2300,
+    platforms:[ {x:0,y:316,w:2400,h:44,t:'ground'},{x:360,y:238,w:84,h:16},{x:680,y:218,w:84,h:16},{x:1020,y:238,w:90,h:16},{x:1360,y:214,w:90,h:16},{x:1700,y:238,w:90,h:16},{x:2040,y:218,w:90,h:16} ],
+    powers:[ {x:280,y:230},{x:520,y:204},{x:760,y:196},{x:1000,y:230},{x:1240,y:206},{x:1500,y:198},{x:1760,y:230},{x:2020,y:204},{x:2200,y:228} ] }
 ];
 function pfInit(){ var cv=document.getElementById('pf-canvas'); if(!cv) return; pf.ctx=cv.getContext('2d'); pfBuildCharSelect(); pfBindControls(); pf.level=0; pfLoop(); }
-function pfBuildCharSelect(){ var box=document.getElementById('pf-chars'); if(!box) return; box.innerHTML=''; PF_COLORS.forEach(function(c){ var b=document.createElement('button'); b.className='pf-char'; b.style.background=c; b.onclick=function(){ pf.color=c; pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; pfStartLevel(0); }; box.appendChild(b); }); }
+function pfBuildCharSelect(){ var box=document.getElementById('pf-chars'); if(!box) return; box.innerHTML=''; PF_CHARS.forEach(function(ch){ var b=document.createElement('button'); b.className='pf-char'; b.style.background=ch.c; b.textContent=ch.e; b.title=ch.t; b.onclick=function(){ pf.color=ch.c; pf.charType=ch.t; pf.powers=0; var pe=document.getElementById('pf-power'); if(pe)pe.textContent='0'; pfStartLevel(0); }; box.appendChild(b); }); }
 function pfStartLevel(n){
   pf.level=n; pf.levelPowers=0;
   var L=PF_LEVELS[n]; L.powers.forEach(function(pw){ pw.taken=false; });
@@ -4012,14 +4013,14 @@ function pfStartLevel(n){
 function pfLoop(){ pf.raf=requestAnimationFrame(pfLoop); pf.tick++; if(pf.running) pfUpdate(); pfRender(); }
 function pfUpdate(){
   var L=PF_LEVELS[pf.level], p=pf.p; if(!p) return;
-  p.vx=(pf.keys.right?MOVE:0)-(pf.keys.left?MOVE:0);
+  p.vx=RUN;                                   /* auto-run: the level moves continuously */
   if(pf.keys.up && p.onGround){ p.vy=-JUMP; p.onGround=false; }
   p.vy+=GRAV; if(p.vy>16)p.vy=16;
-  p.x+=p.vx; if(p.x<0)p.x=0; if(p.x>L.len-p.w)p.x=L.len-p.w; pfCollide(p,L.platforms,'x');
-  p.y+=p.vy; p.onGround=false; pfCollide(p,L.platforms,'y');
-  pf.camX=Math.max(0,Math.min(L.len-PF_W,p.x-PF_W*0.4));
+  p.x+=p.vx; if(p.x>L.len-p.w)p.x=L.len-p.w;
+  p.y+=p.vy; p.onGround=false; pfCollide(p,L.platforms,'y');   /* land on tops only - no wall-stuck */
+  pf.camX=Math.max(0,Math.min(L.len-PF_W,p.x-PF_W*0.42));
   var cx=p.x+p.w/2, cy=p.y+p.h/2;
-  L.powers.forEach(function(pw){ if(!pw.taken && Math.abs(cx-pw.x)<22 && Math.abs(cy-pw.y)<24){ pw.taken=true; pf.powers++; pf.levelPowers++; var pe=document.getElementById('pf-power'); if(pe)pe.textContent=pf.powers; } });
+  L.powers.forEach(function(pw){ if(!pw.taken && Math.abs(cx-pw.x)<24 && Math.abs(cy-pw.y)<26){ pw.taken=true; pf.powers++; pf.levelPowers++; var pe=document.getElementById('pf-power'); if(pe)pe.textContent=pf.powers; } });
   if(p.x+p.w>L.goal){ pf.running=false; pfOpenGate(); }
 }
 function pfCollide(p,plats,axis){ for(var i=0;i<plats.length;i++){ var pl=plats[i]; if(p.x<pl.x+pl.w&&p.x+p.w>pl.x&&p.y<pl.y+pl.h&&p.y+p.h>pl.y){ if(axis==='x'){ if(p.vx>0)p.x=pl.x-p.w; else if(p.vx<0)p.x=pl.x+pl.w; } else { if(p.vy>0){ p.y=pl.y-p.h; p.vy=0; p.onGround=true; } else if(p.vy<0){ p.y=pl.y+pl.h; p.vy=0; } } } } }
@@ -4037,23 +4038,43 @@ function pfBindControls(){
 function pfKey(key){ key=(key||'').toLowerCase(); if(key==='arrowleft'||key==='a')return'left'; if(key==='arrowright'||key==='d')return'right'; if(key==='arrowup'||key==='w'||key===' '||key==='spacebar')return'up'; return null; }
 function pfBtn(id,k){ var el=document.getElementById(id); if(!el)return; var dn=function(e){ e.preventDefault(); pf.keys[k]=true; }, up=function(e){ e.preventDefault(); pf.keys[k]=false; }; el.addEventListener('pointerdown',dn); el.addEventListener('pointerup',up); el.addEventListener('pointerleave',up); el.addEventListener('pointercancel',up); }
 function pfRender(){
-  var ctx=pf.ctx; if(!ctx) return; var L=PF_LEVELS[pf.level]||PF_LEVELS[0], cx=pf.camX;
-  var g=ctx.createLinearGradient(0,0,0,PF_H); g.addColorStop(0,'#5db8ff'); g.addColorStop(.5,'#bfe6ff'); g.addColorStop(.72,'#ffe7bd'); g.addColorStop(1,'#ffce8a'); ctx.fillStyle=g; ctx.fillRect(0,0,PF_W,PF_H);
-  ctx.fillStyle='#ffd84a'; ctx.beginPath(); ctx.arc(PF_W-96,84,38,0,7); ctx.fill();
-  ctx.fillStyle='#27b0bf'; ctx.fillRect(0,242,PF_W,40);
-  ctx.fillStyle='rgba(255,255,255,.22)'; for(var w=0;w<PF_W+44;w+=44){ ctx.fillRect(w-((cx*0.4)%44),254,20,3); }
+  var ctx=pf.ctx; if(!ctx) return; var L=PF_LEVELS[pf.level]||PF_LEVELS[0], cx=pf.camX, th=L.theme;
+  var g=ctx.createLinearGradient(0,0,0,PF_H);
+  if(th==='city'){ g.addColorStop(0,'#7fb6e8'); g.addColorStop(.7,'#cde4f6'); g.addColorStop(1,'#e9f2fa'); }
+  else if(th==='sunset'){ g.addColorStop(0,'#3b0764'); g.addColorStop(.45,'#9d174d'); g.addColorStop(.8,'#f97316'); g.addColorStop(1,'#fbbf24'); }
+  else { g.addColorStop(0,'#5db8ff'); g.addColorStop(.5,'#bfe6ff'); g.addColorStop(.72,'#ffe7bd'); g.addColorStop(1,'#ffce8a'); }
+  ctx.fillStyle=g; ctx.fillRect(0,0,PF_W,PF_H);
+  if(th==='beach'){ ctx.fillStyle='#ffd84a'; ctx.beginPath(); ctx.arc(PF_W-96,84,38,0,7); ctx.fill(); ctx.fillStyle='#27b0bf'; ctx.fillRect(0,242,PF_W,40); ctx.fillStyle='rgba(255,255,255,.22)'; for(var s=0;s<PF_W+44;s+=44){ ctx.fillRect(s-((cx*0.4)%44),254,20,3); } }
+  else if(th==='city'){ ctx.fillStyle='rgba(255,255,255,.78)'; [140,380,580].forEach(function(p,i){ var x=((p-cx*0.2)%(PF_W+160)); if(x<-160)x+=PF_W+160; pfCloud(ctx,x,54+i*20); }); pfSkyline(ctx,cx,'#a7bcd4','#8aa1bd',272,true); }
+  else if(th==='sunset'){ ctx.fillStyle='#fde68a'; ctx.beginPath(); ctx.arc(PF_W-92,152,42,0,7); ctx.fill(); ctx.fillStyle='rgba(255,255,255,.8)'; for(var i=0;i<28;i++){ var sx=((i*89 - cx*0.15)%PF_W); if(sx<0)sx+=PF_W; ctx.fillRect(sx,18+(i*47)%118,2,2); } pfSkyline(ctx,cx,'#3a1d53','#2a1240',278,false); }
   ctx.save(); ctx.translate(-cx,0);
-  [120,470,830,1180,1560,1980].forEach(function(px){ if(px<L.len) pfPalm(ctx,px,316); });
-  L.platforms.forEach(function(pl){ pfBlock(ctx,pl); });
+  if(th==='beach'){ [120,470,830,1180,1560,1980].forEach(function(px){ if(px<L.len) pfPalm(ctx,px,316); }); }
+  L.platforms.forEach(function(pl){ pfBlock(ctx,pl,th); });
   L.powers.forEach(function(pw){ if(!pw.taken) pfDiamond(ctx,pw.x,pw.y); });
   pfGoal(ctx,L.goal); pfPlayer(ctx,pf.p);
   ctx.restore();
 }
-function pfBlock(ctx,pl){ if(pl.t==='ground'){ ctx.fillStyle='#f1cd8a'; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='#e7b86b'; ctx.fillRect(pl.x,pl.y,pl.w,6); } else { ctx.fillStyle='#9a6b34'; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='#b07d3f'; ctx.fillRect(pl.x,pl.y,pl.w,5); ctx.strokeStyle='rgba(60,30,0,.35)'; ctx.lineWidth=1; ctx.strokeRect(pl.x+.5,pl.y+.5,pl.w-1,pl.h-1); } }
+function pfRnd(n){ var x=Math.sin(n*127.1)*43758.5; return x-Math.floor(x); }
+function pfCloud(ctx,x,y){ ctx.beginPath(); ctx.arc(x,y,14,0,7); ctx.arc(x+16,y+5,11,0,7); ctx.arc(x-13,y+5,10,0,7); ctx.fill(); }
+function pfSkyline(ctx,cx,cA,cB,baseY,windows){ var off=cx*0.5; for(var i=-1;i<13;i++){ var idx=i+Math.floor(off/130); var bx=i*130-(off%130); var bw=78+Math.floor(pfRnd(idx)*46); var bh=64+Math.floor(pfRnd(idx+9)*150); ctx.fillStyle=((((idx%2)+2)%2))?cA:cB; ctx.fillRect(bx,baseY-bh,bw,bh); if(windows){ ctx.fillStyle='rgba(255,238,170,.85)'; for(var wy=baseY-bh+12; wy<baseY-10; wy+=18){ for(var wx=bx+8; wx<bx+bw-10; wx+=15){ if(pfRnd(wx*0.13+wy*0.7)>0.45) ctx.fillRect(wx,wy,6,8); } } } } }
+function pfBlock(ctx,pl,th){ if(pl.t==='ground'){ var g1='#f1cd8a',g2='#e7b86b'; if(th==='city'){g1='#7b8794';g2='#5b6672';} else if(th==='sunset'){g1='#241a3a';g2='#181229';} ctx.fillStyle=g1; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle=g2; ctx.fillRect(pl.x,pl.y,pl.w,6); } else { var b='#9a6b34'; if(th==='city')b='#94a3b8'; else if(th==='sunset')b='#7c4dbb'; ctx.fillStyle=b; ctx.fillRect(pl.x,pl.y,pl.w,pl.h); ctx.fillStyle='rgba(255,255,255,.28)'; ctx.fillRect(pl.x,pl.y,pl.w,4); } }
 function pfDiamond(ctx,x,y){ var bob=Math.sin(pf.tick*0.08+x*0.05)*3; ctx.save(); ctx.translate(x,y+bob); ctx.rotate(pf.tick*0.05); ctx.fillStyle='#fcd34d'; ctx.strokeStyle='#b45309'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(9,0); ctx.lineTo(0,9); ctx.lineTo(-9,0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore(); }
 function pfPalm(ctx,x,baseY){ ctx.save(); ctx.strokeStyle='#9a6b3a'; ctx.lineWidth=6; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(x,baseY); ctx.quadraticCurveTo(x-7,baseY-36,x+5,baseY-62); ctx.stroke(); ctx.fillStyle='#28a85a'; for(var a=-2;a<=2;a++){ var ang=-Math.PI/2+a*0.55, tx=x+5, ty=baseY-62; ctx.beginPath(); ctx.moveTo(tx,ty); ctx.quadraticCurveTo(tx+Math.cos(ang)*20,ty+Math.sin(ang)*20-8,tx+Math.cos(ang)*40,ty+Math.sin(ang)*40); ctx.quadraticCurveTo(tx+Math.cos(ang)*22,ty+Math.sin(ang)*22+2,tx,ty); ctx.fill(); } ctx.restore(); }
 function pfGoal(ctx,gx){ var gy=316; ctx.fillStyle='#475569'; ctx.fillRect(gx,gy-78,4,78); ctx.fillStyle='#e52521'; ctx.beginPath(); ctx.moveTo(gx+4,gy-78); ctx.lineTo(gx+36,gy-67); ctx.lineTo(gx+4,gy-56); ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.font='700 9px ui-monospace,monospace'; ctx.fillText('END',gx+9,gy-69); }
-function pfPlayer(ctx,p){ if(!p) return; ctx.save(); ctx.fillStyle=pf.color; pfRound(ctx,p.x,p.y,p.w,p.h,7); ctx.fill(); var dir=pf.keys.left?-1:1; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(p.x+p.w/2+dir*4,p.y+12,4,0,7); ctx.fill(); ctx.fillStyle='#1e293b'; ctx.beginPath(); ctx.arc(p.x+p.w/2+dir*5,p.y+12,2,0,7); ctx.fill(); ctx.restore(); }
+function pfTri(ctx,x1,y1,x2,y2,x3,y3){ ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.lineTo(x3,y3); ctx.closePath(); ctx.fill(); }
+function pfPlayer(ctx,p){ if(!p) return; var col=pf.color, t=pf.charType, x=p.x, y=p.y, w=p.w, h=p.h, hop=(!p.onGround)?-2:0;
+  ctx.save(); ctx.translate(0,hop); ctx.fillStyle=col;
+  if(t==='cat'){ pfTri(ctx,x+2,y+2,x+9,y-9,x+16,y+2); pfTri(ctx,x+w-16,y+2,x+w-9,y-9,x+w-2,y+2); }
+  else if(t==='bunny'){ ctx.fillRect(x+5,y-17,5,19); ctx.fillRect(x+w-10,y-17,5,19); }
+  else if(t==='bear'){ ctx.beginPath(); ctx.arc(x+6,y+1,6,0,7); ctx.arc(x+w-6,y+1,6,0,7); ctx.fill(); }
+  else if(t==='dog'){ ctx.beginPath(); ctx.ellipse(x+2,y+11,5,10,0,0,7); ctx.ellipse(x+w-2,y+11,5,10,0,0,7); ctx.fill(); }
+  ctx.fillStyle=col; pfRound(ctx,x,y,w,h,8); ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,.18)'; pfRound(ctx,x+5,y+h*0.45,w-10,h*0.5,6); ctx.fill();
+  if(t==='frog'){ ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(x+8,y-2,6,0,7); ctx.arc(x+w-8,y-2,6,0,7); ctx.fill(); ctx.fillStyle='#1e293b'; ctx.beginPath(); ctx.arc(x+10,y-2,3,0,7); ctx.arc(x+w-6,y-2,3,0,7); ctx.fill(); }
+  else { ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(x+w/2-5,y+13,4,0,7); ctx.arc(x+w/2+6,y+13,4,0,7); ctx.fill(); ctx.fillStyle='#1e293b'; ctx.beginPath(); ctx.arc(x+w/2-3,y+13,2,0,7); ctx.arc(x+w/2+8,y+13,2,0,7); ctx.fill(); }
+  ctx.fillStyle=(t==='cat'||t==='bunny')?'#fb7185':'#1e293b'; ctx.beginPath(); ctx.arc(x+w/2+1,y+20,2.3,0,7); ctx.fill();
+  if(t==='cat'){ ctx.strokeStyle='rgba(255,255,255,.55)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x+w/2-3,y+20); ctx.lineTo(x-3,y+18); ctx.moveTo(x+w/2-3,y+22); ctx.lineTo(x-3,y+24); ctx.moveTo(x+w/2+5,y+20); ctx.lineTo(x+w+3,y+18); ctx.moveTo(x+w/2+5,y+22); ctx.lineTo(x+w+3,y+24); ctx.stroke(); }
+  ctx.restore(); }
 function pfRound(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
 if(document.readyState!=='loading'){ pfInit(); } else { document.addEventListener('DOMContentLoaded', pfInit); }
 /* step sub-nav (Week 1): expand the containing part before jumping */
