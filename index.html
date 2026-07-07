@@ -1460,6 +1460,21 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       </div>
 
+      <div class="goalbox">
+        <span class="goal-tag">🎯 Today's mission</span>
+        <h3>Author a set of rules, delegate it to the machine - then publish the result</h3>
+        <p>By the end of today you'll understand how a generative machine actually works, trace the idea back to Ada Lovelace and Sol LeWitt, and build your own interactive geometric rules-engine in Gemini Canvas - the thinking is yours, the rendering is delegated. <b>Tick these off as you go:</b></p>
+        <div class="goal-sections">
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">What an "algorithm" really is</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">How a model pictures language</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Ada Lovelace &amp; Sol LeWitt's idea</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">The idea as the medium</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Build a rules-engine in Gemini Canvas</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Publish &amp; hand it in</span></span>
+        </div>
+        <p class="goal-foot"><b>Minimum to pass:</b> author one clear set of rules and get the machine to render <em>one</em> interactive geometric piece you can hand in. Everything else builds on that.</p>
+      </div>
+
       <!-- ============ WEEK 1 · LEARNING PATH ============ -->
       <div class="lpath-intro">
         <span class="lpi-tag">// how this lesson runs</span>
@@ -1505,7 +1520,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           </div>
         </div>
       </nav>
-      <section class="lp-wrap p1 collapsible">
+      <section class="lp-wrap p1 collapsible collapsed">
       <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 1</span><h3 class="ph-title">How the machine actually works</h3></div><span class="ph-time">~50 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
       <div id="w1-e1" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">1</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So what is an “algorithm” here?</h3></div><span class="ltime">~6 min</span></div>
@@ -1633,7 +1648,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
         </div>
       </div></div>
       </section>
-      <section class="lp-wrap p2 collapsible">
+      <section class="lp-wrap p2 collapsible collapsed">
       <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 2</span><h3 class="ph-title">The idea as the medium</h3></div><span class="ph-time">~50 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
       <div id="w1-e4" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">4</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">Meet the ancestors</h3></div><span class="ltime">~10 min</span></div>
@@ -1848,7 +1863,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <div id="w1-t6" class="taskcard offline"><span class="tk-when">✎ Task 6 · in pairs · 15 min</span><h5>Act as a human interpreter</h5><p>Pair up. One of you is the <b>Director</b> and controls the Blind Drafter above (Privacy Shield on); issue strict, step-by-step verbal rules. Your partner is the <b>compiler</b> and draws exactly what they hear on paper - no feedback, no questions.</p><div class="why pink"><b>Why:</b> to witness the inevitable drift between written rules and final execution. Computers are literal, unthinking, highly predictable systems of execution.</div></div>
       </div></div>
       </section>
-      <section class="lp-wrap p3 collapsible">
+      <section class="lp-wrap p3 collapsible collapsed">
       <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 3</span><h3 class="ph-title">Take a position, then build</h3></div><span class="ph-time">~50 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
       <div id="w1-e7" class="lstep e"><div class="lbadge"><span class="lk">EXP</span><span class="ln">7</span></div><div class="lmeta"><span class="lkind">Explanation</span><h3 class="lt2">So - what could this mean for us?</h3></div><span class="ltime">~5 min</span></div>
@@ -4213,7 +4228,7 @@ function hbInit(){ var c=document.getElementById('hb-code'); if(!c) return; HB_D
 if(document.readyState!=='loading'){ hbInit(); } else { document.addEventListener('DOMContentLoaded', hbInit); }
 
 /* ===== collapsible lesson parts ===== */
-function togglePart(head){ var sec=head.closest('.lp-wrap'); if(sec) sec.classList.toggle('collapsed'); }
+function togglePart(head){ var sec=head.closest('.lp-wrap'); if(!sec) return; sec.classList.toggle('collapsed'); if(!sec.classList.contains('collapsed') && sec.closest('#week-1')){ setTimeout(function(){ try{ galaxyInit(); }catch(e){} try{ fireInit(); }catch(e){} try{ lwInit(); }catch(e){} try{ generateBlindDrafterComposition(); }catch(e){} try{ peerInit(); }catch(e){} }, 70); } }
 function openPart(id, target){ var sec=document.getElementById(id); if(sec) sec.classList.remove('collapsed'); var t=document.getElementById(target||id); if(t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); return false; }
 /* Week 5 project chooser: show one brief at a time */
 function projShow(n){
