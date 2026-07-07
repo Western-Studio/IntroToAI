@@ -2857,20 +2857,22 @@ Colour scheme: a clean, modern palette - deep purple (#7C3AED), bright pink (#DB
         <h4>🌐 Publish your portfolio (GitHub)</h4>
         <p>Take the portfolio you started last week and <b>publish it properly</b> - hosted free on <b>GitHub Pages</b> with a real web address you can share. You'll learn how websites are actually structured and hosted.</p>
         <div class="why blue"><b>What you'll need:</b> a free <b>GitHub</b> account - <a href="https://github.com/signup" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700">sign up ↗</a> before you start. New to GitHub? There's a plain-English primer (repos, commits, pushes, Pages) in the <b>"Hungry for more?"</b> section of <b>The Brief</b> tab, and <a href="https://skills.github.com/" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700">GitHub Skills ↗</a> teaches the basics by doing.</div>
-        <div class="pc-tips" style="margin-top:14px"><span class="pc-tips-h">How a website is structured</span></div>
-        <div class="codeblk">📁 my-portfolio/
-├── index.html        <span class="com">the page itself</span>
-├── 📁 images/         <span class="com">your artwork lives here</span>
-│   ├── piece-1.jpg
-│   └── piece-2.jpg
-└── style.css         <span class="com">optional - the styling</span></div>
+        <div class="pc-tips" style="margin-top:14px"><span class="pc-tips-h">How a website is structured (ask Gemini to build it like this)</span></div>
+        <div class="codeblk">📁 my-portfolio/          <span class="com">← your whole site lives in one folder</span>
+├── index.html            <span class="com">← the HOMEPAGE - it must ALWAYS be named exactly this</span>
+├── 📁 images/            <span class="com">← every picture goes in its own folder, not loose</span>
+│   ├── ceramic-vase.jpg  <span class="com">← give each a clear, descriptive name…</span>
+│   └── screen-print.jpg  <span class="com">← …lowercase, no spaces (use - between words)</span>
+└── style.css             <span class="com">← optional: all your styling in one file</span></div>
         <ol class="pb-steps">
+          <li><b>Ask Gemini to build it as separate files</b> in exactly this structure - an <code>index.html</code> plus an <code>images/</code> folder with clearly-named images - and to link each picture with a <b>relative path</b>: <code>&lt;img src="images/ceramic-vase.jpg"&gt;</code>. Download the files.</li>
           <li>Make a free <b>GitHub</b> account and create a new <b>repository</b> (e.g. "portfolio").</li>
-          <li>Add your <code>index.html</code>, and put your images in an <code>images/</code> folder. Link to them with <b>relative paths</b>: <code>&lt;img src="images/piece-1.jpg"&gt;</code>.</li>
-          <li>In the repo go to <b>Settings → Pages</b>, set the source to your main branch - GitHub gives you a live URL.</li>
+          <li><b>Upload your files, keeping the structure</b> - <code>index.html</code> at the top level, images inside the <code>images/</code> folder.</li>
+          <li>Go to <b>Settings → Pages</b>, set the source to your main branch - GitHub gives you a <b>live URL</b>.</li>
           <li>Test the live link, then embed or link it from your Google Site.</li>
         </ol>
-        <div class="why blue"><b>Tip:</b> keep file names lowercase with no spaces, and check every image path - a wrong path is the number-one reason images don't show.</div>
+        <div class="why blue"><b>Can Gemini push to GitHub for you?</b> No - Gemini writes the files and can <em>coach</em> you, but you upload them yourself (it's quick). Get stuck? Ask it: <em>"Walk me through putting these files on GitHub Pages, step by step, as a total beginner - one click at a time."</em></div>
+        <div class="why purple"><b>Tip:</b> file names must be lowercase with no spaces, and every image path must match its file exactly - a wrong path is the number-one reason images don't show.</div>
         <a class="linkbtn" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages - how to ↗</a>
       </div>
 
