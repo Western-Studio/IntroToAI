@@ -1283,6 +1283,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
   <button onclick="switchTab('lessons')" id="tab-lessons" class="tab-btn">Lessons</button>
   <button onclick="switchTab('playgrounds')" id="tab-playgrounds" class="tab-btn">Universal Labs</button>
   <button onclick="switchTab('brief')" id="tab-brief" class="tab-btn">The Brief</button>
+  <button onclick="switchTab('protect')" id="tab-protect" class="tab-btn">Protect Your Work</button>
 </nav>
 
 <main>
@@ -3384,6 +3385,90 @@ My rough idea: "a space invaders game that looks like my soft, pastel art style.
       </ul>
       <div class="ft-classroom"><span class="cl-pill">Classroom → your assignment → Add or create → Link → paste your Site URL</span></div>
     </div>
+  </div>
+
+</section>
+
+<!-- ===== PROTECT YOUR WORK ===== -->
+<style>
+#content-protect .pw-hero{ position:relative; overflow:hidden; }
+.pw-lede{ font-size:15px; color:var(--s600); line-height:1.65; max-width:70ch; margin-top:12px; }
+.pw-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:20px; }
+.pw-card{ background:#fff; border:1px solid #e9d5ff; border-radius:16px; padding:20px; }
+.pw-card .pw-ico{ font-size:26px; line-height:1; }
+.pw-card h4{ font-size:16px; font-weight:800; color:var(--s900); margin-top:12px; }
+.pw-card p{ font-size:13px; color:var(--s600); line-height:1.55; margin-top:7px; }
+.pw-card .pw-eg{ display:block; font-size:11.5px; color:var(--s500); margin-top:10px; font-style:italic; }
+.pw-card.work{ border-color:#c4b5fd; } .pw-card.identity{ border-color:#f9a8d4; }
+.pw-card.characters{ border-color:#7dd3fc; } .pw-card.marks{ border-color:#fcd34d; }
+.pw-lights{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-top:18px; }
+.pw-light{ border-radius:16px; padding:18px 18px 20px; border:1px solid transparent; }
+.pw-light .pw-dot{ display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; font-size:16px; }
+.pw-light h4{ font-size:15px; font-weight:800; margin-top:12px; }
+.pw-light p{ font-size:12.5px; line-height:1.55; margin-top:6px; }
+.pw-light.go{ background:#dcfce7; border-color:#86efac; } .pw-light.go .pw-dot{ background:#059669; color:#fff; } .pw-light.go h4{ color:#15803d; } .pw-light.go p{ color:#166534; }
+.pw-light.terms{ background:#fef3c7; border-color:#fcd34d; } .pw-light.terms .pw-dot{ background:#d97706; color:#fff; } .pw-light.terms h4{ color:#b45309; } .pw-light.terms p{ color:#92400e; }
+.pw-light.stop{ background:#fee2e2; border-color:#fca5a5; } .pw-light.stop .pw-dot{ background:#dc2626; color:#fff; } .pw-light.stop h4{ color:#b91c1c; } .pw-light.stop p{ color:#991b1b; }
+.pw-steps{ counter-reset:pw; margin-top:16px; display:grid; gap:12px; }
+.pw-step{ display:flex; gap:14px; align-items:flex-start; background:#faf5ff; border:1px solid #e9d5ff; border-radius:14px; padding:15px 17px; }
+.pw-step::before{ counter-increment:pw; content:counter(pw); flex:0 0 auto; width:28px; height:28px; border-radius:50%; background:#7c3aed; color:#fff; font-weight:800; font-size:14px; display:inline-flex; align-items:center; justify-content:center; }
+.pw-step .pw-st{ font-size:13.5px; color:var(--s700); line-height:1.55; }
+.pw-step .pw-st b{ color:var(--s900); }
+.pw-cta{ display:inline-flex; align-items:center; gap:9px; margin-top:8px; background:linear-gradient(135deg,#7c3aed,#db2777); color:#fff; font-weight:800; font-size:14px; padding:12px 20px; border-radius:999px; text-decoration:none; }
+.pw-note{ font-size:12px; color:var(--s500); line-height:1.55; margin-top:12px; max-width:70ch; }
+.pw-note b{ color:var(--s700); }
+</style>
+<section id="content-protect" class="tab-content hidden stack">
+
+  <div class="glass rounded-lg hero shadow pw-hero">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <span class="label mono" style="color:#f9a8d4">// You are the author now</span>
+    <h2 class="hero-h">Protect your <span class="gradient-text">work</span></h2>
+    <p class="lede sm">The moment you publish, your ideas, images, characters - even your face and voice - become things other systems can find, copy and train on. This page is about the flip side of everything you're learning: not just <em>making</em> with the machine, but deciding <strong>how the machine is allowed to use you back</strong>.</p>
+  </div>
+
+  <div class="glass rounded panel">
+    <span class="label mono" style="color:#7c3aed">// the problem</span>
+    <h3 style="font-size:22px;font-weight:800;color:var(--s900);margin-top:8px">AI trained on the internet - and nobody asked</h3>
+    <p class="pw-lede">Most large AI models learned by reading, watching and looking at enormous amounts of work scraped from the open web - artwork, music, writing, photos, faces. Some of that was licensed and paid for. A lot of it was not. Until recently there was <b>no clear, standard way</b> for a creator to state, in a form a machine could actually read, "you may use this / only on these terms / please don't."</p>
+    <p class="pw-lede">That's the gap we talked about in the <b>Manifesto</b> and in <b>Week 2's bias section</b>. It isn't about being anti-AI - it's about <b>consent, credit and compensation</b>. As you start putting real work online, you deserve tools to set your own terms.</p>
+  </div>
+
+  <div class="glass rounded panel">
+    <span class="label mono" style="color:#db2777">// one answer that's emerging</span>
+    <h3 style="font-size:22px;font-weight:800;color:var(--s900);margin-top:8px">Meet RSL Media</h3>
+    <p class="pw-lede"><b>RSL Media</b> is a non-profit building an <b>open rights standard for the AI era</b>. The idea is simple: give every creator a single, <b>machine-readable</b> way to declare how their work and identity may be used by AI - so consent becomes clear and usable at scale, instead of buried in legal small print no algorithm reads. It's backed by artists and lawmakers (co-founders include actor <b>Cate Blanchett</b>) and works like a <b>traffic light</b> for permissions.</p>
+
+    <h4 style="font-size:15px;font-weight:800;color:var(--s900);margin-top:22px">Four things you can protect</h4>
+    <div class="pw-grid">
+      <div class="pw-card work"><span class="pw-ico">🎨</span><h4>Your work</h4><p>The things you make.</p><span class="pw-eg">Songs, films, books, screenplays, art, photography.</span></div>
+      <div class="pw-card identity"><span class="pw-ico">🧑‍🎤</span><h4>Your identity</h4><p>The things that are <i>you</i>.</p><span class="pw-eg">Name, image, likeness, voice, the way you move.</span></div>
+      <div class="pw-card characters"><span class="pw-ico">🦸</span><h4>Your characters</h4><p>The people you invent.</p><span class="pw-eg">A character's name, look, voice, portrayal and traits.</span></div>
+      <div class="pw-card marks"><span class="pw-ico">™️</span><h4>Your marks</h4><p>Your brand signals.</p><span class="pw-eg">Logos, trademarks, fashion and jewellery design, trade dress.</span></div>
+    </div>
+
+    <h4 style="font-size:15px;font-weight:800;color:var(--s900);margin-top:24px">The traffic light</h4>
+    <p class="pw-lede" style="margin-top:6px">For each of those, you pick one of three states - and AI systems can read your choice automatically:</p>
+    <div class="pw-lights">
+      <div class="pw-light go"><span class="pw-dot">✓</span><h4>Allowed</h4><p>Go ahead - AI systems may use this freely.</p></div>
+      <div class="pw-light terms"><span class="pw-dot">≈</span><h4>Allowed with terms</h4><p>Yes, but only under conditions you set - e.g. credit, payment, or certain uses only.</p></div>
+      <div class="pw-light stop"><span class="pw-dot">✕</span><h4>Prohibited</h4><p>No - this may not be used to train or generate AI output.</p></div>
+    </div>
+  </div>
+
+  <div class="glass rounded panel">
+    <span class="label mono" style="color:#059669">// what you can actually do</span>
+    <h3 style="font-size:22px;font-weight:800;color:var(--s900);margin-top:8px">Protecting your own portfolio</h3>
+    <p class="pw-lede">You don't need a lawyer to start being deliberate about this. As you publish the work from this course, build these habits:</p>
+    <div class="pw-steps">
+      <div class="pw-step"><div class="pw-st"><b>Decide your own traffic light.</b> Before you post a piece, ask yourself: allowed, allowed-with-terms, or prohibited for AI training? Even just knowing your answer changes how you publish.</div></div>
+      <div class="pw-step"><div class="pw-st"><b>Say it in plain sight.</b> Add a short line to your Google Site portfolio - e.g. "Please do not use this work to train AI models" or "Reuse allowed with credit." It's not bulletproof, but a clear, stated intent matters.</div></div>
+      <div class="pw-step"><div class="pw-st"><b>Keep your originals and your dates.</b> Save your working files, sketches and version history. Being able to show <i>you</i> made it first, and when, is the backbone of any rights claim.</div></div>
+      <div class="pw-step"><div class="pw-st"><b>Credit others the way you'd want crediting.</b> If your build reuses someone's code, image or sound, name them. The consent culture you want for yourself starts with how you treat other makers.</div></div>
+      <div class="pw-step"><div class="pw-st"><b>Follow the standards as they land.</b> Emerging tools like RSL Media aim to make "allowed / with terms / prohibited" machine-readable across the whole web. Know they exist - you'll likely use them for real work soon.</div></div>
+    </div>
+    <a class="pw-cta" href="https://rslmedia.org/" target="_blank" rel="noopener">Explore RSL Media →</a>
+    <p class="pw-note"><b>A fair-minded note:</b> RSL Media is one emerging, non-profit effort - not the only one, and the standard is still being written. The goal of this page isn't to sell you a service; it's to make sure that, as a maker, you know a stated right to consent, credit and compensation is <b>yours to claim</b>, and that the tools to do it are catching up fast.</p>
   </div>
 
 </section>
