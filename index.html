@@ -1178,6 +1178,24 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
 .mq-win p{ font-size:13px; color:var(--s600); margin-top:6px; }
 .mq-btn{ margin-top:13px; font:800 13px Manrope,system-ui,sans-serif; background:#7c3aed; color:#fff; border:none; padding:10px 18px; border-radius:10px; cursor:pointer; transition:background .2s; }
 .mq-btn:hover{ background:#6d28d9; }
+/* ===== Week 5 project tiles + briefs ===== */
+.projgrid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:16px; }
+.projtile{ text-align:left; background:#fff; border:2px solid #e7e5e4; border-radius:14px; padding:13px 14px; cursor:pointer; transition:border-color .15s, transform .15s, box-shadow .15s; }
+.projtile:hover{ transform:translateY(-2px); box-shadow:0 8px 18px -10px rgba(28,25,23,.4); }
+.projtile.active{ border-color:#7c3aed; box-shadow:0 0 0 3px rgba(124,58,237,.15); }
+.projtile .pt-emoji{ font-size:22px; line-height:1; }
+.projtile .pt-n{ display:block; font:800 9px ui-monospace,monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--s400); margin-top:6px; }
+.projtile b{ display:block; font-size:13px; color:var(--s900); margin-top:2px; line-height:1.25; }
+.projtile .pt-sub{ display:block; font-size:11px; color:var(--s500); margin-top:3px; line-height:1.4; }
+.pb-hint{ margin-top:16px; text-align:center; font-size:12.5px; color:var(--s500); padding:18px; border:1px dashed rgba(168,162,158,.5); border-radius:12px; }
+.projbrief{ display:none; margin-top:16px; border:1px solid #ddd6fe; border-radius:16px; background:rgba(124,58,237,.03); padding:20px 22px; }
+.projbrief.show{ display:block; }
+.projbrief h4{ font-size:17px; font-weight:800; color:var(--s900); }
+.projbrief > p{ font-size:13px; color:var(--s600); line-height:1.6; margin-top:8px; max-width:72ch; }
+.pb-steps{ list-style:none; counter-reset:pb; padding:0; margin:14px 0 0; display:grid; gap:9px; }
+.pb-steps li{ position:relative; padding-left:30px; font-size:12.5px; color:var(--s700); line-height:1.55; counter-increment:pb; }
+.pb-steps li::before{ content:counter(pb); position:absolute; left:0; top:0; width:20px; height:20px; border-radius:50%; background:#7c3aed; color:#fff; font:800 11px ui-monospace,monospace; display:flex; align-items:center; justify-content:center; }
+.pb-steps b{ color:var(--s900); }
 /* ===== AI Quest platformer (Week 4 starter) ===== */
 .pf{ margin-top:16px; max-width:640px; }
 .pf-stagewrap{ position:relative; border:2px solid #1e293b; border-radius:14px 14px 0 0; overflow:hidden; line-height:0; }
@@ -1415,7 +1433,7 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
       <button class="week-btn" id="wk-2" onclick="switchLesson(2)">Wk 2 · Vector Maps</button>
       <button class="week-btn" id="wk-3" onclick="switchLesson(3)">Wk 3 · Bland Paste</button>
       <button class="week-btn" id="wk-4" onclick="switchLesson(4)">Wk 4 · Google AI Tools</button>
-      <button class="week-btn" id="wk-5" onclick="switchLesson(5)">Wk 5 · Radical Publishing</button>
+      <button class="week-btn" id="wk-5" onclick="switchLesson(5)">Wk 5 · Make &amp; Publish</button>
     </div>
   </div>
 
@@ -2745,7 +2763,205 @@ Colour scheme: a clean, modern palette - deep purple (#7C3AED), bright pink (#DB
       </div>
     </div>
   </div>
-  <div id="week-5" class="week-pane hidden"><div class="glass rounded week-stub"><span class="label pink mono">// building next</span><h3>Week 5 · Radical Web Publishing & Net Art Exhibits</h3><p>Net-art history (Olia Lialina), static hosting vs sandboxes, portfolio curation and a live launch via Google Site embedding.</p></div></div>
+  <div id="week-5" class="week-pane hidden">
+    <div class="glass rounded panel">
+      <div class="lesson-top">
+        <div class="intro">
+          <span class="lesson-badge">Week 5 · Contact time 2.5 hours</span>
+          <h3>Make &amp; Publish: Your Project</h3>
+          <p>This is your make-week. You choose one of five projects, build or research it with AI as your coach, put the result live on your site with an explanation - and present what you made or found. Everything you've learned this term, pointed at something real.</p>
+        </div>
+        <div class="companion">
+          <span class="ctag">// the job this week</span>
+          <h5>Ship one real thing</h5>
+          <p>By the end you'll have <b style="color:#fbcfe8">published a project</b> - net art, a portfolio, a web app, a piece of research or a bias-buster - explained it in your own words, and stood up to share it.</p>
+        </div>
+      </div>
+
+      <div class="goalbox">
+        <span class="goal-tag">🎯 Today's mission</span>
+        <h3>Choose a project, build it, publish it - then present</h3>
+        <p>Pick <b>one</b> of five projects, build or research it with AI's help, put the result on your site with a short explanation, and present it at the end. Tick these off:</p>
+        <div class="goal-sections">
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Explore Google AI Experiments</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Choose one of five projects</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Build it &amp; publish to your site</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Write a short explanation</span></span>
+          <span class="goal-sec" onclick="this.classList.toggle('done')"><span class="tick">✓</span><span class="gs-txt">Present it to the group</span></span>
+        </div>
+        <p class="goal-foot">Every project ends the same way: <b>something real on your site, explained in your own words, and shared out loud.</b></p>
+      </div>
+
+      <div class="lpath-intro">
+        <span class="lpi-tag">// how this lesson runs</span>
+        <p>Most of today is yours to make. Explore first, then <b>commit to one project</b> and go deep - AI is your coach for prompting and problem-solving throughout. Keep your explanation and your presentation in mind from the start. Use the map below to move around.</p>
+      </div>
+
+      <nav class="w2nav" aria-label="Lesson parts">
+        <span class="w2n-lab">This lesson</span>
+        <a class="s" href="#w5-start" onclick="return openPart('w5-start')">Starter</a>
+        <a class="p1" href="#w5-p1" onclick="return openPart('w5-p1')">1 · Choose &amp; build</a>
+        <a class="p2" href="#w5-p2" onclick="return openPart('w5-p2')">2 · Publish &amp; present</a>
+        <a class="p3" href="#w5-final" onclick="return openPart('w5-p2','w5-final')">★ Hand in</a>
+      </nav>
+
+      <!-- STARTER -->
+      <section class="lp-wrap collapsible collapsed" id="w5-start">
+      <div class="part-head starter-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">Play with Google AI Experiments</h3></div><span class="ph-time">~10 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
+      <p class="act-sub" style="max-width:70ch">Warm up by playing. <b>Google AI Experiments</b> is a huge gallery of playful, weird and brilliant things people have built with AI. Explore, play, and let it spark ideas for your own project.</p>
+      <a class="linkbtn g" href="https://experiments.withgoogle.com/" target="_blank" rel="noopener">Open Google AI Experiments ↗</a>
+      <div class="taskcard"><span class="tk-when">▶ Starter · 10 min · explore &amp; play</span><h5>Try three, steal one idea</h5><p>Open Experiments and play with at least <b>three</b>. Note: <b>(1)</b> your favourite, <b>(2)</b> one that surprised you, and <b>(3)</b> one idea it gives you for today's project.</p><div class="why pink"><b>Why:</b> the best projects start from something that excited you. Find that spark before you commit.</div></div>
+      </div></div>
+      </section>
+
+      <!-- PART 1 · CHOOSE & BUILD -->
+      <section class="lp-wrap p1 collapsible collapsed" id="w5-p1">
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 1</span><h3 class="ph-title">Choose &amp; build your project</h3></div><span class="ph-time">~90 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
+      <p class="act-sub" style="max-width:70ch">Pick <b>one</b> project below - tap a tile to read its full brief. Then build or research it, using AI to help you prompt and problem-solve. Aim for something real and finished-enough to show.</p>
+
+      <div class="projgrid">
+        <button class="projtile" onclick="projShow(0)"><span class="pt-emoji">🕸️</span><span class="pt-n">Project 1</span><b>Interactive net art</b><span class="pt-sub">Weird, responsive, browser-native art.</span></button>
+        <button class="projtile" onclick="projShow(1)"><span class="pt-emoji">🌐</span><span class="pt-n">Project 2</span><b>Publish your portfolio</b><span class="pt-sub">Host it free on GitHub Pages.</span></button>
+        <button class="projtile" onclick="projShow(2)"><span class="pt-emoji">🛠️</span><span class="pt-n">Project 3</span><b>AI-powered web app</b><span class="pt-sub">Solve a real problem with AI.</span></button>
+        <button class="projtile" onclick="projShow(3)"><span class="pt-emoji">🔎</span><span class="pt-n">Project 4</span><b>Industry AI discovery</b><span class="pt-sub">How your field really uses AI.</span></button>
+        <button class="projtile" onclick="projShow(4)"><span class="pt-emoji">⚡</span><span class="pt-n">Project 5</span><b>Break the machine</b><span class="pt-sub">A bias or misinformation buster.</span></button>
+      </div>
+
+      <div class="pb-hint" id="pb-hint">↑ Tap a project to see its full brief.</div>
+
+      <!-- Brief 0 -->
+      <div class="projbrief" id="pb-0">
+        <h4>🕸️ Interactive net art</h4>
+        <p>Make a small, strange, <b>responsive interactive piece</b> that only really makes sense in a browser - net art. It should react to the viewer (mouse, scroll, click or touch) and work on any screen size.</p>
+        <div class="pc-tips"><span class="pc-tips-h">A bit of context</span><ul class="crit-list">
+          <li><b>Net art</b> is art made <em>of</em> and <em>for</em> the web - pioneers like <b>Olia Lialina</b> treated the browser itself as the canvas.</li>
+          <li><b>Sandboxing</b> means running code safely in isolation (e.g. an <code>&lt;iframe sandbox&gt;</code>) - it's how a site can host interactive art without risk.</li>
+        </ul></div>
+        <ol class="pb-steps">
+          <li><b>Explore</b> a net-art piece for inspiration (link below), then decide on one simple, weird idea.</li>
+          <li><b>Vibe-code it</b> in Gemini Canvas as one self-contained, responsive HTML page that reacts to the viewer.</li>
+          <li><b>Make it yours</b> - reject the bland default; give it a clear point of view.</li>
+          <li><b>Embed</b> it on your site and add one line: what makes this "net art"?</li>
+        </ol>
+        <div class="pc-tips"><span class="pc-tips-h">Prompt starter (adapt it)</span><ul class="crit-list">
+          <li>Ask for "one self-contained, <b>responsive</b> HTML page - an interactive net-art piece that reacts to mouse / scroll / touch".</li>
+          <li>Describe the mood and the interaction; ask it to <b>comment the code</b> and <b>reject generic templates</b>.</li>
+        </ul></div>
+        <a class="linkbtn" href="https://art.teleportacia.org/" target="_blank" rel="noopener">See Olia Lialina's net art ↗</a>
+      </div>
+
+      <!-- Brief 1 -->
+      <div class="projbrief" id="pb-1">
+        <h4>🌐 Publish your portfolio (GitHub)</h4>
+        <p>Take the portfolio you started last week and <b>publish it properly</b> - hosted free on <b>GitHub Pages</b> with a real web address you can share. You'll learn how websites are actually structured and hosted.</p>
+        <div class="pc-tips" style="margin-top:14px"><span class="pc-tips-h">How a website is structured</span></div>
+        <div class="codeblk">📁 my-portfolio/
+├── index.html        <span class="com">the page itself</span>
+├── 📁 images/         <span class="com">your artwork lives here</span>
+│   ├── piece-1.jpg
+│   └── piece-2.jpg
+└── style.css         <span class="com">optional - the styling</span></div>
+        <ol class="pb-steps">
+          <li>Make a free <b>GitHub</b> account and create a new <b>repository</b> (e.g. "portfolio").</li>
+          <li>Add your <code>index.html</code>, and put your images in an <code>images/</code> folder. Link to them with <b>relative paths</b>: <code>&lt;img src="images/piece-1.jpg"&gt;</code>.</li>
+          <li>In the repo go to <b>Settings → Pages</b>, set the source to your main branch - GitHub gives you a live URL.</li>
+          <li>Test the live link, then embed or link it from your Google Site.</li>
+        </ol>
+        <div class="why blue"><b>Tip:</b> keep file names lowercase with no spaces, and check every image path - a wrong path is the number-one reason images don't show.</div>
+        <a class="linkbtn" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages - how to ↗</a>
+      </div>
+
+      <!-- Brief 2 -->
+      <div class="projbrief" id="pb-2">
+        <h4>🛠️ Build an AI-powered web app</h4>
+        <p>Find a <b>real problem</b> and design a simple web app that uses AI to help solve it. You won't finish it today - you'll flesh out the concept and start building, with AI <b>coaching you as a beginner</b>.</p>
+        <ol class="pb-steps">
+          <li><b>Pick a problem</b> you or someone you know actually has. Who is it for?</li>
+          <li><b>Sketch the solution</b> in one sentence: "an app that ___ so that ___".</li>
+          <li>Ask AI to <b>coach you</b> - build a rough version one step at a time, explaining each step.</li>
+          <li>Get a <b>prototype</b> working (even one screen), and note what you'd add next.</li>
+        </ol>
+        <div class="pc-tips"><span class="pc-tips-h">Prompt starter (adapt it)</span><ul class="crit-list">
+          <li>"Act as a patient coding coach. I'm a beginner. Help me plan and build [my app] step by step, and check I understand before each next step."</li>
+          <li>Ask it to keep everything in <b>one HTML file</b> so it embeds on your site.</li>
+        </ul></div>
+        <div class="why purple"><b>Deliverable:</b> your concept written up + a working prototype or first screen, on your site.</div>
+      </div>
+
+      <!-- Brief 3 -->
+      <div class="projbrief" id="pb-3">
+        <h4>🔎 How your industry uses AI</h4>
+        <p>Research how <b>your</b> target industry - games, film, VFX, design, music, whatever you're aiming for - is really using AI: for <b>business value</b>, <b>creative work</b>, or both. Find real companies, tools and examples.</p>
+        <ol class="pb-steps">
+          <li><b>Choose your industry</b> and one or two questions you actually want answered.</li>
+          <li><b>Research</b> with AI <em>and</em> the web - find at least <b>3 real examples</b>: companies building AI tools, and which tools studios actually use.</li>
+          <li><b>Check it's true</b> - AI can invent companies. Verify every example against a real source.</li>
+          <li><b>Present it</b> as a clear page, infographic or short slide deck: business uses vs creative uses, with examples.</li>
+        </ol>
+        <div class="pc-tips"><span class="pc-tips-h">Prompt starter (adapt it)</span><ul class="crit-list">
+          <li>"How is the [industry] using AI? Give real companies and tools, both business and creative uses, with sources I can check."</li>
+          <li>Then <b>fact-check every name</b> before you use it.</li>
+        </ul></div>
+        <div class="why blue"><b>Deliverable:</b> a summary on your site with real, verified examples and tools.</div>
+      </div>
+
+      <!-- Brief 4 -->
+      <div class="projbrief" id="pb-4">
+        <h4>⚡ Break the machine</h4>
+        <p>Build something that <b>exposes AI bias</b> or <b>detects misinformation</b> - your way. A critical, playful "break the machine" project that shows AI's flaws instead of hiding them.</p>
+        <div class="pc-tips"><span class="pc-tips-h">Ideas (pick one or invent your own)</span><ul class="crit-list">
+          <li>A <b>bias probe</b>: give an AI paired prompts that differ by one detail, and document how the answers change.</li>
+          <li>A <b>"spot the fake"</b> quiz of real vs AI-made images or text.</li>
+          <li>A <b>misinformation checklist tool</b> that helps people question what they see online.</li>
+          <li>A satirical <b>classifier</b> that makes bias obvious (like the Classification Mirror, but deeper).</li>
+        </ul></div>
+        <ol class="pb-steps">
+          <li><b>Choose your angle</b> - what flaw do you want to reveal?</li>
+          <li><b>Test or build</b> it, and collect real examples of the flaw.</li>
+          <li><b>Explain what you found</b> - and why it matters.</li>
+          <li><b>Publish</b> it on your site.</li>
+        </ol>
+        <div class="ground-rule"><b>⚠ Ground rule:</b> keep it fair and harmless - expose the <em>machine's</em> flaws, never target or offend real people or groups.</div>
+      </div>
+
+      </div></div>
+      </section>
+
+      <!-- PART 2 · PUBLISH & PRESENT -->
+      <section class="lp-wrap p2 collapsible collapsed" id="w5-p2">
+      <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 2</span><h3 class="ph-title">Publish &amp; present</h3></div><span class="ph-time">~30 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
+
+      <div class="buildnow">
+        <span class="bn-badge">🛠 Your turn · publish</span>
+        <h4 class="bn-h">Put it on your site &amp; explain it</h4>
+        <p>Get your project <b>live on your Google Site</b> - embedded, linked or written up - with a short <b>explanation</b> beside it: what it is, how you made it, and what you learned or found.</p>
+      </div>
+      <div class="taskcard"><span class="tk-when">▶ Task 1 · ~18 min</span><h5>Publish &amp; write it up</h5><p>Add your project to your site so anyone can see it. Underneath, write a short paragraph: <b>(1)</b> what it is and who it's for, <b>(2)</b> how you built or researched it (and where AI helped), <b>(3)</b> one thing you're proud of and one thing you'd do next.</p><div class="why blue"><b>Why:</b> the explanation is what turns a thing you made into evidence of what you can <em>do</em>.</div></div>
+
+      <div class="taskcard offline"><span class="tk-when">✎ Task 2 · ~12 min · prep to present</span><h5>Get ready to share it</h5><p>Prepare a <b>1-2 minute</b> presentation of your project for the group: show it, say <b>why</b> you chose it, the <b>hardest part</b>, and one thing you discovered. No slides needed - just your site and your voice.</p><div class="why purple"><b>Why:</b> being able to talk about your work clearly is a real-world skill - and the fastest way to spot what's strong.</div></div>
+
+      </div></div>
+      </section>
+
+      <div class="finaltask" id="w5-final">
+        <span class="ft-tag">★ Final task · hand in on Google Classroom + present</span>
+        <h3>Ship it, explain it, present it</h3>
+        <p class="ft-lead">Everything comes together here: a real thing on your site, in your own words, shared with the group.</p>
+        <div class="ft-deliver">
+          <span class="fd-tag">Hand in &amp; present</span>
+          <ul>
+            <li><b>Your project on your Google Site</b> - net art, portfolio, web app, industry research or a bias/misinformation buster.</li>
+            <li><b>A short written explanation</b> - what it is, how you made it, what you learned or found.</li>
+            <li><b>A 1-2 minute presentation</b> to the group - show it and talk us through it.</li>
+          </ul>
+          <div class="ft-classroom"><span class="cl-pill">Minimum to hand in: one real thing published on your site with a sentence explaining it - then stand up and share it.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ===== UNIVERSAL LABS ===== -->
@@ -3977,6 +4193,14 @@ if(document.readyState!=='loading'){ hbInit(); } else { document.addEventListene
 /* ===== collapsible lesson parts ===== */
 function togglePart(head){ var sec=head.closest('.lp-wrap'); if(sec) sec.classList.toggle('collapsed'); }
 function openPart(id, target){ var sec=document.getElementById(id); if(sec) sec.classList.remove('collapsed'); var t=document.getElementById(target||id); if(t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); return false; }
+/* Week 5 project chooser: show one brief at a time */
+function projShow(n){
+  var briefs=document.querySelectorAll('.projbrief'); briefs.forEach(function(b,i){ b.classList.toggle('show', i===n); });
+  var tiles=document.querySelectorAll('.projtile'); tiles.forEach(function(t,i){ t.classList.toggle('active', i===n); });
+  var hint=document.getElementById('pb-hint'); if(hint) hint.style.display='none';
+  var el=document.getElementById('pb-'+n); if(el) setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 40);
+  return false;
+}
 /* confetti burst (no library) - fired from the certificate's Celebrate button */
 function celebrateCert(btn){
   var c=document.createElement('canvas');
