@@ -2823,7 +2823,7 @@ Colour scheme: a clean, modern palette - deep purple (#7C3AED), bright pink (#DB
 
       <div class="projgrid">
         <button class="projtile" onclick="projShow(0)"><span class="pt-emoji">🕸️</span><span class="pt-n">Project 1</span><b>Interactive net art</b><span class="pt-sub">Weird, responsive, browser-native art.</span></button>
-        <button class="projtile" onclick="projShow(1)"><span class="pt-emoji">🌐</span><span class="pt-n">Project 2</span><b>Publish your portfolio</b><span class="pt-sub">Host it free on GitHub Pages.</span></button>
+        <button class="projtile" onclick="projShow(1)"><span class="pt-emoji">🌐</span><span class="pt-n">Project 2</span><b>Build &amp; publish your portfolio</b><span class="pt-sub">Make it, then host it free on GitHub.</span></button>
         <button class="projtile" onclick="projShow(2)"><span class="pt-emoji">🛠️</span><span class="pt-n">Project 3</span><b>AI-powered web app</b><span class="pt-sub">Solve a real problem with AI.</span></button>
         <button class="projtile" onclick="projShow(3)"><span class="pt-emoji">🔎</span><span class="pt-n">Project 4</span><b>Industry AI discovery</b><span class="pt-sub">How your field really uses AI.</span></button>
         <button class="projtile" onclick="projShow(4)"><span class="pt-emoji">⚡</span><span class="pt-n">Project 5</span><b>Break the machine</b><span class="pt-sub">A bias or misinformation buster.</span></button>
@@ -2854,10 +2854,24 @@ Colour scheme: a clean, modern palette - deep purple (#7C3AED), bright pink (#DB
 
       <!-- Brief 1 -->
       <div class="projbrief" id="pb-1">
-        <h4>🌐 Publish your portfolio (GitHub)</h4>
-        <p>Take the portfolio you started last week and <b>publish it properly</b> - hosted free on <b>GitHub Pages</b> with a real web address you can share. You'll learn how websites are actually structured and hosted.</p>
-        <div class="why blue"><b>What you'll need:</b> a free <b>GitHub</b> account - <a href="https://github.com/signup" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700">sign up ↗</a> before you start. New to GitHub? There's a plain-English primer (repos, commits, pushes, Pages) in the <b>"Hungry for more?"</b> section of <b>The Brief</b> tab, and <a href="https://skills.github.com/" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700">GitHub Skills ↗</a> teaches the basics by doing.</div>
-        <div class="pc-tips" style="margin-top:14px"><span class="pc-tips-h">How a website is structured (ask Gemini to build it like this)</span></div>
+        <h4>🌐 Build &amp; publish your portfolio</h4>
+        <p>Build a portfolio for your work and <b>publish it properly</b> - hosted free on <b>GitHub Pages</b>, with a real web address you can share. Along the way you'll learn how real websites are structured and hosted.</p>
+
+        <div class="pc-tips"><span class="pc-tips-h">First - what is GitHub?</span><ul class="crit-list">
+          <li><b>GitHub</b> is a free service where code and websites are stored and shared online - it's where most real software lives (this very site included).</li>
+          <li>A <b>repository</b> ("repo") is simply your project's folder, kept online with its full history.</li>
+          <li><b>GitHub Pages</b> takes a repo and turns it into a <b>live website</b> - free, with its own web address you can share or embed.</li>
+        </ul></div>
+        <div class="why blue"><b>What you'll need:</b> a free GitHub account - <a href="https://github.com/signup" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700">sign up ↗</a>. Totally new to it? There's a plain-English primer in the <b>"Hungry for more?"</b> section of <b>The Brief</b> tab, and <a href="https://skills.github.com/" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700">GitHub Skills ↗</a> teaches the basics by doing.</div>
+
+        <p style="font:800 13.5px Manrope,system-ui,sans-serif; color:#7c3aed; margin-top:22px">① Make your portfolio</p>
+        <p style="font-size:13px; color:var(--s600); line-height:1.6; margin-top:6px; max-width:72ch">It needs a <b>title and short intro</b> about you, a <b>gallery of your best work</b> (images, with a one-line caption each), and a way to <b>get in touch</b>. Keep it clean and personal - your colours, your layout, your voice.</p>
+        <div class="pc-tips"><span class="pc-tips-h">Prompt it well</span><ul class="crit-list">
+          <li>Ask Gemini to build it as <b>separate files</b> in the structure below - an <code>index.html</code> plus an <code>images/</code> folder - <em>not</em> one giant single file.</li>
+          <li>Ask for <b>commented code</b>, describe the <b>look and layout</b> you want, and tell it to <b>reject generic templates</b>. Then refine by chatting. Download the files when you're happy.</li>
+        </ul></div>
+
+        <p style="font:800 13.5px Manrope,system-ui,sans-serif; color:#7c3aed; margin-top:22px">② Publish it on GitHub</p>
         <div class="codeblk">📁 my-portfolio/          <span class="com">← your whole site lives in one folder</span>
 ├── index.html            <span class="com">← the HOMEPAGE - it must ALWAYS be named exactly this</span>
 ├── 📁 images/            <span class="com">← every picture goes in its own folder, not loose</span>
@@ -2865,14 +2879,13 @@ Colour scheme: a clean, modern palette - deep purple (#7C3AED), bright pink (#DB
 │   └── screen-print.jpg  <span class="com">← …lowercase, no spaces (use - between words)</span>
 └── style.css             <span class="com">← optional: all your styling in one file</span></div>
         <ol class="pb-steps">
-          <li><b>Ask Gemini to build it as separate files</b> in exactly this structure - an <code>index.html</code> plus an <code>images/</code> folder with clearly-named images - and to link each picture with a <b>relative path</b>: <code>&lt;img src="images/ceramic-vase.jpg"&gt;</code>. Download the files.</li>
-          <li>Make a free <b>GitHub</b> account and create a new <b>repository</b> (e.g. "portfolio").</li>
-          <li><b>Upload your files, keeping the structure</b> - <code>index.html</code> at the top level, images inside the <code>images/</code> folder.</li>
+          <li>On GitHub, create a new <b>repository</b> (call it "portfolio").</li>
+          <li><b>Upload your files, keeping the structure</b> - <code>index.html</code> at the top level, images inside the <code>images/</code> folder. Each image is linked with a <b>relative path</b>: <code>&lt;img src="images/ceramic-vase.jpg"&gt;</code>.</li>
           <li>Go to <b>Settings → Pages</b>, set the source to your main branch - GitHub gives you a <b>live URL</b>.</li>
           <li>Test the live link, then embed or link it from your Google Site.</li>
         </ol>
-        <div class="why blue"><b>Can Gemini push to GitHub for you?</b> No - Gemini writes the files and can <em>coach</em> you, but you upload them yourself (it's quick). Get stuck? Ask it: <em>"Walk me through putting these files on GitHub Pages, step by step, as a total beginner - one click at a time."</em></div>
-        <div class="why purple"><b>Tip:</b> file names must be lowercase with no spaces, and every image path must match its file exactly - a wrong path is the number-one reason images don't show.</div>
+        <div class="why blue"><b>Can Gemini push to GitHub for you?</b> No - it writes the files and can <em>coach</em> you, but you upload them yourself (it's quick). Stuck? Ask it: <em>"Walk me through putting these files on GitHub Pages, step by step, as a total beginner - one click at a time."</em></div>
+        <div class="why purple"><b>Tip:</b> filenames lowercase with no spaces, and every image path must match its file exactly - a wrong path is the number-one reason images don't show.</div>
         <a class="linkbtn" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages - how to ↗</a>
       </div>
 
