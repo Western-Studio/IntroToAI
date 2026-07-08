@@ -1489,6 +1489,9 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           <span class="lsn-key"><i class="k-e"></i>Explain<i class="k-a"></i>Do<i class="k-t"></i>Task</span>
         </div>
         <div class="lsn-rows">
+          <div class="lsn-row"><span class="lsn-part">Starter</span>
+            <a class="lsn-chip a" href="#w1-start" title="Cat or dog? How do you know? - a machine-learning warm-up">▶ Cat or dog?</a>
+          </div>
           <div class="lsn-row"><span class="lsn-part">Part 1</span>
             <a class="lsn-chip e" href="#w1-e1" title="So what is an ‘algorithm’ here?">E1</a>
             <a class="lsn-chip a" href="#w1-a1" title="Be the algorithm">A1</a>
@@ -1521,6 +1524,82 @@ footer.foot{ max-width:1120px; margin:0 auto; padding:32px 24px; border-top:1px 
           </div>
         </div>
       </nav>
+
+      <!-- ===== STARTER · Machine Learning ===== -->
+      <style>
+      .ml-game{ background:#fff; border:1px solid #fbcfe8; border-radius:18px; padding:20px; margin-top:14px; text-align:center; }
+      .ml-count{ font-size:12px; font-weight:700; color:var(--s500); letter-spacing:.02em; }
+      .ml-photo{ font-size:88px; line-height:1.15; margin:6px 0 2px; user-select:none; }
+      .ml-btns{ display:flex; gap:12px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
+      .ml-b{ cursor:pointer; font-family:inherit; font-size:16px; font-weight:800; padding:13px 26px; border-radius:999px; border:2px solid transparent; transition:transform .12s; }
+      .ml-b:hover{ transform:translateY(-2px); }
+      .ml-b.cat{ background:#f3e8ff; color:#7c3aed; border-color:#ddd6fe; }
+      .ml-b.dog{ background:#e0f2fe; color:#0369a1; border-color:#bae6fd; }
+      .ml-fb{ min-height:24px; margin-top:12px; font-size:15px; font-weight:800; }
+      .ml-fb.ok{ color:#059669; } .ml-fb.no{ color:#dc2626; }
+      .ml-done{ background:linear-gradient(135deg,rgba(219,39,119,.08),rgba(124,58,237,.08)); border:1px solid #fbcfe8; border-radius:18px; padding:22px; margin-top:14px; text-align:center; }
+      .ml-done h4{ font-size:19px; font-weight:800; color:var(--s900); }
+      .ml-tally{ font-size:34px; font-weight:900; background:linear-gradient(135deg,#db2777,#7c3aed); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin:6px 0; }
+      .ml-done p{ font-size:14px; color:var(--s600); line-height:1.6; max-width:60ch; margin:0 auto; }
+      .ml-reveal{ cursor:pointer; font-family:inherit; margin-top:16px; background:linear-gradient(135deg,#db2777,#7c3aed); color:#fff; font-weight:800; font-size:15px; padding:13px 24px; border-radius:999px; border:0; }
+      .ml-teach{ margin-top:16px; }
+      .ml-tcard{ display:flex; gap:15px; align-items:flex-start; background:#faf5ff; border:1px solid #e9d5ff; border-radius:15px; padding:17px 18px; margin-top:12px; }
+      .ml-tcard .ml-ti{ font-size:30px; line-height:1; flex:0 0 auto; }
+      .ml-tcard h5{ font-size:15.5px; font-weight:800; color:var(--s900); }
+      .ml-tcard p{ font-size:13.5px; color:var(--s600); line-height:1.6; margin-top:5px; }
+      .ml-tcard p b{ color:var(--s800); }
+      .ml-pxwrap{ margin-top:13px; }
+      .ml-pxwrap .cap{ font-size:11.5px; font-weight:700; color:var(--s500); margin-bottom:7px; display:block; }
+      .ml-pixels{ display:grid; grid-template-columns:repeat(8,1fr); gap:2px; width:100%; max-width:280px; }
+      .ml-px{ aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-family:ui-monospace,Menlo,monospace; font-size:9px; border-radius:2px; }
+      .ml-again{ cursor:pointer; font-family:inherit; margin-top:12px; background:transparent; border:1px solid #e9d5ff; color:#7c3aed; font-weight:700; font-size:12.5px; padding:8px 15px; border-radius:999px; }
+      </style>
+      <section class="lp-wrap collapsible collapsed" id="w1-start">
+      <div class="part-head starter-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Starter</span><h3 class="ph-title">Cat or dog? How do you actually know?</h3></div><span class="ph-time">~10 min</span><span class="part-chev">▾</span></div>
+      <div class="part-body"><div class="part-inner">
+      <p class="act-sub" style="max-width:68ch">Before we touch any code, one quick game. You'll sort six photos as fast as you can - then we'll ask the question that this entire subject is built on: <b>how did you know?</b></p>
+
+      <div class="ml-game" id="ml-game">
+        <div class="ml-count" id="ml-count">Photo 1 of 6</div>
+        <div class="ml-photo" id="ml-photo">🐕</div>
+        <div class="ml-btns">
+          <button class="ml-b cat" onclick="mlGuess('cat')">🐱 Cat</button>
+          <button class="ml-b dog" onclick="mlGuess('dog')">🐶 Dog</button>
+        </div>
+        <div class="ml-fb" id="ml-fb"></div>
+      </div>
+
+      <div class="ml-done" id="ml-done" hidden>
+        <h4>You sorted them in a blink.</h4>
+        <div class="ml-tally" id="ml-tally">6 / 6</div>
+        <p>You never measured an ear, counted a whisker, or checked a tail. Your answer arrived <b>before you could explain it</b>. So here's the real question of today&hellip;</p>
+        <button class="ml-reveal" id="ml-reveal" onclick="mlReveal()">So&hellip; how did you actually know? →</button>
+      </div>
+
+      <div class="ml-teach" id="ml-teach" hidden>
+        <div class="ml-tcard"><span class="ml-ti">🧠</span><div><h5>1 · You've quietly seen thousands</h5><p>Every cat and every dog you've ever met, on screens and in the street, <b>trained your brain</b>. Now recognition is automatic - you couldn't switch it off if you tried. Nobody gave you a rulebook; you learned the pattern from <b>examples</b>.</p></div></div>
+        <div class="ml-tcard"><span class="ml-ti">📏</span><div><h5>2 · Now try to write the exact rule</h5><p>Imagine explaining "cat vs dog" to something that has never seen either - in strict logic only. "Pointy ears"? A fox <b>🦊</b> has those, and it's neither. "Whiskers, fur, four legs, a tail"? Both. Every rule you write, an exception breaks it. Writing the rule by hand is <b>almost impossible</b>.</p></div></div>
+        <div class="ml-tcard"><span class="ml-ti">🤖</span><div><h5>3 · So we don't write the rule - we show examples</h5><p>Instead of coding the rule, we hand a computer <b>thousands of labelled photos</b> - "cat", "dog", "cat"&hellip; - and let it find the pattern itself. That is <b>machine learning</b>. And to the computer, a photo isn't a cat at all - it's just a grid of brightness numbers:</p>
+          <div class="ml-pxwrap"><span class="cap">what the computer actually receives &darr;</span><div class="ml-pixels" id="ml-pixels"></div></div>
+          <p style="margin-top:11px">Find the pattern in enough of those number-grids and you can guess "cat" on a photo you've never seen. <b>Everything you build this term stands on this one idea.</b></p>
+        </div></div>
+        <div class="taskcard"><span class="tk-when">▶ Talk it out · 3 min · in pairs</span><h5>Try to beat the machine with pure logic</h5><p>Between you, write down a set of strict rules a computer could follow to tell <b>any</b> cat from <b>any</b> dog - using no example photos, only logic. See how many exceptions you can break it with. That failure is exactly why machine learning exists.</p><div class="why pink"><b>Why:</b> to feel, first-hand, the difference between <i>writing rules</i> and <i>learning from examples</i> - the leap that makes modern AI possible.</div></div>
+        <button class="ml-again" onclick="mlReset()">↻ Play the photos again</button>
+      </div>
+      </div></div>
+      </section>
+      <script>
+      var ML_CARDS=[{e:'🐕',a:'dog'},{e:'🐈',a:'cat'},{e:'🐩',a:'dog'},{e:'🐱',a:'cat'},{e:'🐕‍🦺',a:'dog'},{e:'🐈‍⬛',a:'cat'}];
+      var mlIdx=0, mlScore=0, mlLock=false;
+      function mlShow(){ var c=ML_CARDS[mlIdx]; var p=document.getElementById('ml-photo'); if(p) p.textContent=c.e; var n=document.getElementById('ml-count'); if(n) n.textContent='Photo '+(mlIdx+1)+' of '+ML_CARDS.length; var fb=document.getElementById('ml-fb'); if(fb){ fb.textContent=''; fb.className='ml-fb'; } }
+      function mlGuess(g){ if(mlLock) return; var c=ML_CARDS[mlIdx]; var right=(g===c.a); if(right) mlScore++; mlLock=true; var fb=document.getElementById('ml-fb'); if(fb){ fb.textContent= right ? '✓ Yes!' : '✗ Actually a '+c.a; fb.className='ml-fb '+(right?'ok':'no'); } setTimeout(function(){ mlIdx++; if(mlIdx>=ML_CARDS.length){ mlFinish(); } else { mlShow(); } mlLock=false; }, 780); }
+      function mlFinish(){ var g=document.getElementById('ml-game'); if(g) g.hidden=true; var d=document.getElementById('ml-done'); if(d) d.hidden=false; var t=document.getElementById('ml-tally'); if(t) t.textContent=mlScore+' / '+ML_CARDS.length; }
+      function mlReset(){ mlIdx=0; mlScore=0; mlLock=false; var d=document.getElementById('ml-done'); if(d) d.hidden=true; var te=document.getElementById('ml-teach'); if(te) te.hidden=true; var rv=document.getElementById('ml-reveal'); if(rv) rv.hidden=false; var g=document.getElementById('ml-game'); if(g) g.hidden=false; mlShow(); var s=document.getElementById('w1-start'); if(s) s.scrollIntoView({behavior:'smooth',block:'start'}); }
+      var ML_MAP=[[235,235,120,235,235,120,235,235],[235,120,55,120,120,55,120,235],[235,55,40,40,40,40,55,235],[120,40,25,70,70,25,40,120],[120,40,70,40,40,70,40,120],[235,40,40,90,90,40,40,235],[235,120,40,55,55,40,120,235],[235,235,120,95,95,120,235,235]];
+      function mlPixels(){ var host=document.getElementById('ml-pixels'); if(!host || host.dataset.built) return; var html=''; for(var r=0;r<8;r++){ for(var c=0;c<8;c++){ var v=ML_MAP[r][c]; var tc=v<130?'#f8fafc':'#334155'; html+='<span class="ml-px" style="background:rgb('+v+','+v+','+v+');color:'+tc+'">'+v+'</span>'; } } host.innerHTML=html; host.dataset.built='1'; }
+      function mlReveal(){ var te=document.getElementById('ml-teach'); if(te) te.hidden=false; mlPixels(); var rv=document.getElementById('ml-reveal'); if(rv) rv.hidden=true; setTimeout(function(){ if(te) te.scrollIntoView({behavior:'smooth',block:'nearest'}); }, 60); }
+      </script>
+
       <section class="lp-wrap p1 collapsible collapsed">
       <div class="part-head" onclick="togglePart(this)"><div class="ph-main"><span class="ph-eyebrow">Part 1</span><h3 class="ph-title">How the machine actually works</h3></div><span class="ph-time">~50 min</span><span class="part-chev">▾</span></div>
       <div class="part-body"><div class="part-inner">
@@ -4313,8 +4392,12 @@ function hbInit(){ var c=document.getElementById('hb-code'); if(!c) return; HB_D
 if(document.readyState!=='loading'){ hbInit(); } else { document.addEventListener('DOMContentLoaded', hbInit); }
 
 /* ===== collapsible lesson parts ===== */
-function togglePart(head){ var sec=head.closest('.lp-wrap'); if(!sec) return; sec.classList.toggle('collapsed'); if(!sec.classList.contains('collapsed') && sec.closest('#week-1')){ setTimeout(function(){ try{ galaxyInit(); }catch(e){} try{ fireInit(); }catch(e){} try{ lwInit(); }catch(e){} try{ generateBlindDrafterComposition(); }catch(e){} try{ peerInit(); }catch(e){} }, 70); } }
+function w1Redraw(){ setTimeout(function(){ try{ galaxyInit(); }catch(e){} try{ fireInit(); }catch(e){} try{ lwInit(); }catch(e){} try{ generateBlindDrafterComposition(); }catch(e){} try{ peerInit(); }catch(e){} }, 70); }
+function togglePart(head){ var sec=head.closest('.lp-wrap'); if(!sec) return; sec.classList.toggle('collapsed'); if(!sec.classList.contains('collapsed') && sec.closest('#week-1')) w1Redraw(); }
 function openPart(id, target){ var sec=document.getElementById(id); if(sec) sec.classList.remove('collapsed'); var t=document.getElementById(target||id); if(t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 70); return false; }
+/* Week 1 sub-nav: opening a step must expand the collapsed part it lives in */
+function jumpToStep(ev, sel){ if(ev) ev.preventDefault(); var t=document.querySelector(sel); if(!t) return false; var sec=t.closest('.lp-wrap'); if(sec){ sec.classList.remove('collapsed'); if(sec.closest('#week-1')) w1Redraw(); } setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 90); return false; }
+(function(){ var chips=document.querySelectorAll('#week-1 .lesson-subnav .lsn-chip'); for(var i=0;i<chips.length;i++){ (function(a){ var h=a.getAttribute('href'); if(h && h.charAt(0)==='#'){ a.addEventListener('click', function(ev){ jumpToStep(ev, h); }); } })(chips[i]); } })();
 /* Week 5 project chooser: show one brief at a time */
 function projShow(n){
   var briefs=document.querySelectorAll('.projbrief'); briefs.forEach(function(b,i){ b.classList.toggle('show', i===n); });
